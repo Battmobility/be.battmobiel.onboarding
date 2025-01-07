@@ -1,0 +1,33 @@
+{
+	"@@locale": "en",
+	"formTitle": "Become Batt",
+	"@formTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"firstNameFieldTitle": "First name",
+	"@firstNameFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"lastNameFieldTitle": "Last name",
+	"@lastNameFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"emailFieldTitle": "Email",
+	"@emailFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"phoneFieldTitle": "Phone number",
+	"@phoneFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"submitButtonText": "Submit",
+	"@submitButtonText": {
+		"type": "text",
+		"placeholders": {}
+	}
+}

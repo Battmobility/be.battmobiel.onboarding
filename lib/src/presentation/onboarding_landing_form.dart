@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class OnboardingLandingForm extends StatefulWidget {
   const OnboardingLandingForm({super.key});
@@ -10,41 +13,71 @@ class OnboardingLandingForm extends StatefulWidget {
 }
 
 class OnboardingLandingFormState extends State<OnboardingLandingForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a `GlobalKey<FormState>`,
-  // not a GlobalKey<MyCustomFormState>.
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
+      body: Container(
+        padding: const EdgeInsets.all(60.0),
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 1200),
+          child: FormBuilder(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                FormBuilderTextField(
+                  name: "firstName",
+                  decoration: InputDecoration(
+                      labelText:
+                          AppLocalizations.of(context)!.firstNameFieldTitle),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.firstName(),
+                  ]),
+                ),
+                FormBuilderTextField(
+                  name: "lastName",
+                  decoration: InputDecoration(
+                      labelText:
+                          AppLocalizations.of(context)!.lastNameFieldTitle),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.lastName(),
+                  ]),
+                ),
+                FormBuilderTextField(
+                  name: "email",
+                  decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.emailFieldTitle),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.email(),
+                  ]),
+                ),
+                FormBuilderTextField(
+                  name: "phone",
+                  decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.phoneFieldTitle),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.phoneNumber(),
+                  ]),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Processing Data')),
+                      );
+                    }
+                  },
+                  child: Text(AppLocalizations.of(context)!.submitButtonText),
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                }
-              },
-              child: const Text('Submit'),
-            ),
-          ],
+          ),
         ),
       ),
     );

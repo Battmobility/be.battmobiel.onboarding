@@ -1,0 +1,33 @@
+{
+	"@@locale": "nl",
+	"formTitle": "Word Batt",
+	"@formTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"firstNameFieldTitle": "Voornaam",
+	"@firstNameFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"lastNameFieldTitle": "Achternaam",
+	"@lastNameFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"emailFieldTitle": "Email",
+	"@emailFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"phoneFieldTitle": "Telefoon",
+	"@phoneFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"submitButtonText": "Verzenden",
+	"@submitButtonText": {
+		"type": "text",
+		"placeholders": {}
+	}
+}

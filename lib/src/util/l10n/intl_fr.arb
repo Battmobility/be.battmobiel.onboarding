@@ -1,0 +1,33 @@
+{
+	"@@locale": "fr",
+	"formTitle": "Deviens Batt",
+	"@formTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"firstNameFieldTitle": "Prénom",
+	"@firstNameFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"lastNameFieldTitle": "Nom",
+	"@lastNameFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"emailFieldTitle": "Adresse e-mail",
+	"@emailFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"phoneFieldTitle": "Téléphone",
+	"@phoneFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"submitButtonText": "S'inscrire",
+	"@submitButtonText": {
+		"type": "text",
+		"placeholders": {}
+	}
+}
