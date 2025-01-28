@@ -25,7 +25,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"submitButtonText": "S'inscrire",
+	"submitButtonText": "S inscrire",
 	"@submitButtonText": {
 		"type": "text",
 		"placeholders": {}

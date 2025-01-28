@@ -1,6 +1,6 @@
 name: batt_onboarding
 description: A starting point for Dart libraries or applications.
-version: 1.0.4
+version: 1.0.5
 # repository: https://github.com/my_org/my_repo
 
 environment:
@@ -17,6 +17,8 @@ dependencies:
     sdk: flutter 
 
 dev_dependencies:
+  build_runner: ^2.4.9
+  flutter_gen: ^5.8.0
   lints: ^5.0.0
   test: ^1.24.0
 
