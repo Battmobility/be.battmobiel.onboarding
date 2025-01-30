@@ -542,10 +542,10 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-01-28T08:28:48.253626Z",
+  "generated": "2025-01-30T21:12:10.824123Z",
   "generator": "pub",
-  "generatorVersion": "3.6.0",
+  "generatorVersion": "3.6.1",
   "flutterRoot": "file:///Users/kris/Flutter/flutter",
-  "flutterVersion": "3.27.1",
+  "flutterVersion": "3.27.3",
   "pubCache": "file:///Users/kris/.pub-cache"
 }

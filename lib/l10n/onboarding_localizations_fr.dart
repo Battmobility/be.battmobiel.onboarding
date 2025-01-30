@@ -3,8 +3,8 @@ import 'onboarding_localizations.dart';
 // ignore_for_file: type=lint
 
 /// The translations for French (`fr`).
-class AppLocalizationsFr extends AppLocalizations {
-  AppLocalizationsFr([String locale = 'fr']) : super(locale);
+class OnboardingLocalizationsFr extends OnboardingLocalizations {
+  OnboardingLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
   String get formTitle => 'Deviens Batt';

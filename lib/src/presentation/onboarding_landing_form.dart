@@ -30,8 +30,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                 FormBuilderTextField(
                   name: "firstName",
                   decoration: InputDecoration(
-                      labelText:
-                          AppLocalizations.of(context)!.firstNameFieldTitle),
+                      labelText: OnboardingLocalizations.of(context)
+                          .firstNameFieldTitle),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(),
                     FormBuilderValidators.firstName(),
@@ -40,8 +40,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                 FormBuilderTextField(
                   name: "lastName",
                   decoration: InputDecoration(
-                      labelText:
-                          AppLocalizations.of(context)!.lastNameFieldTitle),
+                      labelText: OnboardingLocalizations.of(context)
+                          .lastNameFieldTitle),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(),
                     FormBuilderValidators.lastName(),
@@ -50,7 +50,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                 FormBuilderTextField(
                   name: "email",
                   decoration: InputDecoration(
-                      labelText: AppLocalizations.of(context)!.emailFieldTitle),
+                      labelText:
+                          OnboardingLocalizations.of(context).emailFieldTitle),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(),
                     FormBuilderValidators.email(),
@@ -59,7 +60,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                 FormBuilderTextField(
                   name: "phone",
                   decoration: InputDecoration(
-                      labelText: AppLocalizations.of(context)!.phoneFieldTitle),
+                      labelText:
+                          OnboardingLocalizations.of(context).phoneFieldTitle),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(),
                     FormBuilderValidators.phoneNumber(),
@@ -73,7 +75,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                       );
                     }
                   },
-                  child: Text(AppLocalizations.of(context).submitButtonText),
+                  child: Text(
+                      OnboardingLocalizations.of(context).submitButtonText),
                 ),
               ],
             ),
