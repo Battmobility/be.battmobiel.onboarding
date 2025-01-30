@@ -22,7 +22,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         padding: const EdgeInsets.all(60.0),
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 1200),
+          constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
           child: FormBuilder(
             key: _formKey,
             child: Column(
