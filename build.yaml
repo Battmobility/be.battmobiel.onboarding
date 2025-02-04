@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      chopper_generator:
+          options:
+            header: "//Generated code"
+      swagger_dart_code_generator:
+          options:
+            separate_models: true
+            input_folder: "lib/api/definition/"
+            #input_urls:
+            #  - url: "https://api-staging.battmobility.be/openapi.json"
+            output_folder: "lib/api/generated/"
+            include_paths:
+              - "/user/v1/users/me"
