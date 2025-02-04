@@ -45,7 +45,7 @@
     },
     {
       "name": "batt_ds",
-      "rootUri": "file:///Users/kris/.pub-cache/git/be.battmobility.batt_ds-8b0abbf7b42204982f0331d9e3fc886e3b431811/",
+      "rootUri": "file:///Users/kris/.pub-cache/git/be.battmobility.batt_ds-a4166afc34c2b3f9444290300bc4edade5942461/",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -872,7 +872,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-02-04T15:15:56.781293Z",
+  "generated": "2025-02-04T15:42:30.076082Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///Users/kris/Flutter/flutter",

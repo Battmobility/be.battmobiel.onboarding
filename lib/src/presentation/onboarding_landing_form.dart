@@ -66,9 +66,80 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       Brightness.light => AppTheme.dark(),
     };
     WidgetsFlutterBinding.ensureInitialized();
+    final theme = ThemeScope.of(context);
 
     return ThemeScopeWidget.initializeSynchronously(
       MaterialApp(
+        themeMode: theme.themeMode,
+        theme: ThemeData(
+          colorScheme: ColorScheme.light(
+              primary: theme.appTheme.themeColorPrimary,
+              primaryContainer: theme.appTheme.themeColorPrimaryContainer,
+              secondary: theme.appTheme.themeColorSecondary,
+              shadow: theme.appTheme.shadowColorLight,
+              surface: theme.appTheme.themeColorLight,
+              surfaceDim: theme.appTheme.themeColorSecondaryContainer,
+              surfaceContainerLowest:
+                  theme.appTheme.themeColorSecondaryContainerLowest),
+          brightness: Brightness.light,
+          extensions: [theme.appTheme],
+          appBarTheme: theme.appTheme.appBarThemeLight,
+          navigationBarTheme: theme.appTheme.navigationBarThemeLight,
+          cardTheme: CardTheme(color: theme.appTheme.themeColorLight),
+          textTheme: theme.appTheme.textThemeLight,
+          scaffoldBackgroundColor: theme.appTheme.themeColorLight,
+          dividerColor: theme.appTheme.themeColorPrimary,
+          canvasColor: theme.appTheme.themeColorLight,
+          sliderTheme: SliderThemeData(
+              activeTrackColor: theme.appTheme.themeColorPrimary,
+              inactiveTrackColor:
+                  theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
+              thumbColor: theme.appTheme.themeColorPrimary,
+              overlayColor:
+                  theme.appTheme.themeColorPrimary.withValues(alpha: 0.5)),
+          progressIndicatorTheme: ProgressIndicatorThemeData(
+            color: theme.appTheme.themeColorPrimary,
+          ),
+          iconButtonTheme: IconButtonThemeData(
+              style: ButtonStyle(
+                  foregroundColor:
+                      WidgetStatePropertyAll(theme.appTheme.themeColorLight))),
+        ),
+        darkTheme: ThemeData(
+          colorScheme: ColorScheme.dark(
+              primary: theme.appTheme.themeColorDark,
+              primaryContainer: theme.appTheme.themeColorPrimaryContainer,
+              secondary: theme.appTheme.themeColorSecondary,
+              shadow: theme.appTheme.shadowColorDark,
+              surface: theme.appTheme.themeColorDark,
+              surfaceDim: theme.appTheme.themeColorDark,
+              surfaceContainerLowest:
+                  theme.appTheme.themeColorSecondaryContainerLowest),
+          brightness: Brightness.dark,
+          extensions: [theme.appTheme],
+          appBarTheme: theme.appTheme.appBarThemeDark,
+          navigationBarTheme: theme.appTheme.navigationBarThemeDark,
+          cardTheme: CardTheme(color: theme.appTheme.themeColorDark),
+          textTheme: theme.appTheme.textThemeDark,
+          scaffoldBackgroundColor: theme.appTheme.themeColorDark,
+          canvasColor: theme.appTheme.themeColorDark,
+          dividerColor: theme.appTheme.themeColorPrimary,
+          sliderTheme: SliderThemeData(
+            activeTrackColor: theme.appTheme.themeColorPrimary,
+            inactiveTrackColor:
+                theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
+            thumbColor: theme.appTheme.themeColorPrimary,
+            overlayColor:
+                theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
+          ),
+          progressIndicatorTheme: ProgressIndicatorThemeData(
+            color: theme.appTheme.themeColorPrimary,
+          ),
+          iconButtonTheme: IconButtonThemeData(
+              style: ButtonStyle(
+                  foregroundColor:
+                      WidgetStatePropertyAll(theme.appTheme.themeColorLight))),
+        ),
         home: Scaffold(
           body: Container(
             padding: AppPaddings.xxlarge.all,

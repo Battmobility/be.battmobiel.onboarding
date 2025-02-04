@@ -59,7 +59,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "8b0abbf7b42204982f0331d9e3fc886e3b431811"
+      resolved-ref: a4166afc34c2b3f9444290300bc4edade5942461
       url: "https://github.com/Battmobility/be.battmobility.batt_ds"
     source: git
     version: "0.0.1"
