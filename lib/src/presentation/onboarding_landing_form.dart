@@ -1,11 +1,10 @@
 import 'package:batt_ds/batt_ds.dart';
+import 'package:batt_ds/theme/app_theme.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/presentation/pages/convictions_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/identity_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../l10n/onboarding_localizations.dart';
 
 class OnboardingLandingForm extends StatefulWidget {
@@ -62,55 +61,60 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       })
     ];
 
-    return Scaffold(
-      body: Container(
-        padding: AppPaddings.xxlarge.all,
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
-          child: Column(
-            children: [
-              PageView.builder(
-                  itemBuilder: (context, index) => pages[index], itemCount: 3),
-              Row(
-                children: [
-                  OrangeOutlinedBattButton(
-                      label: l10n.previousButtonText,
-                      onPressed: () {
-                        _controller.jumpToPage(_step--);
-                        _canContinue = false;
-                      }),
-                  Expanded(child: SizedBox()),
-                  _canContinue
-                      ? OrangeOutlinedBattButton(
-                          label: l10n.nextButtonText,
-                          onPressed: () {
-                            _canContinue = true;
-                            _controller.jumpToPage(_step++);
-                          })
-                      : Opacity(
-                          opacity: 0.66,
-                          child: OrangeOutlinedBattButton(
+    final appTheme = switch (MediaQuery.platformBrightnessOf(context)) {
+      Brightness.dark => AppTheme.light(),
+      Brightness.light => AppTheme.dark(),
+    };
+
+    return ThemeScope(
+      themeMode: ThemeMode.system,
+      appTheme: appTheme,
+      child: Scaffold(
+        body: Container(
+          padding: AppPaddings.xxlarge.all,
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
+            child: Column(
+              children: [
+                PageView.builder(
+                    itemBuilder: (context, index) => pages[index],
+                    itemCount: 3),
+                Row(
+                  children: [
+                    OrangeOutlinedBattButton(
+                        label: l10n.previousButtonText,
+                        onPressed: () {
+                          _controller.jumpToPage(_step--);
+                          _canContinue = false;
+                        }),
+                    Expanded(child: SizedBox()),
+                    _canContinue
+                        ? OrangeOutlinedBattButton(
                             label: l10n.nextButtonText,
-                            onPressed: () => showDialog(
-                              context: context,
-                              builder: (_) => AlertDialog(
-                                title: Text(l10n.fillOutBeforeContinuing),
+                            onPressed: () {
+                              _canContinue = true;
+                              _controller.jumpToPage(_step++);
+                            })
+                        : Opacity(
+                            opacity: 0.66,
+                            child: OrangeOutlinedBattButton(
+                              label: l10n.nextButtonText,
+                              onPressed: () => showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: Text(l10n.fillOutBeforeContinuing),
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                ],
-              )
-            ],
+                          )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-
-  void _nextPage() {
-    _step++;
-    setState(() {});
   }
 }
