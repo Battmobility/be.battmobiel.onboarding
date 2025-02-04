@@ -66,79 +66,98 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       Brightness.light => AppTheme.dark(),
     };
     WidgetsFlutterBinding.ensureInitialized();
-    final theme = ThemeScope.of(context);
 
     return ThemeScopeWidget.initializeSynchronously(
       MaterialApp(
-        themeMode: theme.themeMode,
+        themeMode: ThemeScope.of(context).themeMode,
         theme: ThemeData(
           colorScheme: ColorScheme.light(
-              primary: theme.appTheme.themeColorPrimary,
-              primaryContainer: theme.appTheme.themeColorPrimaryContainer,
-              secondary: theme.appTheme.themeColorSecondary,
-              shadow: theme.appTheme.shadowColorLight,
-              surface: theme.appTheme.themeColorLight,
-              surfaceDim: theme.appTheme.themeColorSecondaryContainer,
-              surfaceContainerLowest:
-                  theme.appTheme.themeColorSecondaryContainerLowest),
+              primary: ThemeScope.of(context).appTheme.themeColorPrimary,
+              primaryContainer:
+                  ThemeScope.of(context).appTheme.themeColorPrimaryContainer,
+              secondary: ThemeScope.of(context).appTheme.themeColorSecondary,
+              shadow: ThemeScope.of(context).appTheme.shadowColorLight,
+              surface: ThemeScope.of(context).appTheme.themeColorLight,
+              surfaceDim:
+                  ThemeScope.of(context).appTheme.themeColorSecondaryContainer,
+              surfaceContainerLowest: ThemeScope.of(context)
+                  .appTheme
+                  .themeColorSecondaryContainerLowest),
           brightness: Brightness.light,
-          extensions: [theme.appTheme],
-          appBarTheme: theme.appTheme.appBarThemeLight,
-          navigationBarTheme: theme.appTheme.navigationBarThemeLight,
-          cardTheme: CardTheme(color: theme.appTheme.themeColorLight),
-          textTheme: theme.appTheme.textThemeLight,
-          scaffoldBackgroundColor: theme.appTheme.themeColorLight,
-          dividerColor: theme.appTheme.themeColorPrimary,
-          canvasColor: theme.appTheme.themeColorLight,
+          extensions: [ThemeScope.of(context).appTheme],
+          appBarTheme: ThemeScope.of(context).appTheme.appBarThemeLight,
+          navigationBarTheme:
+              ThemeScope.of(context).appTheme.navigationBarThemeLight,
+          cardTheme:
+              CardTheme(color: ThemeScope.of(context).appTheme.themeColorLight),
+          textTheme: ThemeScope.of(context).appTheme.textThemeLight,
+          scaffoldBackgroundColor:
+              ThemeScope.of(context).appTheme.themeColorLight,
+          dividerColor: ThemeScope.of(context).appTheme.themeColorPrimary,
+          canvasColor: ThemeScope.of(context).appTheme.themeColorLight,
           sliderTheme: SliderThemeData(
-              activeTrackColor: theme.appTheme.themeColorPrimary,
-              inactiveTrackColor:
-                  theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
-              thumbColor: theme.appTheme.themeColorPrimary,
-              overlayColor:
-                  theme.appTheme.themeColorPrimary.withValues(alpha: 0.5)),
+              activeTrackColor:
+                  ThemeScope.of(context).appTheme.themeColorPrimary,
+              inactiveTrackColor: ThemeScope.of(context)
+                  .appTheme
+                  .themeColorPrimary
+                  .withValues(alpha: 0.5),
+              thumbColor: ThemeScope.of(context).appTheme.themeColorPrimary,
+              overlayColor: ThemeScope.of(context)
+                  .appTheme
+                  .themeColorPrimary
+                  .withValues(alpha: 0.5)),
           progressIndicatorTheme: ProgressIndicatorThemeData(
-            color: theme.appTheme.themeColorPrimary,
+            color: ThemeScope.of(context).appTheme.themeColorPrimary,
           ),
           iconButtonTheme: IconButtonThemeData(
               style: ButtonStyle(
-                  foregroundColor:
-                      WidgetStatePropertyAll(theme.appTheme.themeColorLight))),
+                  foregroundColor: WidgetStatePropertyAll(
+                      ThemeScope.of(context).appTheme.themeColorLight))),
         ),
         darkTheme: ThemeData(
           colorScheme: ColorScheme.dark(
-              primary: theme.appTheme.themeColorDark,
-              primaryContainer: theme.appTheme.themeColorPrimaryContainer,
-              secondary: theme.appTheme.themeColorSecondary,
-              shadow: theme.appTheme.shadowColorDark,
-              surface: theme.appTheme.themeColorDark,
-              surfaceDim: theme.appTheme.themeColorDark,
-              surfaceContainerLowest:
-                  theme.appTheme.themeColorSecondaryContainerLowest),
+              primary: ThemeScope.of(context).appTheme.themeColorDark,
+              primaryContainer:
+                  ThemeScope.of(context).appTheme.themeColorPrimaryContainer,
+              secondary: ThemeScope.of(context).appTheme.themeColorSecondary,
+              shadow: ThemeScope.of(context).appTheme.shadowColorDark,
+              surface: ThemeScope.of(context).appTheme.themeColorDark,
+              surfaceDim: ThemeScope.of(context).appTheme.themeColorDark,
+              surfaceContainerLowest: ThemeScope.of(context)
+                  .appTheme
+                  .themeColorSecondaryContainerLowest),
           brightness: Brightness.dark,
-          extensions: [theme.appTheme],
-          appBarTheme: theme.appTheme.appBarThemeDark,
-          navigationBarTheme: theme.appTheme.navigationBarThemeDark,
-          cardTheme: CardTheme(color: theme.appTheme.themeColorDark),
-          textTheme: theme.appTheme.textThemeDark,
-          scaffoldBackgroundColor: theme.appTheme.themeColorDark,
-          canvasColor: theme.appTheme.themeColorDark,
-          dividerColor: theme.appTheme.themeColorPrimary,
+          extensions: [ThemeScope.of(context).appTheme],
+          appBarTheme: ThemeScope.of(context).appTheme.appBarThemeDark,
+          navigationBarTheme:
+              ThemeScope.of(context).appTheme.navigationBarThemeDark,
+          cardTheme:
+              CardTheme(color: ThemeScope.of(context).appTheme.themeColorDark),
+          textTheme: ThemeScope.of(context).appTheme.textThemeDark,
+          scaffoldBackgroundColor:
+              ThemeScope.of(context).appTheme.themeColorDark,
+          canvasColor: ThemeScope.of(context).appTheme.themeColorDark,
+          dividerColor: ThemeScope.of(context).appTheme.themeColorPrimary,
           sliderTheme: SliderThemeData(
-            activeTrackColor: theme.appTheme.themeColorPrimary,
-            inactiveTrackColor:
-                theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
-            thumbColor: theme.appTheme.themeColorPrimary,
-            overlayColor:
-                theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
+            activeTrackColor: ThemeScope.of(context).appTheme.themeColorPrimary,
+            inactiveTrackColor: ThemeScope.of(context)
+                .appTheme
+                .themeColorPrimary
+                .withValues(alpha: 0.5),
+            thumbColor: ThemeScope.of(context).appTheme.themeColorPrimary,
+            overlayColor: ThemeScope.of(context)
+                .appTheme
+                .themeColorPrimary
+                .withValues(alpha: 0.5),
           ),
           progressIndicatorTheme: ProgressIndicatorThemeData(
-            color: theme.appTheme.themeColorPrimary,
+            color: ThemeScope.of(context).appTheme.themeColorPrimary,
           ),
           iconButtonTheme: IconButtonThemeData(
               style: ButtonStyle(
-                  foregroundColor:
-                      WidgetStatePropertyAll(theme.appTheme.themeColorLight))),
+                  foregroundColor: WidgetStatePropertyAll(
+                      ThemeScope.of(context).appTheme.themeColorLight))),
         ),
         home: Scaffold(
           body: Container(
