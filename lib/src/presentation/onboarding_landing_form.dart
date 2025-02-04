@@ -65,50 +65,53 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       Brightness.dark => AppTheme.light(),
       Brightness.light => AppTheme.dark(),
     };
+    WidgetsFlutterBinding.ensureInitialized();
 
     return ThemeScopeWidget.initializeSynchronously(
-      Scaffold(
-        body: Container(
-          padding: AppPaddings.xxlarge.all,
-          alignment: Alignment.topCenter,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
-            child: Column(
-              children: [
-                PageView.builder(
-                    itemBuilder: (context, index) => pages[index],
-                    itemCount: 3),
-                Row(
-                  children: [
-                    OrangeOutlinedBattButton(
-                        label: l10n.previousButtonText,
-                        onPressed: () {
-                          _controller.jumpToPage(_step--);
-                          _canContinue = false;
-                        }),
-                    Expanded(child: SizedBox()),
-                    _canContinue
-                        ? OrangeOutlinedBattButton(
-                            label: l10n.nextButtonText,
-                            onPressed: () {
-                              _canContinue = true;
-                              _controller.jumpToPage(_step++);
-                            })
-                        : Opacity(
-                            opacity: 0.66,
-                            child: OrangeOutlinedBattButton(
+      MaterialApp(
+        home: Scaffold(
+          body: Container(
+            padding: AppPaddings.xxlarge.all,
+            alignment: Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
+              child: Column(
+                children: [
+                  PageView.builder(
+                      itemBuilder: (context, index) => pages[index],
+                      itemCount: 3),
+                  Row(
+                    children: [
+                      OrangeOutlinedBattButton(
+                          label: l10n.previousButtonText,
+                          onPressed: () {
+                            _controller.jumpToPage(_step--);
+                            _canContinue = false;
+                          }),
+                      Expanded(child: SizedBox()),
+                      _canContinue
+                          ? OrangeOutlinedBattButton(
                               label: l10n.nextButtonText,
-                              onPressed: () => showDialog(
-                                context: context,
-                                builder: (_) => AlertDialog(
-                                  title: Text(l10n.fillOutBeforeContinuing),
+                              onPressed: () {
+                                _canContinue = true;
+                                _controller.jumpToPage(_step++);
+                              })
+                          : Opacity(
+                              opacity: 0.66,
+                              child: OrangeOutlinedBattButton(
+                                label: l10n.nextButtonText,
+                                onPressed: () => showDialog(
+                                  context: context,
+                                  builder: (_) => AlertDialog(
+                                    title: Text(l10n.fillOutBeforeContinuing),
+                                  ),
                                 ),
                               ),
-                            ),
-                          )
-                  ],
-                )
-              ],
+                            )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
