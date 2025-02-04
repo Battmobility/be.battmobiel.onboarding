@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:batt_ds/batt_ds.dart';
 
 import '../../../l10n/onboarding_localizations.dart';
+import 'onboarding_page.dart';
 
-class IntroPage extends StatefulWidget {
-  const IntroPage({
+final class IntroPage extends OnboardingPage {
+  IntroPage({
     super.key,
+    required super.onValidated,
+    super.initialData,
   });
 
   @override
-  IntroPageState createState() {
-    return IntroPageState();
-  }
+  IntroPageState createState() => IntroPageState();
 }
 
 class IntroPageState extends State<IntroPage> {

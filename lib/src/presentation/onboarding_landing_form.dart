@@ -1,4 +1,8 @@
+import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
+import 'package:batt_onboarding/src/presentation/pages/convictions_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/identity_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -28,76 +32,85 @@ class OnboardingLandingForm extends StatefulWidget {
 }
 
 class OnboardingLandingFormState extends State<OnboardingLandingForm> {
-  final _formKey = GlobalKey<FormBuilderState>();
+  final _controller = PageController(
+      initialPage: 0); // TODO: not if resuming from earlier state
+  int _step = 0;
+  bool _canContinue = false;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = OnboardingLocalizations.of(context);
+
+    final pages = [
+      IntroPage(onValidated: (_) {
+        _step++;
+
+        _canContinue = true;
+        setState(() {});
+      }),
+      ConvictionsPage(onValidated: (_) {
+        // TODO: post data
+        _step++;
+
+        setState(() {});
+      }),
+      IdentityPage(onValidated: (_) {
+        // TODO: post data
+        _step++;
+        // _controller.jumpToPage(1);
+        setState(() {});
+      })
+    ];
+
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(60.0),
+        padding: AppPaddings.xxlarge.all,
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
-          child: FormBuilder(
-            key: _formKey,
-            child: Column(
-              children: <Widget>[
-                FormBuilderTextField(
-                  name: "firstName",
-                  decoration: InputDecoration(
-                      labelText: OnboardingLocalizations.of(context)
-                          .firstNameFieldTitle),
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.firstName(),
-                  ]),
-                ),
-                FormBuilderTextField(
-                  name: "lastName",
-                  decoration: InputDecoration(
-                      labelText: OnboardingLocalizations.of(context)
-                          .lastNameFieldTitle),
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.lastName(),
-                  ]),
-                ),
-                FormBuilderTextField(
-                  name: "email",
-                  decoration: InputDecoration(
-                      labelText:
-                          OnboardingLocalizations.of(context).emailFieldTitle),
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.email(),
-                  ]),
-                ),
-                FormBuilderTextField(
-                  name: "phone",
-                  decoration: InputDecoration(
-                      labelText:
-                          OnboardingLocalizations.of(context).phoneFieldTitle),
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(),
-                    FormBuilderValidators.phoneNumber(),
-                  ]),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-                    }
-                  },
-                  child: Text(
-                      OnboardingLocalizations.of(context).submitButtonText),
-                ),
-              ],
-            ),
+          child: Column(
+            children: [
+              PageView.builder(
+                  itemBuilder: (context, index) => pages[index], itemCount: 3),
+              Row(
+                children: [
+                  OrangeOutlinedBattButton(
+                      label: l10n.previousButtonText,
+                      onPressed: () {
+                        _controller.jumpToPage(_step--);
+                        _canContinue = false;
+                      }),
+                  Expanded(child: SizedBox()),
+                  _canContinue
+                      ? OrangeOutlinedBattButton(
+                          label: l10n.nextButtonText,
+                          onPressed: () {
+                            _canContinue = true;
+                            _controller.jumpToPage(_step++);
+                          })
+                      : Opacity(
+                          opacity: 0.66,
+                          child: OrangeOutlinedBattButton(
+                            label: l10n.nextButtonText,
+                            onPressed: () => showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                title: Text(l10n.fillOutBeforeContinuing),
+                              ),
+                            ),
+                          ),
+                        )
+                ],
+              )
+            ],
           ),
         ),
       ),
     );
+  }
+
+  void _nextPage() {
+    _step++;
+    setState(() {});
   }
 }

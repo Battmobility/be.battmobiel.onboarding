@@ -10,6 +10,39 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get formTitle => 'Deviens Batt';
 
   @override
+  String get previousButtonText => 'Previous';
+
+  @override
+  String get nextButtonText => 'Next';
+
+  @override
+  String get fillOutBeforeContinuing => 'Please fill out all fields before continuing';
+
+  @override
+  String get convictionsPageTitle => 'Convictions page title';
+
+  @override
+  String get convictionsPageMessage => 'For insurance reasons, we need to ask you to provide information about any previous convictions.';
+
+  @override
+  String get convictionsPageFooter => 'By checking this box, I declare the information entered on this page to be truthful and to accept any liability in the case it is not.';
+
+  @override
+  String get convictionTypeDrunk => 'Driving under the influence of alcohol';
+
+  @override
+  String get convictionTypeIntoxication => 'Driving under the influence of narcotics';
+
+  @override
+  String get convictionTypeTestRefusal => 'Refusal to take a drug test';
+
+  @override
+  String get convictionTypeHitAndRun => 'Fleeing the scene of an accident (\"hit and run\")';
+
+  @override
+  String get convictionTypeLicenseRevocation => 'Revocation of license';
+
+  @override
   String get firstNameFieldTitle => 'Prénom';
 
   @override
@@ -20,7 +53,4 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get phoneFieldTitle => 'Téléphone';
-
-  @override
-  String get submitButtonText => 'S inscrire';
 }

@@ -103,6 +103,72 @@ abstract class OnboardingLocalizations {
   /// **'Become Batt'**
   String get formTitle;
 
+  /// No description provided for @previousButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get previousButtonText;
+
+  /// No description provided for @nextButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get nextButtonText;
+
+  /// No description provided for @fillOutBeforeContinuing.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill out all fields before continuing'**
+  String get fillOutBeforeContinuing;
+
+  /// No description provided for @convictionsPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous convictions'**
+  String get convictionsPageTitle;
+
+  /// No description provided for @convictionsPageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'For insurance reasons, we need to ask you to provide information about any previous convictions.'**
+  String get convictionsPageMessage;
+
+  /// No description provided for @convictionsPageFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'By checking this box, I declare the information entered on this page to be truthful and to accept any liability in the case it is not.'**
+  String get convictionsPageFooter;
+
+  /// No description provided for @convictionTypeDrunk.
+  ///
+  /// In en, this message translates to:
+  /// **'Driving under the influence of alcohol'**
+  String get convictionTypeDrunk;
+
+  /// No description provided for @convictionTypeIntoxication.
+  ///
+  /// In en, this message translates to:
+  /// **'Driving under the influence of narcotics'**
+  String get convictionTypeIntoxication;
+
+  /// No description provided for @convictionTypeTestRefusal.
+  ///
+  /// In en, this message translates to:
+  /// **'Refusal to take a drug test'**
+  String get convictionTypeTestRefusal;
+
+  /// No description provided for @convictionTypeHitAndRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Fleeing the scene of an accident (\"hit and run\")'**
+  String get convictionTypeHitAndRun;
+
+  /// No description provided for @convictionTypeLicenseRevocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Revocation of license'**
+  String get convictionTypeLicenseRevocation;
+
   /// No description provided for @firstNameFieldTitle.
   ///
   /// In en, this message translates to:
@@ -126,12 +192,6 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Phone number'**
   String get phoneFieldTitle;
-
-  /// No description provided for @submitButtonText.
-  ///
-  /// In en, this message translates to:
-  /// **'Submit'**
-  String get submitButtonText;
 }
 
 class _OnboardingLocalizationsDelegate extends LocalizationsDelegate<OnboardingLocalizations> {

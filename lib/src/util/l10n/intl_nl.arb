@@ -5,6 +5,61 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"previousButtonText": "Vorige",
+	"@previousButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"nextButtonText": "Volgende",
+	"@nextButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"fillOutBeforeContinuing": "Vul alle velden in om verder te gaan",
+	"@fillOutBeforeContinuing": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageTitle": "Misdrijven of veroordelingen",
+	"@convictionsPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageMessage": "Om verzekeringsredenen zijn wij verplicht u een aantal vragen rond eerdere misdrijven of veroordelingen in het verkeer te stellen.",
+	"@convictionsPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageFooter": "Door dit vak aan te kruisen verklaar ik dat alle op deze pagina ingevulde informatie waar is en aanvaard ik de aansprakelijkheid indien dit niet zo is.",
+	"@convictionsPageFooter": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeDrunk": "Besturen van een voertuig onder de invloed van alcohol",
+	"@convictionTypeDrunk": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeIntoxication": "Besturen van een voertuig onder de invloed van andere verdovende stoffen",
+	"@convictionTypeIntoxication": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeTestRefusal": "Het weigeren van een drugtest",
+	"@convictionTypeTestRefusal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeHitAndRun": "Het verlaten van de plaats van een ongeval dat ik veroorzaakt heb (vluchtmisdrijf)",
+	"@convictionTypeHitAndRun": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeLicenseRevocation": "Intrekken van rijbewijs",
+	"@convictionTypeLicenseRevocation": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"firstNameFieldTitle": "Voornaam",
 	"@firstNameFieldTitle": {
 		"type": "text",
@@ -22,11 +77,6 @@
 	},
 	"phoneFieldTitle": "Telefoon",
 	"@phoneFieldTitle": {
-		"type": "text",
-		"placeholders": {}
-	},
-	"submitButtonText": "Verzenden",
-	"@submitButtonText": {
 		"type": "text",
 		"placeholders": {}
 	}

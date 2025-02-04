@@ -5,6 +5,61 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"previousButtonText": "Previous",
+	"@previousButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"nextButtonText": "Next",
+	"@nextButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"fillOutBeforeContinuing": "Please fill out all fields before continuing",
+	"@fillOutBeforeContinuing": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageTitle": "Convictions page title",
+	"@convictionsPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageMessage": "For insurance reasons, we need to ask you to provide information about any previous convictions.",
+	"@convictionsPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageFooter": "By checking this box, I declare the information entered on this page to be truthful and to accept any liability in the case it is not.",
+	"@convictionsPageFooter": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeDrunk": "Driving under the influence of alcohol",
+	"@convictionTypeDrunk": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeIntoxication": "Driving under the influence of narcotics",
+	"@convictionTypeIntoxication": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeTestRefusal": "Refusal to take a drug test",
+	"@convictionTypeTestRefusal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeHitAndRun": "Fleeing the scene of an accident (\"hit and run\")",
+	"@convictionTypeHitAndRun": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeLicenseRevocation": "Revocation of license",
+	"@convictionTypeLicenseRevocation": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"firstNameFieldTitle": "Prénom",
 	"@firstNameFieldTitle": {
 		"type": "text",
@@ -22,11 +77,6 @@
 	},
 	"phoneFieldTitle": "Téléphone",
 	"@phoneFieldTitle": {
-		"type": "text",
-		"placeholders": {}
-	},
-	"submitButtonText": "S inscrire",
-	"@submitButtonText": {
 		"type": "text",
 		"placeholders": {}
 	}
