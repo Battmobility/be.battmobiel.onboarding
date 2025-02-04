@@ -66,10 +66,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       Brightness.light => AppTheme.dark(),
     };
 
-    return ThemeScope(
-      themeMode: ThemeMode.system,
-      appTheme: appTheme,
-      child: Scaffold(
+    return ThemeScopeWidget.initializeSynchronously(
+      Scaffold(
         body: Container(
           padding: AppPaddings.xxlarge.all,
           alignment: Alignment.topCenter,
@@ -115,6 +113,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           ),
         ),
       ),
+      ThemeMode.system,
     );
   }
 }
