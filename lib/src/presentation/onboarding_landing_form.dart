@@ -1,13 +1,28 @@
+import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../l10n/onboarding_localizations.dart';
 
 class OnboardingLandingForm extends StatefulWidget {
-  const OnboardingLandingForm({super.key});
+  final String accessToken;
+  final Function(Object) onAuthenticationError;
+  final Function(int) onStepStarted;
+  final Function(int) onStepCompleted;
+  final Function(bool) onSubmitted;
+
+  const OnboardingLandingForm({
+    super.key,
+    required this.accessToken,
+    required this.onAuthenticationError,
+    required this.onStepStarted,
+    required this.onStepCompleted,
+    required this.onSubmitted,
+  });
 
   @override
   OnboardingLandingFormState createState() {
+    TokenService(accessToken);
     return OnboardingLandingFormState();
   }
 }
