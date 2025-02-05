@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
       title: 'Flutter Demo',
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       theme: ThemeData(
         colorScheme: ColorScheme.light(
             primary: theme.appTheme.themeColorPrimary,
@@ -46,9 +46,8 @@ class _MyAppState extends State<MyApp> {
         navigationBarTheme: theme.appTheme.navigationBarThemeLight,
         cardTheme: CardTheme(color: theme.appTheme.themeColorLight),
         textTheme: theme.appTheme.textThemeLight,
-        scaffoldBackgroundColor: theme.appTheme.themeColorLight,
-        dividerColor: theme.appTheme.themeColorPrimary,
-        canvasColor: theme.appTheme.themeColorLight,
+        textSelectionTheme: theme.appTheme.textSelectionThemeLight,
+        inputDecorationTheme: theme.appTheme.inputDecorationThemeLight,
         sliderTheme: SliderThemeData(
             activeTrackColor: theme.appTheme.themeColorPrimary,
             inactiveTrackColor:
@@ -63,6 +62,9 @@ class _MyAppState extends State<MyApp> {
             style: ButtonStyle(
                 foregroundColor:
                     WidgetStatePropertyAll(theme.appTheme.themeColorLight))),
+        scaffoldBackgroundColor: theme.appTheme.themeColorLight,
+        dividerColor: theme.appTheme.themeColorPrimary,
+        canvasColor: theme.appTheme.themeColorLight,
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.dark(
@@ -80,9 +82,8 @@ class _MyAppState extends State<MyApp> {
         navigationBarTheme: theme.appTheme.navigationBarThemeDark,
         cardTheme: CardTheme(color: theme.appTheme.themeColorDark),
         textTheme: theme.appTheme.textThemeDark,
-        scaffoldBackgroundColor: theme.appTheme.themeColorDark,
-        canvasColor: theme.appTheme.themeColorDark,
-        dividerColor: theme.appTheme.themeColorPrimary,
+        textSelectionTheme: theme.appTheme.textSelectionThemeDark,
+        inputDecorationTheme: theme.appTheme.inputDecorationThemeDark,
         sliderTheme: SliderThemeData(
           activeTrackColor: theme.appTheme.themeColorPrimary,
           inactiveTrackColor:
@@ -97,6 +98,9 @@ class _MyAppState extends State<MyApp> {
             style: ButtonStyle(
                 foregroundColor:
                     WidgetStatePropertyAll(theme.appTheme.themeColorLight))),
+        scaffoldBackgroundColor: theme.appTheme.themeColorDark,
+        canvasColor: theme.appTheme.themeColorDark,
+        dividerColor: theme.appTheme.themeColorPrimary,
       ),
       localizationsDelegates: [
         AuthLocalizations.delegate,

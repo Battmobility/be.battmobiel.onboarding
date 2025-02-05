@@ -28,11 +28,9 @@ packages:
   batt_ds:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: a4166afc34c2b3f9444290300bc4edade5942461
-      url: "https://github.com/Battmobility/be.battmobility.batt_ds"
-    source: git
+      path: "../../batt_ds"
+      relative: true
+    source: path
     version: "0.0.1"
   batt_onboarding:
     dependency: "direct main"
@@ -92,11 +90,9 @@ packages:
   dart_auth:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "4418611918d8b559ce0527c7d90681d51a2bbcab"
-      url: "https://github.com/Battmobility/dart_auth.git"
-    source: git
+      path: "../../dart_auth"
+      relative: true
+    source: path
     version: "0.0.4"
   device_frame_plus:
     dependency: transitive

@@ -49,63 +49,74 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       IdentityPage(onValidated: (_) {
         // TODO: post data
         _canContinue = true;
-        // _controller.jumpToPage(1);
         setState(() {});
       })
     ];
 
     return Scaffold(
-      body: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Flexible(
-              child: PageView.builder(
-                  controller: _controller,
-                  itemBuilder: (context, index) => pages[index],
-                  itemCount: pages.length),
-            ),
-            Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _step > 0
-                      ? OrangeOutlinedBattButton(
-                          label: l10n.previousButtonText,
-                          onPressed: () {
-                            _step--;
-                            _controller.jumpToPage(_step);
-                            _canContinue = false;
-                          })
-                      : Container(),
-                  Text(
-                    "Stap ${_step + 1} van ${pages.length}",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  _canContinue
-                      ? OrangeSolidTextButton(
-                          label: l10n.nextButtonText,
-                          onPressed: () {
-                            _canContinue = false;
-                            _step++;
-                            _controller.jumpToPage(_step);
-                          })
-                      : Opacity(
-                          opacity: 0.66,
-                          child: OrangeOutlinedBattButton(
+      body: SafeArea(
+        child: Padding(
+          padding: AppPaddings.medium.all,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                flex: 8,
+                child: PageView.builder(
+                    controller: _controller,
+                    itemBuilder: (context, index) => pages[index],
+                    itemCount: pages.length),
+              ),
+              Spacer(),
+              Flexible(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _step > 0
+                        ? OrangeOutlinedBattButton(
+                            label: l10n.previousButtonText,
+                            onPressed: () {
+                              _step--;
+                              _controller.jumpToPage(_step);
+                              _canContinue = false;
+                            })
+                        : Opacity(
+                            opacity: 0.66,
+                            child: OrangeOutlinedBattButton(
+                                label: l10n.previousButtonText,
+                                onPressed: () {}),
+                          ),
+                    Text(
+                      "Stap ${_step + 1} van ${pages.length}",
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    _canContinue
+                        ? OrangeSolidTextButton(
                             label: l10n.nextButtonText,
-                            onPressed: () => showDialog(
-                              context: context,
-                              builder: (_) => AlertDialog(
-                                title: Text(l10n.fillOutBeforeContinuing),
+                            onPressed: () {
+                              _canContinue = false;
+                              _step++;
+                              _controller.jumpToPage(_step);
+                              setState(() {});
+                            })
+                        : Opacity(
+                            opacity: 0.66,
+                            child: OrangeOutlinedBattButton(
+                              label: l10n.nextButtonText,
+                              onPressed: () => showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: Text(l10n.fillOutBeforeContinuing),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

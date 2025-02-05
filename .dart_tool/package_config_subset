@@ -1,7 +1,3 @@
-batt_ds
-3.5
-file:///Users/kris/.pub-cache/git/be.battmobility.batt_ds-a4166afc34c2b3f9444290300bc4edade5942461/
-file:///Users/kris/.pub-cache/git/be.battmobility.batt_ds-a4166afc34c2b3f9444290300bc4edade5942461/lib/
 _fe_analyzer_shared
 3.3
 file:///Users/kris/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0/
@@ -574,6 +570,10 @@ flutter_web_plugins
 3.2
 file:///Users/kris/Flutter/flutter/packages/flutter_web_plugins/
 file:///Users/kris/Flutter/flutter/packages/flutter_web_plugins/lib/
+batt_ds
+3.5
+file:///Users/kris/iOS/Batt/batt_ds/
+file:///Users/kris/iOS/Batt/batt_ds/lib/
 batt_onboarding
 3.5
 file:///Users/kris/iOS/Batt/be.battmobiel.onboarding/

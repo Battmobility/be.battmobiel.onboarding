@@ -31,7 +31,7 @@ class ConvictionsPageState extends State<ConvictionsPage> {
         key: _formKey,
         onChanged: () {
           if (_formKey.currentState!.validate()) {
-            final data = _formKey.currentState!.value as Map<String, String>;
+            final data = _formKey.currentState!.value;
             final stringData = data.entries
                 .map((entry) => MapEntry(entry.key, entry.value.toString()));
             final mapData = Map.fromEntries(stringData);
@@ -43,6 +43,7 @@ class ConvictionsPageState extends State<ConvictionsPage> {
         child: Padding(
           padding: AppPaddings.medium.all,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(l10n.convictionsPageTitle,
                   style: context.typographyTheme.largeTitle),

@@ -1,3 +1,4 @@
+import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -33,6 +34,13 @@ class IdentityPageState extends State<IdentityPage> {
         child: Column(
           children: [
             // TODO: scan id
+            Text(l10n.convictionsPageTitle,
+                style: context.typographyTheme.largeTitle),
+            Padding(
+              padding: AppPaddings.medium.vertical,
+              child: Text(l10n.convictionsPageMessage,
+                  style: context.typographyTheme.largeText),
+            ),
             FormBuilderTextField(
               name: 'firstname',
               decoration: InputDecoration(labelText: l10n.firstNameFieldTitle),
@@ -45,7 +53,10 @@ class IdentityPageState extends State<IdentityPage> {
               name: 'email',
               decoration: InputDecoration(labelText: l10n.emailFieldTitle),
             ),
-          ],
+          ]
+              .map((field) =>
+                  Padding(padding: AppPaddings.medium.vertical, child: field))
+              .toList(),
         ),
       ),
     );
