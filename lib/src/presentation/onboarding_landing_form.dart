@@ -33,28 +33,22 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   final _controller = PageController(
       initialPage: 0); // TODO: not if resuming from earlier state
   int _step = 0;
-  bool _canContinue = false;
+  bool _canContinue = true;
 
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
 
     final pages = [
-      IntroPage(onValidated: (_) {
-        _step++;
-
-        _canContinue = true;
-        setState(() {});
-      }),
+      IntroPage(onValidated: (_) {}),
       ConvictionsPage(onValidated: (_) {
         // TODO: post data
-        _step++;
-
+        _canContinue = true;
         setState(() {});
       }),
       IdentityPage(onValidated: (_) {
         // TODO: post data
-        _step++;
+        _canContinue = true;
         // _controller.jumpToPage(1);
         setState(() {});
       })
@@ -62,29 +56,39 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
 
     return Scaffold(
       body: Container(
-        padding: AppPaddings.xxlarge.all,
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
-          child: Column(
-            children: [
-              PageView.builder(
-                  itemBuilder: (context, index) => pages[index], itemCount: 3),
-              Row(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Flexible(
+              child: PageView.builder(
+                  controller: _controller,
+                  itemBuilder: (context, index) => pages[index],
+                  itemCount: pages.length),
+            ),
+            Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  OrangeOutlinedBattButton(
-                      label: l10n.previousButtonText,
-                      onPressed: () {
-                        _controller.jumpToPage(_step--);
-                        _canContinue = false;
-                      }),
-                  Expanded(child: SizedBox()),
-                  _canContinue
+                  _step > 0
                       ? OrangeOutlinedBattButton(
+                          label: l10n.previousButtonText,
+                          onPressed: () {
+                            _step--;
+                            _controller.jumpToPage(_step);
+                            _canContinue = false;
+                          })
+                      : Container(),
+                  Text(
+                    "Stap ${_step + 1} van ${pages.length}",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  _canContinue
+                      ? OrangeSolidTextButton(
                           label: l10n.nextButtonText,
                           onPressed: () {
-                            _canContinue = true;
-                            _controller.jumpToPage(_step++);
+                            _canContinue = false;
+                            _step++;
+                            _controller.jumpToPage(_step);
                           })
                       : Opacity(
                           opacity: 0.66,
@@ -97,11 +101,11 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                               ),
                             ),
                           ),
-                        )
+                        ),
                 ],
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

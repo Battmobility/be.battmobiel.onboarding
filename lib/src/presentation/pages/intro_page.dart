@@ -18,6 +18,9 @@ final class IntroPage extends OnboardingPage {
 class IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.onValidated({});
+    });
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(60.0),

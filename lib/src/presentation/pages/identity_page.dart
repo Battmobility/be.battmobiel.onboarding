@@ -21,30 +21,32 @@ class IdentityPageState extends State<IdentityPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
-    return FormBuilder(
-      key: _formKey,
-      onChanged: () {
-        if (_formKey.currentState!.validate()) {
-          final data = _formKey.currentState!.value as Map<String, String>;
-          widget.onValidated(data);
-        }
-      },
-      child: Column(
-        children: [
-          // TODO: scan id
-          FormBuilderTextField(
-            name: 'firstname',
-            decoration: InputDecoration(labelText: l10n.firstNameFieldTitle),
-          ),
-          FormBuilderTextField(
-            name: 'lastname',
-            decoration: InputDecoration(labelText: l10n.lastNameFieldTitle),
-          ),
-          FormBuilderTextField(
-            name: 'email',
-            decoration: InputDecoration(labelText: l10n.emailFieldTitle),
-          ),
-        ],
+    return SingleChildScrollView(
+      child: FormBuilder(
+        key: _formKey,
+        onChanged: () {
+          if (_formKey.currentState!.validate()) {
+            final data = _formKey.currentState!.value as Map<String, String>;
+            widget.onValidated(data);
+          }
+        },
+        child: Column(
+          children: [
+            // TODO: scan id
+            FormBuilderTextField(
+              name: 'firstname',
+              decoration: InputDecoration(labelText: l10n.firstNameFieldTitle),
+            ),
+            FormBuilderTextField(
+              name: 'lastname',
+              decoration: InputDecoration(labelText: l10n.lastNameFieldTitle),
+            ),
+            FormBuilderTextField(
+              name: 'email',
+              decoration: InputDecoration(labelText: l10n.emailFieldTitle),
+            ),
+          ],
+        ),
       ),
     );
   }
