@@ -64,6 +64,15 @@ final class MRZReader {
         }
       }
     }
-    onDataFound(rrn, surName, givenName);
+    onDataFound(rrn, surName?.capitalized, givenName?.capitalized);
   }
+}
+
+extension StringCasingExtension on String {
+  String get capitalized =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+  String get toTitleCase => replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => str.capitalized)
+      .join(' ');
 }

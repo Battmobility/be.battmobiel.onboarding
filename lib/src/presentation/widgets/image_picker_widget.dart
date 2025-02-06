@@ -35,8 +35,9 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
               final file = File(photo.path);
               MRZReader().readImage(
                   file,
-                  (rrn, surName, firstName) =>
-                      {}); // TODO fill form with `patch`
+                  (rrn, surName, firstName) => {
+                        print("$rrn $surName $firstName")
+                      }); // TODO fill form with `patch`
               photo.readAsBytes().then((bytes) {
                 widget.onPicked(bytes);
               });
@@ -57,8 +58,9 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
               final file = File(photo.path);
               MRZReader().readImage(
                   file,
-                  (rrn, surName, firstName) =>
-                      {}); // TODO fill form with `patch`
+                  (rrn, surName, firstName) => {
+                        print("$rrn $surName $firstName")
+                      }); // TODO fill form with `patch`
               photo.readAsBytes().then((bytes) {
                 widget.onPicked(bytes);
               });
