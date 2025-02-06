@@ -1,7 +1,9 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
+import 'package:batt_onboarding/src/presentation/widgets/image_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'onboarding_page.dart';
 
@@ -41,17 +43,37 @@ class IdentityPageState extends State<IdentityPage> {
               child: Text(l10n.convictionsPageMessage,
                   style: context.typographyTheme.largeText),
             ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width / 2,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ImagePickerWidget(onPicked: (_) => {}),
+                  Spacer(),
+                  ImagePickerWidget(onPicked: (_) => {}),
+                ],
+              ),
+            ),
             FormBuilderTextField(
               name: 'firstname',
+              validator: FormBuilderValidators.firstName(),
               decoration: InputDecoration(labelText: l10n.firstNameFieldTitle),
             ),
             FormBuilderTextField(
               name: 'lastname',
+              validator: FormBuilderValidators.lastName(),
               decoration: InputDecoration(labelText: l10n.lastNameFieldTitle),
             ),
             FormBuilderTextField(
               name: 'email',
+              validator: FormBuilderValidators.email(),
               decoration: InputDecoration(labelText: l10n.emailFieldTitle),
+            ),
+            FormBuilderTextField(
+              name: 'phone',
+              validator: FormBuilderValidators.phoneNumber(),
+              decoration: InputDecoration(labelText: l10n.phoneFieldTitle),
             ),
           ]
               .map((field) =>

@@ -72,12 +72,14 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                   name: "ConvictionLicenseRevocation",
                   title: Text(l10n.convictionTypeLicenseRevocation,
                       style: context.typographyTheme.defaultText)),
-              Spacer(),
-              FormBuilderCheckbox(
-                  name: "answeredTruthfully",
-                  validator: FormBuilderValidators.isTrue(),
-                  title: Text(l10n.convictionsPageFooter,
-                      style: context.typographyTheme.defaultText))
+              Flexible(
+                child: FormBuilderCheckbox(
+                    name: "answeredTruthfully",
+                    validator: FormBuilderValidators.isTrue(),
+                    title: Text(l10n.convictionsPageFooter,
+                        style: context.typographyTheme.defaultText
+                            .copyWith(fontWeight: FontWeight.bold))),
+              )
             ].map((child) => Flexible(child: child)).toList(),
           ),
         ),

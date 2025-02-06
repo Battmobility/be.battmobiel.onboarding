@@ -6,6 +6,7 @@ import 'package:dart_auth/authentication/domain/domain.dart';
 import 'package:dart_auth/l10n/auth_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -108,6 +109,7 @@ class _MyAppState extends State<MyApp> {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        FormBuilderLocalizations.delegate,
       ],
       supportedLocales: [
         Locale('en'), // English

@@ -77,9 +77,11 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                         ? OrangeOutlinedBattButton(
                             label: l10n.previousButtonText,
                             onPressed: () {
-                              _step--;
-                              _controller.jumpToPage(_step);
-                              _canContinue = false;
+                              if (_step > 0) {
+                                _step--;
+                                _controller.jumpToPage(_step);
+                                _canContinue = false;
+                              }
                             })
                         : Opacity(
                             opacity: 0.66,
