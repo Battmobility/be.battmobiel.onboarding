@@ -199,6 +199,24 @@ abstract class OnboardingLocalizations {
   /// **'Back'**
   String get idCardFieldBack;
 
+  /// No description provided for @driversLicenseFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Drivers license'**
+  String get driversLicenseFieldTitle;
+
+  /// No description provided for @driversLicenseFieldFront.
+  ///
+  /// In en, this message translates to:
+  /// **'Front'**
+  String get driversLicenseFieldFront;
+
+  /// No description provided for @driversLicenseFieldBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get driversLicenseFieldBack;
+
   /// No description provided for @imagePickerLabelPickPhoto.
   ///
   /// In en, this message translates to:

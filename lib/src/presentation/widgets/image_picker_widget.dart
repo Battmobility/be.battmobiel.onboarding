@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 final class ImagePickerWidget extends StatefulWidget {
-  final Function(Uint8List) onPicked;
-  final Function(String? rrn, String? surName, String? firstName)? onDataFound;
+  final Function(File) onPicked;
+  final Function(String? rrn, String? surName, String? firstName,
+      String? licenseNumber)? onDataFound;
 
   const ImagePickerWidget({
     required this.onPicked,
@@ -45,12 +46,13 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                         final file = File(photo.path);
                         MRZReader().readImage(
                             file,
-                            (rrn, surName, firstName) => widget.onDataFound !=
-                                    null
-                                ? widget.onDataFound!(rrn, surName, firstName)
-                                : {});
+                            (rrn, surName, firstName, licenseNumber) =>
+                                widget.onDataFound != null
+                                    ? widget.onDataFound!(
+                                        rrn, surName, firstName, licenseNumber)
+                                    : {});
                         photo.readAsBytes().then((bytes) {
-                          widget.onPicked(bytes);
+                          widget.onPicked(file);
                         });
                       }
                     },
@@ -69,12 +71,13 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                         final file = File(photo.path);
                         MRZReader().readImage(
                             file,
-                            (rrn, surName, firstName) => widget.onDataFound !=
-                                    null
-                                ? widget.onDataFound!(rrn, surName, firstName)
-                                : {});
+                            (rrn, surName, firstName, licenseNumber) =>
+                                widget.onDataFound != null
+                                    ? widget.onDataFound!(
+                                        rrn, surName, firstName, licenseNumber)
+                                    : {});
                         photo.readAsBytes().then((bytes) {
-                          widget.onPicked(bytes);
+                          widget.onPicked(file);
                         });
                       }
                     },
@@ -93,12 +96,13 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                         final file = File(photo.path);
                         MRZReader().readImage(
                             file,
-                            (rrn, surName, firstName) => widget.onDataFound !=
-                                    null
-                                ? widget.onDataFound!(rrn, surName, firstName)
-                                : {});
+                            (rrn, surName, firstName, licenseNumber) =>
+                                widget.onDataFound != null
+                                    ? widget.onDataFound!(
+                                        rrn, surName, firstName, licenseNumber)
+                                    : {});
                         photo.readAsBytes().then((bytes) {
-                          widget.onPicked(bytes);
+                          widget.onPicked(file);
                         });
                       }
                     },

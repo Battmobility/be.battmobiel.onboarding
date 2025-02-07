@@ -5,10 +5,11 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 final class MRZReader {
   Future<void> readImage(
       File imageFile,
-      Function(String? rrn, String? surName, String? firstName)
+      Function(String? rrn, String? surName, String? firstName,
+              String? licenseNumber)
           onDataFound) async {
     if (kIsWeb) {
-      onDataFound(null, null, null);
+      onDataFound(null, null, null, null);
       return;
     }
     final inputImage = InputImage.fromFile(imageFile);
@@ -48,6 +49,7 @@ final class MRZReader {
     String? surName;
     String? givenName;
     for (final block in recognizedText.blocks) {
+      // TODO try drivers license OCR
       for (final line in block.lines) {
         final String text = line.text.replaceAll(" ", "");
         if ((text.contains("<<<<") || text.contains("««")) &&
@@ -67,7 +69,7 @@ final class MRZReader {
         }
       }
     }
-    onDataFound(rrn, surName?.capitalized, givenName?.capitalized);
+    onDataFound(rrn, surName?.capitalized, givenName?.capitalized, null);
   }
 }
 

@@ -58,6 +58,15 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get idCardFieldBack => 'Back';
 
   @override
+  String get driversLicenseFieldTitle => 'Drivers license';
+
+  @override
+  String get driversLicenseFieldFront => 'Front';
+
+  @override
+  String get driversLicenseFieldBack => 'Back';
+
+  @override
   String get imagePickerLabelPickPhoto => 'Choose from library';
 
   @override

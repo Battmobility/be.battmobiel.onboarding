@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:batt_onboarding/src/presentation/widgets/image_picker_widget.dart';
@@ -19,6 +21,11 @@ final class IdentityPage extends OnboardingPage {
 }
 
 class IdentityPageState extends State<IdentityPage> {
+  File? _driversLicenseFrontImage;
+  File? _driversLicenseBackImage;
+  File? _idCardFrontImage;
+  File? _idCardBackImage;
+
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -35,7 +42,6 @@ class IdentityPageState extends State<IdentityPage> {
         },
         child: Column(
           children: [
-            // TODO: localize
             Text(l10n.identityPageTitle,
                 style: context.typographyTheme.largeTitle),
             Padding(
@@ -43,69 +49,143 @@ class IdentityPageState extends State<IdentityPage> {
               child: Text(l10n.identityPageMessage,
                   style: context.typographyTheme.largeText),
             ),
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Padding(
-                padding: AppPaddings.xxsmall.vertical,
-                child: Text(l10n.idCardFieldTitle,
-                    style: context.typographyTheme.largeText),
-              ),
-              Flex(
-                direction: MediaQuery.of(context).size.width >
-                        MediaQuery.of(context).size.height
-                    ? Axis.horizontal
-                    : Axis.vertical,
-                children: [
-                  // FRONT
-                  Expanded(
-                    child: Padding(
-                        padding: AppPaddings.small.trailing,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: AppPaddings.xxsmall.vertical,
+                  child: Text(l10n.idCardFieldTitle,
+                      style: context.typographyTheme.largeText),
+                ),
+                Flex(
+                  direction: MediaQuery.of(context).size.width >
+                          MediaQuery.of(context).size.height
+                      ? Axis.horizontal
+                      : Axis.vertical,
+                  children: [
+                    // FRONT
+                    Expanded(
+                      child: Padding(
+                          padding: AppPaddings.small.trailing,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: AppPaddings.small.vertical,
+                                child: Text(l10n.idCardFieldFront,
+                                    style: context.typographyTheme.largeText),
+                              ),
+                              AspectRatio(
+                                aspectRatio: 2,
+                                child: ImagePickerWidget(
+                                  onPicked: (file) =>
+                                      {_idCardFrontImage = file},
+                                  onDataFound: null,
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: AppPaddings.small.leading,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: AppPaddings.small.vertical,
-                              child: Text(l10n.idCardFieldFront,
+                              child: Text(l10n.idCardFieldBack,
                                   style: context.typographyTheme.largeText),
                             ),
                             AspectRatio(
                               aspectRatio: 2,
                               child: ImagePickerWidget(
-                                onPicked: (_) => {},
-                                onDataFound: null,
+                                onPicked: (file) => {_idCardBackImage = file},
+                                onDataFound: (rrn, surName, firstName, _) =>
+                                    _updateFormData(
+                                        rrn, surName, firstName, null),
                               ),
                             ),
                           ],
-                        )),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: AppPaddings.small.leading,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: AppPaddings.small.vertical,
-                            child: Text(l10n.idCardFieldBack,
-                                style: context.typographyTheme.largeText),
-                          ),
-                          AspectRatio(
-                            aspectRatio: 2,
-                            child: ImagePickerWidget(
-                              onPicked: (_) => {},
-                              onDataFound: (rrn, surName, firstName) =>
-                                  _updateFormData(rrn, surName, firstName),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ]),
-
+                  ],
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: AppPaddings.xxsmall.vertical,
+                  child: Text(l10n.driversLicenseFieldTitle,
+                      style: context.typographyTheme.largeText),
+                ),
+                Flex(
+                  direction: MediaQuery.of(context).size.width >
+                          MediaQuery.of(context).size.height
+                      ? Axis.horizontal
+                      : Axis.vertical,
+                  children: [
+                    // FRONT
+                    Expanded(
+                      child: Padding(
+                          padding: AppPaddings.small.trailing,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: AppPaddings.small.vertical,
+                                child: Text(l10n.driversLicenseFieldFront,
+                                    style: context.typographyTheme.largeText),
+                              ),
+                              AspectRatio(
+                                aspectRatio: 2,
+                                child: ImagePickerWidget(
+                                  onPicked: (file) =>
+                                      {_driversLicenseFrontImage = file},
+                                  onDataFound: (_, __, ___, licenseNumber) =>
+                                      _updateFormData(
+                                          null, null, null, licenseNumber),
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: AppPaddings.small.leading,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: AppPaddings.small.vertical,
+                              child: Text(l10n.driversLicenseFieldBack,
+                                  style: context.typographyTheme.largeText),
+                            ),
+                            AspectRatio(
+                              aspectRatio: 2,
+                              child: ImagePickerWidget(
+                                onPicked: (file) =>
+                                    {_driversLicenseBackImage = file},
+                                onDataFound: (_, __, ___, licenseNumber) =>
+                                    _updateFormData(
+                                        null, null, null, licenseNumber),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
             FormBuilderTextField(
               name: 'firstname',
               validator: FormBuilderValidators.firstName(),
@@ -121,16 +201,6 @@ class IdentityPageState extends State<IdentityPage> {
               validator: FormBuilderValidators.numeric(),
               decoration: InputDecoration(labelText: l10n.rrnFieldTitle),
             ),
-            FormBuilderTextField(
-              name: 'email',
-              validator: FormBuilderValidators.email(),
-              decoration: InputDecoration(labelText: l10n.emailFieldTitle),
-            ),
-            FormBuilderTextField(
-              name: 'phone',
-              validator: FormBuilderValidators.phoneNumber(),
-              decoration: InputDecoration(labelText: l10n.phoneFieldTitle),
-            ),
           ]
               .map((field) =>
                   Padding(padding: AppPaddings.medium.vertical, child: field))
@@ -140,13 +210,17 @@ class IdentityPageState extends State<IdentityPage> {
     );
   }
 
-  void _updateFormData(String? rrn, String? surname, String? firstName) {
+  void _updateFormData(
+      String? rrn, String? surname, String? firstName, String? licenseNumber) {
     rrn != null ? _formKey.currentState?.patchValue({"rrn": rrn}) : {};
     surname != null
         ? _formKey.currentState?.patchValue({"lastname": surname})
         : {};
     firstName != null
         ? _formKey.currentState?.patchValue({"firstname": firstName})
+        : {};
+    licenseNumber != null
+        ? _formKey.currentState?.patchValue({"licensenumber": firstName})
         : {};
   }
 }

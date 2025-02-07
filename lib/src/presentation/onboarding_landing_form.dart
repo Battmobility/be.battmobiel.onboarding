@@ -63,6 +63,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               Flexible(
                 flex: 8,
                 child: PageView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     controller: _controller,
                     itemBuilder: (context, index) => pages[index],
                     itemCount: pages.length),

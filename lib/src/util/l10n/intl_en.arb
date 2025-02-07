@@ -85,6 +85,21 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"driversLicenseFieldTitle": "Drivers license",
+	"@driversLicenseFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseFieldFront": "Front",
+	"@driversLicenseFieldFront": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseFieldBack": "Back",
+	"@driversLicenseFieldBack": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"imagePickerLabelPickPhoto": "Choose from library",
 	"@imagePickerLabelPickPhoto": {
 		"type": "text",
