@@ -90,8 +90,33 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"imagePickerLabelTakePhoto": "Take a photo",
+	"imagePickerLabelTakePhoto": "Neem een foto",
 	"@imagePickerLabelTakePhoto": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperTitle": "Snij bij en roteer",
+	"@imageCropperTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperActionCrop": "Snij bij",
+	"@imageCropperActionCrop": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperActionDelete": "Wis",
+	"@imageCropperActionDelete": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperDone": "Klaar",
+	"@imageCropperDone": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperCancel": "Annuleer",
+	"@imageCropperCancel": {
 		"type": "text",
 		"placeholders": {}
 	},

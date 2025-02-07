@@ -73,6 +73,21 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get imagePickerLabelTakePhoto => 'Take a photo';
 
   @override
+  String get imageCropperTitle => 'Crop and rotate';
+
+  @override
+  String get imageCropperActionCrop => 'Crop';
+
+  @override
+  String get imageCropperActionDelete => 'Delete';
+
+  @override
+  String get imageCropperDone => 'Done';
+
+  @override
+  String get imageCropperCancel => 'Cancel';
+
+  @override
   String get firstNameFieldTitle => 'First name';
 
   @override

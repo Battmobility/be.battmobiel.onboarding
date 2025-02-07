@@ -229,6 +229,36 @@ abstract class OnboardingLocalizations {
   /// **'Take a photo'**
   String get imagePickerLabelTakePhoto;
 
+  /// No description provided for @imageCropperTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crop and rotate'**
+  String get imageCropperTitle;
+
+  /// No description provided for @imageCropperActionCrop.
+  ///
+  /// In en, this message translates to:
+  /// **'Crop'**
+  String get imageCropperActionCrop;
+
+  /// No description provided for @imageCropperActionDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get imageCropperActionDelete;
+
+  /// No description provided for @imageCropperDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get imageCropperDone;
+
+  /// No description provided for @imageCropperCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get imageCropperCancel;
+
   /// No description provided for @firstNameFieldTitle.
   ///
   /// In en, this message translates to:

@@ -7,7 +7,6 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'onboarding_page.dart';
 
 final class ConvictionsPage extends OnboardingPage {
-  final Map<String, String> initialData = {};
   final Map<String, String> data = {};
 
   ConvictionsPage({
@@ -35,8 +34,6 @@ class ConvictionsPageState extends State<ConvictionsPage> {
             final stringData = data.entries
                 .map((entry) => MapEntry(entry.key, entry.value.toString()));
             final mapData = Map.fromEntries(stringData);
-            // TODO: don't validate if answeredTruthfully = false
-
             widget.onValidated(mapData);
           }
         },
@@ -72,14 +69,13 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                   name: "ConvictionLicenseRevocation",
                   title: Text(l10n.convictionTypeLicenseRevocation,
                       style: context.typographyTheme.defaultText)),
-              Flexible(
-                child: FormBuilderCheckbox(
-                    name: "answeredTruthfully",
-                    validator: FormBuilderValidators.isTrue(),
-                    title: Text(l10n.convictionsPageFooter,
-                        style: context.typographyTheme.defaultText
-                            .copyWith(fontWeight: FontWeight.bold))),
-              )
+              SizedBox(height: AppSpacings.xl),
+              FormBuilderCheckbox(
+                  name: "answeredTruthfully",
+                  validator: FormBuilderValidators.isTrue(),
+                  title: Text(l10n.convictionsPageFooter,
+                      style: context.typographyTheme.defaultText
+                          .copyWith(fontWeight: FontWeight.bold))),
             ].map((child) => Flexible(child: child)).toList(),
           ),
         ),

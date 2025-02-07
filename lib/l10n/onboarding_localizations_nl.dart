@@ -70,7 +70,22 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get imagePickerLabelPickPhoto => 'Kies uit bibliotheek';
 
   @override
-  String get imagePickerLabelTakePhoto => 'Take a photo';
+  String get imagePickerLabelTakePhoto => 'Neem een foto';
+
+  @override
+  String get imageCropperTitle => 'Snij bij en roteer';
+
+  @override
+  String get imageCropperActionCrop => 'Snij bij';
+
+  @override
+  String get imageCropperActionDelete => 'Wis';
+
+  @override
+  String get imageCropperDone => 'Klaar';
+
+  @override
+  String get imageCropperCancel => 'Annuleer';
 
   @override
   String get firstNameFieldTitle => 'Voornaam';

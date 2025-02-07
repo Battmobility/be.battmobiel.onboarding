@@ -95,6 +95,31 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"imageCropperTitle": "Crop and rotate",
+	"@imageCropperTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperActionCrop": "Crop",
+	"@imageCropperActionCrop": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperActionDelete": "Delete",
+	"@imageCropperActionDelete": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperDone": "Done",
+	"@imageCropperDone": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imageCropperCancel": "Cancel",
+	"@imageCropperCancel": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"firstNameFieldTitle": "Prénom",
 	"@firstNameFieldTitle": {
 		"type": "text",
