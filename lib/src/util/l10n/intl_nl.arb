@@ -60,6 +60,41 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"identityPageTitle": "Identiteit",
+	"@identityPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"identityPageMessage": "We hebben enkele van je persoonsgegevens nodig. Deze worden enkel met onze verzekeraar gedeeld indien nodig. Lees meer over ons privacybeleid en hoe we met je gegevens omgaan op https://www.battmobility.be/privacy-voorwaarden/",
+	"@identityPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"idCardFieldTitle": "Identiteitsdocument",
+	"@idCardFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"idCardFieldFront": "Voorzijde",
+	"@idCardFieldFront": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"idCardFieldBack": "Achterzijde",
+	"@idCardFieldBack": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imagePickerLabelPickPhoto": "Kies uit bibliotheek",
+	"@imagePickerLabelPickPhoto": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imagePickerLabelTakePhoto": "Take a photo",
+	"@imagePickerLabelTakePhoto": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"firstNameFieldTitle": "Voornaam",
 	"@firstNameFieldTitle": {
 		"type": "text",
@@ -67,6 +102,11 @@
 	},
 	"lastNameFieldTitle": "Achternaam",
 	"@lastNameFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"rrnFieldTitle": "RRN",
+	"@rrnFieldTitle": {
 		"type": "text",
 		"placeholders": {}
 	},

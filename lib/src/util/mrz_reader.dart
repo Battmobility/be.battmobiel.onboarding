@@ -53,12 +53,15 @@ final class MRZReader {
         if ((text.contains("<<<<") || text.contains("««")) &&
             !text.startsWith("IDBEL")) {
           final nameParts = line.text
-              .split("<")
+              .split("<<")
               .map((rawPart) => rawPart..replaceAll(" ", ""))
               .where((candidate) => candidate.length > 1)
               .toList();
-          surName = nameParts.isNotEmpty ? nameParts.first : null;
-          givenName = nameParts.length > 1 ? nameParts[1] : null;
+          surName = nameParts.isNotEmpty
+              ? nameParts.first.replaceAll("<", " ")
+              : null;
+          givenName =
+              nameParts.length > 1 ? nameParts[1].split("<").first : null;
         } else if (text.length == 30 && !text.contains("<<")) {
           rrn = text.substring(text.length - 12, text.length - 1);
         }

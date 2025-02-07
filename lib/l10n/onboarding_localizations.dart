@@ -169,6 +169,48 @@ abstract class OnboardingLocalizations {
   /// **'Revocation of license'**
   String get convictionTypeLicenseRevocation;
 
+  /// No description provided for @identityPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity'**
+  String get identityPageTitle;
+
+  /// No description provided for @identityPageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/'**
+  String get identityPageMessage;
+
+  /// No description provided for @idCardFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity document'**
+  String get idCardFieldTitle;
+
+  /// No description provided for @idCardFieldFront.
+  ///
+  /// In en, this message translates to:
+  /// **'Front'**
+  String get idCardFieldFront;
+
+  /// No description provided for @idCardFieldBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get idCardFieldBack;
+
+  /// No description provided for @imagePickerLabelPickPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from library'**
+  String get imagePickerLabelPickPhoto;
+
+  /// No description provided for @imagePickerLabelTakePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get imagePickerLabelTakePhoto;
+
   /// No description provided for @firstNameFieldTitle.
   ///
   /// In en, this message translates to:
@@ -180,6 +222,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Last name'**
   String get lastNameFieldTitle;
+
+  /// No description provided for @rrnFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'RRN'**
+  String get rrnFieldTitle;
 
   /// No description provided for @emailFieldTitle.
   ///

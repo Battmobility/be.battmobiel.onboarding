@@ -35,26 +35,77 @@ class IdentityPageState extends State<IdentityPage> {
         },
         child: Column(
           children: [
-            // TODO: scan id
-            Text(l10n.convictionsPageTitle,
+            // TODO: localize
+            Text(l10n.identityPageTitle,
                 style: context.typographyTheme.largeTitle),
             Padding(
               padding: AppPaddings.medium.vertical,
-              child: Text(l10n.convictionsPageMessage,
+              child: Text(l10n.identityPageMessage,
                   style: context.typographyTheme.largeText),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width / 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Padding(
+                padding: AppPaddings.xxsmall.vertical,
+                child: Text(l10n.idCardFieldTitle,
+                    style: context.typographyTheme.largeText),
+              ),
+              Flex(
+                direction: MediaQuery.of(context).size.width >
+                        MediaQuery.of(context).size.height
+                    ? Axis.horizontal
+                    : Axis.vertical,
                 children: [
-                  ImagePickerWidget(onPicked: (_) => {}),
-                  Spacer(),
-                  ImagePickerWidget(onPicked: (_) => {}),
+                  // FRONT
+                  Expanded(
+                    child: Padding(
+                        padding: AppPaddings.small.trailing,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: AppPaddings.small.vertical,
+                              child: Text(l10n.idCardFieldFront,
+                                  style: context.typographyTheme.largeText),
+                            ),
+                            AspectRatio(
+                              aspectRatio: 2,
+                              child: ImagePickerWidget(
+                                onPicked: (_) => {},
+                                onDataFound: null,
+                              ),
+                            ),
+                          ],
+                        )),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: AppPaddings.small.leading,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: AppPaddings.small.vertical,
+                            child: Text(l10n.idCardFieldBack,
+                                style: context.typographyTheme.largeText),
+                          ),
+                          AspectRatio(
+                            aspectRatio: 2,
+                            child: ImagePickerWidget(
+                              onPicked: (_) => {},
+                              onDataFound: (rrn, surName, firstName) =>
+                                  _updateFormData(rrn, surName, firstName),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            ),
+            ]),
+
             FormBuilderTextField(
               name: 'firstname',
               validator: FormBuilderValidators.firstName(),
@@ -64,6 +115,11 @@ class IdentityPageState extends State<IdentityPage> {
               name: 'lastname',
               validator: FormBuilderValidators.lastName(),
               decoration: InputDecoration(labelText: l10n.lastNameFieldTitle),
+            ),
+            FormBuilderTextField(
+              name: 'rrn',
+              validator: FormBuilderValidators.numeric(),
+              decoration: InputDecoration(labelText: l10n.rrnFieldTitle),
             ),
             FormBuilderTextField(
               name: 'email',
@@ -82,5 +138,15 @@ class IdentityPageState extends State<IdentityPage> {
         ),
       ),
     );
+  }
+
+  void _updateFormData(String? rrn, String? surname, String? firstName) {
+    rrn != null ? _formKey.currentState?.patchValue({"rrn": rrn}) : {};
+    surname != null
+        ? _formKey.currentState?.patchValue({"lastname": surname})
+        : {};
+    firstName != null
+        ? _formKey.currentState?.patchValue({"firstname": firstName})
+        : {};
   }
 }

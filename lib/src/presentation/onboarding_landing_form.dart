@@ -80,7 +80,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                               if (_step > 0) {
                                 _step--;
                                 _controller.jumpToPage(_step);
-                                _canContinue = false;
+                                _canContinue = true;
                               }
                             })
                         : Opacity(

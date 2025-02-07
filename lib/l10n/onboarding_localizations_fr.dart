@@ -43,10 +43,34 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get convictionTypeLicenseRevocation => 'Revocation of license';
 
   @override
+  String get identityPageTitle => 'Identity';
+
+  @override
+  String get identityPageMessage => 'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/';
+
+  @override
+  String get idCardFieldTitle => 'Identity document';
+
+  @override
+  String get idCardFieldFront => 'Front';
+
+  @override
+  String get idCardFieldBack => 'Back';
+
+  @override
+  String get imagePickerLabelPickPhoto => 'Choose from library';
+
+  @override
+  String get imagePickerLabelTakePhoto => 'Take a photo';
+
+  @override
   String get firstNameFieldTitle => 'Prénom';
 
   @override
   String get lastNameFieldTitle => 'Nom';
+
+  @override
+  String get rrnFieldTitle => 'RRN';
 
   @override
   String get emailFieldTitle => 'Adresse e-mail';
