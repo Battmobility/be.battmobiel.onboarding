@@ -4,8 +4,8 @@ import 'package:batt_ds/batt_ds.dart';
 import '../../../l10n/onboarding_localizations.dart';
 import 'onboarding_page.dart';
 
-final class IntroPage extends OnboardingPage {
-  IntroPage({
+final class DonePage extends OnboardingPage {
+  DonePage({
     super.key,
     required super.formKey,
     required super.onValidated,
@@ -13,10 +13,10 @@ final class IntroPage extends OnboardingPage {
   });
 
   @override
-  IntroPageState createState() => IntroPageState();
+  DonePageState createState() => DonePageState();
 }
 
-class IntroPageState extends State<IntroPage> {
+class DonePageState extends State<DonePage> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {

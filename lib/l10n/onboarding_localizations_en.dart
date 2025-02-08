@@ -49,6 +49,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get identityPageMessage => 'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/';
 
   @override
+  String get identityPageFileRequired => 'Please upload a file.';
+
+  @override
   String get idCardFieldTitle => 'Identity document';
 
   @override

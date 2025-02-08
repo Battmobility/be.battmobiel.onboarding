@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 
 final class ImagePickerWidget extends StatefulWidget {
-  final Function(File) onPicked;
+  final Function(File?) onPicked;
   final Function(String? rrn, String? surName, String? firstName,
       String? licenseNumber)? onDataFound;
 
@@ -29,18 +29,9 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).colorScheme.onSurface,
-          width: 0.5,
-        ),
-        borderRadius: BorderRadius.all(CornerRadii.m),
-      ),
-      child: _originalImage == null && _croppedFile == null
-          ? _pickers(context)
-          : _imageCard(context),
-    );
+    return _originalImage == null && _croppedFile == null
+        ? _pickers(context)
+        : _imageCard(context);
   }
 
   Widget _pickers(BuildContext context) {
@@ -56,6 +47,7 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                   if (photo != null) {
                     setState(() {
                       _originalImage = photo;
+                      widget.onPicked(File(photo.path));
                     });
                   }
                 },
@@ -147,6 +139,7 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
         children: [
           OrangeOutlinedBattButton(
             onPressed: () {
+              widget.onPicked(null);
               setState(() {
                 _croppedFile = null;
                 _originalImage = null;

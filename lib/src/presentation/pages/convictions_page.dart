@@ -11,6 +11,7 @@ final class ConvictionsPage extends OnboardingPage {
 
   ConvictionsPage({
     super.key,
+    required super.formKey,
     required super.onValidated,
     super.initialData,
   });
@@ -20,23 +21,12 @@ final class ConvictionsPage extends OnboardingPage {
 }
 
 class ConvictionsPageState extends State<ConvictionsPage> {
-  final _formKey = GlobalKey<FormBuilderState>();
-
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
     return SingleChildScrollView(
       child: FormBuilder(
-        key: _formKey,
-        onChanged: () {
-          if (_formKey.currentState!.validate()) {
-            final data = _formKey.currentState!.value;
-            final stringData = data.entries
-                .map((entry) => MapEntry(entry.key, entry.value.toString()));
-            final mapData = Map.fromEntries(stringData);
-            widget.onValidated(mapData);
-          }
-        },
+        key: widget.formKey,
         child: Padding(
           padding: AppPaddings.medium.all,
           child: Column(

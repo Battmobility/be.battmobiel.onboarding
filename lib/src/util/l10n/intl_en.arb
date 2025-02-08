@@ -70,6 +70,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"identityPageFileRequired": "Please upload a file.",
+	"@identityPageFileRequired": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"idCardFieldTitle": "Identity document",
 	"@idCardFieldTitle": {
 		"type": "text",

@@ -2,16 +2,17 @@ import 'dart:io';
 
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
-import 'package:batt_onboarding/src/presentation/widgets/image_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../widgets/document_form_field.dart';
 import 'onboarding_page.dart';
 
 final class IdentityPage extends OnboardingPage {
   IdentityPage({
     super.key,
+    required super.formKey,
     required super.onValidated,
     super.initialData,
   });
@@ -26,20 +27,12 @@ class IdentityPageState extends State<IdentityPage> {
   File? _idCardFrontImage;
   File? _idCardBackImage;
 
-  final _formKey = GlobalKey<FormBuilderState>();
-
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
     return SingleChildScrollView(
       child: FormBuilder(
-        key: _formKey,
-        onChanged: () {
-          if (_formKey.currentState!.validate()) {
-            final data = _formKey.currentState!.value as Map<String, String>;
-            widget.onValidated(data);
-          }
-        },
+        key: widget.formKey,
         child: Column(
           children: [
             Text(l10n.identityPageTitle,
@@ -66,42 +59,20 @@ class IdentityPageState extends State<IdentityPage> {
                       : Axis.vertical,
                   children: [
                     // FRONT
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: AppPaddings.small.vertical,
-                          child: Text(l10n.idCardFieldFront,
-                              style: context.typographyTheme.largeText),
-                        ),
-                        AspectRatio(
-                          aspectRatio: 1.586,
-                          child: ImagePickerWidget(
-                            onPicked: (file) => {_idCardFrontImage = file},
-                            onDataFound: null,
-                          ),
-                        ),
-                      ],
+                    DocumentFormField(
+                      fieldName: "idCardFront",
+                      displayName: l10n.idCardFieldFront,
+                      onDataFound: (rrn, surName, firstName, licenseNumber) =>
+                          {},
+                      onPicked: (file) => _idCardFrontImage = file,
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: AppPaddings.small.vertical,
-                          child: Text(l10n.idCardFieldBack,
-                              style: context.typographyTheme.largeText),
-                        ),
-                        AspectRatio(
-                          aspectRatio: 1.586,
-                          child: ImagePickerWidget(
-                            onPicked: (file) => {_idCardBackImage = file},
-                            onDataFound: (rrn, surName, firstName, _) =>
-                                _updateFormData(rrn, surName, firstName, null),
-                          ),
-                        ),
-                      ],
+
+                    DocumentFormField(
+                      fieldName: "idCardBack",
+                      displayName: l10n.idCardFieldBack,
+                      onDataFound: (rrn, surName, firstName, licenseNumber) =>
+                          _updateFormData(rrn, surName, firstName, null),
+                      onPicked: (file) => _idCardBackImage = file,
                     ),
                   ].map((child) {
                     return MediaQuery.of(context).size.width >
@@ -129,47 +100,19 @@ class IdentityPageState extends State<IdentityPage> {
                       : Axis.vertical,
                   children: [
                     // FRONT
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: AppPaddings.small.vertical,
-                          child: Text(l10n.driversLicenseFieldFront,
-                              style: context.typographyTheme.largeText),
-                        ),
-                        AspectRatio(
-                          aspectRatio: 1.586,
-                          child: ImagePickerWidget(
-                            onPicked: (file) =>
-                                {_driversLicenseFrontImage = file},
-                            onDataFound: (_, __, ___, licenseNumber) =>
-                                _updateFormData(
-                                    null, null, null, licenseNumber),
-                          ),
-                        ),
-                      ],
+                    DocumentFormField(
+                      fieldName: "driversLicenseFront",
+                      displayName: l10n.driversLicenseFieldFront,
+                      onDataFound: (rrn, surName, firstName, licenseNumber) =>
+                          _updateFormData(null, null, null, licenseNumber),
+                      onPicked: (file) => _driversLicenseFrontImage = file,
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: AppPaddings.small.vertical,
-                          child: Text(l10n.driversLicenseFieldBack,
-                              style: context.typographyTheme.largeText),
-                        ),
-                        AspectRatio(
-                          aspectRatio: 1.586,
-                          child: ImagePickerWidget(
-                            onPicked: (file) =>
-                                {_driversLicenseBackImage = file},
-                            onDataFound: (_, __, ___, licenseNumber) =>
-                                _updateFormData(
-                                    null, null, null, licenseNumber),
-                          ),
-                        ),
-                      ],
+                    DocumentFormField(
+                      fieldName: "driversLicenseBack",
+                      displayName: l10n.driversLicenseFieldBack,
+                      onDataFound: (rrn, surName, firstName, licenseNumber) =>
+                          _updateFormData(null, null, null, licenseNumber),
+                      onPicked: (file) => _driversLicenseBackImage = file,
                     ),
                   ].map((child) {
                     return MediaQuery.of(context).size.width >
@@ -192,9 +135,11 @@ class IdentityPageState extends State<IdentityPage> {
             ),
             FormBuilderTextField(
               name: 'rrn',
+              autovalidateMode: AutovalidateMode.disabled,
               validator: FormBuilderValidators.numeric(),
               decoration: InputDecoration(labelText: l10n.rrnFieldTitle),
             ),
+            // TODO: driver's license number field
           ]
               .map((field) =>
                   Padding(padding: AppPaddings.medium.vertical, child: field))
@@ -206,15 +151,15 @@ class IdentityPageState extends State<IdentityPage> {
 
   void _updateFormData(
       String? rrn, String? surname, String? firstName, String? licenseNumber) {
-    rrn != null ? _formKey.currentState?.patchValue({"rrn": rrn}) : {};
+    rrn != null ? widget.formKey.currentState?.patchValue({"rrn": rrn}) : {};
     surname != null
-        ? _formKey.currentState?.patchValue({"lastname": surname})
+        ? widget.formKey.currentState?.patchValue({"lastname": surname})
         : {};
     firstName != null
-        ? _formKey.currentState?.patchValue({"firstname": firstName})
+        ? widget.formKey.currentState?.patchValue({"firstname": firstName})
         : {};
     licenseNumber != null
-        ? _formKey.currentState?.patchValue({"licensenumber": firstName})
+        ? widget.formKey.currentState?.patchValue({"licensenumber": firstName})
         : {};
   }
 }

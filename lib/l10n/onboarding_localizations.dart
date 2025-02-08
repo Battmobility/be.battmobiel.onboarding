@@ -181,6 +181,12 @@ abstract class OnboardingLocalizations {
   /// **'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/'**
   String get identityPageMessage;
 
+  /// No description provided for @identityPageFileRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload a file.'**
+  String get identityPageFileRequired;
+
   /// No description provided for @idCardFieldTitle.
   ///
   /// In en, this message translates to:

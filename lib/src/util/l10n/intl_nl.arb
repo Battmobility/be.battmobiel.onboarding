@@ -70,6 +70,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"identityPageFileRequired": "Kies een bestand.",
+	"@identityPageFileRequired": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"idCardFieldTitle": "Identiteitsdocument",
 	"@idCardFieldTitle": {
 		"type": "text",
