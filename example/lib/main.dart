@@ -3,9 +3,11 @@ import 'package:batt_onboarding/batt_onboarding.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:dart_auth/authentication/authentication.dart';
 import 'package:dart_auth/authentication/domain/domain.dart';
+import 'package:dart_auth/dart_auth.dart';
 import 'package:dart_auth/l10n/auth_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 void main() async {
@@ -23,86 +25,18 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Accesstoken? _accessToken;
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final theme = ThemeScope.of(context);
+    AndroidOptions _getAndroidOptions() => const AndroidOptions(
+          encryptedSharedPreferences: true,
+        );
+    final _storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
 
     return MaterialApp(
       title: 'Flutter Demo',
       themeMode: ThemeMode.system,
-      theme: ThemeData(
-        colorScheme: ColorScheme.light(
-            primary: theme.appTheme.themeColorPrimary,
-            primaryContainer: theme.appTheme.themeColorPrimaryContainer,
-            secondary: theme.appTheme.themeColorSecondary,
-            shadow: theme.appTheme.shadowColorLight,
-            surface: theme.appTheme.themeColorLight,
-            surfaceDim: theme.appTheme.themeColorSecondaryContainer,
-            surfaceContainerLowest:
-                theme.appTheme.themeColorSecondaryContainerLowest),
-        brightness: Brightness.light,
-        extensions: [theme.appTheme],
-        appBarTheme: theme.appTheme.appBarThemeLight,
-        navigationBarTheme: theme.appTheme.navigationBarThemeLight,
-        cardTheme: CardTheme(color: theme.appTheme.themeColorLight),
-        textTheme: theme.appTheme.textThemeLight,
-        textSelectionTheme: theme.appTheme.textSelectionThemeLight,
-        inputDecorationTheme: theme.appTheme.inputDecorationThemeLight,
-        sliderTheme: SliderThemeData(
-            activeTrackColor: theme.appTheme.themeColorPrimary,
-            inactiveTrackColor:
-                theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
-            thumbColor: theme.appTheme.themeColorPrimary,
-            overlayColor:
-                theme.appTheme.themeColorPrimary.withValues(alpha: 0.5)),
-        progressIndicatorTheme: ProgressIndicatorThemeData(
-          color: theme.appTheme.themeColorPrimary,
-        ),
-        iconButtonTheme: IconButtonThemeData(
-            style: ButtonStyle(
-                foregroundColor:
-                    WidgetStatePropertyAll(theme.appTheme.themeColorLight))),
-        scaffoldBackgroundColor: theme.appTheme.themeColorLight,
-        dividerColor: theme.appTheme.themeColorPrimary,
-        canvasColor: theme.appTheme.themeColorLight,
-      ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.dark(
-            primary: theme.appTheme.themeColorDark,
-            primaryContainer: theme.appTheme.themeColorPrimaryContainer,
-            secondary: theme.appTheme.themeColorSecondary,
-            shadow: theme.appTheme.shadowColorDark,
-            surface: theme.appTheme.themeColorDark,
-            surfaceDim: theme.appTheme.themeColorDark,
-            surfaceContainerLowest:
-                theme.appTheme.themeColorSecondaryContainerLowest),
-        brightness: Brightness.dark,
-        extensions: [theme.appTheme],
-        appBarTheme: theme.appTheme.appBarThemeDark,
-        navigationBarTheme: theme.appTheme.navigationBarThemeDark,
-        cardTheme: CardTheme(color: theme.appTheme.themeColorDark),
-        textTheme: theme.appTheme.textThemeDark,
-        textSelectionTheme: theme.appTheme.textSelectionThemeDark,
-        inputDecorationTheme: theme.appTheme.inputDecorationThemeDark,
-        sliderTheme: SliderThemeData(
-          activeTrackColor: theme.appTheme.themeColorPrimary,
-          inactiveTrackColor:
-              theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
-          thumbColor: theme.appTheme.themeColorPrimary,
-          overlayColor: theme.appTheme.themeColorPrimary.withValues(alpha: 0.5),
-        ),
-        progressIndicatorTheme: ProgressIndicatorThemeData(
-          color: theme.appTheme.themeColorPrimary,
-        ),
-        iconButtonTheme: IconButtonThemeData(
-            style: ButtonStyle(
-                foregroundColor:
-                    WidgetStatePropertyAll(theme.appTheme.themeColorLight))),
-        scaffoldBackgroundColor: theme.appTheme.themeColorDark,
-        canvasColor: theme.appTheme.themeColorDark,
-        dividerColor: theme.appTheme.themeColorPrimary,
-      ),
+      theme: lightTheme(context),
+      darkTheme: darkTheme(context),
       localizationsDelegates: [
         AuthLocalizations.delegate,
         OnboardingLocalizations.delegate,
@@ -119,123 +53,63 @@ class _MyAppState extends State<MyApp> {
       home: Builder(builder: (context) {
         return Scaffold(
           body: Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 800),
-              child: Stack(alignment: Alignment.center, children: [
-                Visibility(
-                    visible: _accessToken == null,
-                    child: Center(
-                        child: LoginPage(onLogin: (token) {
-                      _accessToken = token;
-                      setState(() {});
-                    }, onException: (error) {
-                      print("${error.toString()}");
-                    }))),
-                Visibility(
-                  visible: _accessToken != null,
-                  child: _accessToken != null
-                      ? OnboardingLandingForm(
-                          accessToken: _accessToken!.accessToken!,
-                          onAuthenticationError: (_) => {},
-                          onStepStarted: (_) => {},
-                          onStepCompleted: (_) => {},
-                          onSubmitted: (_) => {},
-                        )
-                      : Container(),
-                ),
-              ]),
-            ),
-          ),
+              child: ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 800),
+                  child: FutureBuilder(
+                      future: _storage.read(key: "refreshToken"),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState != ConnectionState.done) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        final token = snapshot.data;
+                        if (token != null) {
+                          return FutureBuilder(
+                              future: refreshToken(token),
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData ||
+                                    snapshot.connectionState !=
+                                        ConnectionState.done) {
+                                  return Center(
+                                      child: CircularProgressIndicator());
+                                }
+                                final refreshedToken = snapshot.data;
+                                if (refreshedToken != null &&
+                                    refreshedToken.accessToken != null) {
+                                  _storage.write(
+                                      key: "refreshToken",
+                                      value: refreshedToken.refreshToken!);
+                                  _accessToken = refreshedToken;
+                                  return _formBody(
+                                      context, refreshedToken.accessToken!);
+                                } else {
+                                  return _login(context, _storage);
+                                }
+                              });
+                        } else {
+                          return _login(context, _storage);
+                        }
+                      }))),
         );
       }),
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+  Widget _login(BuildContext context, FlutterSecureStorage storage) {
+    return LoginPage(onLogin: (token) {
+      storage.write(key: "refreshToken", value: token.refreshToken!);
+      _accessToken = token;
+      setState(() {});
+    }, onException: (error) {
+      print("$error");
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+  Widget _formBody(BuildContext context, String accessToken) =>
+      OnboardingLandingForm(
+        accessToken: accessToken,
+        onAuthenticationError: (_) => {},
+        onStepStarted: (_) => {},
+        onStepCompleted: (_) => {},
+        onSubmitted: (_) => {},
+      );
 }

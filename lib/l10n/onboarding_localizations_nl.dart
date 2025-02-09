@@ -10,6 +10,11 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get formTitle => 'Word Batt';
 
   @override
+  String stepIndicatorText(Object step, Object totalSteps) {
+    return 'Stap $step van $totalSteps';
+  }
+
+  @override
   String get previousButtonText => 'Vorige';
 
   @override

@@ -1,7 +1,7 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/presentation/pages/convictions_page.dart';
-import 'package:batt_onboarding/src/presentation/pages/done_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/identity_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +58,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           onValidated: (_) {
             // TODO: post data
           }),
-      DonePage(
+      VerificationPage(
           formKey: _formKeys[3],
           onValidated: (_) {
             // TODO: post data
@@ -101,7 +101,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                 onPressed: () {}),
                           ),
                     Text(
-                      "Stap ${_step + 1} van ${pages.length}", // TODO: localize
+                      OnboardingLocalizations.of(context)
+                          .stepIndicatorText(_step + 1, pages.length),
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     OrangeSolidTextButton(

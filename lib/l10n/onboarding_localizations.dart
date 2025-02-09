@@ -103,6 +103,12 @@ abstract class OnboardingLocalizations {
   /// **'Become Batt'**
   String get formTitle;
 
+  /// No description provided for @stepIndicatorText.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of {totalSteps}'**
+  String stepIndicatorText(Object step, Object totalSteps);
+
   /// No description provided for @previousButtonText.
   ///
   /// In en, this message translates to:

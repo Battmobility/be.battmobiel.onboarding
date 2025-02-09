@@ -4,6 +4,14 @@
 	"@formTitle": {
 		"type": "text",
 		"placeholders": {}
+	},	
+	"stepIndicatorText": "Step {step} of {totalSteps}",
+	"@stepIndicatorText": {
+		"type": "text",
+		"placeholders": {
+			"step": {},
+			"totalSteps": {}
+		}
 	},
 	"previousButtonText": "Previous",
 	"@previousButtonText": {

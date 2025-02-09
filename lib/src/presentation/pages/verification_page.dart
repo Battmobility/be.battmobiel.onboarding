@@ -4,8 +4,8 @@ import 'package:batt_ds/batt_ds.dart';
 import '../../../l10n/onboarding_localizations.dart';
 import 'onboarding_page.dart';
 
-final class DonePage extends OnboardingPage {
-  DonePage({
+final class VerificationPage extends OnboardingPage {
+  VerificationPage({
     super.key,
     required super.formKey,
     required super.onValidated,
@@ -13,10 +13,10 @@ final class DonePage extends OnboardingPage {
   });
 
   @override
-  DonePageState createState() => DonePageState();
+  VerificationPageState createState() => VerificationPageState();
 }
 
-class DonePageState extends State<DonePage> {
+class VerificationPageState extends State<VerificationPage> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -30,8 +30,8 @@ class DonePageState extends State<DonePage> {
             constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
             child: Column(
               children: [
-                Text(OnboardingLocalizations.of(context).formTitle,
-                    style: context.typographyTheme.largeTitle),
+                Icon(Icons.phone),
+                Text("Verify phone"),
               ],
             )),
       ),

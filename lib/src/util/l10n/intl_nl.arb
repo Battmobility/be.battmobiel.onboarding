@@ -5,6 +5,14 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"stepIndicatorText": "Stap {step} van {totalSteps}",
+	"@stepIndicatorText": {
+		"type": "text",
+		"placeholders": {
+			"step": {},
+			"totalSteps": {}
+		}
+	},
 	"previousButtonText": "Vorige",
 	"@previousButtonText": {
 		"type": "text",
