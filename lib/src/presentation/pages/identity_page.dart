@@ -14,7 +14,7 @@ final class IdentityPage extends OnboardingPage {
   IdentityPage({
     super.key,
     required super.formKey,
-    required super.onValidated,
+    required super.onAction,
     super.initialData,
   });
 

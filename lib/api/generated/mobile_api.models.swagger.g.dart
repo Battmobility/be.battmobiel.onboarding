@@ -150,6 +150,19 @@ Map<String, dynamic> _$BodyStyleToJson(BodyStyle instance) => <String, dynamic>{
       'id': instance.id,
     };
 
+BodyStylePage _$BodyStylePageFromJson(Map<String, dynamic> json) =>
+    BodyStylePage(
+      bodyStyles: (json['bodyStyles'] as List<dynamic>?)
+              ?.map((e) => BodyStyle.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$BodyStylePageToJson(BodyStylePage instance) =>
+    <String, dynamic>{
+      'bodyStyles': instance.bodyStyles?.map((e) => e.toJson()).toList(),
+    };
+
 Booking _$BookingFromJson(Map<String, dynamic> json) => Booking(
       adminComments: json['adminComments'] as String?,
       billingPrice: json['billingPrice'] == null
@@ -280,6 +293,20 @@ Map<String, dynamic> _$ConflictResolutionToJson(ConflictResolution instance) =>
       'mode': conflictResolutionModeNullableToJson(instance.mode),
     };
 
+CreateBodyStyleRequest _$CreateBodyStyleRequestFromJson(
+        Map<String, dynamic> json) =>
+    CreateBodyStyleRequest(
+      description: json['description'] as String?,
+      id: json['id'] as String?,
+    );
+
+Map<String, dynamic> _$CreateBodyStyleRequestToJson(
+        CreateBodyStyleRequest instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+      'id': instance.id,
+    };
+
 CreateBookingRequest _$CreateBookingRequestFromJson(
         Map<String, dynamic> json) =>
     CreateBookingRequest(
@@ -324,6 +351,20 @@ Map<String, dynamic> _$CreateNonAvailabilityRequestToJson(
       'vehicleId': instance.vehicleId,
     };
 
+CreateUserRequest _$CreateUserRequestFromJson(Map<String, dynamic> json) =>
+    CreateUserRequest(
+      displayName: json['displayName'] as String?,
+      email: json['email'] as String?,
+      remoteId: json['remoteId'] as String?,
+    );
+
+Map<String, dynamic> _$CreateUserRequestToJson(CreateUserRequest instance) =>
+    <String, dynamic>{
+      'displayName': instance.displayName,
+      'email': instance.email,
+      'remoteId': instance.remoteId,
+    };
+
 CreateVehicleGroupRequest _$CreateVehicleGroupRequestFromJson(
         Map<String, dynamic> json) =>
     CreateVehicleGroupRequest(
@@ -338,63 +379,36 @@ Map<String, dynamic> _$CreateVehicleGroupRequestToJson(
       'name': instance.name,
     };
 
+CreateVehicleModelRequest _$CreateVehicleModelRequestFromJson(
+        Map<String, dynamic> json) =>
+    CreateVehicleModelRequest(
+      bodyStyleId: json['bodyStyleId'] as String?,
+      brandId: json['brandId'] as String?,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$CreateVehicleModelRequestToJson(
+        CreateVehicleModelRequest instance) =>
+    <String, dynamic>{
+      'bodyStyleId': instance.bodyStyleId,
+      'brandId': instance.brandId,
+      'name': instance.name,
+    };
+
 CreateVehicleRequest _$CreateVehicleRequestFromJson(
         Map<String, dynamic> json) =>
     CreateVehicleRequest(
-      approvalType: createVehicleRequestApprovalTypeNullableFromJson(
-          json['approvalType']),
-      clientId: json['clientId'] as String?,
-      description: json['description'] as String?,
-      electricRange: (json['electricRange'] as num?)?.toInt(),
-      equipmentIds: (json['equipmentIds'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
-      expectedInFleetDate: json['expectedInFleetDate'] == null
-          ? null
-          : DateTime.parse(json['expectedInFleetDate'] as String),
-      expectedOutOfFleetDate: json['expectedOutOfFleetDate'] == null
-          ? null
-          : DateTime.parse(json['expectedOutOfFleetDate'] as String),
       id: json['id'] as String?,
-      imageUrl: json['imageUrl'] as String?,
-      intentIds: (json['intentIds'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [],
       licensePlate: json['licensePlate'] as String?,
-      name: json['name'] as String?,
-      owner: json['owner'] as String?,
-      seats: (json['seats'] as num?)?.toInt(),
-      timeZone: createVehicleRequestTimeZoneNullableFromJson(json['timeZone']),
-      vehicleInfo: json['vehicleInfo'] as String?,
-      vehicleInfoPreBooking: json['vehicleInfoPreBooking'] as String?,
-      vehicleTypeId: json['vehicleTypeId'] as String?,
+      vehicleModelId: json['vehicleModelId'] as String,
     );
 
 Map<String, dynamic> _$CreateVehicleRequestToJson(
         CreateVehicleRequest instance) =>
     <String, dynamic>{
-      'approvalType':
-          createVehicleRequestApprovalTypeNullableToJson(instance.approvalType),
-      'clientId': instance.clientId,
-      'description': instance.description,
-      'electricRange': instance.electricRange,
-      'equipmentIds': instance.equipmentIds,
-      'expectedInFleetDate': instance.expectedInFleetDate?.toIso8601String(),
-      'expectedOutOfFleetDate':
-          instance.expectedOutOfFleetDate?.toIso8601String(),
       'id': instance.id,
-      'imageUrl': instance.imageUrl,
-      'intentIds': instance.intentIds,
       'licensePlate': instance.licensePlate,
-      'name': instance.name,
-      'owner': instance.owner,
-      'seats': instance.seats,
-      'timeZone': createVehicleRequestTimeZoneNullableToJson(instance.timeZone),
-      'vehicleInfo': instance.vehicleInfo,
-      'vehicleInfoPreBooking': instance.vehicleInfoPreBooking,
-      'vehicleTypeId': instance.vehicleTypeId,
+      'vehicleModelId': instance.vehicleModelId,
     };
 
 DeleteVehiclesFromGroupRequest _$DeleteVehiclesFromGroupRequestFromJson(
@@ -560,14 +574,17 @@ Map<String, dynamic> _$MyAvailableVehiclesPageToJson(
 NonAvailabilitiesPage _$NonAvailabilitiesPageFromJson(
         Map<String, dynamic> json) =>
     NonAvailabilitiesPage(
-      nonAvailabilitiesByVehicle:
-          json['nonAvailabilitiesByVehicle'] as Map<String, dynamic>?,
+      nonAvailabilities: (json['nonAvailabilities'] as List<dynamic>?)
+              ?.map((e) => NonAvailability.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$NonAvailabilitiesPageToJson(
         NonAvailabilitiesPage instance) =>
     <String, dynamic>{
-      'nonAvailabilitiesByVehicle': instance.nonAvailabilitiesByVehicle,
+      'nonAvailabilities':
+          instance.nonAvailabilities?.map((e) => e.toJson()).toList(),
     };
 
 NonAvailabilitiesPerVehicle _$NonAvailabilitiesPerVehicleFromJson(
@@ -665,13 +682,15 @@ Map<String, dynamic> _$NonAvailabilityResponseToJson(
     };
 
 Period _$PeriodFromJson(Map<String, dynamic> json) => Period(
-      end: DateTime.parse(json['end'] as String),
-      start: DateTime.parse(json['start'] as String),
+      end: json['end'] == null ? null : DateTime.parse(json['end'] as String),
+      start: json['start'] == null
+          ? null
+          : DateTime.parse(json['start'] as String),
     );
 
 Map<String, dynamic> _$PeriodToJson(Period instance) => <String, dynamic>{
-      'end': instance.end.toIso8601String(),
-      'start': instance.start.toIso8601String(),
+      'end': instance.end?.toIso8601String(),
+      'start': instance.start?.toIso8601String(),
     };
 
 RecurringNonAvailability _$RecurringNonAvailabilityFromJson(
@@ -1089,7 +1108,6 @@ UpdateVehicleRequest _$UpdateVehicleRequestFromJson(
       licensePlate: json['licensePlate'] as String?,
       name: json['name'] as String?,
       seats: (json['seats'] as num?)?.toInt(),
-      timeZone: updateVehicleRequestTimeZoneNullableFromJson(json['timeZone']),
       typeId: json['typeId'] as String?,
       vehicleId: json['vehicleId'] as String?,
       vehicleInfo: json['vehicleInfo'] as String?,
@@ -1118,7 +1136,6 @@ Map<String, dynamic> _$UpdateVehicleRequestToJson(
       'licensePlate': instance.licensePlate,
       'name': instance.name,
       'seats': instance.seats,
-      'timeZone': updateVehicleRequestTimeZoneNullableToJson(instance.timeZone),
       'typeId': instance.typeId,
       'vehicleId': instance.vehicleId,
       'vehicleInfo': instance.vehicleInfo,
@@ -1127,32 +1144,57 @@ Map<String, dynamic> _$UpdateVehicleRequestToJson(
     };
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
-      sofBattRemoteID: json['SofBattRemoteID'] as String?,
+      boxNumber: json['boxNumber'] as String?,
+      city: json['city'] as String?,
+      dateCurrentLicense: json['dateCurrentLicense'] as String?,
+      dateLicenseUntil: json['dateLicenseUntil'] as String?,
       dateOfBirth: json['dateOfBirth'] as String?,
+      documentLinks: (json['documentLinks'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       email: json['email'] as String?,
       firstName: json['firstName'] as String?,
+      houseNumber: json['houseNumber'] as String?,
       id: (json['id'] as num?)?.toInt(),
       lastName: json['lastName'] as String?,
-      onboardingStatus:
-          userOnboardingStatusNullableFromJson(json['onboardingStatus']),
+      licenseNum: json['licenseNum'] as String?,
+      licenseType: (json['licenseType'] as num?)?.toInt(),
+      nationality: json['nationality'] as String?,
+      nrOfAccidents: (json['nrOfAccidents'] as num?)?.toInt(),
       phoneNumber: json['phoneNumber'] as String?,
+      postalCode: json['postalCode'] as String?,
+      sofBattRemoteId: json['sofBattRemoteId'] as String?,
+      streetname: json['streetname'] as String?,
       subscriptions: (json['subscriptions'] as List<dynamic>?)
               ?.map((e) => Subscription.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      verifiedCellPhoneNumber: json['verifiedCellPhoneNumber'] as bool?,
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
-      'SofBattRemoteID': instance.sofBattRemoteID,
+      'boxNumber': instance.boxNumber,
+      'city': instance.city,
+      'dateCurrentLicense': instance.dateCurrentLicense,
+      'dateLicenseUntil': instance.dateLicenseUntil,
       'dateOfBirth': instance.dateOfBirth,
+      'documentLinks': instance.documentLinks,
       'email': instance.email,
       'firstName': instance.firstName,
+      'houseNumber': instance.houseNumber,
       'id': instance.id,
       'lastName': instance.lastName,
-      'onboardingStatus':
-          userOnboardingStatusNullableToJson(instance.onboardingStatus),
+      'licenseNum': instance.licenseNum,
+      'licenseType': instance.licenseType,
+      'nationality': instance.nationality,
+      'nrOfAccidents': instance.nrOfAccidents,
       'phoneNumber': instance.phoneNumber,
+      'postalCode': instance.postalCode,
+      'sofBattRemoteId': instance.sofBattRemoteId,
+      'streetname': instance.streetname,
       'subscriptions': instance.subscriptions?.map((e) => e.toJson()).toList(),
+      'verifiedCellPhoneNumber': instance.verifiedCellPhoneNumber,
     };
 
 UserPage _$UserPageFromJson(Map<String, dynamic> json) => UserPage(
@@ -1224,6 +1266,48 @@ Map<String, dynamic> _$VehicleToJson(Vehicle instance) => <String, dynamic>{
       'vehicleModel': instance.vehicleModel?.toJson(),
     };
 
+VehicleBaseLocation _$VehicleBaseLocationFromJson(Map<String, dynamic> json) =>
+    VehicleBaseLocation(
+      adType: json['adType'] as String?,
+      borough: json['borough'] as String?,
+      homePosition: json['homePosition'] == null
+          ? null
+          : GpsLocation.fromJson(json['homePosition'] as Map<String, dynamic>),
+      id: json['id'] as String?,
+      memo: json['memo'] as String?,
+      name: json['name'] as String?,
+      status: json['status'] as String?,
+    );
+
+Map<String, dynamic> _$VehicleBaseLocationToJson(
+        VehicleBaseLocation instance) =>
+    <String, dynamic>{
+      'adType': instance.adType,
+      'borough': instance.borough,
+      'homePosition': instance.homePosition?.toJson(),
+      'id': instance.id,
+      'memo': instance.memo,
+      'name': instance.name,
+      'status': instance.status,
+    };
+
+VehicleBaseLocationPage _$VehicleBaseLocationPageFromJson(
+        Map<String, dynamic> json) =>
+    VehicleBaseLocationPage(
+      vehicleBaseLocations: (json['vehicleBaseLocations'] as List<dynamic>?)
+              ?.map((e) =>
+                  VehicleBaseLocation.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$VehicleBaseLocationPageToJson(
+        VehicleBaseLocationPage instance) =>
+    <String, dynamic>{
+      'vehicleBaseLocations':
+          instance.vehicleBaseLocations?.map((e) => e.toJson()).toList(),
+    };
+
 VehicleBrand _$VehicleBrandFromJson(Map<String, dynamic> json) => VehicleBrand(
       id: json['id'] as String?,
       name: json['name'] as String?,
@@ -1233,6 +1317,19 @@ Map<String, dynamic> _$VehicleBrandToJson(VehicleBrand instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+    };
+
+VehicleBrandPage _$VehicleBrandPageFromJson(Map<String, dynamic> json) =>
+    VehicleBrandPage(
+      vehicleBrands: (json['vehicleBrands'] as List<dynamic>?)
+              ?.map((e) => VehicleBrand.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$VehicleBrandPageToJson(VehicleBrandPage instance) =>
+    <String, dynamic>{
+      'vehicleBrands': instance.vehicleBrands?.map((e) => e.toJson()).toList(),
     };
 
 VehicleFilterCriteria _$VehicleFilterCriteriaFromJson(
@@ -1335,6 +1432,19 @@ Map<String, dynamic> _$VehicleModelToJson(VehicleModel instance) =>
       'name': instance.name,
     };
 
+VehicleModelPage _$VehicleModelPageFromJson(Map<String, dynamic> json) =>
+    VehicleModelPage(
+      vehicleModels: (json['vehicleModels'] as List<dynamic>?)
+              ?.map((e) => VehicleModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$VehicleModelPageToJson(VehicleModelPage instance) =>
+    <String, dynamic>{
+      'vehicleModels': instance.vehicleModels?.map((e) => e.toJson()).toList(),
+    };
+
 VehicleUsage _$VehicleUsageFromJson(Map<String, dynamic> json) => VehicleUsage(
       id: json['id'] as String?,
       mileageDelta: (json['mileageDelta'] as num?)?.toDouble(),
@@ -1424,6 +1534,26 @@ Map<String, dynamic> _$VehiclesPageToJson(VehiclesPage instance) =>
       'vehicles': instance.vehicles?.map((e) => e.toJson()).toList(),
     };
 
+ContractsConvictions _$ContractsConvictionsFromJson(
+        Map<String, dynamic> json) =>
+    ContractsConvictions(
+      convictionBloodTestRefusal: json['convictionBloodTestRefusal'] as bool?,
+      convictionDrunk: json['convictionDrunk'] as bool?,
+      convictionHitAndRun: json['convictionHitAndRun'] as bool?,
+      convictionIntoxicated: json['convictionIntoxicated'] as bool?,
+      convictionLicenseRevocation: json['convictionLicenseRevocation'] as bool?,
+    );
+
+Map<String, dynamic> _$ContractsConvictionsToJson(
+        ContractsConvictions instance) =>
+    <String, dynamic>{
+      'convictionBloodTestRefusal': instance.convictionBloodTestRefusal,
+      'convictionDrunk': instance.convictionDrunk,
+      'convictionHitAndRun': instance.convictionHitAndRun,
+      'convictionIntoxicated': instance.convictionIntoxicated,
+      'convictionLicenseRevocation': instance.convictionLicenseRevocation,
+    };
+
 ContractsCreateClient _$ContractsCreateClientFromJson(
         Map<String, dynamic> json) =>
     ContractsCreateClient(
@@ -1438,26 +1568,100 @@ Map<String, dynamic> _$ContractsCreateClientToJson(
       'vat': instance.vat,
     };
 
-AvailabilityV1NonAvailabilitiesNonAvailabilityIdPut$RequestBody
-    _$AvailabilityV1NonAvailabilitiesNonAvailabilityIdPut$RequestBodyFromJson(
-            Map<String, dynamic> json) =>
-        AvailabilityV1NonAvailabilitiesNonAvailabilityIdPut$RequestBody(
-          availabilityId: json['availabilityId'] as String?,
-          updateAvailabilityRequest: json['updateAvailabilityRequest'] == null
-              ? null
-              : UpdateNonAvailabilityRequest.fromJson(
-                  json['updateAvailabilityRequest'] as Map<String, dynamic>),
-        );
+ContractsOnboarding _$ContractsOnboardingFromJson(Map<String, dynamic> json) =>
+    ContractsOnboarding(
+      legal: json['legal'] == null
+          ? null
+          : ContractsOnboardingLegal.fromJson(
+              json['legal'] as Map<String, dynamic>),
+      personal: json['personal'] == null
+          ? null
+          : ContractsOnboardingPersonal.fromJson(
+              json['personal'] as Map<String, dynamic>),
+      phone: json['phone'] == null
+          ? null
+          : ContractsOnboardingPhone.fromJson(
+              json['phone'] as Map<String, dynamic>),
+      status: contractsOnboardingStatusNullableFromJson(json['status']),
+    );
 
-Map<String, dynamic>
-    _$AvailabilityV1NonAvailabilitiesNonAvailabilityIdPut$RequestBodyToJson(
-            AvailabilityV1NonAvailabilitiesNonAvailabilityIdPut$RequestBody
-                instance) =>
-        <String, dynamic>{
-          'availabilityId': instance.availabilityId,
-          'updateAvailabilityRequest':
-              instance.updateAvailabilityRequest?.toJson(),
-        };
+Map<String, dynamic> _$ContractsOnboardingToJson(
+        ContractsOnboarding instance) =>
+    <String, dynamic>{
+      'legal': instance.legal?.toJson(),
+      'personal': instance.personal?.toJson(),
+      'phone': instance.phone?.toJson(),
+      'status': contractsOnboardingStatusNullableToJson(instance.status),
+    };
+
+ContractsOnboardingLegal _$ContractsOnboardingLegalFromJson(
+        Map<String, dynamic> json) =>
+    ContractsOnboardingLegal(
+      convictions: ContractsConvictions.fromJson(
+          json['convictions'] as Map<String, dynamic>),
+      nrOfAccidents: (json['nrOfAccidents'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$ContractsOnboardingLegalToJson(
+        ContractsOnboardingLegal instance) =>
+    <String, dynamic>{
+      'convictions': instance.convictions.toJson(),
+      'nrOfAccidents': instance.nrOfAccidents,
+    };
+
+ContractsOnboardingPersonal _$ContractsOnboardingPersonalFromJson(
+        Map<String, dynamic> json) =>
+    ContractsOnboardingPersonal(
+      box: json['box'] as String,
+      city: json['city'] as String,
+      dateCurrentLicense: json['dateCurrentLicense'] as String,
+      dateLicenseUntil: json['dateLicenseUntil'] as String,
+      dateOfBirth: json['dateOfBirth'] as String,
+      firstName: json['firstName'] as String,
+      houseNumber: json['houseNumber'] as String,
+      lastName: json['lastName'] as String,
+      licenseNumber: json['licenseNumber'] as String,
+      licenseType:
+          contractsOnboardingPersonalLicenseTypeFromJson(json['licenseType']),
+      nationality: json['nationality'] as String,
+      postalCode: json['postalCode'] as String,
+      socialSecurityNumber: json['socialSecurityNumber'] as String,
+      street: json['street'] as String,
+    );
+
+Map<String, dynamic> _$ContractsOnboardingPersonalToJson(
+        ContractsOnboardingPersonal instance) =>
+    <String, dynamic>{
+      'box': instance.box,
+      'city': instance.city,
+      'dateCurrentLicense': instance.dateCurrentLicense,
+      'dateLicenseUntil': instance.dateLicenseUntil,
+      'dateOfBirth': instance.dateOfBirth,
+      'firstName': instance.firstName,
+      'houseNumber': instance.houseNumber,
+      'lastName': instance.lastName,
+      'licenseNumber': instance.licenseNumber,
+      'licenseType':
+          contractsOnboardingPersonalLicenseTypeToJson(instance.licenseType),
+      'nationality': instance.nationality,
+      'postalCode': instance.postalCode,
+      'socialSecurityNumber': instance.socialSecurityNumber,
+      'street': instance.street,
+    };
+
+ContractsOnboardingPhone _$ContractsOnboardingPhoneFromJson(
+        Map<String, dynamic> json) =>
+    ContractsOnboardingPhone(
+      phoneNumber: json['phoneNumber'] as String,
+      phoneNumberValidationCode: json['phoneNumberValidationCode'] as String?,
+    );
+
+Map<String, dynamic> _$ContractsOnboardingPhoneToJson(
+        ContractsOnboardingPhone instance) =>
+    <String, dynamic>{
+      'phoneNumber': instance.phoneNumber,
+      'phoneNumberValidationCode': instance.phoneNumberValidationCode,
+    };
 
 UserV1ImageUserIdPost$RequestBody _$UserV1ImageUserIdPost$RequestBodyFromJson(
         Map<String, dynamic> json) =>
@@ -1471,36 +1675,27 @@ Map<String, dynamic> _$UserV1ImageUserIdPost$RequestBodyToJson(
       'file': instance.file,
     };
 
-UserV1UsersMePut$RequestBody _$UserV1UsersMePut$RequestBodyFromJson(
-        Map<String, dynamic> json) =>
-    UserV1UsersMePut$RequestBody(
-      address: json['address'] as String?,
-      backDriverLicense: json['backDriverLicense'] as String?,
-      backId: json['backId'] as String?,
-      dateOfBirth: json['dateOfBirth'] as String?,
-      firstName: json['firstName'] as String?,
-      frontDriverLicense: json['frontDriverLicense'] as String?,
-      frontId: json['frontId'] as String?,
-      lastName: json['lastName'] as String?,
-      phoneNumber: json['phoneNumber'] as String?,
-      selfie: json['selfie'] as String?,
-      socialSecurityNumber: json['socialSecurityNumber'] as String?,
-    );
+UserV1UsersOnboardingDocumentsPut$RequestBody
+    _$UserV1UsersOnboardingDocumentsPut$RequestBodyFromJson(
+            Map<String, dynamic> json) =>
+        UserV1UsersOnboardingDocumentsPut$RequestBody(
+          backDriverLicense: json['backDriverLicense'] as String?,
+          backId: json['backId'] as String?,
+          damageStatistic: json['damageStatistic'] as String?,
+          frontDriverLicense: json['frontDriverLicense'] as String?,
+          frontId: json['frontId'] as String?,
+          selfie: json['selfie'] as String?,
+        );
 
-Map<String, dynamic> _$UserV1UsersMePut$RequestBodyToJson(
-        UserV1UsersMePut$RequestBody instance) =>
+Map<String, dynamic> _$UserV1UsersOnboardingDocumentsPut$RequestBodyToJson(
+        UserV1UsersOnboardingDocumentsPut$RequestBody instance) =>
     <String, dynamic>{
-      'address': instance.address,
       'backDriverLicense': instance.backDriverLicense,
       'backId': instance.backId,
-      'dateOfBirth': instance.dateOfBirth,
-      'firstName': instance.firstName,
+      'damageStatistic': instance.damageStatistic,
       'frontDriverLicense': instance.frontDriverLicense,
       'frontId': instance.frontId,
-      'lastName': instance.lastName,
-      'phoneNumber': instance.phoneNumber,
       'selfie': instance.selfie,
-      'socialSecurityNumber': instance.socialSecurityNumber,
     };
 
 VehicleV1VehicleImageVehicleIdPost$RequestBody

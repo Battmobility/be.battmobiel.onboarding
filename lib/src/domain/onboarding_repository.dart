@@ -7,7 +7,7 @@ final class OnboardingRepository {
     return Future.value(0); // TODO: add proper endpoint once defined
   }
 
-  Future<bool> postFormData(Map<String, String> formData) async {
-    return await datasource.postFormData(formData);
+  Future<bool> postConvictions(Map<String, dynamic> convictons) async {
+    return await datasource.postConvictions(convictons);
   }
 }

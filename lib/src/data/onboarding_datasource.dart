@@ -1,4 +1,5 @@
 import 'package:batt_onboarding/src/data/onboarding_service.dart';
+import 'package:batt_onboarding/src/domain/legal_mapper.dart';
 
 final class OnboardingDatasource {
   final OnboardingService service = OnboardingService();
@@ -9,8 +10,15 @@ final class OnboardingDatasource {
     return await service.getOnboardingProgress();
   }
 
-  Future<bool> postFormData(Map<String, String> formData) async {
-    final user = await service.postFormData(formData);
-    return user != null;
+  Future<bool> postConvictions(Map<String, dynamic> convictions) async {
+    return service.postConvictions(convictions.toContractsOnboardingLegal());
+  }
+
+  Future<bool> postFile(Map<String, dynamic> convictions) async {
+    return false;
+  }
+
+  Future<bool> postPersonalData(Map<String, String> formData) async {
+    return false;
   }
 }

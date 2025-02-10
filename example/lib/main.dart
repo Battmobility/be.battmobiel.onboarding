@@ -27,10 +27,10 @@ class _MyAppState extends State<MyApp> {
   Accesstoken? _accessToken;
   @override
   Widget build(BuildContext context) {
-    AndroidOptions _getAndroidOptions() => const AndroidOptions(
+    AndroidOptions getAndroidOptions() => const AndroidOptions(
           encryptedSharedPreferences: true,
         );
-    final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
+    final storage = FlutterSecureStorage(aOptions: getAndroidOptions());
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -46,9 +46,9 @@ class _MyAppState extends State<MyApp> {
         FormBuilderLocalizations.delegate,
       ],
       supportedLocales: [
-        Locale('en'), // English
-        Locale('nl'), // Nederlands
-        Locale('fr'), // Francais
+        Locale('en'),
+        Locale('nl'),
+        Locale('fr'),
       ],
       home: Builder(builder: (context) {
         return Scaffold(

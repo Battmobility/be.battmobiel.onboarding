@@ -5,6 +5,16 @@
 		"type": "text",
 		"placeholders": {}
 	},	
+	"introPageNeededDocuments": "Copy to welcome users and warn that the following is needed: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license",
+	"@introPageNeededDocuments": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"introPageCancelButtonText": "Continue later",
+	"@introPageCancelButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"stepIndicatorText": "Step {step} of {totalSteps}",
 	"@stepIndicatorText": {
 		"type": "text",
@@ -65,6 +75,11 @@
 	},
 	"convictionTypeLicenseRevocation": "Revocation of license",
 	"@convictionTypeLicenseRevocation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionTypeNoOfAccidents": "Amount of accidents where you were at fault",
+	"@convictionTypeNoOfAccidents": {
 		"type": "text",
 		"placeholders": {}
 	},

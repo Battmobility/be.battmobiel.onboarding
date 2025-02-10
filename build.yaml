@@ -13,3 +13,8 @@ targets:
             output_folder: "lib/api/generated/"
             include_paths:
               - "/user/v1/users/me"
+              - "/user/v1/users/onboarding"
+              - "/user/v1/users/onboarding/documents"
+              - "/user/v1/users/onboarding/legal"
+              - "/user/v1/users/onboarding/phone"
+

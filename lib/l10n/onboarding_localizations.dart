@@ -103,6 +103,18 @@ abstract class OnboardingLocalizations {
   /// **'Become Batt'**
   String get formTitle;
 
+  /// No description provided for @introPageNeededDocuments.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy to welcome users and warn that the following is needed: \r• Identity document (Belgian Eid, Proof of residence, ...)\r• Drivers license'**
+  String get introPageNeededDocuments;
+
+  /// No description provided for @introPageCancelButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue later'**
+  String get introPageCancelButtonText;
+
   /// No description provided for @stepIndicatorText.
   ///
   /// In en, this message translates to:
@@ -174,6 +186,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Revocation of license'**
   String get convictionTypeLicenseRevocation;
+
+  /// No description provided for @convictionTypeNoOfAccidents.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount of accidents where you were at fault'**
+  String get convictionTypeNoOfAccidents;
 
   /// No description provided for @identityPageTitle.
   ///

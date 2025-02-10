@@ -30,9 +30,34 @@ final class _$MobileApi extends MobileApi {
   }
 
   @override
-  Future<Response<User>> _userV1UsersMePut(
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingGet() {
+    final Uri $url = Uri.parse('/user/v1/users/onboarding');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<ContractsOnboarding, ContractsOnboarding>($request);
+  }
+
+  @override
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingPut(
+      {required ContractsOnboardingPersonal? body}) {
+    final Uri $url = Uri.parse('/user/v1/users/onboarding');
+    final $body = body;
+    final Request $request = Request(
+      'PUT',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<ContractsOnboarding, ContractsOnboarding>($request);
+  }
+
+  @override
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingDocumentsPut(
       {required Map<String, String> body}) {
-    final Uri $url = Uri.parse('/user/v1/users/me');
+    final Uri $url = Uri.parse('/user/v1/users/onboarding/documents');
     final Map<String, String> $headers = {
       'content-type': 'application/x-www-form-urlencoded',
     };
@@ -44,9 +69,37 @@ final class _$MobileApi extends MobileApi {
       body: $body,
       headers: $headers,
     );
-    return client.send<User, User>(
+    return client.send<ContractsOnboarding, ContractsOnboarding>(
       $request,
       requestConverter: FormUrlEncodedConverter.requestFactory,
     );
+  }
+
+  @override
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingLegalPut(
+      {required ContractsOnboardingLegal? body}) {
+    final Uri $url = Uri.parse('/user/v1/users/onboarding/legal');
+    final $body = body;
+    final Request $request = Request(
+      'PUT',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<ContractsOnboarding, ContractsOnboarding>($request);
+  }
+
+  @override
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingPhonePut(
+      {required ContractsOnboardingPhone? body}) {
+    final Uri $url = Uri.parse('/user/v1/users/onboarding/phone');
+    final $body = body;
+    final Request $request = Request(
+      'PUT',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<ContractsOnboarding, ContractsOnboarding>($request);
   }
 }

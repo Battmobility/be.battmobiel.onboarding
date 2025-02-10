@@ -117,38 +117,6 @@ enum ConflictResolutionMode {
   const ConflictResolutionMode(this.value);
 }
 
-enum CreateVehicleRequestApprovalType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('AUTOMATIC')
-  automatic('AUTOMATIC'),
-  @JsonValue('FIRST_TIME_ONLY')
-  firstTimeOnly('FIRST_TIME_ONLY'),
-  @JsonValue('MANUAL')
-  manual('MANUAL');
-
-  final String? value;
-
-  const CreateVehicleRequestApprovalType(this.value);
-}
-
-enum CreateVehicleRequestTimeZone {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('BRUSSELS')
-  brussels('BRUSSELS'),
-  @JsonValue('LONDON')
-  london('LONDON'),
-  @JsonValue('NEW_YORK')
-  newYork('NEW_YORK');
-
-  final String? value;
-
-  const CreateVehicleRequestTimeZone(this.value);
-}
-
 enum HomeFeedCardType {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -333,40 +301,6 @@ enum UpdateVehicleRequestApprovalType {
   const UpdateVehicleRequestApprovalType(this.value);
 }
 
-enum UpdateVehicleRequestTimeZone {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('BRUSSELS')
-  brussels('BRUSSELS'),
-  @JsonValue('LONDON')
-  london('LONDON'),
-  @JsonValue('NEW_YORK')
-  newYork('NEW_YORK');
-
-  final String? value;
-
-  const UpdateVehicleRequestTimeZone(this.value);
-}
-
-enum UserOnboardingStatus {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('NONE')
-  none('NONE'),
-  @JsonValue('PENDING')
-  pending('PENDING'),
-  @JsonValue('REJECTED')
-  rejected('REJECTED'),
-  @JsonValue('COMPLETED')
-  completed('COMPLETED');
-
-  final String? value;
-
-  const UserOnboardingStatus(this.value);
-}
-
 enum VehicleOperationalStatus {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -459,6 +393,42 @@ enum VehicleUsageUpdateStatusRequestStatus {
   final String? value;
 
   const VehicleUsageUpdateStatusRequestStatus(this.value);
+}
+
+enum ContractsOnboardingStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('NONE')
+  none('NONE'),
+  @JsonValue('CONVICTION')
+  conviction('CONVICTION'),
+  @JsonValue('PERSONAL')
+  personal('PERSONAL'),
+  @JsonValue('PHONE')
+  phone('PHONE'),
+  @JsonValue('COMPLETED')
+  completed('COMPLETED');
+
+  final String? value;
+
+  const ContractsOnboardingStatus(this.value);
+}
+
+enum ContractsOnboardingPersonalLicenseType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('BELGIAN')
+  belgian('BELGIAN'),
+  @JsonValue('EUROPEAN')
+  european('EUROPEAN'),
+  @JsonValue('OTHER')
+  other('OTHER');
+
+  final String? value;
+
+  const ContractsOnboardingPersonalLicenseType(this.value);
 }
 
 enum UserV1UsersRolesRoleGetRole {

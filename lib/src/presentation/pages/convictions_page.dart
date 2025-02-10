@@ -12,7 +12,7 @@ final class ConvictionsPage extends OnboardingPage {
   ConvictionsPage({
     super.key,
     required super.formKey,
-    required super.onValidated,
+    required super.onAction,
     super.initialData,
   });
 
@@ -40,26 +40,55 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                     style: context.typographyTheme.largeText),
               ),
               FormBuilderCheckbox(
-                  name: "ConvictionDrunk",
+                  name: "convictionDrunk",
                   title: Text(l10n.convictionTypeDrunk,
                       style: context.typographyTheme.defaultText)),
               FormBuilderCheckbox(
-                  name: "ConvictionIntoxicated",
+                  name: "convictionIntoxicated",
                   title: Text(l10n.convictionTypeIntoxication,
                       style: context.typographyTheme.defaultText)),
               FormBuilderCheckbox(
-                  name: "ConvictionBloodTestRefusal",
+                  name: "convictionBloodTestRefusal",
                   title: Text(l10n.convictionTypeTestRefusal,
                       style: context.typographyTheme.defaultText)),
               FormBuilderCheckbox(
-                  name: "ConvictionHitAndRun",
+                  name: "convictionHitAndRun",
                   title: Text(l10n.convictionTypeHitAndRun,
                       style: context.typographyTheme.defaultText)),
               FormBuilderCheckbox(
-                  name: "ConvictionLicenseRevocation",
+                  name: "convictionLicenseRevocation",
                   title: Text(l10n.convictionTypeLicenseRevocation,
                       style: context.typographyTheme.defaultText)),
-              SizedBox(height: AppSpacings.xl),
+              Padding(
+                padding:
+                    AppPaddings.large.leading.add(AppPaddings.xsmall.leading),
+                child: Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: FormBuilderDropdown(
+                          name: "nrOfAccidents",
+                          items: [1, 2, 3, 4, 5]
+                              .map((value) => DropdownMenuItem(
+                                    child: Text("$value"),
+                                    value: value,
+                                  ))
+                              .toList()),
+                    ),
+                    Flexible(
+                        flex: 5,
+                        child: Padding(
+                          padding: AppPaddings.xlarge.leading
+                              .add(AppPaddings.small.horizontal),
+                          child: Text(
+                            l10n.convictionTypeNoOfAccidents,
+                            maxLines: 2,
+                          ),
+                        )),
+                  ],
+                ),
+              ),
+              SizedBox(height: AppSpacings.xxl),
               FormBuilderCheckbox(
                   name: "answeredTruthfully",
                   validator: FormBuilderValidators.isTrue(),

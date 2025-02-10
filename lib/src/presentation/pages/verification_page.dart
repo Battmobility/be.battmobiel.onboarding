@@ -5,7 +5,7 @@ final class VerificationPage extends OnboardingPage {
   VerificationPage({
     super.key,
     required super.formKey,
-    required super.onValidated,
+    required super.onAction,
     super.initialData,
   });
 
@@ -17,7 +17,7 @@ class VerificationPageState extends State<VerificationPage> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.onValidated({});
+      widget.onAction({});
     });
     return Scaffold(
       body: Container(

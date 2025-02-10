@@ -8,7 +8,7 @@ final class IntroPage extends OnboardingPage {
   IntroPage({
     super.key,
     required super.formKey,
-    required super.onValidated,
+    required super.onAction,
     super.initialData,
   });
 
@@ -20,7 +20,7 @@ class IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.onValidated({});
+      widget.onAction({});
     });
     return Scaffold(
       body: Container(
@@ -30,8 +30,27 @@ class IntroPageState extends State<IntroPage> {
             constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
             child: Column(
               children: [
-                Text(OnboardingLocalizations.of(context).formTitle,
-                    style: context.typographyTheme.largeTitle),
+                Padding(
+                  padding: AppPaddings.medium.bottom,
+                  child: Text(OnboardingLocalizations.of(context).formTitle,
+                      style: context.typographyTheme.largeTitle),
+                ),
+                Flexible(
+                  child: Text(
+                    OnboardingLocalizations.of(context)
+                        .introPageNeededDocuments,
+                    style: context.typographyTheme.smallTitle,
+                    maxLines: 99,
+                  ),
+                ),
+                Spacer(),
+                OrangeSimpleTextButton(
+                  label: OnboardingLocalizations.of(context)
+                      .introPageCancelButtonText,
+                  onPressed: () {
+                    widget.onAction({});
+                  },
+                )
               ],
             )),
       ),

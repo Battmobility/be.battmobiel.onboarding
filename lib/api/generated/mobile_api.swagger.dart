@@ -59,22 +59,87 @@ abstract class MobileApi extends ChopperService {
   @Get(path: '/user/v1/users/me')
   Future<chopper.Response<User>> _userV1UsersMeGet();
 
-  ///Update your own user information
-  Future<chopper.Response<User>> userV1UsersMePut(
-      {required Map<String, String> body}) {
-    generatedMapping.putIfAbsent(User, () => User.fromJsonFactory);
+  ///Get the onboarding status of your own user
+  Future<chopper.Response<ContractsOnboarding>> userV1UsersOnboardingGet() {
+    generatedMapping.putIfAbsent(
+        ContractsOnboarding, () => ContractsOnboarding.fromJsonFactory);
 
-    return _userV1UsersMePut(body: body);
+    return _userV1UsersOnboardingGet();
   }
 
-  ///Update your own user information
+  ///Get the onboarding status of your own user
+  @Get(path: '/user/v1/users/onboarding')
+  Future<chopper.Response<ContractsOnboarding>> _userV1UsersOnboardingGet();
+
+  ///Update your information
+  Future<chopper.Response<ContractsOnboarding>> userV1UsersOnboardingPut(
+      {required ContractsOnboardingPersonal? body}) {
+    generatedMapping.putIfAbsent(
+        ContractsOnboarding, () => ContractsOnboarding.fromJsonFactory);
+
+    return _userV1UsersOnboardingPut(body: body);
+  }
+
+  ///Update your information
   @Put(
-    path: '/user/v1/users/me',
+    path: '/user/v1/users/onboarding',
+    optionalBody: true,
+  )
+  Future<chopper.Response<ContractsOnboarding>> _userV1UsersOnboardingPut(
+      {@Body() required ContractsOnboardingPersonal? body});
+
+  ///Upload your own documents
+  Future<chopper.Response<ContractsOnboarding>>
+      userV1UsersOnboardingDocumentsPut({required Map<String, String> body}) {
+    generatedMapping.putIfAbsent(
+        ContractsOnboarding, () => ContractsOnboarding.fromJsonFactory);
+
+    return _userV1UsersOnboardingDocumentsPut(body: body);
+  }
+
+  ///Upload your own documents
+  @Put(
+    path: '/user/v1/users/onboarding/documents',
     headers: {contentTypeKey: formEncodedHeaders},
   )
   @FactoryConverter(request: FormUrlEncodedConverter.requestFactory)
-  Future<chopper.Response<User>> _userV1UsersMePut(
-      {@Body() required Map<String, String> body});
+  Future<chopper.Response<ContractsOnboarding>>
+      _userV1UsersOnboardingDocumentsPut(
+          {@Body() required Map<String, String> body});
+
+  ///Upload your legal information
+  Future<chopper.Response<ContractsOnboarding>> userV1UsersOnboardingLegalPut(
+      {required ContractsOnboardingLegal? body}) {
+    generatedMapping.putIfAbsent(
+        ContractsOnboarding, () => ContractsOnboarding.fromJsonFactory);
+
+    return _userV1UsersOnboardingLegalPut(body: body);
+  }
+
+  ///Upload your legal information
+  @Put(
+    path: '/user/v1/users/onboarding/legal',
+    optionalBody: true,
+  )
+  Future<chopper.Response<ContractsOnboarding>> _userV1UsersOnboardingLegalPut(
+      {@Body() required ContractsOnboardingLegal? body});
+
+  ///Register or verify your phone number
+  Future<chopper.Response<ContractsOnboarding>> userV1UsersOnboardingPhonePut(
+      {required ContractsOnboardingPhone? body}) {
+    generatedMapping.putIfAbsent(
+        ContractsOnboarding, () => ContractsOnboarding.fromJsonFactory);
+
+    return _userV1UsersOnboardingPhonePut(body: body);
+  }
+
+  ///Register or verify your phone number
+  @Put(
+    path: '/user/v1/users/onboarding/phone',
+    optionalBody: true,
+  )
+  Future<chopper.Response<ContractsOnboarding>> _userV1UsersOnboardingPhonePut(
+      {@Body() required ContractsOnboardingPhone? body});
 }
 
 typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);

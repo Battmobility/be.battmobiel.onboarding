@@ -10,6 +10,12 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get formTitle => 'Word Batt';
 
   @override
+  String get introPageNeededDocuments => 'Copy to welcome users and warn that the following is needed: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license';
+
+  @override
+  String get introPageCancelButtonText => 'Continue later';
+
+  @override
   String stepIndicatorText(Object step, Object totalSteps) {
     return 'Stap $step van $totalSteps';
   }
@@ -46,6 +52,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get convictionTypeLicenseRevocation => 'Intrekken van rijbewijs';
+
+  @override
+  String get convictionTypeNoOfAccidents => 'Aantal ongevallen waar u in fout was';
 
   @override
   String get identityPageTitle => 'Identiteit';

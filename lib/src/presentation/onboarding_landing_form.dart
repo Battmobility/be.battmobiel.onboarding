@@ -1,6 +1,8 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
+import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:batt_onboarding/src/presentation/pages/convictions_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/done_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/identity_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
@@ -39,6 +41,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
+        GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>()
       ];
 
@@ -47,21 +50,26 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     final l10n = OnboardingLocalizations.of(context);
 
     final pages = [
-      IntroPage(formKey: _formKeys[0], onValidated: (_) {}),
-      ConvictionsPage(
-          formKey: _formKeys[1],
-          onValidated: (_) {
-            // TODO: post data
+      IntroPage(
+          formKey: _formKeys[0],
+          onAction: (_) {
+            widget.onSubmitted(false);
           }),
+      ConvictionsPage(formKey: _formKeys[1], onAction: (_) {}),
       IdentityPage(
           formKey: _formKeys[2],
-          onValidated: (_) {
+          onAction: (_) {
             // TODO: post data
           }),
       VerificationPage(
           formKey: _formKeys[3],
-          onValidated: (_) {
+          onAction: (_) {
             // TODO: post data
+          }),
+      OnboardingDonePage(
+          formKey: _formKeys[4],
+          onAction: (_) {
+            widget.onSubmitted(true);
           })
     ];
     return Scaffold(
@@ -109,12 +117,85 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                       label: l10n.nextButtonText,
                       onPressed: () {
                         if (_step == 0 ||
-                            (pages[_step].formKey.currentState?.validate() ??
+                            (pages[_step]
+                                    .formKey
+                                    .currentState
+                                    ?.saveAndValidate() ??
                                 false)) {
-                          setState(() {
-                            _step++;
-                          });
-                          _controller.jumpToPage(_step);
+                          if (_step == 0) {
+                            setState(() {
+                              _step++;
+                            });
+                            _controller.jumpToPage(_step);
+                          }
+                          if (_step == 1) {
+                            final values = pages[1].formKey.currentState?.value;
+                            if (values != null) {
+                              onboardingRepository
+                                  .postConvictions(values)
+                                  .then((success) {
+                                if (success) {
+                                  setState(() {
+                                    _step++;
+                                  });
+                                  _controller.jumpToPage(_step);
+                                }
+                              });
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                      title:
+                                          Text(l10n.fillOutBeforeContinuing)));
+                            }
+                          }
+                          if (_step == 2) {
+                            final values = pages[2].formKey.currentState?.value;
+                            if (values != null) {
+                              // TODO: post personal data
+                              onboardingRepository
+                                  .postConvictions(values)
+                                  .then((success) {
+                                if (success) {
+                                  setState(() {
+                                    _step++;
+                                  });
+                                  _controller.jumpToPage(_step);
+                                }
+                              });
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                      title:
+                                          Text(l10n.fillOutBeforeContinuing)));
+                            }
+                          }
+                          if (_step == 2) {
+                            final values = pages[2].formKey.currentState?.value;
+                            if (values != null) {
+                              // TODO: do whatever, phone is confirmed here
+                              onboardingRepository
+                                  .postConvictions(values)
+                                  .then((success) {
+                                if (success) {
+                                  setState(() {
+                                    _step++;
+                                  });
+                                  _controller.jumpToPage(_step);
+                                }
+                              });
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                      title:
+                                          Text(l10n.fillOutBeforeContinuing)));
+                            }
+                          }
+                          if (_step == 3) {
+                            // TODO: show success page/close onboarding?
+                          }
                         }
                       },
                     )
