@@ -10,8 +10,7 @@ import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 
 final class ImagePickerWidget extends StatefulWidget {
   final Function(File?) onPicked;
-  final Function(String? rrn, String? surName, String? firstName,
-      String? licenseNumber)? onDataFound;
+  final Function(String? rrn, String? surName, String? firstName)? onDataFound;
 
   const ImagePickerWidget({
     required this.onPicked,
@@ -35,6 +34,8 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
   }
 
   Widget _pickers(BuildContext context) {
+    final l10n = OnboardingLocalizations.of(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: kIsWeb
@@ -51,39 +52,49 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                     });
                   }
                 },
-                label: "Pick an image",
+                label: l10n.imagePickerLabelPickPhoto,
                 icon: Icons.image,
               ),
             ]
           : [
-              BattIconTextButton(
-                onPressed: () async {
-                  final XFile? photo =
-                      await ImagePicker().pickImage(source: ImageSource.camera);
-                  if (photo != null) {
-                    setState(() {
-                      _originalImage = photo;
-                    });
-                  }
-                },
-                label: 'Take a photo',
-                icon: Icons.camera_alt,
+              Flexible(
+                child: BattIconTextButton(
+                  onPressed: () async {
+                    final XFile? photo = await ImagePicker()
+                        .pickImage(source: ImageSource.camera);
+                    if (photo != null) {
+                      widget.onPicked(File(photo.path));
+                      setState(() {
+                        _originalImage = photo;
+                      });
+                    }
+                  },
+                  label: l10n.imagePickerLabelTakePhoto,
+                  icon: Icons.camera_alt,
+                ),
               ),
-              Spacer(),
-              IconButton(
-                onPressed: () async {
-                  final XFile? photo = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery);
+              Flexible(
+                  child: Text(
+                l10n.imagePickerLabelOr,
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: context.inputTheme.disabledText,
+                    fontStyle: FontStyle.italic),
+              )),
+              Flexible(
+                child: BattIconTextButton(
+                  onPressed: () async {
+                    final XFile? photo = await ImagePicker()
+                        .pickImage(source: ImageSource.gallery);
 
-                  if (photo != null) {
-                    setState(() {
-                      _originalImage = photo;
-                    });
-                  }
-                },
-                icon: Icon(
-                  Icons.image,
-                  color: context.buttonTheme.primaryDefault,
+                    if (photo != null) {
+                      widget.onPicked(File(photo.path));
+                      setState(() {
+                        _originalImage = photo;
+                      });
+                    }
+                  },
+                  label: l10n.imagePickerLabelPickPhoto,
+                  icon: Icons.image,
                 ),
               ),
             ],
@@ -211,9 +222,8 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
         if (!kIsWeb) {
           MRZReader().readImage(
               result,
-              (rrn, surName, firstName, licenseNumber) => widget.onDataFound !=
-                      null
-                  ? widget.onDataFound!(rrn, surName, firstName, licenseNumber)
+              (rrn, surName, firstName) => widget.onDataFound != null
+                  ? widget.onDataFound!(rrn, surName, firstName)
                   : {});
         }
         widget.onPicked(result);

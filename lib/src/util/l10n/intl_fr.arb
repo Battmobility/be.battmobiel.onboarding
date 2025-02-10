@@ -98,8 +98,28 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"driversLicenseFieldTitle": "Drivers license",
+	"@driversLicenseFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseFieldFront": "Front",
+	"@driversLicenseFieldFront": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseFieldBack": "Back",
+	"@driversLicenseFieldBack": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"imagePickerLabelPickPhoto": "Choose from library",
 	"@imagePickerLabelPickPhoto": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imagePickerLabelOr": "or",
+	"@imagePickerLabelOr": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -143,13 +163,18 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"rrnFieldTitle": "RRN",
+	"rrnFieldTitle": "National identity number",
 	"@rrnFieldTitle": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"emailFieldTitle": "Adresse e-mail",
-	"@emailFieldTitle": {
+	"drivesLicenseNumber": "Drivers license number",
+	"@drivesLicenseNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"numberHint": "Numbers only, no spaces or special characters.",
+	"@numberHint": {
 		"type": "text",
 		"placeholders": {}
 	},

@@ -118,6 +118,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"imagePickerLabelOr": "or",
+	"@imagePickerLabelOr": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"imagePickerLabelTakePhoto": "Take a photo",
 	"@imagePickerLabelTakePhoto": {
 		"type": "text",
@@ -158,13 +163,23 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"rrnFieldTitle": "RRN",
+	"rrnFieldTitle": "National identity number",
 	"@rrnFieldTitle": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"emailFieldTitle": "Email",
-	"@emailFieldTitle": {
+	"birthDateFieldTitle": "Date of birth",
+	"@birthDateFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"drivesLicenseNumber": "Drivers license number",
+	"@drivesLicenseNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"numberHint": "Numbers only, no spaces or special characters.",
+	"@numberHint": {
 		"type": "text",
 		"placeholders": {}
 	},

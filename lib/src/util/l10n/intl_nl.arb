@@ -98,8 +98,28 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"driversLicenseFieldTitle": "Rijbewijs",
+	"@driversLicenseFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseFieldFront": "Voorzijde",
+	"@driversLicenseFieldFront": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseFieldBack": "Achterzijde",
+	"@driversLicenseFieldBack": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"imagePickerLabelPickPhoto": "Kies uit bibliotheek",
 	"@imagePickerLabelPickPhoto": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"imagePickerLabelOr": "of",
+	"@imagePickerLabelOr": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -148,8 +168,18 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"emailFieldTitle": "Email",
-	"@emailFieldTitle": {
+	"birthDateFieldTitle": "Geboortedatum",
+	"@birthDateFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"drivesLicenseNumber": "Rijbewijsnummer",
+	"@drivesLicenseNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"numberHint": "Enkel cijfers, geen spaties of speciale tekens.",
+	"@numberHint": {
 		"type": "text",
 		"placeholders": {}
 	},

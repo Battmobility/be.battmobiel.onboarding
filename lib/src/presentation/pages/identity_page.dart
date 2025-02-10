@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
+import 'package:batt_onboarding/src/util/rrn_birthday_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -62,16 +63,15 @@ class IdentityPageState extends State<IdentityPage> {
                     DocumentFormField(
                       fieldName: "idCardFront",
                       displayName: l10n.idCardFieldFront,
-                      onDataFound: (rrn, surName, firstName, licenseNumber) =>
-                          {},
+                      onDataFound: (rrn, surName, firstName) => {},
                       onPicked: (file) => _idCardFrontImage = file,
                     ),
 
                     DocumentFormField(
                       fieldName: "idCardBack",
                       displayName: l10n.idCardFieldBack,
-                      onDataFound: (rrn, surName, firstName, licenseNumber) =>
-                          _updateFormData(rrn, surName, firstName, null),
+                      onDataFound: (rrn, surName, firstName) =>
+                          _updateFormData(rrn, surName, firstName),
                       onPicked: (file) => _idCardBackImage = file,
                     ),
                   ].map((child) {
@@ -103,15 +103,15 @@ class IdentityPageState extends State<IdentityPage> {
                     DocumentFormField(
                       fieldName: "driversLicenseFront",
                       displayName: l10n.driversLicenseFieldFront,
-                      onDataFound: (rrn, surName, firstName, licenseNumber) =>
-                          _updateFormData(null, null, null, licenseNumber),
+                      onDataFound: (rrn, surName, firstName) =>
+                          _updateFormData(null, null, null),
                       onPicked: (file) => _driversLicenseFrontImage = file,
                     ),
                     DocumentFormField(
                       fieldName: "driversLicenseBack",
                       displayName: l10n.driversLicenseFieldBack,
-                      onDataFound: (rrn, surName, firstName, licenseNumber) =>
-                          _updateFormData(null, null, null, licenseNumber),
+                      onDataFound: (rrn, surName, firstName) =>
+                          _updateFormData(null, null, null),
                       onPicked: (file) => _driversLicenseBackImage = file,
                     ),
                   ].map((child) {
@@ -135,11 +135,31 @@ class IdentityPageState extends State<IdentityPage> {
             ),
             FormBuilderTextField(
               name: 'rrn',
-              autovalidateMode: AutovalidateMode.disabled,
-              validator: FormBuilderValidators.numeric(),
-              decoration: InputDecoration(labelText: l10n.rrnFieldTitle),
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.numeric(),
+                FormBuilderValidators.minLength(11)
+              ]),
+              decoration: InputDecoration(
+                  labelText: l10n.rrnFieldTitle,
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  hintText: l10n.numberHint),
             ),
-            // TODO: driver's license number field
+            FormBuilderTextField(
+              name: 'driverslicensenumber',
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.numeric(),
+                FormBuilderValidators.minLength(10)
+              ]),
+              decoration: InputDecoration(labelText: l10n.drivesLicenseNumber),
+            ),
+            FormBuilderDateTimePicker(
+              name: 'birthdate',
+              firstDate: DateTime.now().subtract(Duration(days: 43800)),
+              lastDate: DateTime.now().subtract(Duration(days: 5840)),
+              initialDate: DateTime.now().subtract(Duration(days: 10950)),
+              inputType: InputType.date,
+              decoration: InputDecoration(labelText: l10n.birthDateFieldTitle),
+            ),
           ]
               .map((field) =>
                   Padding(padding: AppPaddings.medium.vertical, child: field))
@@ -149,8 +169,7 @@ class IdentityPageState extends State<IdentityPage> {
     );
   }
 
-  void _updateFormData(
-      String? rrn, String? surname, String? firstName, String? licenseNumber) {
+  void _updateFormData(String? rrn, String? surname, String? firstName) {
     rrn != null ? widget.formKey.currentState?.patchValue({"rrn": rrn}) : {};
     surname != null
         ? widget.formKey.currentState?.patchValue({"lastname": surname})
@@ -158,8 +177,12 @@ class IdentityPageState extends State<IdentityPage> {
     firstName != null
         ? widget.formKey.currentState?.patchValue({"firstname": firstName})
         : {};
-    licenseNumber != null
-        ? widget.formKey.currentState?.patchValue({"licensenumber": firstName})
-        : {};
+
+    if (rrn != null) {
+      final birthDate = RrnBirthdayParser.birthdayFromRrn(rrn);
+      if (birthDate != null) {
+        widget.formKey.currentState?.patchValue({"birthdate": birthDate});
+      }
+    }
   }
 }

@@ -66,16 +66,19 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get idCardFieldBack => 'Achterzijde';
 
   @override
-  String get driversLicenseFieldTitle => 'Drivers license';
+  String get driversLicenseFieldTitle => 'Rijbewijs';
 
   @override
-  String get driversLicenseFieldFront => 'Front';
+  String get driversLicenseFieldFront => 'Voorzijde';
 
   @override
-  String get driversLicenseFieldBack => 'Back';
+  String get driversLicenseFieldBack => 'Achterzijde';
 
   @override
   String get imagePickerLabelPickPhoto => 'Kies uit bibliotheek';
+
+  @override
+  String get imagePickerLabelOr => 'of';
 
   @override
   String get imagePickerLabelTakePhoto => 'Neem een foto';
@@ -105,7 +108,13 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get rrnFieldTitle => 'RRN';
 
   @override
-  String get emailFieldTitle => 'Email';
+  String get birthDateFieldTitle => 'Geboortedatum';
+
+  @override
+  String get drivesLicenseNumber => 'Rijbewijsnummer';
+
+  @override
+  String get numberHint => 'Enkel cijfers, geen spaties of speciale tekens.';
 
   @override
   String get phoneFieldTitle => 'Telefoon';

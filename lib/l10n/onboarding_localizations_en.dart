@@ -78,6 +78,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get imagePickerLabelPickPhoto => 'Choose from library';
 
   @override
+  String get imagePickerLabelOr => 'or';
+
+  @override
   String get imagePickerLabelTakePhoto => 'Take a photo';
 
   @override
@@ -102,10 +105,16 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get lastNameFieldTitle => 'Last name';
 
   @override
-  String get rrnFieldTitle => 'RRN';
+  String get rrnFieldTitle => 'National identity number';
 
   @override
-  String get emailFieldTitle => 'Email';
+  String get birthDateFieldTitle => 'Date of birth';
+
+  @override
+  String get drivesLicenseNumber => 'Drivers license number';
+
+  @override
+  String get numberHint => 'Numbers only, no spaces or special characters.';
 
   @override
   String get phoneFieldTitle => 'Phone number';

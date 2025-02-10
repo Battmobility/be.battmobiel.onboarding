@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:batt_ds/batt_ds.dart';
-
-import '../../../l10n/onboarding_localizations.dart';
 import 'onboarding_page.dart';
 
 final class VerificationPage extends OnboardingPage {

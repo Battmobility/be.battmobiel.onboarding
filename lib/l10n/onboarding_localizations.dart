@@ -235,6 +235,12 @@ abstract class OnboardingLocalizations {
   /// **'Choose from library'**
   String get imagePickerLabelPickPhoto;
 
+  /// No description provided for @imagePickerLabelOr.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get imagePickerLabelOr;
+
   /// No description provided for @imagePickerLabelTakePhoto.
   ///
   /// In en, this message translates to:
@@ -286,14 +292,26 @@ abstract class OnboardingLocalizations {
   /// No description provided for @rrnFieldTitle.
   ///
   /// In en, this message translates to:
-  /// **'RRN'**
+  /// **'National identity number'**
   String get rrnFieldTitle;
 
-  /// No description provided for @emailFieldTitle.
+  /// No description provided for @birthDateFieldTitle.
   ///
   /// In en, this message translates to:
-  /// **'Email'**
-  String get emailFieldTitle;
+  /// **'Date of birth'**
+  String get birthDateFieldTitle;
+
+  /// No description provided for @drivesLicenseNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Drivers license number'**
+  String get drivesLicenseNumber;
+
+  /// No description provided for @numberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Numbers only, no spaces or special characters.'**
+  String get numberHint;
 
   /// No description provided for @phoneFieldTitle.
   ///

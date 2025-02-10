@@ -13,8 +13,7 @@ final class DocumentFormField extends StatelessWidget {
   final String displayName;
 
   final Function(File) onPicked;
-  final Function(String? rrn, String? surName, String? firstName,
-      String? licenseNumber) onDataFound;
+  final Function(String? rrn, String? surName, String? firstName) onDataFound;
 
   DocumentFormField({
     required this.fieldName,
@@ -49,8 +48,8 @@ final class DocumentFormField extends StatelessWidget {
                   onPicked(file);
                 }
               },
-              onDataFound: (rrn, surName, givenName, licenseNumber) =>
-                  onDataFound(rrn, surName, givenName, licenseNumber),
+              onDataFound: (rrn, surName, givenName) =>
+                  onDataFound(rrn, surName, givenName),
             ),
           ),
         ),

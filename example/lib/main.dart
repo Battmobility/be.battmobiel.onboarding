@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
     AndroidOptions _getAndroidOptions() => const AndroidOptions(
           encryptedSharedPreferences: true,
         );
-    final _storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
+    final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
               child: ConstrainedBox(
                   constraints: BoxConstraints(maxWidth: 800),
                   child: FutureBuilder(
-                      future: _storage.read(key: "refreshToken"),
+                      future: storage.read(key: "refreshToken"),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState != ConnectionState.done) {
                           return Center(child: CircularProgressIndicator());
@@ -75,18 +75,18 @@ class _MyAppState extends State<MyApp> {
                                 final refreshedToken = snapshot.data;
                                 if (refreshedToken != null &&
                                     refreshedToken.accessToken != null) {
-                                  _storage.write(
+                                  storage.write(
                                       key: "refreshToken",
                                       value: refreshedToken.refreshToken!);
                                   _accessToken = refreshedToken;
                                   return _formBody(
                                       context, refreshedToken.accessToken!);
                                 } else {
-                                  return _login(context, _storage);
+                                  return _login(context, storage);
                                 }
                               });
                         } else {
-                          return _login(context, _storage);
+                          return _login(context, storage);
                         }
                       }))),
         );
