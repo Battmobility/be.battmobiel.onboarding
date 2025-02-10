@@ -26,6 +26,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "archive",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/archive-4.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "args",
       "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/args-2.6.0",
       "packageUri": "lib/",
@@ -117,13 +123,13 @@
     },
     {
       "name": "chopper",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/chopper-8.0.4",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/chopper-8.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "chopper_generator",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/chopper_generator-8.0.4",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/chopper_generator-8.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -267,13 +273,13 @@
     },
     {
       "name": "flutter_gen",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/flutter_gen-5.8.0",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/flutter_gen-5.9.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "flutter_gen_core",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/flutter_gen_core-5.8.0",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/flutter_gen_core-5.9.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -321,13 +327,13 @@
     },
     {
       "name": "glob",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/glob-2.1.2",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/glob-2.1.3",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.3"
     },
     {
       "name": "go_router",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/go_router-14.7.2",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/go_router-14.8.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -488,6 +494,24 @@
       "languageVersion": "3.6"
     },
     {
+      "name": "l10n_countries",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/l10n_countries-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "l10n_currencies",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/l10n_currencies-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "l10n_languages",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/l10n_languages-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
       "name": "leak_tracker",
       "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/leak_tracker-10.0.7",
       "packageUri": "lib/",
@@ -507,9 +531,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/lints-5.0.0",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/lints-5.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "3.6"
     },
     {
       "name": "logging",
@@ -674,6 +698,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "posix",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/posix-6.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "provider",
       "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/provider-6.1.2",
       "packageUri": "lib/",
@@ -693,7 +723,7 @@
     },
     {
       "name": "qs_dart",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/qs_dart-1.3.1",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/qs_dart-1.3.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -710,8 +740,26 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "sealed_countries",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/sealed_countries-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "sealed_currencies",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/sealed_currencies-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "sealed_languages",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/sealed_languages-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
       "name": "shared_preferences",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/shared_preferences-2.5.1",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/shared_preferences-2.5.2",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -951,7 +999,7 @@
     },
     {
       "name": "web_socket_channel",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.1",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -986,7 +1034,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-02-10T16:02:16.932421Z",
+  "generated": "2025-02-10T19:50:03.808686Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///Users/kris/Flutter/flutter",

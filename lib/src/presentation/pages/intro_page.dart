@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:batt_ds/batt_ds.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:sealed_countries/sealed_countries.dart';
 
 import '../../../l10n/onboarding_localizations.dart';
 import 'onboarding_page.dart';
@@ -55,7 +58,7 @@ class IntroPageState extends State<IntroPage> {
                       widget.onAction({});
                     },
                   ),
-                )
+                ),
               ],
             )),
       ),

@@ -89,17 +89,18 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         child: Padding(
           padding: AppPaddings.medium.all,
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Flexible(
                 flex: 8,
-                child: PageView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    controller: _controller,
-                    itemBuilder: (context, index) => pages[index],
-                    itemCount: pages.length),
+                child: Container(
+                  child: PageView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      controller: _controller,
+                      itemBuilder: (context, index) => pages[index],
+                      itemCount: pages.length),
+                ),
               ),
-              Spacer(),
               Flexible(
                 flex: 1,
                 child: Row(
@@ -152,10 +153,16 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                   _controller.jumpToPage(_step);
                                 } else {
                                   showDialog(
-                                      context: context,
-                                      builder: (ctx) => AlertDialog(
-                                          title: Text(l10n
-                                              .errorPostingMessage))); // TODO: localize
+                                    context: context,
+                                    builder: (ctx) => AlertDialog(
+                                      title: Text(l10n.errorPostingMessage),
+                                      actions: [
+                                        OutlinedTextButton(
+                                            label: "Ok",
+                                            onPressed: () => Navigator.pop(ctx))
+                                      ],
+                                    ),
+                                  ); // TODO: localize
                                 }
                               });
                             } else {

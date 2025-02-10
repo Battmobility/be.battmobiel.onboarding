@@ -1,11 +1,10 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
-import 'package:batt_onboarding/src/util/rrn_birthday_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
 import 'onboarding_page.dart';
+import 'package:sealed_countries/sealed_countries.dart';
 
 final class IdentityPage extends OnboardingPage {
   IdentityPage({
@@ -96,6 +95,33 @@ class IdentityPageState extends State<IdentityPage> {
             Text(l10n.address, style: Theme.of(context).textTheme.titleSmall),
             Wrap(
               children: [
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 5,
+                      child: Text(l10n.convictionTypeNoOfAccidents,
+                          maxLines: 2,
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: FormBuilderDropdown(
+                          validator: FormBuilderValidators.required(),
+                          name: "country",
+                          initialValue: WorldCountry.fromCode("Bel"),
+                          items: WorldCountry.list
+                              .map((country) => DropdownMenuItem(
+                                    child: Text(
+                                      "${country.emoji} ${country.name.common}",
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                    ),
+                                    value: country,
+                                  ))
+                              .toList()),
+                    ),
+                  ],
+                ),
                 FormBuilderTextField(
                   name: 'street',
                   validator: FormBuilderValidators.compose(

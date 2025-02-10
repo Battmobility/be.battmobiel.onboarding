@@ -213,6 +213,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	
 	"addressStreet": "Straat",
 	"@addressStreet": {
 		"type": "text",
