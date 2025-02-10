@@ -13,12 +13,12 @@
 			"totalSteps": {}
 		}
 	},
-	"introPageNeededDocuments": "Copy to welcome users and warn that the following is needed: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license",
+	"introPageNeededDocuments": "Welkom bij Batt! Voor je verder gaat, zorg zeker dat je volgende documenten in de buurt hebt: \n\n• Identiteitsdocument (Belgische eId, elektronische vreemdelingenkaart ...)\n\n• Rijbewijs",
 	"@introPageNeededDocuments": {
 		"type": "text",
 		"placeholders": {}
 	},	
-	"introPageCancelButtonText": "Continue later",
+	"introPageCancelButtonText": "Ga een andere keer verder",
 	"@introPageCancelButtonText": {
 		"type": "text",
 		"placeholders": {}
@@ -167,6 +167,11 @@
 	"@imageCropperCancel": {
 		"type": "text",
 		"placeholders": {}
+	},	
+	"identifyingDataTitle": "Identiteit",
+	"@identifyingDataTitle": {
+		"type": "text",
+		"placeholders": {}
 	},
 	"firstNameFieldTitle": "Voornaam",
 	"@firstNameFieldTitle": {
@@ -188,8 +193,48 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"drivesLicenseNumber": "Rijbewijsnummer",
-	"@drivesLicenseNumber": {
+	"driversLicenseNumber": "Rijbewijsnummer",
+	"@driversLicenseNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseIssuedDate": "Datum afgifte",
+	"@driversLicenseIssuedDate": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseExpiresDate": "Vervaldatum",
+	"@driversLicenseExpiresDate": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"address": "Adres",
+	"@address": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressStreet": "Straat",
+	"@addressStreet": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressNumber": "Huisnummer",
+	"@addressNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressAddition": "Toevoeging",
+	"@addressAddition": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressZip": "Postcode",
+	"@addressZip": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressCity": "Gemeente",
+	"@addressCity": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -200,6 +245,11 @@
 	},
 	"phoneFieldTitle": "Telefoon",
 	"@phoneFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"errorPostingMessage": "We konden je gegevens niet verwerken, gelieve het later opnieuw te proberen.",
+	"@errorPostingMessage": {
 		"type": "text",
 		"placeholders": {}
 	}

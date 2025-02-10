@@ -33,32 +33,32 @@ class ConvictionsPageState extends State<ConvictionsPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(l10n.convictionsPageTitle,
-                  style: context.typographyTheme.largeTitle),
+                  style: Theme.of(context).textTheme.titleLarge),
               Padding(
                 padding: AppPaddings.medium.vertical,
                 child: Text(l10n.convictionsPageMessage,
-                    style: context.typographyTheme.largeText),
+                    style: Theme.of(context).textTheme.titleMedium),
               ),
               FormBuilderCheckbox(
                   name: "convictionDrunk",
                   title: Text(l10n.convictionTypeDrunk,
-                      style: context.typographyTheme.defaultText)),
+                      style: Theme.of(context).textTheme.bodyLarge)),
               FormBuilderCheckbox(
                   name: "convictionIntoxicated",
                   title: Text(l10n.convictionTypeIntoxication,
-                      style: context.typographyTheme.defaultText)),
+                      style: Theme.of(context).textTheme.bodyLarge)),
               FormBuilderCheckbox(
                   name: "convictionBloodTestRefusal",
                   title: Text(l10n.convictionTypeTestRefusal,
-                      style: context.typographyTheme.defaultText)),
+                      style: Theme.of(context).textTheme.bodyLarge)),
               FormBuilderCheckbox(
                   name: "convictionHitAndRun",
                   title: Text(l10n.convictionTypeHitAndRun,
-                      style: context.typographyTheme.defaultText)),
+                      style: Theme.of(context).textTheme.bodyLarge)),
               FormBuilderCheckbox(
                   name: "convictionLicenseRevocation",
                   title: Text(l10n.convictionTypeLicenseRevocation,
-                      style: context.typographyTheme.defaultText)),
+                      style: Theme.of(context).textTheme.bodyLarge)),
               Padding(
                 padding:
                     AppPaddings.large.leading.add(AppPaddings.xsmall.leading),
@@ -67,8 +67,9 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                     Flexible(
                       flex: 1,
                       child: FormBuilderDropdown(
+                          validator: FormBuilderValidators.required(),
                           name: "nrOfAccidents",
-                          items: [1, 2, 3, 4, 5]
+                          items: [0, 1, 2, 3, 4, 5]
                               .map((value) => DropdownMenuItem(
                                     child: Text("$value"),
                                     value: value,
@@ -76,15 +77,15 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                               .toList()),
                     ),
                     Flexible(
-                        flex: 5,
-                        child: Padding(
-                          padding: AppPaddings.xlarge.leading
-                              .add(AppPaddings.small.horizontal),
-                          child: Text(
-                            l10n.convictionTypeNoOfAccidents,
+                      flex: 5,
+                      child: Padding(
+                        padding: AppPaddings.xlarge.leading
+                            .add(AppPaddings.small.horizontal),
+                        child: Text(l10n.convictionTypeNoOfAccidents,
                             maxLines: 2,
-                          ),
-                        )),
+                            style: Theme.of(context).textTheme.bodyLarge),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -93,7 +94,9 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                   name: "answeredTruthfully",
                   validator: FormBuilderValidators.isTrue(),
                   title: Text(l10n.convictionsPageFooter,
-                      style: context.typographyTheme.defaultText
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
                           .copyWith(fontWeight: FontWeight.bold))),
             ].map((child) => Flexible(child: child)).toList(),
           ),

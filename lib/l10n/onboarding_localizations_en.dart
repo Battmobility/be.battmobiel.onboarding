@@ -10,7 +10,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get formTitle => 'Become Batt';
 
   @override
-  String get introPageNeededDocuments => 'Copy to welcome users and warn that the following is needed: \r• Identity document (Belgian Eid, Proof of residence, ...)\r• Drivers license';
+  String get introPageNeededDocuments => 'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license';
 
   @override
   String get introPageCancelButtonText => 'Continue later';
@@ -108,6 +108,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get imageCropperCancel => 'Cancel';
 
   @override
+  String get identifyingDataTitle => 'Identity';
+
+  @override
   String get firstNameFieldTitle => 'First name';
 
   @override
@@ -120,11 +123,38 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get birthDateFieldTitle => 'Date of birth';
 
   @override
-  String get drivesLicenseNumber => 'Drivers license number';
+  String get driversLicenseNumber => 'Drivers license number';
+
+  @override
+  String get driversLicenseIssuedDate => 'Drivers license issued';
+
+  @override
+  String get driversLicenseExpiresDate => 'Drivers license expires';
+
+  @override
+  String get address => 'Adress';
+
+  @override
+  String get addressStreet => 'Street';
+
+  @override
+  String get addressNumber => 'House number';
+
+  @override
+  String get addressAddition => 'Addition';
+
+  @override
+  String get addressZip => 'Zip code';
+
+  @override
+  String get addressCity => 'City';
 
   @override
   String get numberHint => 'Numbers only, no spaces or special characters.';
 
   @override
   String get phoneFieldTitle => 'Phone number';
+
+  @override
+  String get errorPostingMessage => 'We encountered an error processing your data, please try again later';
 }

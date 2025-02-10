@@ -10,10 +10,10 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get formTitle => 'Word Batt';
 
   @override
-  String get introPageNeededDocuments => 'Copy to welcome users and warn that the following is needed: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license';
+  String get introPageNeededDocuments => 'Welkom bij Batt! Voor je verder gaat, zorg zeker dat je volgende documenten in de buurt hebt: \n\n• Identiteitsdocument (Belgische eId, elektronische vreemdelingenkaart ...)\n\n• Rijbewijs';
 
   @override
-  String get introPageCancelButtonText => 'Continue later';
+  String get introPageCancelButtonText => 'Ga een andere keer verder';
 
   @override
   String stepIndicatorText(Object step, Object totalSteps) {
@@ -108,6 +108,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get imageCropperCancel => 'Annuleer';
 
   @override
+  String get identifyingDataTitle => 'Identiteit';
+
+  @override
   String get firstNameFieldTitle => 'Voornaam';
 
   @override
@@ -120,11 +123,38 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get birthDateFieldTitle => 'Geboortedatum';
 
   @override
-  String get drivesLicenseNumber => 'Rijbewijsnummer';
+  String get driversLicenseNumber => 'Rijbewijsnummer';
+
+  @override
+  String get driversLicenseIssuedDate => 'Datum afgifte';
+
+  @override
+  String get driversLicenseExpiresDate => 'Vervaldatum';
+
+  @override
+  String get address => 'Adres';
+
+  @override
+  String get addressStreet => 'Straat';
+
+  @override
+  String get addressNumber => 'Huisnummer';
+
+  @override
+  String get addressAddition => 'Toevoeging';
+
+  @override
+  String get addressZip => 'Postcode';
+
+  @override
+  String get addressCity => 'Gemeente';
 
   @override
   String get numberHint => 'Enkel cijfers, geen spaties of speciale tekens.';
 
   @override
   String get phoneFieldTitle => 'Telefoon';
+
+  @override
+  String get errorPostingMessage => 'We konden je gegevens niet verwerken, gelieve het later opnieuw te proberen.';
 }

@@ -106,7 +106,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @introPageNeededDocuments.
   ///
   /// In en, this message translates to:
-  /// **'Copy to welcome users and warn that the following is needed: \r• Identity document (Belgian Eid, Proof of residence, ...)\r• Drivers license'**
+  /// **'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license'**
   String get introPageNeededDocuments;
 
   /// No description provided for @introPageCancelButtonText.
@@ -295,6 +295,12 @@ abstract class OnboardingLocalizations {
   /// **'Cancel'**
   String get imageCropperCancel;
 
+  /// No description provided for @identifyingDataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity'**
+  String get identifyingDataTitle;
+
   /// No description provided for @firstNameFieldTitle.
   ///
   /// In en, this message translates to:
@@ -319,11 +325,59 @@ abstract class OnboardingLocalizations {
   /// **'Date of birth'**
   String get birthDateFieldTitle;
 
-  /// No description provided for @drivesLicenseNumber.
+  /// No description provided for @driversLicenseNumber.
   ///
   /// In en, this message translates to:
   /// **'Drivers license number'**
-  String get drivesLicenseNumber;
+  String get driversLicenseNumber;
+
+  /// No description provided for @driversLicenseIssuedDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Drivers license issued'**
+  String get driversLicenseIssuedDate;
+
+  /// No description provided for @driversLicenseExpiresDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Drivers license expires'**
+  String get driversLicenseExpiresDate;
+
+  /// No description provided for @address.
+  ///
+  /// In en, this message translates to:
+  /// **'Adress'**
+  String get address;
+
+  /// No description provided for @addressStreet.
+  ///
+  /// In en, this message translates to:
+  /// **'Street'**
+  String get addressStreet;
+
+  /// No description provided for @addressNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'House number'**
+  String get addressNumber;
+
+  /// No description provided for @addressAddition.
+  ///
+  /// In en, this message translates to:
+  /// **'Addition'**
+  String get addressAddition;
+
+  /// No description provided for @addressZip.
+  ///
+  /// In en, this message translates to:
+  /// **'Zip code'**
+  String get addressZip;
+
+  /// No description provided for @addressCity.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get addressCity;
 
   /// No description provided for @numberHint.
   ///
@@ -336,6 +390,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Phone number'**
   String get phoneFieldTitle;
+
+  /// No description provided for @errorPostingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'We encountered an error processing your data, please try again later'**
+  String get errorPostingMessage;
 }
 
 class _OnboardingLocalizationsDelegate extends LocalizationsDelegate<OnboardingLocalizations> {

@@ -2,6 +2,7 @@ import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:batt_onboarding/src/presentation/pages/convictions_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/documents_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/done_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/identity_page.dart';
@@ -37,7 +38,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   final _controller = PageController(
       initialPage: 0); // TODO: not if resuming from earlier state
   int _step = 0;
+  Map<String, dynamic> _scannedData = {};
   List<GlobalKey<FormBuilderState>> get _formKeys => [
+        GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
@@ -55,19 +58,28 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           onAction: (_) {
             widget.onSubmitted(false);
           }),
-      ConvictionsPage(formKey: _formKeys[1], onAction: (_) {}),
+      ConvictionsPage(
+        formKey: _formKeys[1],
+        onAction: (_) {},
+      ),
+      DocumentsPage(
+        formKey: _formKeys[2],
+        onAction: (_) {},
+      ),
       IdentityPage(
-          formKey: _formKeys[2],
-          onAction: (_) {
-            // TODO: post data
-          }),
+        formKey: _formKeys[3],
+        onAction: (_) {
+          // TODO: post data
+        },
+        initialData: _scannedData,
+      ),
       VerificationPage(
-          formKey: _formKeys[3],
+          formKey: _formKeys[4],
           onAction: (_) {
             // TODO: post data
           }),
       OnboardingDonePage(
-          formKey: _formKeys[4],
+          formKey: _formKeys[5],
           onAction: (_) {
             widget.onSubmitted(true);
           })
@@ -98,6 +110,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                             label: l10n.previousButtonText,
                             onPressed: () {
                               if (_step > 0) {
+                                _scannedData = {};
                                 _step--;
                                 _controller.jumpToPage(_step);
                               }
@@ -116,18 +129,16 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                     OrangeSolidTextButton(
                       label: l10n.nextButtonText,
                       onPressed: () {
-                        if (_step == 0 ||
-                            (pages[_step]
-                                    .formKey
-                                    .currentState
-                                    ?.saveAndValidate() ??
-                                false)) {
-                          if (_step == 0) {
-                            setState(() {
-                              _step++;
-                            });
-                            _controller.jumpToPage(_step);
-                          }
+                        if (_step == 0) {
+                          setState(() {
+                            _step++;
+                          });
+                          _controller.jumpToPage(_step);
+                        } else if (pages[_step]
+                                .formKey
+                                .currentState
+                                ?.saveAndValidate() ??
+                            false) {
                           if (_step == 1) {
                             final values = pages[1].formKey.currentState?.value;
                             if (values != null) {
@@ -139,6 +150,12 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                     _step++;
                                   });
                                   _controller.jumpToPage(_step);
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                          title: Text(l10n
+                                              .errorPostingMessage))); // TODO: localize
                                 }
                               });
                             } else {
@@ -152,39 +169,12 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                           if (_step == 2) {
                             final values = pages[2].formKey.currentState?.value;
                             if (values != null) {
-                              // TODO: post personal data
-                              onboardingRepository
-                                  .postConvictions(values)
-                                  .then((success) {
-                                if (success) {
-                                  setState(() {
-                                    _step++;
-                                  });
-                                  _controller.jumpToPage(_step);
-                                }
+                              // TODO: post documents
+                              setState(() {
+                                _scannedData = values;
+                                _step++;
                               });
-                            } else {
-                              showDialog(
-                                  context: context,
-                                  builder: (ctx) => AlertDialog(
-                                      title:
-                                          Text(l10n.fillOutBeforeContinuing)));
-                            }
-                          }
-                          if (_step == 2) {
-                            final values = pages[2].formKey.currentState?.value;
-                            if (values != null) {
-                              // TODO: do whatever, phone is confirmed here
-                              onboardingRepository
-                                  .postConvictions(values)
-                                  .then((success) {
-                                if (success) {
-                                  setState(() {
-                                    _step++;
-                                  });
-                                  _controller.jumpToPage(_step);
-                                }
-                              });
+                              _controller.jumpToPage(_step);
                             } else {
                               showDialog(
                                   context: context,
@@ -194,6 +184,38 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                             }
                           }
                           if (_step == 3) {
+                            final values = pages[3].formKey.currentState?.value;
+                            if (values != null) {
+                              // TODO: post personal data
+                              setState(() {
+                                _step++;
+                              });
+                              _controller.jumpToPage(_step);
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                      title:
+                                          Text(l10n.fillOutBeforeContinuing)));
+                            }
+                          }
+                          if (_step == 4) {
+                            final values = pages[4].formKey.currentState?.value;
+                            if (values != null) {
+                              // TODO: do whatever, phone is confirmed here
+                              setState(() {
+                                _step++;
+                              });
+                              _controller.jumpToPage(_step);
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                      title:
+                                          Text(l10n.fillOutBeforeContinuing)));
+                            }
+                          }
+                          if (_step == 5) {
                             // TODO: show success page/close onboarding?
                           }
                         }

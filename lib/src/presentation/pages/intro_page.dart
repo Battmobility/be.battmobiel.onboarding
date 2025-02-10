@@ -29,6 +29,7 @@ class IntroPageState extends State<IntroPage> {
         child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
                   padding: AppPaddings.medium.bottom,
@@ -36,6 +37,7 @@ class IntroPageState extends State<IntroPage> {
                       style: context.typographyTheme.largeTitle),
                 ),
                 Flexible(
+                  flex: 9,
                   child: Text(
                     OnboardingLocalizations.of(context)
                         .introPageNeededDocuments,
@@ -44,12 +46,15 @@ class IntroPageState extends State<IntroPage> {
                   ),
                 ),
                 Spacer(),
-                OrangeSimpleTextButton(
-                  label: OnboardingLocalizations.of(context)
-                      .introPageCancelButtonText,
-                  onPressed: () {
-                    widget.onAction({});
-                  },
+                Flexible(
+                  flex: 1,
+                  child: OrangeSimpleTextButton(
+                    label: OnboardingLocalizations.of(context)
+                        .introPageCancelButtonText,
+                    onPressed: () {
+                      widget.onAction({});
+                    },
+                  ),
                 )
               ],
             )),

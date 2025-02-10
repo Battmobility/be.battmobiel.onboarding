@@ -5,7 +5,7 @@
 		"type": "text",
 		"placeholders": {}
 	},	
-	"introPageNeededDocuments": "Copy to welcome users and warn that the following is needed: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license",
+	"introPageNeededDocuments": "Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian Eid, Proof of residence, ...)\n\n• Drivers license",
 	"@introPageNeededDocuments": {
 		"type": "text",
 		"placeholders": {}
@@ -168,6 +168,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"identifyingDataTitle": "Identity",
+	"@identifyingDataTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"firstNameFieldTitle": "First name",
 	"@firstNameFieldTitle": {
 		"type": "text",
@@ -188,8 +193,48 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"drivesLicenseNumber": "Drivers license number",
-	"@drivesLicenseNumber": {
+	"driversLicenseNumber": "Drivers license number",
+	"@driversLicenseNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseIssuedDate": "Drivers license issued",
+	"@driversLicenseIssuedDate": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicenseExpiresDate": "Drivers license expires",
+	"@driversLicenseExpiresDate": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"address": "Adress",
+	"@address": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressStreet": "Street",
+	"@addressStreet": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressNumber": "House number",
+	"@addressNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressAddition": "Addition",
+	"@addressAddition": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressZip": "Zip code",
+	"@addressZip": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressCity": "City",
+	"@addressCity": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -200,6 +245,11 @@
 	},
 	"phoneFieldTitle": "Phone number",
 	"@phoneFieldTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"errorPostingMessage": "We encountered an error processing your data, please try again later",
+	"@errorPostingMessage": {
 		"type": "text",
 		"placeholders": {}
 	}

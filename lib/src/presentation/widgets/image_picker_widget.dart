@@ -64,6 +64,8 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                         .pickImage(source: ImageSource.camera);
                     if (photo != null) {
                       widget.onPicked(File(photo.path));
+                      _tryOCR(File(photo.path));
+
                       setState(() {
                         _originalImage = photo;
                       });
@@ -88,6 +90,8 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
 
                     if (photo != null) {
                       widget.onPicked(File(photo.path));
+                      _tryOCR(File(photo.path));
+
                       setState(() {
                         _originalImage = photo;
                       });
@@ -218,16 +222,19 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
       setState(() {
         _croppedFile = croppedFile;
         File result = File(croppedFile.path);
-
-        if (!kIsWeb) {
-          MRZReader().readImage(
-              result,
-              (rrn, surName, firstName) => widget.onDataFound != null
-                  ? widget.onDataFound!(rrn, surName, firstName)
-                  : {});
-        }
+        _tryOCR(result);
         widget.onPicked(result);
       });
+    }
+  }
+
+  void _tryOCR(File? file) {
+    if (!kIsWeb && file != null) {
+      MRZReader().readImage(
+          File(file.path),
+          (rrn, surName, firstName) => widget.onDataFound != null
+              ? widget.onDataFound!(rrn, surName, firstName)
+              : {});
     }
   }
 }
