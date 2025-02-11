@@ -14,13 +14,9 @@ extension FromMap on Map<String, File> {
   }
 }
 
-extension Base64String on File {
+extension BinaryString on File {
   Future<String> toBinaryString() async {
-    final filzeSize = await length();
-    print("${filzeSize / 1024}");
-
     Uint8List bytes = await readAsBytes();
-
     String binaryString = '';
     for (var byte in bytes) {
       binaryString += byte.toRadixString(2).padLeft(8, '0');
