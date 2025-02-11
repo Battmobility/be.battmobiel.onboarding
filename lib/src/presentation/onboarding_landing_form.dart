@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
@@ -183,12 +185,29 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                               final values =
                                   pages[2].formKey.currentState?.value;
                               if (values != null) {
-                                // TODO: post documents
-                                setState(() {
-                                  _scannedData = values;
-                                  _step++;
+                                onboardingRepository
+                                    .postDocuments(values)
+                                    .then((success) {
+                                  if (success) {
+                                    setState(() {
+                                      _step++;
+                                    });
+                                    _controller.jumpToPage(_step);
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: Text(l10n.errorPostingMessage),
+                                        actions: [
+                                          OutlinedTextButton(
+                                              label: "Ok",
+                                              onPressed: () =>
+                                                  Navigator.pop(ctx))
+                                        ],
+                                      ),
+                                    ); // TODO: localize
+                                  }
                                 });
-                                _controller.jumpToPage(_step);
                               } else {
                                 showDialog(
                                     context: context,

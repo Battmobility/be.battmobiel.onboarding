@@ -12,13 +12,11 @@ final class DocumentFormField extends StatelessWidget {
   final String fieldName;
   final String displayName;
 
-  final Function(File) onPicked;
   final Function(String? rrn, String? surName, String? firstName) onDataFound;
 
   DocumentFormField({
     required this.fieldName,
     required this.displayName,
-    required this.onPicked,
     required this.onDataFound,
   });
 
@@ -44,9 +42,6 @@ final class DocumentFormField extends StatelessWidget {
             child: ImagePickerWidget(
               onPicked: (file) {
                 field.didChange(file);
-                if (file != null) {
-                  onPicked(file);
-                }
               },
               onDataFound: (rrn, surName, givenName) =>
                   onDataFound(rrn, surName, givenName),

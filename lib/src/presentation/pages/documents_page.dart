@@ -22,11 +22,6 @@ final class DocumentsPage extends OnboardingPage {
 }
 
 class DocumentsPageState extends State<DocumentsPage> {
-  File? _driversLicenseFrontImage;
-  File? _driversLicenseBackImage;
-  File? _idCardFrontImage;
-  File? _idCardBackImage;
-
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
@@ -59,18 +54,16 @@ class DocumentsPageState extends State<DocumentsPage> {
                   children: [
                     // FRONT
                     DocumentFormField(
-                      fieldName: "idCardFront",
+                      fieldName: "frontId",
                       displayName: l10n.idCardFieldFront,
                       onDataFound: (rrn, surName, firstName) => {},
-                      onPicked: (file) => _idCardFrontImage = file,
                     ),
 
                     DocumentFormField(
-                      fieldName: "idCardBack",
+                      fieldName: "backId",
                       displayName: l10n.idCardFieldBack,
                       onDataFound: (rrn, surName, firstName) =>
                           _updateFormData(rrn, surName, firstName),
-                      onPicked: (file) => _idCardBackImage = file,
                     ),
                   ].map((child) {
                     return MediaQuery.of(context).size.width >
@@ -99,18 +92,16 @@ class DocumentsPageState extends State<DocumentsPage> {
                   children: [
                     // FRONT
                     DocumentFormField(
-                      fieldName: "driversLicenseFront",
+                      fieldName: "frontDriverLicense",
                       displayName: l10n.driversLicenseFieldFront,
                       onDataFound: (rrn, surName, firstName) =>
                           _updateFormData(null, null, null),
-                      onPicked: (file) => _driversLicenseFrontImage = file,
                     ),
                     DocumentFormField(
-                      fieldName: "driversLicenseBack",
+                      fieldName: "backDriverLicense",
                       displayName: l10n.driversLicenseFieldBack,
                       onDataFound: (rrn, surName, firstName) =>
                           _updateFormData(null, null, null),
-                      onPicked: (file) => _driversLicenseBackImage = file,
                     ),
                   ].map((child) {
                     return MediaQuery.of(context).size.width >

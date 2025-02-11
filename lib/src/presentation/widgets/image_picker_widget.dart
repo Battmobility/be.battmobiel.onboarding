@@ -23,6 +23,8 @@ final class ImagePickerWidget extends StatefulWidget {
 }
 
 class ImagePickerWidgetState extends State<ImagePickerWidget> {
+  double maxImageWidth = 2000;
+  double maxImageHeight = 1261;
   XFile? _originalImage;
   CroppedFile? _croppedFile;
 
@@ -42,8 +44,12 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
           ? [
               BattIconTextButton(
                 onPressed: () async {
-                  final XFile? photo = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery);
+                  final XFile? photo = await ImagePicker().pickImage(
+                    source: ImageSource.gallery,
+                    imageQuality: 25,
+                    maxWidth: maxImageWidth,
+                    maxHeight: maxImageHeight,
+                  );
 
                   if (photo != null) {
                     setState(() {
@@ -60,8 +66,12 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
               Flexible(
                 child: BattIconTextButton(
                   onPressed: () async {
-                    final XFile? photo = await ImagePicker()
-                        .pickImage(source: ImageSource.camera);
+                    final XFile? photo = await ImagePicker().pickImage(
+                      source: ImageSource.camera,
+                      imageQuality: 25,
+                      maxWidth: maxImageWidth,
+                      maxHeight: maxImageHeight,
+                    );
                     if (photo != null) {
                       widget.onPicked(File(photo.path));
                       _tryOCR(File(photo.path));
@@ -85,8 +95,12 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
               Flexible(
                 child: BattIconTextButton(
                   onPressed: () async {
-                    final XFile? photo = await ImagePicker()
-                        .pickImage(source: ImageSource.gallery);
+                    final XFile? photo = await ImagePicker().pickImage(
+                      source: ImageSource.gallery,
+                      imageQuality: 25,
+                      maxWidth: maxImageWidth,
+                      maxHeight: maxImageHeight,
+                    );
 
                     if (photo != null) {
                       widget.onPicked(File(photo.path));
