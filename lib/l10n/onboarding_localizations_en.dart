@@ -10,7 +10,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get formTitle => 'Become Batt';
 
   @override
-  String get introPageNeededDocuments => 'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license';
+  String get introPageNeededDocuments => 'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license';
 
   @override
   String get introPageCancelButtonText => 'Continue later';
@@ -19,6 +19,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String stepIndicatorText(Object step, Object totalSteps) {
     return 'Step $step of $totalSteps';
   }
+
+  @override
+  String get closeButtonText => 'Close';
 
   @override
   String get previousButtonText => 'Previous';
@@ -55,6 +58,12 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get convictionTypeNoOfAccidents => 'Amount of accidents where you were at fault';
+
+  @override
+  String get documentsPageTitle => 'Documents';
+
+  @override
+  String get documentsPageMessage => 'Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.';
 
   @override
   String get identityPageTitle => 'Identity';
@@ -148,6 +157,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get addressCity => 'City';
+
+  @override
+  String get addressCountry => 'Country';
 
   @override
   String get numberHint => 'Numbers only, no spaces or special characters.';

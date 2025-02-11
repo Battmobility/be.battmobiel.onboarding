@@ -21,6 +21,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   }
 
   @override
+  String get closeButtonText => 'Close';
+
+  @override
   String get previousButtonText => 'Vorige';
 
   @override
@@ -55,6 +58,12 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get convictionTypeNoOfAccidents => 'Aantal ongevallen waar u in fout was';
+
+  @override
+  String get documentsPageTitle => 'Documents';
+
+  @override
+  String get documentsPageMessage => 'Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.';
 
   @override
   String get identityPageTitle => 'Identiteit';
@@ -148,6 +157,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get addressCity => 'Gemeente';
+
+  @override
+  String get addressCountry => 'Land';
 
   @override
   String get numberHint => 'Enkel cijfers, geen spaties of speciale tekens.';

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:batt_ds/batt_ds.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:sealed_countries/sealed_countries.dart';
 
 import '../../../l10n/onboarding_localizations.dart';
 import 'onboarding_page.dart';
@@ -25,43 +22,29 @@ class IntroPageState extends State<IntroPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       widget.onAction({});
     });
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(60.0),
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: AppPaddings.medium.bottom,
-                  child: Text(OnboardingLocalizations.of(context).formTitle,
-                      style: context.typographyTheme.largeTitle),
+    return Container(
+      padding: AppPaddings.xxlarge.vertical.add(AppPaddings.large.horizontal),
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: AppPaddings.medium.bottom,
+                child: Text(OnboardingLocalizations.of(context).formTitle,
+                    style: Theme.of(context).textTheme.headlineLarge),
+              ),
+              Flexible(
+                flex: 9,
+                child: Text(
+                  OnboardingLocalizations.of(context).introPageNeededDocuments,
+                  style: Theme.of(context).textTheme.titleMedium,
+                  maxLines: 99,
                 ),
-                Flexible(
-                  flex: 9,
-                  child: Text(
-                    OnboardingLocalizations.of(context)
-                        .introPageNeededDocuments,
-                    style: context.typographyTheme.smallTitle,
-                    maxLines: 99,
-                  ),
-                ),
-                Spacer(),
-                Flexible(
-                  flex: 1,
-                  child: OrangeSimpleTextButton(
-                    label: OnboardingLocalizations.of(context)
-                        .introPageCancelButtonText,
-                    onPressed: () {
-                      widget.onAction({});
-                    },
-                  ),
-                ),
-              ],
-            )),
-      ),
+              ),
+            ],
+          )),
     );
   }
 }

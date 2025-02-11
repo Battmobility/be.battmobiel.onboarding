@@ -106,7 +106,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @introPageNeededDocuments.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n• Identity document (Belgian Eid, Proof of residence, ...)\n• Drivers license'**
+  /// **'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license'**
   String get introPageNeededDocuments;
 
   /// No description provided for @introPageCancelButtonText.
@@ -120,6 +120,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Step {step} of {totalSteps}'**
   String stepIndicatorText(Object step, Object totalSteps);
+
+  /// No description provided for @closeButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get closeButtonText;
 
   /// No description provided for @previousButtonText.
   ///
@@ -192,6 +198,18 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Amount of accidents where you were at fault'**
   String get convictionTypeNoOfAccidents;
+
+  /// No description provided for @documentsPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get documentsPageTitle;
+
+  /// No description provided for @documentsPageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.'**
+  String get documentsPageMessage;
 
   /// No description provided for @identityPageTitle.
   ///
@@ -378,6 +396,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'City'**
   String get addressCity;
+
+  /// No description provided for @addressCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get addressCountry;
 
   /// No description provided for @numberHint.
   ///

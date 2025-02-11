@@ -5,7 +5,7 @@
 		"type": "text",
 		"placeholders": {}
 	},	
-	"introPageNeededDocuments": "Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian Eid, Proof of residence, ...)\n\n• Drivers license",
+	"introPageNeededDocuments": "Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license",
 	"@introPageNeededDocuments": {
 		"type": "text",
 		"placeholders": {}
@@ -22,6 +22,11 @@
 			"step": {},
 			"totalSteps": {}
 		}
+	},
+	"closeButtonText": "Close",
+	"@closeButtonText": {
+		"type": "text",
+		"placeholders": {}
 	},
 	"previousButtonText": "Previous",
 	"@previousButtonText": {
@@ -80,6 +85,16 @@
 	},
 	"convictionTypeNoOfAccidents": "Amount of accidents where you were at fault",
 	"@convictionTypeNoOfAccidents": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"documentsPageTitle": "Documents",
+	"@documentsPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"documentsPageMessage": "Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.",
+	"@documentsPageMessage": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -235,6 +250,11 @@
 	},
 	"addressCity": "City",
 	"@addressCity": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressCountry": "Country",
+	"@addressCountry": {
 		"type": "text",
 		"placeholders": {}
 	},

@@ -23,6 +23,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"closeButtonText": "Close",
+	"@closeButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"previousButtonText": "Vorige",
 	"@previousButtonText": {
 		"type": "text",
@@ -80,6 +85,16 @@
 	},
 	"convictionTypeNoOfAccidents": "Aantal ongevallen waar u in fout was",
 	"@convictionTypeNoOfAccidents": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"documentsPageTitle": "Documents",
+	"@documentsPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"documentsPageMessage": "Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.",
+	"@documentsPageMessage": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -213,7 +228,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	
+
 	"addressStreet": "Straat",
 	"@addressStreet": {
 		"type": "text",
@@ -236,6 +251,11 @@
 	},
 	"addressCity": "Gemeente",
 	"@addressCity": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addressCountry": "Land",
+	"@addressCountry": {
 		"type": "text",
 		"placeholders": {}
 	},

@@ -28,12 +28,12 @@ class ConvictionsPageState extends State<ConvictionsPage> {
       child: FormBuilder(
         key: widget.formKey,
         child: Padding(
-          padding: AppPaddings.medium.all,
+          padding: AppPaddings.medium.vertical,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(l10n.convictionsPageTitle,
-                  style: Theme.of(context).textTheme.titleLarge),
+                  style: Theme.of(context).textTheme.headlineLarge),
               Padding(
                 padding: AppPaddings.medium.vertical,
                 child: Text(l10n.convictionsPageMessage,

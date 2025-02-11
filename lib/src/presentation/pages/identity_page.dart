@@ -28,7 +28,7 @@ class IdentityPageState extends State<IdentityPage> {
         child: Column(
           children: [
             Text(l10n.identityPageTitle,
-                style: Theme.of(context).textTheme.titleLarge),
+                style: Theme.of(context).textTheme.headlineLarge),
             Padding(
               padding: AppPaddings.medium.vertical,
               child: Text(l10n.identityPageMessage,
@@ -62,7 +62,8 @@ class IdentityPageState extends State<IdentityPage> {
             ),
             FormBuilderDateTimePicker(
               name: 'birthdate',
-              initialValue: widget.initialData?["birthdate"],
+              initialValue: widget.initialData?["birthdate"] ??
+                  DateTime.now().subtract(Duration(days: 5840)),
               firstDate: DateTime.now().subtract(Duration(days: 43800)),
               lastDate: DateTime.now().subtract(Duration(days: 5840)),
               inputType: InputType.date,
@@ -99,7 +100,7 @@ class IdentityPageState extends State<IdentityPage> {
                   children: [
                     Flexible(
                       flex: 5,
-                      child: Text(l10n.convictionTypeNoOfAccidents,
+                      child: Text(l10n.addressCountry,
                           maxLines: 2,
                           style: Theme.of(context).textTheme.bodyLarge),
                     ),
@@ -142,11 +143,6 @@ class IdentityPageState extends State<IdentityPage> {
                 ),
                 FormBuilderTextField(
                   name: 'box',
-                  validator: FormBuilderValidators.compose(
-                    [
-                      FormBuilderValidators.required(),
-                    ],
-                  ),
                   decoration: InputDecoration(labelText: l10n.addressAddition),
                 ),
               ]

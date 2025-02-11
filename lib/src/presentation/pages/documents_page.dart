@@ -36,8 +36,14 @@ class DocumentsPageState extends State<DocumentsPage> {
         child: Column(
           children: [
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(l10n.documentsPageTitle,
+                    style: Theme.of(context).textTheme.headlineLarge),
+                Padding(
+                  padding: AppPaddings.medium.vertical,
+                  child: Text(l10n.documentsPageMessage,
+                      style: Theme.of(context).textTheme.titleMedium),
+                ),
                 Padding(
                   padding: AppPaddings.xxsmall.vertical,
                   child: Text(l10n.idCardFieldTitle,
