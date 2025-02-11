@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:batt_ds/batt_ds.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ final class DocumentFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField<File>(
+    return FormBuilderField<Uint8List>(
       name: fieldName,
       autovalidateMode: AutovalidateMode.onUnfocus,
       validator: FormBuilderValidators.required(),
@@ -40,8 +41,8 @@ final class DocumentFormField extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 1.586,
             child: ImagePickerWidget(
-              onPicked: (file) {
-                field.didChange(file);
+              onPicked: (bytes) {
+                field.didChange(bytes);
               },
               onDataFound: (rrn, surName, givenName) =>
                   onDataFound(rrn, surName, givenName),

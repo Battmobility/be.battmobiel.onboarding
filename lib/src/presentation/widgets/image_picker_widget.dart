@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 
 final class ImagePickerWidget extends StatefulWidget {
-  final Function(File?) onPicked;
+  final Function(Uint8List?) onPicked;
   final Function(String? rrn, String? surName, String? firstName)? onDataFound;
 
   const ImagePickerWidget({
@@ -52,9 +52,11 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                   );
 
                   if (photo != null) {
+                    final bytes = await photo.readAsBytes();
+                    widget.onPicked(bytes);
+
                     setState(() {
                       _originalImage = photo;
-                      widget.onPicked(File(photo.path));
                     });
                   }
                 },
@@ -73,7 +75,9 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                       maxHeight: maxImageHeight,
                     );
                     if (photo != null) {
-                      widget.onPicked(File(photo.path));
+                      final bytes = await photo.readAsBytes();
+                      widget.onPicked(bytes);
+
                       _tryOCR(File(photo.path));
 
                       setState(() {
@@ -103,7 +107,8 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                     );
 
                     if (photo != null) {
-                      widget.onPicked(File(photo.path));
+                      final bytes = await photo.readAsBytes();
+                      widget.onPicked(bytes);
                       _tryOCR(File(photo.path));
 
                       setState(() {
@@ -237,8 +242,9 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
         _croppedFile = croppedFile;
         File result = File(croppedFile.path);
         _tryOCR(result);
-        widget.onPicked(result);
       });
+      final bytes = await croppedFile.readAsBytes();
+      widget.onPicked(bytes);
     }
   }
 

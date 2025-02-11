@@ -55,24 +55,49 @@ final class _$MobileApi extends MobileApi {
   }
 
   @override
-  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingDocumentsPut(
-      {required Map<String, String> body}) {
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingDocumentsPut({
+    List<int>? backDriverLicense,
+    List<int>? backId,
+    List<int>? damageStatistic,
+    List<int>? frontDriverLicense,
+    List<int>? frontId,
+    List<int>? selfie,
+  }) {
     final Uri $url = Uri.parse('/user/v1/users/onboarding/documents');
-    final Map<String, String> $headers = {
-      'content-type': 'application/x-www-form-urlencoded',
-    };
-    final $body = body;
+    final List<PartValue> $parts = <PartValue>[
+      PartValueFile<List<int>?>(
+        'backDriverLicense',
+        backDriverLicense,
+      ),
+      PartValueFile<List<int>?>(
+        'backId',
+        backId,
+      ),
+      PartValueFile<List<int>?>(
+        'damageStatistic',
+        damageStatistic,
+      ),
+      PartValueFile<List<int>?>(
+        'frontDriverLicense',
+        frontDriverLicense,
+      ),
+      PartValueFile<List<int>?>(
+        'frontId',
+        frontId,
+      ),
+      PartValueFile<List<int>?>(
+        'selfie',
+        selfie,
+      ),
+    ];
     final Request $request = Request(
       'PUT',
       $url,
       client.baseUrl,
-      body: $body,
-      headers: $headers,
+      parts: $parts,
+      multipart: true,
     );
-    return client.send<ContractsOnboarding, ContractsOnboarding>(
-      $request,
-      requestConverter: FormUrlEncodedConverter.requestFactory,
-    );
+    return client.send<ContractsOnboarding, ContractsOnboarding>($request);
   }
 
   @override

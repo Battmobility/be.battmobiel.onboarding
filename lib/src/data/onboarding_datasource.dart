@@ -1,7 +1,6 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:batt_onboarding/src/data/onboarding_service.dart';
-import 'package:batt_onboarding/src/domain/documents_mapper.dart';
 import 'package:batt_onboarding/src/domain/legal_mapper.dart';
 
 final class OnboardingDatasource {
@@ -17,9 +16,8 @@ final class OnboardingDatasource {
     return service.postConvictions(convictions.toContractsOnboardingLegal());
   }
 
-  Future<bool> postDocuments(Map<String, File> documents) async {
-    final map = await documents.toBinaryStringMap();
-    return service.postDocuments(map);
+  Future<bool> postDocuments(Map<String, Uint8List> documents) async {
+    return service.postDocuments(documents);
   }
 
   Future<bool> postPersonalData(Map<String, String> formData) async {

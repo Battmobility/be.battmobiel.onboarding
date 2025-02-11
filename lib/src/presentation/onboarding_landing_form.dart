@@ -40,6 +40,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   final _controller = PageController(
       initialPage: 0); // TODO: not if resuming from earlier state
   int _step = 0;
+
   Map<String, dynamic> _scannedData = {};
   List<GlobalKey<FormBuilderState>> get _formKeys => [
         GlobalKey<FormBuilderState>(),
@@ -70,22 +71,17 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       ),
       IdentityPage(
         formKey: _formKeys[3],
-        onAction: (_) {
-          // TODO: post data
-        },
+        onAction: (_) {},
         initialData: _scannedData,
       ),
-      VerificationPage(
-          formKey: _formKeys[4],
-          onAction: (_) {
-            // TODO: post data
-          }),
+      VerificationPage(formKey: _formKeys[4], onAction: (_) {}),
       OnboardingDonePage(
           formKey: _formKeys[5],
           onAction: (_) {
             widget.onSubmitted(true);
           })
     ];
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -128,10 +124,27 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                     widget.onSubmitted(false);
                                   }),
                             ),
-                      Text(
-                        OnboardingLocalizations.of(context)
-                            .stepIndicatorText(_step + 1, pages.length),
-                        style: Theme.of(context).textTheme.labelMedium,
+                      Flexible(
+                        child: Stepper(
+                          type: StepperType.horizontal,
+                          elevation: 0,
+                          currentStep: _step,
+                          connectorColor: WidgetStatePropertyAll(
+                              Theme.of(context).colorScheme.surface),
+                          connectorThickness: 4,
+                          steps: pages
+                              .map((page) => Step(
+                                    title: Text(""),
+                                    content: Text("${pages.indexOf(page)}"),
+                                    isActive: pages.indexOf(page) <= _step,
+                                    state: pages.indexOf(page) < _step
+                                        ? StepState.complete
+                                        : pages.indexOf(page) == _step
+                                            ? StepState.editing
+                                            : StepState.indexed,
+                                  ))
+                              .toList(),
+                        ),
                       ),
                       OrangeSolidTextButton(
                         label: l10n.nextButtonText,
@@ -159,32 +172,17 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                     });
                                     _controller.jumpToPage(_step);
                                   } else {
-                                    showDialog(
-                                      context: context,
-                                      builder: (ctx) => AlertDialog(
-                                        title: Text(l10n.errorPostingMessage),
-                                        actions: [
-                                          OutlinedTextButton(
-                                              label: "Ok",
-                                              onPressed: () =>
-                                                  Navigator.pop(ctx))
-                                        ],
-                                      ),
-                                    ); // TODO: localize
+                                    _showUploadFailedDialog(context);
                                   }
                                 });
-                              } else {
-                                showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                        title: Text(
-                                            l10n.fillOutBeforeContinuing)));
                               }
                             }
                             if (_step == 2) {
                               final values =
                                   pages[2].formKey.currentState?.value;
                               if (values != null) {
+                                // TODO: re enable when api fixed
+
                                 onboardingRepository
                                     .postDocuments(values)
                                     .then((success) {
@@ -194,26 +192,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                     });
                                     _controller.jumpToPage(_step);
                                   } else {
-                                    showDialog(
-                                      context: context,
-                                      builder: (ctx) => AlertDialog(
-                                        title: Text(l10n.errorPostingMessage),
-                                        actions: [
-                                          OutlinedTextButton(
-                                              label: "Ok",
-                                              onPressed: () =>
-                                                  Navigator.pop(ctx))
-                                        ],
-                                      ),
-                                    ); // TODO: localize
+                                    _showUploadFailedDialog(context);
                                   }
                                 });
-                              } else {
-                                showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                        title: Text(
-                                            l10n.fillOutBeforeContinuing)));
+                                _controller.jumpToPage(_step);
                               }
                             }
                             if (_step == 3) {
@@ -225,12 +207,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                   _step++;
                                 });
                                 _controller.jumpToPage(_step);
-                              } else {
-                                showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                        title: Text(
-                                            l10n.fillOutBeforeContinuing)));
                               }
                             }
                             if (_step == 4) {
@@ -242,17 +218,13 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                   _step++;
                                 });
                                 _controller.jumpToPage(_step);
-                              } else {
-                                showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                        title: Text(
-                                            l10n.fillOutBeforeContinuing)));
                               }
                             }
                             if (_step == 5) {
                               // TODO: show success page/close onboarding?
                             }
+                          } else {
+                            _showIncompleteFormDialog(context);
                           }
                         },
                       )
@@ -265,5 +237,21 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         ),
       ),
     );
+  }
+
+  void _showIncompleteFormDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+            title: Text(
+                OnboardingLocalizations.of(context).fillOutBeforeContinuing)));
+  }
+
+  void _showUploadFailedDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+            title:
+                Text(OnboardingLocalizations.of(context).errorPostingMessage)));
   }
 }

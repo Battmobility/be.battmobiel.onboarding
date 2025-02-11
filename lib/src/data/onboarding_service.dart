@@ -1,5 +1,6 @@
 import 'package:batt_onboarding/api/generated/mobile_api.swagger.dart';
 import 'package:batt_onboarding/src/data/api_factory.dart';
+import 'package:flutter/foundation.dart';
 
 final class OnboardingService {
   MobileApi get api => ApiFactory.getMobileApi();
@@ -13,9 +14,12 @@ final class OnboardingService {
     return response.isSuccessful;
   }
 
-  Future<bool> postDocuments(Map<String, String> documents) async {
-    final response =
-        await api.userV1UsersOnboardingDocumentsPut(body: documents);
+  Future<bool> postDocuments(Map<String, Uint8List> documents) async {
+    final response = await api.userV1UsersOnboardingDocumentsPut(
+        backDriverLicense: documents["backDriverLicense"]!.toList(),
+        frontDriverLicense: documents["frontDriverLicense"]!.toList(),
+        backId: documents["backId"]!.toList(),
+        frontId: documents["frontId"]!.toList());
     return response.isSuccessful;
   }
 

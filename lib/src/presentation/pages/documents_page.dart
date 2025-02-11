@@ -26,101 +26,106 @@ class DocumentsPageState extends State<DocumentsPage> {
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
     return SingleChildScrollView(
-      child: FormBuilder(
-        key: widget.formKey,
-        child: Column(
-          children: [
-            Column(
-              children: [
-                Text(l10n.documentsPageTitle,
-                    style: Theme.of(context).textTheme.headlineLarge),
-                Padding(
-                  padding: AppPaddings.medium.vertical,
-                  child: Text(l10n.documentsPageMessage,
-                      style: Theme.of(context).textTheme.titleMedium),
-                ),
-                Padding(
-                  padding: AppPaddings.xxsmall.vertical,
-                  child: Text(l10n.idCardFieldTitle,
-                      style: context.typographyTheme.largeText),
-                ),
-                Flex(
-                  spacing: AppPaddings.small.size,
-                  mainAxisSize: MainAxisSize.min,
-                  direction: MediaQuery.of(context).size.width >
-                          MediaQuery.of(context).size.height
-                      ? Axis.horizontal
-                      : Axis.vertical,
-                  children: [
-                    // FRONT
-                    DocumentFormField(
-                      fieldName: "frontId",
-                      displayName: l10n.idCardFieldFront,
-                      onDataFound: (rrn, surName, firstName) => {},
-                    ),
+      child: Padding(
+        padding: AppPaddings.large.trailing,
+        child: FormBuilder(
+          key: widget.formKey,
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  Text(l10n.documentsPageTitle,
+                      style: Theme.of(context).textTheme.headlineLarge),
+                  Padding(
+                    padding: AppPaddings.medium.vertical,
+                    child: Text(l10n.documentsPageMessage,
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ),
+                  Padding(
+                    padding: AppPaddings.xxsmall.vertical,
+                    child: Text(l10n.idCardFieldTitle,
+                        style: context.typographyTheme.largeText),
+                  ),
+                  Flex(
+                    spacing: AppPaddings.small.size,
+                    mainAxisSize: MainAxisSize.min,
+                    direction: MediaQuery.of(context).size.width >
+                            MediaQuery.of(context).size.height
+                        ? Axis.horizontal
+                        : Axis.vertical,
+                    children: [
+                      // FRONT
+                      DocumentFormField(
+                        fieldName: "frontId",
+                        displayName: l10n.idCardFieldFront,
+                        onDataFound: (rrn, surName, firstName) => {},
+                      ),
 
-                    DocumentFormField(
-                      fieldName: "backId",
-                      displayName: l10n.idCardFieldBack,
-                      onDataFound: (rrn, surName, firstName) =>
-                          _updateFormData(rrn, surName, firstName),
-                    ),
-                  ].map((child) {
-                    return MediaQuery.of(context).size.width >
+                      DocumentFormField(
+                        fieldName: "backId",
+                        displayName: l10n.idCardFieldBack,
+                        onDataFound: (rrn, surName, firstName) =>
+                            _updateFormData(rrn, surName, firstName),
+                      ),
+                    ].map((child) {
+                      return MediaQuery.of(context).size.width >
+                              MediaQuery.of(context).size.height
+                          ? Flexible(child: child)
+                          : Flexible(child: child);
+                    }).toList(),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: AppPaddings.xxsmall.vertical,
+                    child: Text(l10n.driversLicenseFieldTitle,
+                        style: context.typographyTheme.largeText),
+                  ),
+                  Flex(
+                    spacing: AppPaddings.small.size,
+                    mainAxisSize: MainAxisSize.min,
+                    direction: MediaQuery.of(context).size.width >
                             MediaQuery.of(context).size.height
-                        ? Flexible(child: child)
-                        : Flexible(child: child);
-                  }).toList(),
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: AppPaddings.xxsmall.vertical,
-                  child: Text(l10n.driversLicenseFieldTitle,
-                      style: context.typographyTheme.largeText),
-                ),
-                Flex(
-                  spacing: AppPaddings.small.size,
-                  mainAxisSize: MainAxisSize.min,
-                  direction: MediaQuery.of(context).size.width >
-                          MediaQuery.of(context).size.height
-                      ? Axis.horizontal
-                      : Axis.vertical,
-                  children: [
-                    // FRONT
-                    DocumentFormField(
-                      fieldName: "frontDriverLicense",
-                      displayName: l10n.driversLicenseFieldFront,
-                      onDataFound: (rrn, surName, firstName) =>
-                          _updateFormData(null, null, null),
-                    ),
-                    DocumentFormField(
-                      fieldName: "backDriverLicense",
-                      displayName: l10n.driversLicenseFieldBack,
-                      onDataFound: (rrn, surName, firstName) =>
-                          _updateFormData(null, null, null),
-                    ),
-                  ].map((child) {
-                    return MediaQuery.of(context).size.width >
-                            MediaQuery.of(context).size.height
-                        ? Flexible(child: child)
-                        : Flexible(child: child);
-                  }).toList(),
-                ),
-              ],
-            ),
-            // Invisible, just to pass data
-            FormBuilderField(builder: ((_) => Container()), name: "rrn"),
-            FormBuilderField(builder: ((_) => Container()), name: "lastname"),
-            FormBuilderField(builder: ((_) => Container()), name: "firstname"),
-            FormBuilderField(builder: ((_) => Container()), name: "birthdate"),
-          ]
-              .map((field) =>
-                  Padding(padding: AppPaddings.medium.vertical, child: field))
-              .toList(),
+                        ? Axis.horizontal
+                        : Axis.vertical,
+                    children: [
+                      // FRONT
+                      DocumentFormField(
+                        fieldName: "frontDriverLicense",
+                        displayName: l10n.driversLicenseFieldFront,
+                        onDataFound: (rrn, surName, firstName) =>
+                            _updateFormData(null, null, null),
+                      ),
+                      DocumentFormField(
+                        fieldName: "backDriverLicense",
+                        displayName: l10n.driversLicenseFieldBack,
+                        onDataFound: (rrn, surName, firstName) =>
+                            _updateFormData(null, null, null),
+                      ),
+                    ].map((child) {
+                      return MediaQuery.of(context).size.width >
+                              MediaQuery.of(context).size.height
+                          ? Flexible(child: child)
+                          : Flexible(child: child);
+                    }).toList(),
+                  ),
+                ],
+              ),
+              // Invisible, just to pass data
+              FormBuilderField(builder: ((_) => Container()), name: "rrn"),
+              FormBuilderField(builder: ((_) => Container()), name: "lastname"),
+              FormBuilderField(
+                  builder: ((_) => Container()), name: "firstname"),
+              FormBuilderField(
+                  builder: ((_) => Container()), name: "birthdate"),
+            ]
+                .map((field) =>
+                    Padding(padding: AppPaddings.medium.vertical, child: field))
+                .toList(),
+          ),
         ),
       ),
     );

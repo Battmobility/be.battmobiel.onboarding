@@ -53,42 +53,27 @@ class _MyAppState extends State<MyApp> {
       home: Builder(builder: (context) {
         return Scaffold(
           body: Center(
-              child: ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: 800),
-                  child: FutureBuilder(
-                      future: storage.read(key: "refreshToken"),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState != ConnectionState.done) {
-                          return Center(child: CircularProgressIndicator());
-                        }
-                        final token = snapshot.data;
-                        if (token != null) {
-                          return FutureBuilder(
-                              future: refreshToken(token),
-                              builder: (context, snapshot) {
-                                if (!snapshot.hasData ||
-                                    snapshot.connectionState !=
-                                        ConnectionState.done) {
-                                  return Center(
-                                      child: CircularProgressIndicator());
-                                }
-                                final refreshedToken = snapshot.data;
-                                if (refreshedToken != null &&
-                                    refreshedToken.accessToken != null) {
-                                  storage.write(
-                                      key: "refreshToken",
-                                      value: refreshedToken.refreshToken!);
-                                  _accessToken = refreshedToken;
-                                  return _formBody(
-                                      context, refreshedToken.accessToken!);
-                                } else {
-                                  return _login(context, storage);
-                                }
-                              });
-                        } else {
-                          return _login(context, storage);
-                        }
-                      }))),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 800),
+              child: FutureBuilder(
+                future: storage.read(key: "refreshToken"),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState != ConnectionState.done) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  final token = snapshot.data;
+                  if (token != null) {
+                    return _tokenRefreshBody(context, token, storage);
+                  } else if (_accessToken?.refreshToken != null) {
+                    return _tokenRefreshBody(
+                        context, _accessToken!.refreshToken!, storage);
+                  } else {
+                    return _login(context, storage);
+                  }
+                },
+              ),
+            ),
+          ),
         );
       }),
     );
@@ -97,11 +82,33 @@ class _MyAppState extends State<MyApp> {
   Widget _login(BuildContext context, FlutterSecureStorage storage) {
     return LoginPage(onLogin: (token) {
       storage.write(key: "refreshToken", value: token.refreshToken!);
-      _accessToken = token;
-      setState(() {});
+      setState(() {
+        _accessToken = token;
+      });
     }, onException: (error) {
       print("$error");
     });
+  }
+
+  Widget _tokenRefreshBody(
+      BuildContext context, String token, FlutterSecureStorage storage) {
+    return FutureBuilder(
+        future: refreshToken(token),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData ||
+              snapshot.connectionState != ConnectionState.done) {
+            return Center(child: CircularProgressIndicator());
+          }
+          final refreshedToken = snapshot.data;
+          if (refreshedToken != null && refreshedToken.accessToken != null) {
+            storage.write(
+                key: "refreshToken", value: refreshedToken.refreshToken!);
+            _accessToken = refreshedToken;
+            return _formBody(context, refreshedToken.accessToken!);
+          } else {
+            return _login(context, storage);
+          }
+        });
   }
 
   Widget _formBody(BuildContext context, String accessToken) =>
