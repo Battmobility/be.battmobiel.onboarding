@@ -1,5 +1,6 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
+import 'package:batt_onboarding/src/util/mrz_reader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -39,21 +40,21 @@ class IdentityPageState extends State<IdentityPage> {
               Text(l10n.identifyingDataTitle,
                   style: Theme.of(context).textTheme.titleSmall),
               FormBuilderTextField(
-                name: 'firstname',
-                initialValue: widget.initialData?["firstname"] ?? '',
+                name: 'firstName',
+                initialValue: widget.initialData?["firstName"] ?? '',
                 validator: FormBuilderValidators.firstName(),
                 decoration:
                     InputDecoration(labelText: l10n.firstNameFieldTitle),
               ),
               FormBuilderTextField(
-                name: 'lastname',
-                initialValue: widget.initialData?["lastname"] ?? '',
+                name: 'lastName',
+                initialValue: widget.initialData?["lastName"] ?? '',
                 validator: FormBuilderValidators.lastName(),
                 decoration: InputDecoration(labelText: l10n.lastNameFieldTitle),
               ),
               FormBuilderTextField(
-                name: 'rrn',
-                initialValue: widget.initialData?["rrn"] ?? '',
+                name: 'socialSecurityNumber',
+                initialValue: widget.initialData?["socialSecurityNumber"] ?? '',
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.numeric(),
                   FormBuilderValidators.minLength(11)
@@ -64,8 +65,8 @@ class IdentityPageState extends State<IdentityPage> {
                     hintText: l10n.numberHint),
               ),
               FormBuilderDateTimePicker(
-                name: 'birthdate',
-                initialValue: widget.initialData?["birthdate"] ??
+                name: 'dateOfBirth',
+                initialValue: widget.initialData?["dateOfBirth"] ??
                     DateTime.now().subtract(Duration(days: 5840)),
                 firstDate: DateTime.now().subtract(Duration(days: 43800)),
                 lastDate: DateTime.now().subtract(Duration(days: 5840)),
@@ -75,14 +76,33 @@ class IdentityPageState extends State<IdentityPage> {
               ),
               Text(l10n.driversLicenseFieldTitle,
                   style: Theme.of(context).textTheme.titleSmall),
-              FormBuilderTextField(
-                name: 'driverslicensenumber',
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.numeric(),
-                  FormBuilderValidators.minLength(10)
-                ]),
-                decoration:
-                    InputDecoration(labelText: l10n.driversLicenseNumber),
+              Row(
+                children: [
+                  Flexible(
+                    flex: 4,
+                    child: FormBuilderTextField(
+                      name: 'licenseNumber',
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.numeric(),
+                        FormBuilderValidators.minLength(10)
+                      ]),
+                      decoration:
+                          InputDecoration(labelText: l10n.driversLicenseNumber),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 2,
+                    child: FormBuilderDropdown(
+                        validator: FormBuilderValidators.required(),
+                        name: "licenseType",
+                        items: ["BELGIAN", "EUROPEAN", "OTHER"]
+                            .map((value) => DropdownMenuItem(
+                                  child: Text(value.capitalized),
+                                  value: value,
+                                ))
+                            .toList()),
+                  ),
+                ],
               ),
               FormBuilderDateTimePicker(
                 name: 'dateCurrentLicense',
@@ -116,7 +136,7 @@ class IdentityPageState extends State<IdentityPage> {
                         flex: 2,
                         child: FormBuilderDropdown(
                             validator: FormBuilderValidators.required(),
-                            name: "country",
+                            name: "nationality",
                             initialValue: WorldCountry.fromCode("Bel"),
                             items: WorldCountry.list
                                 .map((country) => DropdownMenuItem(
@@ -162,18 +182,6 @@ class IdentityPageState extends State<IdentityPage> {
               ),
               Row(children: [
                 Flexible(
-                  flex: 4,
-                  child: FormBuilderTextField(
-                    name: 'city',
-                    validator: FormBuilderValidators.compose(
-                      [
-                        FormBuilderValidators.required(),
-                      ],
-                    ),
-                    decoration: InputDecoration(labelText: l10n.addressCity),
-                  ),
-                ),
-                Flexible(
                   flex: 2,
                   child: Padding(
                     padding: AppPaddings.medium.leading,
@@ -187,7 +195,19 @@ class IdentityPageState extends State<IdentityPage> {
                       decoration: InputDecoration(labelText: l10n.addressZip),
                     ),
                   ),
-                )
+                ),
+                Flexible(
+                  flex: 4,
+                  child: FormBuilderTextField(
+                    name: 'city',
+                    validator: FormBuilderValidators.compose(
+                      [
+                        FormBuilderValidators.required(),
+                      ],
+                    ),
+                    decoration: InputDecoration(labelText: l10n.addressCity),
+                  ),
+                ),
               ])
             ]
                 .map((field) =>

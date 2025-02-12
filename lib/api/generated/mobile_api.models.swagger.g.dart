@@ -1675,10 +1675,10 @@ Map<String, dynamic> _$UserV1ImageUserIdPost$RequestBodyToJson(
       'file': instance.file,
     };
 
-UserV1UsersOnboardingDocumentsPut$RequestBody
-    _$UserV1UsersOnboardingDocumentsPut$RequestBodyFromJson(
+UserV1UsersOnboardingDocumentsPost$RequestBody
+    _$UserV1UsersOnboardingDocumentsPost$RequestBodyFromJson(
             Map<String, dynamic> json) =>
-        UserV1UsersOnboardingDocumentsPut$RequestBody(
+        UserV1UsersOnboardingDocumentsPost$RequestBody(
           backDriverLicense: json['backDriverLicense'] as String?,
           backId: json['backId'] as String?,
           damageStatistic: json['damageStatistic'] as String?,
@@ -1687,8 +1687,8 @@ UserV1UsersOnboardingDocumentsPut$RequestBody
           selfie: json['selfie'] as String?,
         );
 
-Map<String, dynamic> _$UserV1UsersOnboardingDocumentsPut$RequestBodyToJson(
-        UserV1UsersOnboardingDocumentsPut$RequestBody instance) =>
+Map<String, dynamic> _$UserV1UsersOnboardingDocumentsPost$RequestBodyToJson(
+        UserV1UsersOnboardingDocumentsPost$RequestBody instance) =>
     <String, dynamic>{
       'backDriverLicense': instance.backDriverLicense,
       'backId': instance.backId,

@@ -33,6 +33,7 @@ class DocumentsPageState extends State<DocumentsPage> {
           child: Column(
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(l10n.documentsPageTitle,
                       style: Theme.of(context).textTheme.headlineLarge),
@@ -115,12 +116,13 @@ class DocumentsPageState extends State<DocumentsPage> {
                 ],
               ),
               // Invisible, just to pass data
-              FormBuilderField(builder: ((_) => Container()), name: "rrn"),
-              FormBuilderField(builder: ((_) => Container()), name: "lastname"),
               FormBuilderField(
-                  builder: ((_) => Container()), name: "firstname"),
+                  builder: ((_) => Container()), name: "socialSecurityNumber"),
+              FormBuilderField(builder: ((_) => Container()), name: "lastName"),
               FormBuilderField(
-                  builder: ((_) => Container()), name: "birthdate"),
+                  builder: ((_) => Container()), name: "firstName"),
+              FormBuilderField(
+                  builder: ((_) => Container()), name: "dateOfBirth"),
             ]
                 .map((field) =>
                     Padding(padding: AppPaddings.medium.vertical, child: field))
@@ -132,18 +134,20 @@ class DocumentsPageState extends State<DocumentsPage> {
   }
 
   void _updateFormData(String? rrn, String? surname, String? firstName) {
-    rrn != null ? widget.formKey.currentState?.patchValue({"rrn": rrn}) : {};
+    rrn != null
+        ? widget.formKey.currentState?.patchValue({"socialSecurityNumber": rrn})
+        : {};
     surname != null
-        ? widget.formKey.currentState?.patchValue({"lastname": surname})
+        ? widget.formKey.currentState?.patchValue({"lastName": surname})
         : {};
     firstName != null
-        ? widget.formKey.currentState?.patchValue({"firstname": firstName})
+        ? widget.formKey.currentState?.patchValue({"firstName": firstName})
         : {};
 
     if (rrn != null) {
       final birthDate = RrnBirthdayParser.birthdayFromRrn(rrn);
       if (birthDate != null) {
-        widget.formKey.currentState?.patchValue({"birthdate": birthDate});
+        widget.formKey.currentState?.patchValue({"dateOfBirth": birthDate});
       }
     }
   }

@@ -266,18 +266,24 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                       _showUploadFailedDialog(context);
                                     }
                                   });
-                                  _controller.jumpToPage(_step);
                                 }
                               }
                               if (_step == 3) {
                                 final values =
                                     pages[3].formKey.currentState?.value;
                                 if (values != null) {
-                                  // TODO: post personal data
-                                  setState(() {
-                                    _step++;
+                                  onboardingRepository
+                                      .postPersonalData(values)
+                                      .then((success) {
+                                    if (success) {
+                                      setState(() {
+                                        _step++;
+                                      });
+                                      _controller.jumpToPage(_step);
+                                    } else {
+                                      _showUploadFailedDialog(context);
+                                    }
                                   });
-                                  _controller.jumpToPage(_step);
                                 }
                               }
                               if (_step == 4) {

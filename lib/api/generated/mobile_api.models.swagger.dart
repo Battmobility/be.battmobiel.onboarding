@@ -6875,8 +6875,8 @@ extension $UserV1ImageUserIdPost$RequestBodyExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserV1UsersOnboardingDocumentsPut$RequestBody {
-  const UserV1UsersOnboardingDocumentsPut$RequestBody({
+class UserV1UsersOnboardingDocumentsPost$RequestBody {
+  const UserV1UsersOnboardingDocumentsPost$RequestBody({
     this.backDriverLicense,
     this.backId,
     this.damageStatistic,
@@ -6885,14 +6885,14 @@ class UserV1UsersOnboardingDocumentsPut$RequestBody {
     this.selfie,
   });
 
-  factory UserV1UsersOnboardingDocumentsPut$RequestBody.fromJson(
+  factory UserV1UsersOnboardingDocumentsPost$RequestBody.fromJson(
           Map<String, dynamic> json) =>
-      _$UserV1UsersOnboardingDocumentsPut$RequestBodyFromJson(json);
+      _$UserV1UsersOnboardingDocumentsPost$RequestBodyFromJson(json);
 
   static const toJsonFactory =
-      _$UserV1UsersOnboardingDocumentsPut$RequestBodyToJson;
+      _$UserV1UsersOnboardingDocumentsPost$RequestBodyToJson;
   Map<String, dynamic> toJson() =>
-      _$UserV1UsersOnboardingDocumentsPut$RequestBodyToJson(this);
+      _$UserV1UsersOnboardingDocumentsPost$RequestBodyToJson(this);
 
   @JsonKey(name: 'backDriverLicense')
   final String? backDriverLicense;
@@ -6907,12 +6907,12 @@ class UserV1UsersOnboardingDocumentsPut$RequestBody {
   @JsonKey(name: 'selfie')
   final String? selfie;
   static const fromJsonFactory =
-      _$UserV1UsersOnboardingDocumentsPut$RequestBodyFromJson;
+      _$UserV1UsersOnboardingDocumentsPost$RequestBodyFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is UserV1UsersOnboardingDocumentsPut$RequestBody &&
+        (other is UserV1UsersOnboardingDocumentsPost$RequestBody &&
             (identical(other.backDriverLicense, backDriverLicense) ||
                 const DeepCollectionEquality()
                     .equals(other.backDriverLicense, backDriverLicense)) &&
@@ -6945,16 +6945,16 @@ class UserV1UsersOnboardingDocumentsPut$RequestBody {
       runtimeType.hashCode;
 }
 
-extension $UserV1UsersOnboardingDocumentsPut$RequestBodyExtension
-    on UserV1UsersOnboardingDocumentsPut$RequestBody {
-  UserV1UsersOnboardingDocumentsPut$RequestBody copyWith(
+extension $UserV1UsersOnboardingDocumentsPost$RequestBodyExtension
+    on UserV1UsersOnboardingDocumentsPost$RequestBody {
+  UserV1UsersOnboardingDocumentsPost$RequestBody copyWith(
       {String? backDriverLicense,
       String? backId,
       String? damageStatistic,
       String? frontDriverLicense,
       String? frontId,
       String? selfie}) {
-    return UserV1UsersOnboardingDocumentsPut$RequestBody(
+    return UserV1UsersOnboardingDocumentsPost$RequestBody(
         backDriverLicense: backDriverLicense ?? this.backDriverLicense,
         backId: backId ?? this.backId,
         damageStatistic: damageStatistic ?? this.damageStatistic,
@@ -6963,14 +6963,14 @@ extension $UserV1UsersOnboardingDocumentsPut$RequestBodyExtension
         selfie: selfie ?? this.selfie);
   }
 
-  UserV1UsersOnboardingDocumentsPut$RequestBody copyWithWrapped(
+  UserV1UsersOnboardingDocumentsPost$RequestBody copyWithWrapped(
       {Wrapped<String?>? backDriverLicense,
       Wrapped<String?>? backId,
       Wrapped<String?>? damageStatistic,
       Wrapped<String?>? frontDriverLicense,
       Wrapped<String?>? frontId,
       Wrapped<String?>? selfie}) {
-    return UserV1UsersOnboardingDocumentsPut$RequestBody(
+    return UserV1UsersOnboardingDocumentsPost$RequestBody(
         backDriverLicense: (backDriverLicense != null
             ? backDriverLicense.value
             : this.backDriverLicense),

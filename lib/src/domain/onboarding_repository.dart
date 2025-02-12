@@ -23,4 +23,8 @@ final class OnboardingRepository {
 
     return await datasource.postDocuments(docsMap);
   }
+
+  Future<bool> postPersonalData(Map<String, dynamic> personalData) async {
+    return await datasource.postPersonalData(personalData);
+  }
 }

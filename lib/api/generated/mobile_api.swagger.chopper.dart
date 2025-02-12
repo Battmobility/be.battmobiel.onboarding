@@ -55,7 +55,7 @@ final class _$MobileApi extends MobileApi {
   }
 
   @override
-  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingDocumentsPut({
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingDocumentsPost({
     List<int>? backDriverLicense,
     List<int>? backId,
     List<int>? damageStatistic,
@@ -91,7 +91,7 @@ final class _$MobileApi extends MobileApi {
       ),
     ];
     final Request $request = Request(
-      'PUT',
+      'POST',
       $url,
       client.baseUrl,
       parts: $parts,
