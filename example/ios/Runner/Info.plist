@@ -47,7 +47,7 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to the photo library to allow you to select photos of your license and ID.</string>
-		<key>NSCameraUsageDescription</key>
+	<key>NSCameraUsageDescription</key>
 	<string>We need access to the camera to let you take a picture of your license and ID.</string>
 </dict>
 </plist>

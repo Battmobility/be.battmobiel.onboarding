@@ -77,6 +77,7 @@ class IdentityPageState extends State<IdentityPage> {
               Text(l10n.driversLicenseFieldTitle,
                   style: Theme.of(context).textTheme.titleSmall),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
                     flex: 4,
@@ -92,15 +93,18 @@ class IdentityPageState extends State<IdentityPage> {
                   ),
                   Flexible(
                     flex: 2,
-                    child: FormBuilderDropdown(
-                        validator: FormBuilderValidators.required(),
-                        name: "licenseType",
-                        items: ["BELGIAN", "EUROPEAN", "OTHER"]
-                            .map((value) => DropdownMenuItem(
-                                  child: Text(value.capitalized),
-                                  value: value,
-                                ))
-                            .toList()),
+                    child: Padding(
+                      padding: AppPaddings.medium.leading,
+                      child: FormBuilderDropdown(
+                          validator: FormBuilderValidators.required(),
+                          name: "licenseType",
+                          items: ["BELGIAN", "EUROPEAN", "OTHER"]
+                              .map((value) => DropdownMenuItem(
+                                    child: Text(value.capitalized),
+                                    value: value,
+                                  ))
+                              .toList()),
+                    ),
                   ),
                 ],
               ),
@@ -137,7 +141,7 @@ class IdentityPageState extends State<IdentityPage> {
                         child: FormBuilderDropdown(
                             validator: FormBuilderValidators.required(),
                             name: "nationality",
-                            initialValue: WorldCountry.fromCode("Bel"),
+                            initialValue: WorldCountry.fromCode("Bel").code,
                             items: WorldCountry.list
                                 .map((country) => DropdownMenuItem(
                                       child: Text(
@@ -146,7 +150,7 @@ class IdentityPageState extends State<IdentityPage> {
                                             .textTheme
                                             .bodyLarge,
                                       ),
-                                      value: country,
+                                      value: country.code,
                                     ))
                                 .toList()),
                       ),
@@ -180,32 +184,32 @@ class IdentityPageState extends State<IdentityPage> {
                         padding: AppPaddings.medium.vertical, child: field))
                     .toList(),
               ),
-              Row(children: [
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Flexible(
                   flex: 2,
-                  child: Padding(
-                    padding: AppPaddings.medium.leading,
-                    child: FormBuilderTextField(
-                      name: 'postalCode',
-                      validator: FormBuilderValidators.compose(
-                        [
-                          FormBuilderValidators.required(),
-                        ],
-                      ),
-                      decoration: InputDecoration(labelText: l10n.addressZip),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  flex: 4,
                   child: FormBuilderTextField(
-                    name: 'city',
+                    name: 'postalCode',
                     validator: FormBuilderValidators.compose(
                       [
                         FormBuilderValidators.required(),
                       ],
                     ),
-                    decoration: InputDecoration(labelText: l10n.addressCity),
+                    decoration: InputDecoration(labelText: l10n.addressZip),
+                  ),
+                ),
+                Flexible(
+                  flex: 4,
+                  child: Padding(
+                    padding: AppPaddings.medium.leading,
+                    child: FormBuilderTextField(
+                      name: 'city',
+                      validator: FormBuilderValidators.compose(
+                        [
+                          FormBuilderValidators.required(),
+                        ],
+                      ),
+                      decoration: InputDecoration(labelText: l10n.addressCity),
+                    ),
                   ),
                 ),
               ])

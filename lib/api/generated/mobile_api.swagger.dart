@@ -71,26 +71,9 @@ abstract class MobileApi extends ChopperService {
   @Get(path: '/user/v1/users/onboarding')
   Future<chopper.Response<ContractsOnboarding>> _userV1UsersOnboardingGet();
 
-  ///Update your information
-  Future<chopper.Response<ContractsOnboarding>> userV1UsersOnboardingPut(
-      {required ContractsOnboardingPersonal? body}) {
-    generatedMapping.putIfAbsent(
-        ContractsOnboarding, () => ContractsOnboarding.fromJsonFactory);
-
-    return _userV1UsersOnboardingPut(body: body);
-  }
-
-  ///Update your information
-  @Put(
-    path: '/user/v1/users/onboarding',
-    optionalBody: true,
-  )
-  Future<chopper.Response<ContractsOnboarding>> _userV1UsersOnboardingPut(
-      {@Body() required ContractsOnboardingPersonal? body});
-
   ///Upload your own documents
   Future<chopper.Response<ContractsOnboarding>>
-      userV1UsersOnboardingDocumentsPost({
+      userV1UsersOnboardingDocumentsPut({
     List<int>? backDriverLicense,
     List<int>? backId,
     List<int>? damageStatistic,
@@ -101,7 +84,7 @@ abstract class MobileApi extends ChopperService {
     generatedMapping.putIfAbsent(
         ContractsOnboarding, () => ContractsOnboarding.fromJsonFactory);
 
-    return _userV1UsersOnboardingDocumentsPost(
+    return _userV1UsersOnboardingDocumentsPut(
         backDriverLicense: backDriverLicense,
         backId: backId,
         damageStatistic: damageStatistic,
@@ -111,18 +94,18 @@ abstract class MobileApi extends ChopperService {
   }
 
   ///Upload your own documents
-  @Post(
+  @Put(
     path: '/user/v1/users/onboarding/documents',
     optionalBody: true,
   )
   @Multipart()
   Future<chopper.Response<ContractsOnboarding>>
-      _userV1UsersOnboardingDocumentsPost({
-    @PartFile("backDriverLicense") List<int>? backDriverLicense,
-    @PartFile("backId") List<int>? backId,
+      _userV1UsersOnboardingDocumentsPut({
+    @PartFile() List<int>? backDriverLicense,
+    @PartFile() List<int>? backId,
     @PartFile() List<int>? damageStatistic,
-    @PartFile("frontDriverLicense") List<int>? frontDriverLicense,
-    @PartFile("frontId") List<int>? frontId,
+    @PartFile() List<int>? frontDriverLicense,
+    @PartFile() List<int>? frontId,
     @PartFile() List<int>? selfie,
   });
 
@@ -142,6 +125,25 @@ abstract class MobileApi extends ChopperService {
   )
   Future<chopper.Response<ContractsOnboarding>> _userV1UsersOnboardingLegalPut(
       {@Body() required ContractsOnboardingLegal? body});
+
+  ///Update your information
+  Future<chopper.Response<ContractsOnboarding>>
+      userV1UsersOnboardingPersonalPut(
+          {required ContractsOnboardingPersonal? body}) {
+    generatedMapping.putIfAbsent(
+        ContractsOnboarding, () => ContractsOnboarding.fromJsonFactory);
+
+    return _userV1UsersOnboardingPersonalPut(body: body);
+  }
+
+  ///Update your information
+  @Put(
+    path: '/user/v1/users/onboarding/personal',
+    optionalBody: true,
+  )
+  Future<chopper.Response<ContractsOnboarding>>
+      _userV1UsersOnboardingPersonalPut(
+          {@Body() required ContractsOnboardingPersonal? body});
 
   ///Register or verify your phone number
   Future<chopper.Response<ContractsOnboarding>> userV1UsersOnboardingPhonePut(

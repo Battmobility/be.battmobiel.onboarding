@@ -41,21 +41,7 @@ final class _$MobileApi extends MobileApi {
   }
 
   @override
-  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingPut(
-      {required ContractsOnboardingPersonal? body}) {
-    final Uri $url = Uri.parse('/user/v1/users/onboarding');
-    final $body = body;
-    final Request $request = Request(
-      'PUT',
-      $url,
-      client.baseUrl,
-      body: $body,
-    );
-    return client.send<ContractsOnboarding, ContractsOnboarding>($request);
-  }
-
-  @override
-  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingDocumentsPost({
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingDocumentsPut({
     List<int>? backDriverLicense,
     List<int>? backId,
     List<int>? damageStatistic,
@@ -91,7 +77,7 @@ final class _$MobileApi extends MobileApi {
       ),
     ];
     final Request $request = Request(
-      'POST',
+      'PUT',
       $url,
       client.baseUrl,
       parts: $parts,
@@ -104,6 +90,20 @@ final class _$MobileApi extends MobileApi {
   Future<Response<ContractsOnboarding>> _userV1UsersOnboardingLegalPut(
       {required ContractsOnboardingLegal? body}) {
     final Uri $url = Uri.parse('/user/v1/users/onboarding/legal');
+    final $body = body;
+    final Request $request = Request(
+      'PUT',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<ContractsOnboarding, ContractsOnboarding>($request);
+  }
+
+  @override
+  Future<Response<ContractsOnboarding>> _userV1UsersOnboardingPersonalPut(
+      {required ContractsOnboardingPersonal? body}) {
+    final Uri $url = Uri.parse('/user/v1/users/onboarding/personal');
     final $body = body;
     final Request $request = Request(
       'PUT',
