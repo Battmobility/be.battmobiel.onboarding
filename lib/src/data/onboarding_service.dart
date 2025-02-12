@@ -15,12 +15,17 @@ final class OnboardingService {
   }
 
   Future<bool> postDocuments(Map<String, Uint8List> documents) async {
-    final response = await api.userV1UsersOnboardingDocumentsPut(
-        backDriverLicense: documents["backDriverLicense"]!.toList(),
-        frontDriverLicense: documents["frontDriverLicense"]!.toList(),
-        backId: documents["backId"]!.toList(),
-        frontId: documents["frontId"]!.toList());
-    return response.isSuccessful;
+    try {
+      List<int> backDriverLicense = documents["backDriverLicense"]!.toList();
+      final response = await api.userV1UsersOnboardingDocumentsPut(
+          backDriverLicense: backDriverLicense,
+          frontDriverLicense: documents["frontDriverLicense"]!.toList(),
+          backId: documents["backId"]!.toList(),
+          frontId: documents["frontId"]!.toList());
+      return response.isSuccessful;
+    } catch (e, _) {
+      return false;
+    }
   }
 
   Future<bool> postPersonalData(Map<String, String> formData) async {

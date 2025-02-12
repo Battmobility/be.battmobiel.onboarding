@@ -11,6 +11,7 @@ import 'package:batt_onboarding/src/presentation/pages/identity_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../l10n/onboarding_localizations.dart';
 
 class OnboardingLandingForm extends StatefulWidget {
@@ -76,10 +77,39 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       ),
       VerificationPage(formKey: _formKeys[4], onAction: (_) {}),
       OnboardingDonePage(
-          formKey: _formKeys[5],
+        formKey: _formKeys[5],
+        onAction: (_) {
+          widget.onSubmitted(true);
+        },
+      )
+    ];
+
+    final icons = [
+      IntroPage(
+          formKey: _formKeys[0],
           onAction: (_) {
-            widget.onSubmitted(true);
-          })
+            widget.onSubmitted(false);
+          }),
+      ConvictionsPage(
+        formKey: _formKeys[1],
+        onAction: (_) {},
+      ),
+      DocumentsPage(
+        formKey: _formKeys[2],
+        onAction: (_) {},
+      ),
+      IdentityPage(
+        formKey: _formKeys[3],
+        onAction: (_) {},
+        initialData: _scannedData,
+      ),
+      VerificationPage(formKey: _formKeys[4], onAction: (_) {}),
+      OnboardingDonePage(
+        formKey: _formKeys[5],
+        onAction: (_) {
+          widget.onSubmitted(true);
+        },
+      )
     ];
 
     return Scaffold(
@@ -105,128 +135,170 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                   padding: AppPaddings.medium.top,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      _step > 0
-                          ? OrangeOutlinedBattButton(
-                              label: l10n.previousButtonText,
-                              onPressed: () {
-                                _scannedData = {};
-                                setState(() {
-                                  _step--;
-                                });
-                                _controller.jumpToPage(_step);
-                              })
-                          : Opacity(
-                              opacity: 0.66,
-                              child: OrangeOutlinedBattButton(
-                                  label: l10n.closeButtonText,
-                                  onPressed: () {
-                                    widget.onSubmitted(false);
-                                  }),
-                            ),
+                      SizedBox(
+                        width: 100,
+                        child: _step > 0
+                            ? OrangeOutlinedBattButton(
+                                label: l10n.previousButtonText,
+                                onPressed: () {
+                                  _scannedData = {};
+                                  setState(() {
+                                    _step--;
+                                  });
+                                  _controller.jumpToPage(_step);
+                                })
+                            : Opacity(
+                                opacity: 0.66,
+                                child: OrangeOutlinedBattButton(
+                                    label: l10n.closeButtonText,
+                                    onPressed: () {
+                                      widget.onSubmitted(false);
+                                    }),
+                              ),
+                      ),
                       Flexible(
-                        child: Stepper(
-                          type: StepperType.horizontal,
-                          elevation: 0,
-                          currentStep: _step,
-                          connectorColor: WidgetStatePropertyAll(
-                              Theme.of(context).colorScheme.surface),
-                          connectorThickness: 4,
-                          steps: pages
-                              .map((page) => Step(
-                                    title: Text(""),
-                                    content: Text("${pages.indexOf(page)}"),
-                                    isActive: pages.indexOf(page) <= _step,
-                                    state: pages.indexOf(page) < _step
-                                        ? StepState.complete
-                                        : pages.indexOf(page) == _step
-                                            ? StepState.editing
-                                            : StepState.indexed,
-                                  ))
-                              .toList(),
+                        flex: 6,
+                        child: Padding(
+                          padding: AppPaddings.small.top,
+                          child: Stepper(
+                            type: StepperType.horizontal,
+                            elevation: 0,
+                            currentStep: _step,
+                            margin: EdgeInsets.only(top: AppSpacings.xxs),
+                            stepIconWidth: AppSpacings.xxl,
+                            stepIconMargin: EdgeInsets.zero,
+                            connectorColor: WidgetStatePropertyAll(
+                                Theme.of(context).colorScheme.primary),
+                            connectorThickness: 2,
+                            physics: NeverScrollableScrollPhysics(),
+                            stepIconBuilder: (stepIndex, stepState) {
+                              switch (stepState) {
+                                case StepState.complete:
+                                  return FaIcon(
+                                    FontAwesomeIcons.check,
+                                    size: 14,
+                                  );
+                                case StepState.editing:
+                                  return Padding(
+                                    padding: EdgeInsets.only(bottom: 1),
+                                    child: FaIcon(FontAwesomeIcons.carSide,
+                                        size: 14),
+                                  );
+                                case StepState.indexed:
+                                  return Text("$stepIndex");
+                                case StepState.error:
+                                  return FaIcon(
+                                      FontAwesomeIcons.triangleExclamation);
+                                case StepState.disabled:
+                                  return Opacity(
+                                      opacity: 100, child: Text("$stepIndex"));
+                              }
+                            },
+                            steps: pages
+                                .map((page) => Step(
+                                      title: Text(""),
+                                      content: pages.indexOf(page) < _step
+                                          ? FaIcon(FontAwesomeIcons.check)
+                                          : pages.indexOf(page) == _step
+                                              ? FaIcon(FontAwesomeIcons.carSide)
+                                              : Text("$_step"),
+                                      isActive: pages.indexOf(page) <= _step,
+                                      state: pages.indexOf(page) < _step
+                                          ? StepState.complete
+                                          : pages.indexOf(page) == _step
+                                              ? StepState.editing
+                                              : StepState.indexed,
+                                    ))
+                                .toList(),
+                          ),
                         ),
                       ),
-                      OrangeSolidTextButton(
-                        label: l10n.nextButtonText,
-                        onPressed: () {
-                          if (_step == 0) {
-                            setState(() {
-                              _step++;
-                            });
-                            _controller.jumpToPage(_step);
-                          } else if (pages[_step]
-                                  .formKey
-                                  .currentState
-                                  ?.saveAndValidate() ??
-                              false) {
-                            if (_step == 1) {
-                              final values =
-                                  pages[1].formKey.currentState?.value;
-                              if (values != null) {
-                                onboardingRepository
-                                    .postConvictions(values)
-                                    .then((success) {
-                                  if (success) {
-                                    setState(() {
-                                      _step++;
-                                    });
-                                    _controller.jumpToPage(_step);
-                                  } else {
-                                    _showUploadFailedDialog(context);
-                                  }
-                                });
+                      SizedBox(
+                        width: 100,
+                        child: OrangeSolidTextButton(
+                          label: l10n.nextButtonText,
+                          onPressed: () {
+                            if (_step == 0) {
+                              setState(() {
+                                _step++;
+                              });
+                              _controller.jumpToPage(_step);
+                            } else if (pages[_step]
+                                    .formKey
+                                    .currentState
+                                    ?.saveAndValidate() ??
+                                false) {
+                              if (_step == 1) {
+                                final values =
+                                    pages[1].formKey.currentState?.value;
+                                if (values != null) {
+                                  onboardingRepository
+                                      .postConvictions(values)
+                                      .then((success) {
+                                    if (success) {
+                                      setState(() {
+                                        _step++;
+                                      });
+                                      _controller.jumpToPage(_step);
+                                    } else {
+                                      _showUploadFailedDialog(context);
+                                    }
+                                  });
+                                }
                               }
-                            }
-                            if (_step == 2) {
-                              final values =
-                                  pages[2].formKey.currentState?.value;
-                              if (values != null) {
-                                // TODO: re enable when api fixed
+                              if (_step == 2) {
+                                final values =
+                                    pages[2].formKey.currentState?.value;
+                                if (values != null) {
+                                  // TODO: re enable when api fixed
 
-                                onboardingRepository
-                                    .postDocuments(values)
-                                    .then((success) {
-                                  if (success) {
-                                    setState(() {
-                                      _step++;
-                                    });
-                                    _controller.jumpToPage(_step);
-                                  } else {
-                                    _showUploadFailedDialog(context);
-                                  }
-                                });
-                                _controller.jumpToPage(_step);
+                                  onboardingRepository
+                                      .postDocuments(values)
+                                      .then((success) {
+                                    if (success) {
+                                      setState(() {
+                                        _step++;
+                                      });
+                                      _controller.jumpToPage(_step);
+                                    } else {
+                                      _showUploadFailedDialog(context);
+                                    }
+                                  });
+                                  _controller.jumpToPage(_step);
+                                }
                               }
-                            }
-                            if (_step == 3) {
-                              final values =
-                                  pages[3].formKey.currentState?.value;
-                              if (values != null) {
-                                // TODO: post personal data
-                                setState(() {
-                                  _step++;
-                                });
-                                _controller.jumpToPage(_step);
+                              if (_step == 3) {
+                                final values =
+                                    pages[3].formKey.currentState?.value;
+                                if (values != null) {
+                                  // TODO: post personal data
+                                  setState(() {
+                                    _step++;
+                                  });
+                                  _controller.jumpToPage(_step);
+                                }
                               }
-                            }
-                            if (_step == 4) {
-                              final values =
-                                  pages[4].formKey.currentState?.value;
-                              if (values != null) {
-                                // TODO: do whatever, phone is confirmed here
-                                setState(() {
-                                  _step++;
-                                });
-                                _controller.jumpToPage(_step);
+                              if (_step == 4) {
+                                final values =
+                                    pages[4].formKey.currentState?.value;
+                                if (values != null) {
+                                  // TODO: do whatever, phone is confirmed here
+                                  setState(() {
+                                    _step++;
+                                  });
+                                  _controller.jumpToPage(_step);
+                                }
                               }
+                              if (_step == 5) {
+                                // TODO: show success page/close onboarding?
+                              }
+                            } else {
+                              _showIncompleteFormDialog(context);
                             }
-                            if (_step == 5) {
-                              // TODO: show success page/close onboarding?
-                            }
-                          } else {
-                            _showIncompleteFormDialog(context);
-                          }
-                        },
+                          },
+                        ),
                       )
                     ],
                   ),
@@ -241,17 +313,28 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
 
   void _showIncompleteFormDialog(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-            title: Text(
-                OnboardingLocalizations.of(context).fillOutBeforeContinuing)));
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title:
+            Text(OnboardingLocalizations.of(context).fillOutBeforeContinuing),
+        actions: [
+          OutlinedTextButton(
+              label: "Ok", onPressed: () => Navigator.of(ctx).pop())
+        ],
+      ),
+    );
   }
 
   void _showUploadFailedDialog(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-            title:
-                Text(OnboardingLocalizations.of(context).errorPostingMessage)));
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(OnboardingLocalizations.of(context).errorPostingMessage),
+        actions: [
+          OutlinedTextButton(
+              label: "Ok", onPressed: () => Navigator.of(ctx).pop())
+        ],
+      ),
+    );
   }
 }

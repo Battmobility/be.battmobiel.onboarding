@@ -75,7 +75,7 @@
     },
     {
       "name": "build_daemon",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/build_daemon-4.0.3",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/build_daemon-4.0.4",
       "packageUri": "lib/",
       "languageVersion": "3.6"
     },
@@ -306,6 +306,12 @@
       "rootUri": "file:///Users/kris/Flutter/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "form_builder_validators",
@@ -765,7 +771,7 @@
     },
     {
       "name": "shared_preferences_android",
-      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.4",
+      "rootUri": "file:///Users/kris/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.5",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -1034,7 +1040,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-02-11T10:34:28.839993Z",
+  "generated": "2025-02-11T17:00:43.741877Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///Users/kris/Flutter/flutter",
