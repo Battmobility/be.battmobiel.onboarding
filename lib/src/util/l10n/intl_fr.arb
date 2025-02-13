@@ -263,6 +263,48 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"verificationPageTitle": "Verify phone",
+	"@verificationPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageMessage": "Select your country code and phone number to verify it.",
+	"@verificationPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageVerifyButtonTitle": "Send code",
+	"@verificationPageVerifyButtonTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageConfirmButtonTitle": "Confirm code",
+	"@verificationPageConfirmButtonTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageEnterCodeMessage": "Please enter the confirmation code that was sent to {phoneNumber}",
+	"@verificationPageEnterCodeMessage": {
+		"type": "text",
+		"placeholders": {
+			"phoneNumber": {}
+		}
+	},
+	"verificationPageVerificationSuccessMessage": "Verification successful!",
+	"@verificationPageVerificationSuccessMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageVerificationFailureMessage": "Verification failed!",
+	"@verificationPageVerificationFailureMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageVerificationResend": "Resend code",
+	"@verificationPageVerificationResend": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"phoneFieldTitle": "Téléphone",
 	"@phoneFieldTitle": {
 		"type": "text",

@@ -409,6 +409,54 @@ abstract class OnboardingLocalizations {
   /// **'Numbers only, no spaces or special characters.'**
   String get numberHint;
 
+  /// No description provided for @verificationPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify phone'**
+  String get verificationPageTitle;
+
+  /// No description provided for @verificationPageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your country code and phone number to verify it.'**
+  String get verificationPageMessage;
+
+  /// No description provided for @verificationPageVerifyButtonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get verificationPageVerifyButtonTitle;
+
+  /// No description provided for @verificationPageEnterCodeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the confirmation code that was sent to {phoneNumber}'**
+  String verificationPageEnterCodeMessage(Object phoneNumber);
+
+  /// No description provided for @verificationPageConfirmButtonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm code'**
+  String get verificationPageConfirmButtonTitle;
+
+  /// No description provided for @verificationPageVerificationSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification successful!'**
+  String get verificationPageVerificationSuccessMessage;
+
+  /// No description provided for @verificationPageVerificationFailureMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification failed!'**
+  String get verificationPageVerificationFailureMessage;
+
+  /// No description provided for @verificationPageVerificationResend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get verificationPageVerificationResend;
+
   /// No description provided for @phoneFieldTitle.
   ///
   /// In en, this message translates to:

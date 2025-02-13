@@ -139,20 +139,20 @@ class IdentityPageState extends State<IdentityPage> {
                       Flexible(
                         flex: 2,
                         child: FormBuilderDropdown(
-                            validator: FormBuilderValidators.required(),
-                            name: "nationality",
-                            initialValue: WorldCountry.fromCode("Bel").code,
-                            items: WorldCountry.list
-                                .map((country) => DropdownMenuItem(
-                                      child: Text(
-                                        "${country.emoji} ${country.name.common}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
-                                      value: country.code,
-                                    ))
-                                .toList()),
+                          validator: FormBuilderValidators.required(),
+                          name: "nationality",
+                          initialValue: WorldCountry.fromCode("Bel").code,
+                          items: WorldCountry.list
+                              .map((country) => DropdownMenuItem(
+                                    child: Text(
+                                      "${country.emoji} ${country.name.common}",
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                    ),
+                                    value: country.code,
+                                  ))
+                              .toList(),
+                        ),
                       ),
                     ],
                   ),

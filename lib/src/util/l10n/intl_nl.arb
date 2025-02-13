@@ -264,6 +264,48 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"verificationPageTitle": "Verifieer telefoonnummer",
+	"@verificationPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageMessage": "Selecteer je landcode en geef het nummer in waarop je een code wil ontvangen.",
+	"@verificationPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageVerifyButtonTitle": "Stuur code",
+	"@verificationPageVerifyButtonTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageConfirmButtonTitle": "Bevestig code",
+	"@verificationPageConfirmButtonTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageEnterCodeMessage": "Voer hieronder de code in die verstuurd werd naar {phoneNumber}",
+	"@verificationPageEnterCodeMessage": {
+		"type": "text",
+		"placeholders": {
+			"phoneNumber": {}
+		}
+	},
+	"verificationPageVerificationSuccessMessage": "Verificatie geslaagd!",
+	"@verificationPageVerificationSuccessMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageVerificationFailureMessage": "Verificatie mislukt!",
+	"@verificationPageVerificationFailureMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageVerificationResend": "Verstuur code opnieuw",
+	"@verificationPageVerificationResend": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"phoneFieldTitle": "Telefoon",
 	"@phoneFieldTitle": {
 		"type": "text",

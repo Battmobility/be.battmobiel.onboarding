@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
         future: refreshToken(token),
         builder: (context, snapshot) {
           if (!snapshot.hasData ||
-              snapshot.connectionState == ConnectionState.waiting) {
+              snapshot.connectionState != ConnectionState.done) {
             return Center(child: CircularProgressIndicator());
           }
           final refreshedToken = snapshot.data;

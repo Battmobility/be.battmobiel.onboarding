@@ -165,6 +165,32 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get numberHint => 'Enkel cijfers, geen spaties of speciale tekens.';
 
   @override
+  String get verificationPageTitle => 'Verifieer telefoonnummer';
+
+  @override
+  String get verificationPageMessage => 'Selecteer je landcode en geef het nummer in waarop je een code wil ontvangen.';
+
+  @override
+  String get verificationPageVerifyButtonTitle => 'Stuur code';
+
+  @override
+  String verificationPageEnterCodeMessage(Object phoneNumber) {
+    return 'Voer hieronder de code in die verstuurd werd naar $phoneNumber';
+  }
+
+  @override
+  String get verificationPageConfirmButtonTitle => 'Bevestig code';
+
+  @override
+  String get verificationPageVerificationSuccessMessage => 'Verificatie geslaagd!';
+
+  @override
+  String get verificationPageVerificationFailureMessage => 'Verificatie mislukt!';
+
+  @override
+  String get verificationPageVerificationResend => 'Verstuur code opnieuw';
+
+  @override
   String get phoneFieldTitle => 'Telefoon';
 
   @override

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
@@ -62,20 +60,22 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           onAction: (_) {
             widget.onSubmitted(false);
           }),
+      VerificationPage(
+          formKey: _formKeys[1], onAction: (_) {}), // TODO put back on 4
+
       ConvictionsPage(
-        formKey: _formKeys[1],
-        onAction: (_) {},
-      ),
-      DocumentsPage(
         formKey: _formKeys[2],
         onAction: (_) {},
       ),
-      IdentityPage(
+      DocumentsPage(
         formKey: _formKeys[3],
+        onAction: (_) {},
+      ),
+      IdentityPage(
+        formKey: _formKeys[4],
         onAction: (_) {},
         initialData: _scannedData,
       ),
-      VerificationPage(formKey: _formKeys[4], onAction: (_) {}),
       OnboardingDonePage(
         formKey: _formKeys[5],
         onAction: (_) {

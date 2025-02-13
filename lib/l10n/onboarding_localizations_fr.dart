@@ -165,6 +165,32 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get numberHint => 'Numbers only, no spaces or special characters.';
 
   @override
+  String get verificationPageTitle => 'Verify phone';
+
+  @override
+  String get verificationPageMessage => 'Select your country code and phone number to verify it.';
+
+  @override
+  String get verificationPageVerifyButtonTitle => 'Send code';
+
+  @override
+  String verificationPageEnterCodeMessage(Object phoneNumber) {
+    return 'Please enter the confirmation code that was sent to $phoneNumber';
+  }
+
+  @override
+  String get verificationPageConfirmButtonTitle => 'Confirm code';
+
+  @override
+  String get verificationPageVerificationSuccessMessage => 'Verification successful!';
+
+  @override
+  String get verificationPageVerificationFailureMessage => 'Verification failed!';
+
+  @override
+  String get verificationPageVerificationResend => 'Resend code';
+
+  @override
   String get phoneFieldTitle => 'Téléphone';
 
   @override

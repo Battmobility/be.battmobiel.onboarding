@@ -22,6 +22,7 @@ dependencies:
   image_cropper: ^9.0.0
   image_picker: ^1.1.2
   intl: any
+  pinput: ^5.0.1
   sealed_countries: any
   universal_io: ^2.2.2
 
