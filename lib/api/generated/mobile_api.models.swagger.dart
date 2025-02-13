@@ -6714,11 +6714,11 @@ class ContractsOnboardingPersonal {
   @JsonKey(name: 'city')
   final String city;
   @JsonKey(name: 'dateCurrentLicense')
-  final String dateCurrentLicense;
+  final DateTime dateCurrentLicense;
   @JsonKey(name: 'dateLicenseUntil')
-  final String dateLicenseUntil;
+  final DateTime dateLicenseUntil;
   @JsonKey(name: 'dateOfBirth')
-  final String dateOfBirth;
+  final DateTime dateOfBirth;
   @JsonKey(name: 'firstName')
   final String firstName;
   @JsonKey(name: 'houseNumber')
@@ -6814,9 +6814,9 @@ extension $ContractsOnboardingPersonalExtension on ContractsOnboardingPersonal {
   ContractsOnboardingPersonal copyWith(
       {String? box,
       String? city,
-      String? dateCurrentLicense,
-      String? dateLicenseUntil,
-      String? dateOfBirth,
+      DateTime? dateCurrentLicense,
+      DateTime? dateLicenseUntil,
+      DateTime? dateOfBirth,
       String? firstName,
       String? houseNumber,
       String? lastName,
@@ -6846,9 +6846,9 @@ extension $ContractsOnboardingPersonalExtension on ContractsOnboardingPersonal {
   ContractsOnboardingPersonal copyWithWrapped(
       {Wrapped<String>? box,
       Wrapped<String>? city,
-      Wrapped<String>? dateCurrentLicense,
-      Wrapped<String>? dateLicenseUntil,
-      Wrapped<String>? dateOfBirth,
+      Wrapped<DateTime>? dateCurrentLicense,
+      Wrapped<DateTime>? dateLicenseUntil,
+      Wrapped<DateTime>? dateOfBirth,
       Wrapped<String>? firstName,
       Wrapped<String>? houseNumber,
       Wrapped<String>? lastName,

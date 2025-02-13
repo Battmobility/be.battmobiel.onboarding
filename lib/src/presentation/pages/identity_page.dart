@@ -110,6 +110,11 @@ class IdentityPageState extends State<IdentityPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateCurrentLicense',
+                initialDate: (widget.initialData?["dateOfBirth"] as DateTime?)
+                        ?.add(Duration(days: 5844)) ??
+                    DateTime.now().subtract(Duration(days: 5844)),
+                firstDate: widget.initialData?["dateOfBirth"] as DateTime? ??
+                    DateTime.now().subtract(Duration(days: 5844)),
                 lastDate: DateTime.now(),
                 inputType: InputType.date,
                 decoration:
@@ -141,7 +146,8 @@ class IdentityPageState extends State<IdentityPage> {
                         child: FormBuilderDropdown(
                           validator: FormBuilderValidators.required(),
                           name: "nationality",
-                          initialValue: WorldCountry.fromCode("Bel").code,
+                          initialValue:
+                              WorldCountry.fromCode("Bel").iso3166oneAlpha2,
                           items: WorldCountry.list
                               .map((country) => DropdownMenuItem(
                                     child: Text(
@@ -149,7 +155,7 @@ class IdentityPageState extends State<IdentityPage> {
                                       style:
                                           Theme.of(context).textTheme.bodyLarge,
                                     ),
-                                    value: country.code,
+                                    value: country.iso3166oneAlpha2,
                                   ))
                               .toList(),
                         ),

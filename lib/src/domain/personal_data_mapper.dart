@@ -5,11 +5,9 @@ extension FromMap on Map<String, dynamic> {
     return ContractsOnboardingPersonal(
       box: this["box"] ?? "",
       city: this["city"],
-      dateCurrentLicense:
-          (this["dateCurrentLicense"] as DateTime).toUtc().toString(),
-      dateLicenseUntil:
-          (this["dateLicenseUntil"] as DateTime).toUtc().toString(),
-      dateOfBirth: (this["dateOfBirth"] as DateTime).toUtc().toString(),
+      dateCurrentLicense: (this["dateCurrentLicense"] as DateTime).toUtc(),
+      dateLicenseUntil: (this["dateLicenseUntil"] as DateTime).toUtc(),
+      dateOfBirth: (this["dateOfBirth"] as DateTime).toUtc(),
       firstName: this["firstName"],
       houseNumber: this["houseNumber"],
       lastName: this["lastName"],

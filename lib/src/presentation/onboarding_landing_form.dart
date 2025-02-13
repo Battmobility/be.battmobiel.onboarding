@@ -60,36 +60,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           onAction: (_) {
             widget.onSubmitted(false);
           }),
-      VerificationPage(
-          formKey: _formKeys[1], onAction: (_) {}), // TODO put back on 4
-
-      ConvictionsPage(
-        formKey: _formKeys[2],
-        onAction: (_) {},
-      ),
-      DocumentsPage(
-        formKey: _formKeys[3],
-        onAction: (_) {},
-      ),
-      IdentityPage(
-        formKey: _formKeys[4],
-        onAction: (_) {},
-        initialData: _scannedData,
-      ),
-      OnboardingDonePage(
-        formKey: _formKeys[5],
-        onAction: (_) {
-          widget.onSubmitted(true);
-        },
-      )
-    ];
-
-    final icons = [
-      IntroPage(
-          formKey: _formKeys[0],
-          onAction: (_) {
-            widget.onSubmitted(false);
-          }),
       ConvictionsPage(
         formKey: _formKeys[1],
         onAction: (_) {},
@@ -103,7 +73,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         onAction: (_) {},
         initialData: _scannedData,
       ),
-      VerificationPage(formKey: _formKeys[4], onAction: (_) {}),
+      VerificationPage(
+        formKey: _formKeys[4],
+        onAction: (_) {},
+      ),
       OnboardingDonePage(
         formKey: _formKeys[5],
         onAction: (_) {

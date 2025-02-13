@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/batt_onboarding.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
@@ -24,16 +26,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Accesstoken? _accessToken;
+  late FlutterSecureStorage storage;
+
+  @override
+  void initState() {
+    super.initState();
+    storage = FlutterSecureStorage(
+        aOptions: const AndroidOptions(
+      encryptedSharedPreferences: true,
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    AndroidOptions getAndroidOptions() => const AndroidOptions(
-          encryptedSharedPreferences: true,
-        );
-    final storage = FlutterSecureStorage(aOptions: getAndroidOptions());
-
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: "Batt Onboarding",
       themeMode: ThemeMode.system,
       theme: lightTheme(context),
       darkTheme: darkTheme(context),
@@ -56,18 +63,17 @@ class _MyAppState extends State<MyApp> {
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 800),
               child: FutureBuilder(
-                future: storage.read(key: "refreshToken"),
+                future: refreshedToken(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState != ConnectionState.done) {
                     return Center(child: CircularProgressIndicator());
                   }
                   final token = snapshot.data;
-                  if (token != null) {
-                    return _tokenRefreshBody(context, token, storage);
-                  } else if (_accessToken?.refreshToken != null) {
-                    return _tokenRefreshBody(
-                        context, _accessToken!.refreshToken!, storage);
+                  if (token?.accessToken != null) {
+                    print("Token from storage found: $token");
+                    return _formBody(context, token!.accessToken!);
                   } else {
+                    print("No token found, logging in");
                     return _login(context, storage);
                   }
                 },
@@ -81,34 +87,28 @@ class _MyAppState extends State<MyApp> {
 
   Widget _login(BuildContext context, FlutterSecureStorage storage) {
     return LoginPage(onLogin: (token) {
-      storage.write(key: "refreshToken", value: token.refreshToken!);
-      setState(() {
-        _accessToken = token;
+      storage.write(key: "refreshToken", value: token.refreshToken!).then((_) {
+        print("Token written to storage successfully");
+        setState(() {});
       });
     }, onException: (error) {
       print("$error");
     });
   }
 
-  Widget _tokenRefreshBody(
-      BuildContext context, String token, FlutterSecureStorage storage) {
-    return FutureBuilder(
-        future: refreshToken(token),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData ||
-              snapshot.connectionState != ConnectionState.done) {
-            return Center(child: CircularProgressIndicator());
-          }
-          final refreshedToken = snapshot.data;
-          if (refreshedToken != null && refreshedToken.accessToken != null) {
-            storage.write(
-                key: "refreshToken", value: refreshedToken.refreshToken!);
-            _accessToken = refreshedToken;
-            return _formBody(context, refreshedToken.accessToken!);
-          } else {
-            return _login(context, storage);
-          }
-        });
+  Future<Accesstoken?> refreshedToken() async {
+    final storedToken = await storage.read(key: "refreshToken");
+    if (storedToken != null) {
+      print("Token refreshed!");
+      final refreshedToken = await refreshToken(storedToken);
+      if (refreshedToken != null) {
+        await storage.write(
+            key: "refreshToken", value: refreshedToken.refreshToken!);
+        return refreshedToken;
+      }
+    }
+    print("No stored token found");
+    return null;
   }
 
   Widget _formBody(BuildContext context, String accessToken) =>
