@@ -65,9 +65,11 @@ packages:
   batt_ds:
     dependency: "direct main"
     description:
-      path: "../batt_ds"
-      relative: true
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: "0310f39b603a7132f7121c152ef80abf87485f56"
+      url: "https://github.com/Battmobility/be.battmobility.batt_ds"
+    source: git
     version: "0.0.1"
   boolean_selector:
     dependency: transitive
