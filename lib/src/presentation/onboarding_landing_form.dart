@@ -15,16 +15,12 @@ import '../../l10n/onboarding_localizations.dart';
 class OnboardingLandingForm extends StatefulWidget {
   final String accessToken;
   final Function(Object) onAuthenticationError;
-  final Function(int) onStepStarted;
-  final Function(int) onStepCompleted;
   final Function(bool) onSubmitted;
 
   const OnboardingLandingForm({
     super.key,
     required this.accessToken,
     required this.onAuthenticationError,
-    required this.onStepStarted,
-    required this.onStepCompleted,
     required this.onSubmitted,
   });
 

@@ -115,8 +115,6 @@ class _MyAppState extends State<MyApp> {
       OnboardingLandingForm(
         accessToken: accessToken,
         onAuthenticationError: (_) => {},
-        onStepStarted: (_) => {},
-        onStepCompleted: (_) => {},
         onSubmitted: (_) => {},
       );
 }

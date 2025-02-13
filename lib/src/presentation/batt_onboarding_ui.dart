@@ -1,14 +1,12 @@
 import 'package:batt_onboarding/src/presentation/onboarding_landing_form.dart';
 import 'package:flutter/material.dart';
 
-Future<void> showOnboarding(
-  BuildContext context,
-  String accessToken,
-  Function(Object) onAuthenticationError,
-  Function(int) onStepStarted,
-  Function(int) onStepCompleted,
-  Function(bool) onSubmitted,
-) {
+Future<void> showOnboarding({
+  required BuildContext context,
+  required String accessToken,
+  required Function(Object) onAuthenticationError,
+  required Function(bool) onSubmitted,
+}) {
   return showDialog(
     context: context,
     barrierDismissible: false,
@@ -16,8 +14,6 @@ Future<void> showOnboarding(
       return OnboardingLandingForm(
         accessToken: accessToken,
         onAuthenticationError: onAuthenticationError,
-        onStepStarted: onStepStarted,
-        onStepCompleted: onStepCompleted,
         onSubmitted: onSubmitted,
       );
     },
