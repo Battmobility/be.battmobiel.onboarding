@@ -52,10 +52,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
 
     final pages = [
       IntroPage(
-          formKey: _formKeys[0],
-          onAction: (_) {
-            widget.onSubmitted(false);
-          }),
+        formKey: _formKeys[0],
+        onAction: (_) {},
+      ),
       ConvictionsPage(
         formKey: _formKeys[1],
         onAction: (_) {},
