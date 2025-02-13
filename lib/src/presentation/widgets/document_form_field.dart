@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'image_picker_widget.dart';
 
@@ -23,7 +24,7 @@ final class DocumentFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField<Uint8List>(
+    return FormBuilderField<XFile>(
       name: fieldName,
       autovalidateMode: AutovalidateMode.onUnfocus,
       validator: FormBuilderValidators.required(),
@@ -41,8 +42,8 @@ final class DocumentFormField extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 1.586,
             child: ImagePickerWidget(
-              onPicked: (bytes) {
-                field.didChange(bytes);
+              onPicked: (file) {
+                field.didChange(file);
               },
               onDataFound: (rrn, surName, givenName) =>
                   onDataFound(rrn, surName, givenName),

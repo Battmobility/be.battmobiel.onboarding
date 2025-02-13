@@ -3,6 +3,8 @@ import 'dart:typed_data';
 import 'package:batt_onboarding/src/data/onboarding_service.dart';
 import 'package:batt_onboarding/src/domain/legal_mapper.dart';
 import 'package:batt_onboarding/src/domain/personal_data_mapper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:universal_io/io.dart';
 
 final class OnboardingDatasource {
   final OnboardingService service = OnboardingService();
@@ -17,9 +19,8 @@ final class OnboardingDatasource {
     return service.postConvictions(convictions.toContractsOnboardingLegal());
   }
 
-  Future<bool> postDocuments(Map<String, Uint8List> documents) async {
-    return service.postDocsDio(documents);
-    // service.postDocuments(documents);
+  Future<bool> postFiles(Map<String, XFile> documents) async {
+    return service.postDocsHttp(documents);
   }
 
   Future<bool> postPersonalData(Map<String, dynamic> formData) async {

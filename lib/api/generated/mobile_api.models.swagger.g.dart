@@ -263,8 +263,14 @@ Map<String, dynamic> _$CancelBookingRequestToJson(
     };
 
 Client _$ClientFromJson(Map<String, dynamic> json) => Client(
+      billingEmail: json['billingEmail'] as String?,
+      city: json['city'] as String?,
+      country: json['country'] as String?,
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
+      nr: json['nr'] as String?,
+      postalCode: json['postalCode'] as String?,
+      street: json['street'] as String?,
       users: (json['users'] as List<dynamic>?)
               ?.map((e) => User.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -273,8 +279,14 @@ Client _$ClientFromJson(Map<String, dynamic> json) => Client(
     );
 
 Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
+      'billingEmail': instance.billingEmail,
+      'city': instance.city,
+      'country': instance.country,
       'id': instance.id,
       'name': instance.name,
+      'nr': instance.nr,
+      'postalCode': instance.postalCode,
+      'street': instance.street,
       'users': instance.users?.map((e) => e.toJson()).toList(),
       'vat': instance.vat,
     };
@@ -353,14 +365,12 @@ Map<String, dynamic> _$CreateNonAvailabilityRequestToJson(
 
 CreateUserRequest _$CreateUserRequestFromJson(Map<String, dynamic> json) =>
     CreateUserRequest(
-      displayName: json['displayName'] as String?,
-      email: json['email'] as String?,
-      remoteId: json['remoteId'] as String?,
+      email: json['email'] as String,
+      remoteId: json['remoteId'] as String,
     );
 
 Map<String, dynamic> _$CreateUserRequestToJson(CreateUserRequest instance) =>
     <String, dynamic>{
-      'displayName': instance.displayName,
       'email': instance.email,
       'remoteId': instance.remoteId,
     };
@@ -1557,14 +1567,26 @@ Map<String, dynamic> _$ContractsConvictionsToJson(
 ContractsCreateClient _$ContractsCreateClientFromJson(
         Map<String, dynamic> json) =>
     ContractsCreateClient(
-      name: json['name'] as String?,
+      city: json['city'] as String,
+      country: json['country'] as String,
+      email: json['email'] as String,
+      houseNumber: json['houseNumber'] as String,
+      name: json['name'] as String,
+      postalCode: json['postalCode'] as String,
+      street: json['street'] as String,
       vat: json['vat'] as String?,
     );
 
 Map<String, dynamic> _$ContractsCreateClientToJson(
         ContractsCreateClient instance) =>
     <String, dynamic>{
+      'city': instance.city,
+      'country': instance.country,
+      'email': instance.email,
+      'houseNumber': instance.houseNumber,
       'name': instance.name,
+      'postalCode': instance.postalCode,
+      'street': instance.street,
       'vat': instance.vat,
     };
 

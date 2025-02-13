@@ -11,6 +11,7 @@ targets:
             #input_urls:
             #  - url: "https://api-staging.battmobility.be/openapi.json"
             output_folder: "lib/api/generated/"
+            multipart_file_type: 'MultipartFile'
             include_paths:
               - "/user/v1/users/me"
               - "/user/v1/users/onboarding"

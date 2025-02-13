@@ -255,7 +255,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                   // TODO: re enable when api fixed
 
                                   onboardingRepository
-                                      .postDocuments(values)
+                                      .postFiles(values)
                                       .then((success) {
                                     if (success) {
                                       setState(() {

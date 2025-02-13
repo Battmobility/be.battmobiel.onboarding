@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 
 final class ImagePickerWidget extends StatefulWidget {
-  final Function(Uint8List?) onPicked;
+  final Function(XFile?) onPicked;
   final Function(String? rrn, String? surName, String? firstName)? onDataFound;
 
   const ImagePickerWidget({
@@ -53,7 +53,7 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
 
                   if (photo != null) {
                     final bytes = await photo.readAsBytes();
-                    widget.onPicked(bytes);
+                    widget.onPicked(photo);
 
                     setState(() {
                       _originalImage = photo;
@@ -76,8 +76,8 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                     );
                     if (photo != null) {
                       final bytes = await photo.readAsBytes();
-                      widget.onPicked(bytes);
-
+                      _originalImage = photo;
+                      widget.onPicked(photo);
                       _tryOCR(File(photo.path));
 
                       setState(() {
@@ -108,7 +108,8 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
 
                     if (photo != null) {
                       final bytes = await photo.readAsBytes();
-                      widget.onPicked(bytes);
+                      _originalImage = photo;
+                      widget.onPicked(photo);
                       _tryOCR(File(photo.path));
 
                       setState(() {
@@ -237,14 +238,19 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
         ),
       ],
     );
+
     if (croppedFile != null) {
       setState(() {
         _croppedFile = croppedFile;
-        File result = File(croppedFile.path);
-        _tryOCR(result);
       });
+      File result = File(croppedFile.path);
+      _tryOCR(result);
       final bytes = await croppedFile.readAsBytes();
-      widget.onPicked(bytes);
+      widget.onPicked(XFile(
+        croppedFile.path,
+        name: _originalImage?.name ?? "croppped.jpg",
+        bytes: bytes,
+      ));
     }
   }
 

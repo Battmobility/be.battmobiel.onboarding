@@ -1075,8 +1075,14 @@ extension $CancelBookingRequestExtension on CancelBookingRequest {
 @JsonSerializable(explicitToJson: true)
 class Client {
   const Client({
+    this.billingEmail,
+    this.city,
+    this.country,
     this.id,
     this.name,
+    this.nr,
+    this.postalCode,
+    this.street,
     this.users,
     this.vat,
   });
@@ -1086,10 +1092,22 @@ class Client {
   static const toJsonFactory = _$ClientToJson;
   Map<String, dynamic> toJson() => _$ClientToJson(this);
 
+  @JsonKey(name: 'billingEmail')
+  final String? billingEmail;
+  @JsonKey(name: 'city')
+  final String? city;
+  @JsonKey(name: 'country')
+  final String? country;
   @JsonKey(name: 'id')
   final int? id;
   @JsonKey(name: 'name')
   final String? name;
+  @JsonKey(name: 'nr')
+  final String? nr;
+  @JsonKey(name: 'postalCode')
+  final String? postalCode;
+  @JsonKey(name: 'street')
+  final String? street;
   @JsonKey(name: 'users', defaultValue: <User>[])
   final List<User>? users;
   @JsonKey(name: 'vat')
@@ -1100,10 +1118,25 @@ class Client {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is Client &&
+            (identical(other.billingEmail, billingEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.billingEmail, billingEmail)) &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality()
+                    .equals(other.country, country)) &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.nr, nr) ||
+                const DeepCollectionEquality().equals(other.nr, nr)) &&
+            (identical(other.postalCode, postalCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.postalCode, postalCode)) &&
+            (identical(other.street, street) ||
+                const DeepCollectionEquality().equals(other.street, street)) &&
             (identical(other.users, users) ||
                 const DeepCollectionEquality().equals(other.users, users)) &&
             (identical(other.vat, vat) ||
@@ -1115,30 +1148,65 @@ class Client {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(billingEmail) ^
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(country) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(nr) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(street) ^
       const DeepCollectionEquality().hash(users) ^
       const DeepCollectionEquality().hash(vat) ^
       runtimeType.hashCode;
 }
 
 extension $ClientExtension on Client {
-  Client copyWith({int? id, String? name, List<User>? users, String? vat}) {
+  Client copyWith(
+      {String? billingEmail,
+      String? city,
+      String? country,
+      int? id,
+      String? name,
+      String? nr,
+      String? postalCode,
+      String? street,
+      List<User>? users,
+      String? vat}) {
     return Client(
+        billingEmail: billingEmail ?? this.billingEmail,
+        city: city ?? this.city,
+        country: country ?? this.country,
         id: id ?? this.id,
         name: name ?? this.name,
+        nr: nr ?? this.nr,
+        postalCode: postalCode ?? this.postalCode,
+        street: street ?? this.street,
         users: users ?? this.users,
         vat: vat ?? this.vat);
   }
 
   Client copyWithWrapped(
-      {Wrapped<int?>? id,
+      {Wrapped<String?>? billingEmail,
+      Wrapped<String?>? city,
+      Wrapped<String?>? country,
+      Wrapped<int?>? id,
       Wrapped<String?>? name,
+      Wrapped<String?>? nr,
+      Wrapped<String?>? postalCode,
+      Wrapped<String?>? street,
       Wrapped<List<User>?>? users,
       Wrapped<String?>? vat}) {
     return Client(
+        billingEmail:
+            (billingEmail != null ? billingEmail.value : this.billingEmail),
+        city: (city != null ? city.value : this.city),
+        country: (country != null ? country.value : this.country),
         id: (id != null ? id.value : this.id),
         name: (name != null ? name.value : this.name),
+        nr: (nr != null ? nr.value : this.nr),
+        postalCode: (postalCode != null ? postalCode.value : this.postalCode),
+        street: (street != null ? street.value : this.street),
         users: (users != null ? users.value : this.users),
         vat: (vat != null ? vat.value : this.vat));
   }
@@ -1438,9 +1506,8 @@ extension $CreateNonAvailabilityRequestExtension
 @JsonSerializable(explicitToJson: true)
 class CreateUserRequest {
   const CreateUserRequest({
-    this.displayName,
-    this.email,
-    this.remoteId,
+    required this.email,
+    required this.remoteId,
   });
 
   factory CreateUserRequest.fromJson(Map<String, dynamic> json) =>
@@ -1449,21 +1516,16 @@ class CreateUserRequest {
   static const toJsonFactory = _$CreateUserRequestToJson;
   Map<String, dynamic> toJson() => _$CreateUserRequestToJson(this);
 
-  @JsonKey(name: 'displayName')
-  final String? displayName;
   @JsonKey(name: 'email')
-  final String? email;
+  final String email;
   @JsonKey(name: 'remoteId')
-  final String? remoteId;
+  final String remoteId;
   static const fromJsonFactory = _$CreateUserRequestFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is CreateUserRequest &&
-            (identical(other.displayName, displayName) ||
-                const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.remoteId, remoteId) ||
@@ -1476,28 +1538,20 @@ class CreateUserRequest {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(displayName) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(remoteId) ^
       runtimeType.hashCode;
 }
 
 extension $CreateUserRequestExtension on CreateUserRequest {
-  CreateUserRequest copyWith(
-      {String? displayName, String? email, String? remoteId}) {
+  CreateUserRequest copyWith({String? email, String? remoteId}) {
     return CreateUserRequest(
-        displayName: displayName ?? this.displayName,
-        email: email ?? this.email,
-        remoteId: remoteId ?? this.remoteId);
+        email: email ?? this.email, remoteId: remoteId ?? this.remoteId);
   }
 
   CreateUserRequest copyWithWrapped(
-      {Wrapped<String?>? displayName,
-      Wrapped<String?>? email,
-      Wrapped<String?>? remoteId}) {
+      {Wrapped<String>? email, Wrapped<String>? remoteId}) {
     return CreateUserRequest(
-        displayName:
-            (displayName != null ? displayName.value : this.displayName),
         email: (email != null ? email.value : this.email),
         remoteId: (remoteId != null ? remoteId.value : this.remoteId));
   }
@@ -6370,7 +6424,13 @@ extension $ContractsConvictionsExtension on ContractsConvictions {
 @JsonSerializable(explicitToJson: true)
 class ContractsCreateClient {
   const ContractsCreateClient({
-    this.name,
+    required this.city,
+    required this.country,
+    required this.email,
+    required this.houseNumber,
+    required this.name,
+    required this.postalCode,
+    required this.street,
     this.vat,
   });
 
@@ -6380,8 +6440,20 @@ class ContractsCreateClient {
   static const toJsonFactory = _$ContractsCreateClientToJson;
   Map<String, dynamic> toJson() => _$ContractsCreateClientToJson(this);
 
+  @JsonKey(name: 'city')
+  final String city;
+  @JsonKey(name: 'country')
+  final String country;
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'houseNumber')
+  final String houseNumber;
   @JsonKey(name: 'name')
-  final String? name;
+  final String name;
+  @JsonKey(name: 'postalCode')
+  final String postalCode;
+  @JsonKey(name: 'street')
+  final String street;
   @JsonKey(name: 'vat')
   final String? vat;
   static const fromJsonFactory = _$ContractsCreateClientFromJson;
@@ -6390,8 +6462,23 @@ class ContractsCreateClient {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is ContractsCreateClient &&
+            (identical(other.city, city) ||
+                const DeepCollectionEquality().equals(other.city, city)) &&
+            (identical(other.country, country) ||
+                const DeepCollectionEquality()
+                    .equals(other.country, country)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.houseNumber, houseNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.houseNumber, houseNumber)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.postalCode, postalCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.postalCode, postalCode)) &&
+            (identical(other.street, street) ||
+                const DeepCollectionEquality().equals(other.street, street)) &&
             (identical(other.vat, vat) ||
                 const DeepCollectionEquality().equals(other.vat, vat)));
   }
@@ -6401,20 +6488,56 @@ class ContractsCreateClient {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(city) ^
+      const DeepCollectionEquality().hash(country) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(houseNumber) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(postalCode) ^
+      const DeepCollectionEquality().hash(street) ^
       const DeepCollectionEquality().hash(vat) ^
       runtimeType.hashCode;
 }
 
 extension $ContractsCreateClientExtension on ContractsCreateClient {
-  ContractsCreateClient copyWith({String? name, String? vat}) {
-    return ContractsCreateClient(name: name ?? this.name, vat: vat ?? this.vat);
+  ContractsCreateClient copyWith(
+      {String? city,
+      String? country,
+      String? email,
+      String? houseNumber,
+      String? name,
+      String? postalCode,
+      String? street,
+      String? vat}) {
+    return ContractsCreateClient(
+        city: city ?? this.city,
+        country: country ?? this.country,
+        email: email ?? this.email,
+        houseNumber: houseNumber ?? this.houseNumber,
+        name: name ?? this.name,
+        postalCode: postalCode ?? this.postalCode,
+        street: street ?? this.street,
+        vat: vat ?? this.vat);
   }
 
   ContractsCreateClient copyWithWrapped(
-      {Wrapped<String?>? name, Wrapped<String?>? vat}) {
+      {Wrapped<String>? city,
+      Wrapped<String>? country,
+      Wrapped<String>? email,
+      Wrapped<String>? houseNumber,
+      Wrapped<String>? name,
+      Wrapped<String>? postalCode,
+      Wrapped<String>? street,
+      Wrapped<String?>? vat}) {
     return ContractsCreateClient(
+        city: (city != null ? city.value : this.city),
+        country: (country != null ? country.value : this.country),
+        email: (email != null ? email.value : this.email),
+        houseNumber:
+            (houseNumber != null ? houseNumber.value : this.houseNumber),
         name: (name != null ? name.value : this.name),
+        postalCode: (postalCode != null ? postalCode.value : this.postalCode),
+        street: (street != null ? street.value : this.street),
         vat: (vat != null ? vat.value : this.vat));
   }
 }

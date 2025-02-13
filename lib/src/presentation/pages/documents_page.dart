@@ -89,6 +89,7 @@ class DocumentsPageState extends State<DocumentsPage> {
                   Flex(
                     spacing: AppPaddings.small.size,
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     direction: MediaQuery.of(context).size.width >
                             MediaQuery.of(context).size.height
                         ? Axis.horizontal

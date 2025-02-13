@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:batt_onboarding/src/data/onboarding_datasource.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:universal_io/io.dart';
 
 final class OnboardingRepository {
   final OnboardingDatasource datasource = OnboardingDatasource();
@@ -13,15 +15,15 @@ final class OnboardingRepository {
     return await datasource.postConvictions(convictons);
   }
 
-  Future<bool> postDocuments(Map<String, dynamic> documents) async {
+  Future<bool> postFiles(Map<String, dynamic> files) async {
     final docsMap = {
-      "backDriverLicense": documents["backDriverLicense"] as Uint8List,
-      "frontDriverLicense": documents["frontDriverLicense"] as Uint8List,
-      "backId": documents["backId"] as Uint8List,
-      "frontId": documents["frontId"] as Uint8List
+      "backDriverLicense": files["backDriverLicense"] as XFile,
+      "frontDriverLicense": files["frontDriverLicense"] as XFile,
+      "backId": files["backId"] as XFile,
+      "frontId": files["frontId"] as XFile
     };
 
-    return await datasource.postDocuments(docsMap);
+    return await datasource.postFiles(docsMap);
   }
 
   Future<bool> postPersonalData(Map<String, dynamic> personalData) async {
