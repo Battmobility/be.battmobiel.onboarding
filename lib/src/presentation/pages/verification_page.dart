@@ -81,9 +81,7 @@ class VerificationPageState extends State<VerificationPage> {
                                                 ),
                                                 value: country.idd.phoneCode(),
                                               ))
-                                          .toList()
-                                        ..sort((code1, code2) => code1.value!
-                                            .compareTo(code2.value!)),
+                                          .toList(),
                                     ),
                                   ),
                                 ),
