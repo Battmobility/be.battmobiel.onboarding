@@ -40,7 +40,7 @@ dependencies:
   batt_ds:
     #path: ../../batt_ds
     git:
-      url: https://github.com/Battmobility/be.battmobility.batt_ds
+      url: git@github.com:Battmobility/be.battmobility.batt_ds.git
       ref: 'main'
 
   batt_onboarding:
@@ -50,10 +50,10 @@ dependencies:
     #ref: 'main'
 
   dart_auth:
-    path: ../../dart_auth
-  #  git:
-   #   url: https://github.com/Battmobility/dart_auth.git
-    #  ref: 'main'
+   # path: ../dart_auth
+    git:
+      url: git@github.com:Battmobility/dart_auth.git
+      ref: 'main'
 
 dev_dependencies:
   flutter_test:
