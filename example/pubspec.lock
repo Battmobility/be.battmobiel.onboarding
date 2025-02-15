@@ -31,7 +31,7 @@ packages:
       path: "."
       ref: main
       resolved-ref: "0310f39b603a7132f7121c152ef80abf87485f56"
-      url: "git@github.com:Battmobility/be.battmobility.batt_ds.git"
+      url: "https://github.com/Battmobility/be.battmobility.batt_ds.git"
     source: git
     version: "0.0.1"
   batt_onboarding:
@@ -102,8 +102,8 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "660ace2d1cd581c053ddd6f9197e4f544b0a4dc7"
-      url: "git@github.com:Battmobility/dart_auth.git"
+      resolved-ref: e49c127d39b5e56bef9e878a873f42b3e1ac2e61
+      url: "https://github.com/Battmobility/dart_auth.git"
     source: git
     version: "0.0.4"
   device_frame_plus:
