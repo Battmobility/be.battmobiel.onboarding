@@ -7,8 +7,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'onboarding_page.dart';
 import 'package:sealed_countries/sealed_countries.dart';
 
-final class IdentityPage extends OnboardingPage {
-  IdentityPage({
+final class PersonalPage extends OnboardingPage {
+  PersonalPage({
     super.key,
     required super.formKey,
     required super.onAction,
@@ -16,10 +16,10 @@ final class IdentityPage extends OnboardingPage {
   });
 
   @override
-  IdentityPageState createState() => IdentityPageState();
+  PersonalPageState createState() => PersonalPageState();
 }
 
-class IdentityPageState extends State<IdentityPage> {
+class PersonalPageState extends State<PersonalPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
@@ -66,8 +66,7 @@ class IdentityPageState extends State<IdentityPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateOfBirth',
-                initialValue: widget.initialData?["dateOfBirth"] ??
-                    DateTime.now().subtract(Duration(days: 5840)),
+                initialValue: widget.initialData?["dateOfBirth"],
                 firstDate: DateTime.now().subtract(Duration(days: 43800)),
                 lastDate: DateTime.now().subtract(Duration(days: 5840)),
                 inputType: InputType.date,
@@ -83,6 +82,7 @@ class IdentityPageState extends State<IdentityPage> {
                     flex: 4,
                     child: FormBuilderTextField(
                       name: 'licenseNumber',
+                      initialValue: widget.initialData?["licenseNumber"] ?? '',
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.numeric(),
                         FormBuilderValidators.minLength(10)
@@ -98,6 +98,8 @@ class IdentityPageState extends State<IdentityPage> {
                       child: FormBuilderDropdown(
                           validator: FormBuilderValidators.required(),
                           name: "licenseType",
+                          initialValue:
+                              widget.initialData?["licenseType"] ?? '',
                           items: ["BELGIAN", "EUROPEAN", "OTHER"]
                               .map((value) => DropdownMenuItem(
                                     child: Text(value.capitalized),
@@ -110,6 +112,7 @@ class IdentityPageState extends State<IdentityPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateCurrentLicense',
+                initialValue: widget.initialData?["dateCurrentLicense"] ?? '',
                 initialDate: (widget.initialData?["dateOfBirth"] as DateTime?)
                         ?.add(Duration(days: 5844)) ??
                     DateTime.now().subtract(Duration(days: 5844)),
@@ -122,6 +125,7 @@ class IdentityPageState extends State<IdentityPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateLicenseUntil',
+                initialValue: widget.initialData?["dateLicenseUntil"] ?? '',
                 firstDate: DateTime.now(),
                 inputType: InputType.date,
                 decoration:
@@ -147,7 +151,8 @@ class IdentityPageState extends State<IdentityPage> {
                           validator: FormBuilderValidators.required(),
                           name: "nationality",
                           initialValue:
-                              WorldCountry.fromCode("Bel").iso3166oneAlpha2,
+                              widget.initialData?["dateLicenseUntil"] ??
+                                  WorldCountry.fromCode("Bel").iso3166oneAlpha2,
                           items: WorldCountry.list
                               .map((country) => DropdownMenuItem(
                                     child: Text(
@@ -164,6 +169,7 @@ class IdentityPageState extends State<IdentityPage> {
                   ),
                   FormBuilderTextField(
                     name: 'street',
+                    initialValue: widget.initialData?["street"] ?? '',
                     validator: FormBuilderValidators.compose(
                       [
                         FormBuilderValidators.required(),
@@ -173,6 +179,7 @@ class IdentityPageState extends State<IdentityPage> {
                   ),
                   FormBuilderTextField(
                     name: 'houseNumber',
+                    initialValue: widget.initialData?["houseNumber"] ?? '',
                     validator: FormBuilderValidators.compose(
                       [
                         FormBuilderValidators.required(),
@@ -182,6 +189,7 @@ class IdentityPageState extends State<IdentityPage> {
                   ),
                   FormBuilderTextField(
                     name: 'box',
+                    initialValue: widget.initialData?["box"] ?? '',
                     decoration:
                         InputDecoration(labelText: l10n.addressAddition),
                   ),
@@ -195,6 +203,7 @@ class IdentityPageState extends State<IdentityPage> {
                   flex: 2,
                   child: FormBuilderTextField(
                     name: 'postalCode',
+                    initialValue: widget.initialData?["postalCode"] ?? '',
                     validator: FormBuilderValidators.compose(
                       [
                         FormBuilderValidators.required(),
@@ -209,6 +218,7 @@ class IdentityPageState extends State<IdentityPage> {
                     padding: AppPaddings.medium.leading,
                     child: FormBuilderTextField(
                       name: 'city',
+                      initialValue: widget.initialData?["city"] ?? '',
                       validator: FormBuilderValidators.compose(
                         [
                           FormBuilderValidators.required(),

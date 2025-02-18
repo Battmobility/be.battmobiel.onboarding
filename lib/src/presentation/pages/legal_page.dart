@@ -6,10 +6,10 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'onboarding_page.dart';
 
-final class ConvictionsPage extends OnboardingPage {
+final class LegalPage extends OnboardingPage {
   final Map<String, String> data = {};
 
-  ConvictionsPage({
+  LegalPage({
     super.key,
     required super.formKey,
     required super.onAction,
@@ -17,10 +17,10 @@ final class ConvictionsPage extends OnboardingPage {
   });
 
   @override
-  ConvictionsPageState createState() => ConvictionsPageState();
+  LegalPageState createState() => LegalPageState();
 }
 
-class ConvictionsPageState extends State<ConvictionsPage> {
+class LegalPageState extends State<LegalPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
@@ -43,22 +43,34 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                 ),
                 FormBuilderCheckbox(
                     name: "convictionDrunk",
+                    initialValue:
+                        widget.initialData?["convictionDrunk"] ?? false,
                     title: Text(l10n.convictionTypeDrunk,
                         style: Theme.of(context).textTheme.bodyLarge)),
                 FormBuilderCheckbox(
                     name: "convictionIntoxicated",
+                    initialValue:
+                        widget.initialData?["convictionIntoxicated"] ?? false,
                     title: Text(l10n.convictionTypeIntoxication,
                         style: Theme.of(context).textTheme.bodyLarge)),
                 FormBuilderCheckbox(
                     name: "convictionBloodTestRefusal",
+                    initialValue:
+                        widget.initialData?["convictionBloodTestRefusal"] ??
+                            false,
                     title: Text(l10n.convictionTypeTestRefusal,
                         style: Theme.of(context).textTheme.bodyLarge)),
                 FormBuilderCheckbox(
                     name: "convictionHitAndRun",
+                    initialValue:
+                        widget.initialData?["convictionHitAndRun"] ?? false,
                     title: Text(l10n.convictionTypeHitAndRun,
                         style: Theme.of(context).textTheme.bodyLarge)),
                 FormBuilderCheckbox(
                     name: "convictionLicenseRevocation",
+                    initialValue:
+                        widget.initialData?["convictionLicenseRevocation"] ??
+                            false,
                     title: Text(l10n.convictionTypeLicenseRevocation,
                         style: Theme.of(context).textTheme.bodyLarge)),
                 Padding(
@@ -71,6 +83,8 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                         child: FormBuilderDropdown(
                             validator: FormBuilderValidators.required(),
                             name: "nrOfAccidents",
+                            initialValue:
+                                widget.initialData?["nrOfAccidents"] ?? 0,
                             items: [0, 1, 2, 3, 4, 5]
                                 .map((value) => DropdownMenuItem(
                                       child: Text("$value"),
@@ -94,6 +108,8 @@ class ConvictionsPageState extends State<ConvictionsPage> {
                 SizedBox(height: AppSpacings.xxl),
                 FormBuilderCheckbox(
                     name: "answeredTruthfully",
+                    initialValue:
+                        widget.initialData?["answeredTruthfully"] ?? false,
                     validator: FormBuilderValidators.isTrue(),
                     title: Text(l10n.convictionsPageFooter,
                         style: Theme.of(context)

@@ -52,7 +52,6 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                   );
 
                   if (photo != null) {
-                    final bytes = await photo.readAsBytes();
                     widget.onPicked(photo);
 
                     setState(() {
@@ -75,8 +74,6 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                       maxHeight: maxImageHeight,
                     );
                     if (photo != null) {
-                      final bytes = await photo.readAsBytes();
-                      _originalImage = photo;
                       widget.onPicked(photo);
                       _tryOCR(File(photo.path));
 
@@ -107,8 +104,6 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                     );
 
                     if (photo != null) {
-                      final bytes = await photo.readAsBytes();
-                      _originalImage = photo;
                       widget.onPicked(photo);
                       _tryOCR(File(photo.path));
 

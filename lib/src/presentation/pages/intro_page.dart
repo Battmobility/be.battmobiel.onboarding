@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:batt_ds/batt_ds.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../l10n/onboarding_localizations.dart';
 import 'onboarding_page.dart';
@@ -42,6 +43,11 @@ class IntroPageState extends State<IntroPage> {
                   style: Theme.of(context).textTheme.titleMedium,
                   maxLines: 99,
                 ),
+              ),
+              Padding(
+                padding: AppPaddings.large.top,
+                child: FaIcon(FontAwesomeIcons.idCard,
+                    size: 100, color: AppColors.defaultBlue),
               ),
             ],
           )),

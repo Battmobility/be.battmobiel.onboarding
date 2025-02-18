@@ -1,4 +1,7 @@
+import 'package:batt_ds/batt_ds.dart';
+import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'onboarding_page.dart';
 
 final class OnboardingDonePage extends OnboardingPage {
@@ -19,26 +22,33 @@ class OnboardingDonePageState extends State<OnboardingDonePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       widget.onAction({});
     });
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(60.0),
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
-            child: Column(
-              children: [
-                Icon(Icons.check),
-                Text("All done!"),
-                Text(
-                    "Thank you for completing the onboarding process. We hope you have a great experience using our app."),
-                ElevatedButton(
-                  onPressed: () {
-                    widget.onAction({});
-                  },
-                  child: Text("Go to Home Page"),
-                )
-              ],
-            )),
+    final l10n = OnboardingLocalizations.of(context);
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(l10n.donePageTitle,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineLarge),
+            SizedBox(height: AppSpacings.xl),
+            FaIcon(FontAwesomeIcons.chargingStation,
+                size: 100, color: AppColors.defaultBlue),
+            SizedBox(height: AppSpacings.xxl),
+            Text(l10n.donePageMessage,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium),
+            SizedBox(height: AppSpacings.xxl),
+            OrangeSolidTextButton(
+              onPressed: () {
+                widget.onAction({});
+              },
+              label: l10n.donePageButtonTitle,
+            )
+          ],
+        ),
       ),
     );
   }

@@ -182,6 +182,18 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get verificationPageConfirmButtonTitle => 'Confirm code';
 
   @override
+  String get verificationPageBusyPhone => 'Sending code...';
+
+  @override
+  String get verificationPageBusyCode => 'Checking code...';
+
+  @override
+  String get verificationPageSendCodeFailed => 'Failed to send verification code. Please try again later.';
+
+  @override
+  String get verificationPageCheckPhoneFailed => 'Failed to check phone number. Please try again later.';
+
+  @override
   String get verificationPageVerificationSuccessMessage => 'Verification successful!';
 
   @override
@@ -195,4 +207,13 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get errorPostingMessage => 'We encountered an error processing your data, please try again later';
+
+  @override
+  String get donePageTitle => 'All done!';
+
+  @override
+  String get donePageMessage => 'You completed the onboarding process, welcome to Batt!';
+
+  @override
+  String get donePageButtonTitle => 'Close this window';
 }

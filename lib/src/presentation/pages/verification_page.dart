@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
+import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -21,8 +24,13 @@ final class VerificationPage extends OnboardingPage {
 
 class VerificationPageState extends State<VerificationPage> {
   String? phoneNumber;
-
+  bool isSendingPhone = false;
   bool isChecking = false;
+  bool verified = false;
+
+  int sendPhoneRetries = 0;
+  int checkPhoneRetries = 0;
+
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
@@ -42,6 +50,7 @@ class VerificationPageState extends State<VerificationPage> {
                         ? l10n.verificationPageMessage
                         : l10n.verificationPageEnterCodeMessage(
                             phoneNumber ?? ""),
+                    textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleMedium),
               ),
               Stack(
@@ -58,7 +67,7 @@ class VerificationPageState extends State<VerificationPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Flexible(
-                                  flex: 3,
+                                  flex: 5,
                                   child: Expanded(
                                     child: FormBuilderDropdown(
                                       decoration: InputDecoration(
@@ -86,7 +95,7 @@ class VerificationPageState extends State<VerificationPage> {
                                   ),
                                 ),
                                 Flexible(
-                                  flex: 6,
+                                  flex: 8,
                                   child: Padding(
                                     padding: AppPaddings.medium.leading,
                                     child: FormBuilderTextField(
@@ -110,9 +119,12 @@ class VerificationPageState extends State<VerificationPage> {
                             child: OrangeSolidTextButton(
                                 label: l10n.verificationPageVerifyButtonTitle,
                                 onPressed: () {
+                                  setState(() {
+                                    isSendingPhone = true;
+                                  });
                                   if (widget.formKey.currentState!
                                       .saveAndValidate()) {
-                                    setState(() {
+                                    setState(() async {
                                       phoneNumber = (widget
                                               .formKey
                                               .currentState!
@@ -124,8 +136,8 @@ class VerificationPageState extends State<VerificationPage> {
                                                   .fields["phone"]!
                                                   .value as String)
                                               .replaceFirst("0", "");
+                                      _sendPhone(context, phoneNumber!);
                                     });
-                                    // TODO: send phone to API and set _isChecking to true
                                   }
                                 }),
                           ),
@@ -142,8 +154,8 @@ class VerificationPageState extends State<VerificationPage> {
                           Padding(
                             padding: AppPaddings.large.all,
                             child: Pinput(
-                              onSubmitted: (value) {
-                                // TODO: check code and set isChecking to false
+                              onCompleted: (code) async {
+                                _sendCode(context, phoneNumber!, code);
                               },
                               length: 6,
                               errorTextStyle: context.typographyTheme.errorText,
@@ -151,30 +163,131 @@ class VerificationPageState extends State<VerificationPage> {
                           ),
                           Padding(
                             padding: AppPaddings.medium.all,
-                            child: OrangeSolidTextButton(
-                                label: l10n.verificationPageVerifyButtonTitle,
-                                onPressed: () {
-                                  // TODO: check code and set isChecking to false
-                                }),
-                          ),
-                          Padding(
-                            padding: AppPaddings.medium.all,
                             child: OrangeSimpleTextButton(
                                 label: l10n.verificationPageVerificationResend,
-                                onPressed: () {
-                                  // TODO: resend
+                                onPressed: () async {
+                                  _sendPhone(context, phoneNumber!);
                                 }),
                           ),
                         ],
                       ),
                     ),
+                  ),
+                  Visibility(
+                    visible: isSendingPhone,
+                    child: Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Padding(
+                            padding: AppPaddings.large.all,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: AppPaddings.large.all,
+                                  child: Text(l10n.verificationPageBusyPhone,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium),
+                                ),
+                                Padding(
+                                    padding: AppPaddings.medium.all,
+                                    child: CircularProgressIndicator()),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: isChecking,
+                    child: Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Padding(
+                            padding: AppPaddings.large.all,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: AppPaddings.large.all,
+                                  child: Text(l10n.verificationPageBusyCode,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium),
+                                ),
+                                Padding(
+                                    padding: AppPaddings.medium.all,
+                                    child: CircularProgressIndicator()),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   )
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _sendPhone(BuildContext context, String phoneNumber) async {
+    setState(() {
+      isSendingPhone = true;
+    });
+    final requested = await onboardingRepository.postPhoneNumber(phoneNumber);
+    Future.delayed(Duration(seconds: 2)).then(
+      (value) {
+        setState(() {
+          isSendingPhone = false;
+        });
+      },
+    );
+
+    if (!requested) {
+      if (sendPhoneRetries < 3) {
+        sendPhoneRetries++;
+        _sendPhone(context, phoneNumber);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          BattSnackbar.error(
+                  title: OnboardingLocalizations.of(context)
+                      .verificationPageSendCodeFailed)
+              .build(context),
+        );
+      }
+    }
+  }
+
+  void _sendCode(BuildContext context, String phoneNumber, String code) async {
+    setState(() {
+      isChecking = true;
+    });
+    final success =
+        await onboardingRepository.postVerificationCode(phoneNumber, code);
+    if (success) {
+      widget.onAction({});
+    } else {
+      if (checkPhoneRetries < 3) {
+        checkPhoneRetries++;
+        _sendCode(context, phoneNumber, code);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          BattSnackbar.error(
+                  title: OnboardingLocalizations.of(context)
+                      .verificationPageCheckPhoneFailed)
+              .build(context),
+        );
+      }
+    }
   }
 }

@@ -40,7 +40,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.5"
+    version: "1.0.6"
   boolean_selector:
     dependency: transitive
     description:
@@ -102,10 +102,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: e49c127d39b5e56bef9e878a873f42b3e1ac2e61
+      resolved-ref: fea2819afdfc33c8948e29d827175098b47913ef
       url: "https://github.com/Battmobility/dart_auth.git"
     source: git
-    version: "0.0.4"
+    version: "0.0.9"
   device_frame_plus:
     dependency: transitive
     description:
@@ -835,6 +835,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.12.0"
+  step_progress:
+    dependency: transitive
+    description:
+      name: step_progress
+      sha256: f913ea47556a54de786e492bbc4b3b2925a7ea1fb41a36742c649e521e86f3fc
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   storybook_toolkit:
     dependency: transitive
     description:

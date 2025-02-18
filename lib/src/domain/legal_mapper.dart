@@ -14,3 +14,16 @@ extension FromMap on Map<String, dynamic> {
     );
   }
 }
+
+extension ToMap on ContractsOnboardingLegal {
+  Map<String, dynamic> toMap() {
+    return {
+      "convictionBloodTestRefusal": convictions.convictionBloodTestRefusal,
+      "convictionDrunk": convictions.convictionDrunk,
+      "convictionHitAndRun": convictions.convictionHitAndRun,
+      "convictionIntoxicated": convictions.convictionIntoxicated,
+      "convictionLicenseRevocation": convictions.convictionLicenseRevocation,
+      "nrOfAccidents": nrOfAccidents,
+    };
+  }
+}

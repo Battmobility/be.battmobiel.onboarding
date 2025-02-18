@@ -291,6 +291,26 @@
 			"phoneNumber": {}
 		}
 	},
+	"verificationPageBusyPhone": "Code versturen",
+	"@verificationPageBusyPhone": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageBusyCode": "Code controleren...",
+	"@verificationPageBusyCode": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageSendCodeFailed": "Code versturen mislukt. Probeer het later opnieuw.",
+	"@verificationPageSendCodeFailed": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageCheckPhoneFailed": "Code verifiëren mislukt. Probeer het later opnieuw.",
+	"@verificationPageCheckPhoneFailed": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"verificationPageVerificationSuccessMessage": "Verificatie geslaagd!",
 	"@verificationPageVerificationSuccessMessage": {
 		"type": "text",
@@ -313,6 +333,21 @@
 	},
 	"errorPostingMessage": "We konden je gegevens niet verwerken, gelieve het later opnieuw te proberen.",
 	"@errorPostingMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"donePageTitle": "Klaar!",
+	"@donePageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"donePageMessage": "Je hebt alle gegevens ingegeven, welkom bij Batt!",
+	"@donePageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"donePageButtonTitle": "Sluit dit venster",
+	"@donePageButtonTitle": {
 		"type": "text",
 		"placeholders": {}
 	}

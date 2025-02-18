@@ -290,6 +290,26 @@
 			"phoneNumber": {}
 		}
 	},
+	"verificationPageBusyPhone": "Sending code...",
+	"@verificationPageBusyPhone": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageBusyCode": "Checking code...",
+	"@verificationPageBusyCode": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageSendCodeFailed": "Failed to send verification code. Please try again later.",
+	"@verificationPageSendCodeFailed": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"verificationPageCheckPhoneFailed": "Failed to check phone number. Please try again later.",
+	"@verificationPageCheckPhoneFailed": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"verificationPageVerificationSuccessMessage": "Verification successful!",
 	"@verificationPageVerificationSuccessMessage": {
 		"type": "text",
@@ -312,6 +332,21 @@
 	},
 	"errorPostingMessage": "We encountered an error processing your data, please try again later",
 	"@errorPostingMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"donePageTitle": "All done!",
+	"@donePageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"donePageMessage": "You completed the onboarding process, welcome to Batt!",
+	"@donePageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"donePageButtonTitle": "Close this window",
+	"@donePageButtonTitle": {
 		"type": "text",
 		"placeholders": {}
 	}

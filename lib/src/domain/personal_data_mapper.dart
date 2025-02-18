@@ -22,6 +22,27 @@ extension FromMap on Map<String, dynamic> {
   }
 }
 
+extension ToMap on ContractsOnboardingPersonal {
+  Map<String, dynamic> toMap() {
+    return {
+      "box": box,
+      "city": city,
+      "dateCurrentLicense": dateCurrentLicense.toUtc(),
+      "dateLicenseUntil": dateLicenseUntil.toUtc(),
+      "dateOfBirth": dateOfBirth.toUtc(),
+      "firstName": firstName,
+      "houseNumber": houseNumber,
+      "lastName": lastName,
+      "licenseNumber": licenseNumber,
+      "licenseType": licenseType.value,
+      "nationality": nationality,
+      "postalCode": postalCode,
+      "socialSecurityNumber": socialSecurityNumber,
+      "street": street,
+    };
+  }
+}
+
 extension FromString on String {
   ContractsOnboardingPersonalLicenseType
       toContractsOnboardingPersonalLicenseType() {

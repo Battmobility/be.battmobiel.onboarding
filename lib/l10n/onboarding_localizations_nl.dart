@@ -182,6 +182,18 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get verificationPageConfirmButtonTitle => 'Bevestig code';
 
   @override
+  String get verificationPageBusyPhone => 'Code versturen';
+
+  @override
+  String get verificationPageBusyCode => 'Code controleren...';
+
+  @override
+  String get verificationPageSendCodeFailed => 'Code versturen mislukt. Probeer het later opnieuw.';
+
+  @override
+  String get verificationPageCheckPhoneFailed => 'Code verifiëren mislukt. Probeer het later opnieuw.';
+
+  @override
   String get verificationPageVerificationSuccessMessage => 'Verificatie geslaagd!';
 
   @override
@@ -195,4 +207,13 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get errorPostingMessage => 'We konden je gegevens niet verwerken, gelieve het later opnieuw te proberen.';
+
+  @override
+  String get donePageTitle => 'Klaar!';
+
+  @override
+  String get donePageMessage => 'Je hebt alle gegevens ingegeven, welkom bij Batt!';
+
+  @override
+  String get donePageButtonTitle => 'Sluit dit venster';
 }

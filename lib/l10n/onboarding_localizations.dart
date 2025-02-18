@@ -439,6 +439,30 @@ abstract class OnboardingLocalizations {
   /// **'Confirm code'**
   String get verificationPageConfirmButtonTitle;
 
+  /// No description provided for @verificationPageBusyPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending code...'**
+  String get verificationPageBusyPhone;
+
+  /// No description provided for @verificationPageBusyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking code...'**
+  String get verificationPageBusyCode;
+
+  /// No description provided for @verificationPageSendCodeFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to send verification code. Please try again later.'**
+  String get verificationPageSendCodeFailed;
+
+  /// No description provided for @verificationPageCheckPhoneFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to check phone number. Please try again later.'**
+  String get verificationPageCheckPhoneFailed;
+
   /// No description provided for @verificationPageVerificationSuccessMessage.
   ///
   /// In en, this message translates to:
@@ -468,6 +492,24 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'We encountered an error processing your data, please try again later'**
   String get errorPostingMessage;
+
+  /// No description provided for @donePageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All done!'**
+  String get donePageTitle;
+
+  /// No description provided for @donePageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed the onboarding process, welcome to Batt!'**
+  String get donePageMessage;
+
+  /// No description provided for @donePageButtonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Close this window'**
+  String get donePageButtonTitle;
 }
 
 class _OnboardingLocalizationsDelegate extends LocalizationsDelegate<OnboardingLocalizations> {
