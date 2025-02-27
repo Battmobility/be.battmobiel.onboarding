@@ -40,7 +40,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.6"
+    version: "1.0.7"
   boolean_selector:
     dependency: transitive
     description:
@@ -102,10 +102,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: fea2819afdfc33c8948e29d827175098b47913ef
+      resolved-ref: "44027914794c1d4297ea71e1a351cfa5accddde5"
       url: "https://github.com/Battmobility/dart_auth.git"
     source: git
-    version: "0.0.9"
+    version: "0.0.10"
   device_frame_plus:
     dependency: transitive
     description:

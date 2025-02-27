@@ -70,7 +70,6 @@ class _MyAppState extends State<MyApp> {
                   }
                   final token = snapshot.data;
                   if (token?.accessToken != null) {
-                    print("Token from storage found: $token");
                     return _formBody(context, token!.accessToken!);
                   } else {
                     print("No token found, logging in");
@@ -111,10 +110,17 @@ class _MyAppState extends State<MyApp> {
     return null;
   }
 
+  Future<void> clearToken() async {
+    await storage.delete(key: "refreshToken");
+  }
+
   Widget _formBody(BuildContext context, String accessToken) =>
       OnboardingLandingForm(
-        accessToken: accessToken,
-        onAuthenticationError: (_) => {},
-        onSubmitted: (_) => {},
-      );
+          accessToken: accessToken,
+          onAuthenticationError: (_) => {},
+          onSubmitted: (_) {
+            clearToken().then((_) {
+              setState(() {});
+            });
+          });
 }

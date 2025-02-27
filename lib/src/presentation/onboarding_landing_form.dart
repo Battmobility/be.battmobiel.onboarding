@@ -1,5 +1,6 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
+import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:batt_onboarding/src/presentation/pages/legal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/documents_page.dart';
@@ -35,8 +36,8 @@ class OnboardingLandingForm extends StatefulWidget {
 class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   final _stepperScrollController = ScrollController();
   int _step = 0;
+  bool _ignoreProgress = false;
 
-  Map<String, dynamic> _scannedData = {};
   List<GlobalKey<FormBuilderState>> get _formKeys => [
         GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
@@ -56,8 +57,12 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         if (!snapshot.hasData || snapshot.data == null) {
           return Center(child: CircularProgressIndicator());
         }
-        final progress = snapshot.data!;
-
+        OnboardingProgress progress = snapshot.data!;
+        if (!_ignoreProgress) {
+          if (progress.progress > 0) {
+            _step = progress.progress;
+          }
+        }
         final controller =
             PageController(initialPage: progress.progress, keepPage: true);
 
@@ -78,8 +83,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           PersonalPage(
             formKey: _formKeys[3],
             onAction: (_) {},
-            initialData:
-                _scannedData.isNotEmpty ? _scannedData : progress.personal,
+            initialData: progress.personal,
           ),
           VerificationPage(
             formKey: _formKeys[4],
@@ -91,11 +95,16 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             },
           ),
           OnboardingDonePage(
-            formKey: _formKeys[5],
-            onAction: (_) {
-              widget.onSubmitted(true);
-            },
-          )
+              formKey: _formKeys[5],
+              onAction: (_) {
+                widget.onSubmitted(true);
+              },
+              onReset: () {
+                setState(() {
+                  _step = 0;
+                  _ignoreProgress = true;
+                });
+              })
         ];
 
         return Scaffold(
@@ -140,7 +149,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                     : OrangeOutlinedBattButton(
                                         label: l10n.previousButtonText,
                                         onPressed: () {
-                                          _scannedData = {};
                                           setState(() {
                                             _step--;
                                           });
@@ -151,34 +159,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                           Flexible(
                             flex: 6,
                             child: Container(
-                              foregroundDecoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: _step > pages.length / 2
-                                      ? [
-                                          Theme.of(context)
-                                              .canvasColor
-                                              .withAlpha(255),
-                                          Theme.of(context)
-                                              .canvasColor
-                                              .withAlpha(255),
-                                          Colors.transparent,
-                                        ]
-                                      : [
-                                          Colors.transparent,
-                                          Theme.of(context)
-                                              .canvasColor
-                                              .withAlpha(255),
-                                          Theme.of(context)
-                                              .canvasColor
-                                              .withAlpha(0),
-                                        ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  stops: _step >= pages.length / 2
-                                      ? [0, 0.5, 0.9]
-                                      : [0.9, 0.5, 0],
-                                ),
-                              ),
                               padding: AppPaddings.medium.horizontal,
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
@@ -226,31 +206,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                 : OrangeSolidTextButton(
                                     label: l10n.nextButtonText,
                                     onPressed: () {
-                                      if (progress.progress >= _step) {
-                                        if (_step == 2) {
-                                          final values = pages[2]
-                                              .formKey
-                                              .currentState
-                                              ?.value;
-                                          _validateDocuments(values)
-                                              .then((success) {
-                                            if (!success) {
-                                              // also continue if not successful, we have the data already
-                                              setState(() {
-                                                _step++;
-                                              });
-                                              controller.jumpToPage(_step);
-                                            }
-                                          });
-                                        } else {
-                                          setState(() {
-                                            _step++;
-                                          });
-                                          controller.jumpToPage(_step);
-                                        }
-
-                                        return;
-                                      } else if (_step == 0) {
+                                      if (_step == 0) {
                                         setState(() {
                                           _step++;
                                         });
@@ -260,11 +216,11 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                               .currentState
                                               ?.saveAndValidate() ??
                                           false) {
+                                        final values = pages[_step]
+                                            .formKey
+                                            .currentState
+                                            ?.value;
                                         if (_step == 1) {
-                                          final values = pages[1]
-                                              .formKey
-                                              .currentState
-                                              ?.value;
                                           if (values != null) {
                                             onboardingRepository
                                                 .postConvictions(values)
@@ -282,10 +238,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                           }
                                         }
                                         if (_step == 2) {
-                                          final values = pages[2]
-                                              .formKey
-                                              .currentState
-                                              ?.value;
+                                          if (values != null) {
+                                            progress.personal.addAll(values);
+                                          }
                                           _validateDocuments(values)
                                               .then((success) {
                                             if (success) {
@@ -294,10 +249,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                           });
                                         }
                                         if (_step == 3) {
-                                          final values = pages[3]
-                                              .formKey
-                                              .currentState
-                                              ?.value;
                                           if (values != null) {
                                             onboardingRepository
                                                 .postPersonalData(values)
@@ -340,7 +291,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       final success = await onboardingRepository.postFiles(values);
       if (success) {
         setState(() {
-          _scannedData = values;
           _step++;
         });
       } else {
@@ -355,8 +305,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title:
-            Text(OnboardingLocalizations.of(context).fillOutBeforeContinuing),
+        title: Text(
+          OnboardingLocalizations.of(context).fillOutBeforeContinuing,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         actions: [
           OutlinedTextButton(
               label: "Ok", onPressed: () => Navigator.of(ctx).pop())
@@ -369,7 +321,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(OnboardingLocalizations.of(context).errorPostingMessage),
+        title: Text(OnboardingLocalizations.of(context).errorPostingMessage,
+            style: Theme.of(context).textTheme.bodyLarge),
         actions: [
           OutlinedTextButton(
               label: "Ok", onPressed: () => Navigator.of(ctx).pop())

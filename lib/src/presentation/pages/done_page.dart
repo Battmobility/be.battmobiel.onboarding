@@ -1,14 +1,18 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'onboarding_page.dart';
 
 final class OnboardingDonePage extends OnboardingPage {
+  final Function()? onReset;
+
   OnboardingDonePage({
     super.key,
     required super.formKey,
     required super.onAction,
+    this.onReset,
     super.initialData,
   });
 
@@ -46,7 +50,17 @@ class OnboardingDonePageState extends State<OnboardingDonePage> {
                 widget.onAction({});
               },
               label: l10n.donePageButtonTitle,
-            )
+            ),
+            if (kDebugMode)
+              Padding(
+                padding: AppPaddings.xlarge.all,
+                child: OrangeSimpleTextButton(
+                  onPressed: () {
+                    widget.onReset!();
+                  },
+                  label: "-- Debug mode: Reset --",
+                ),
+              )
           ],
         ),
       ),

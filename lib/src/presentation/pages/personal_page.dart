@@ -112,7 +112,7 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateCurrentLicense',
-                initialValue: widget.initialData?["dateCurrentLicense"] ?? '',
+                initialValue: widget.initialData?["dateCurrentLicense"],
                 initialDate: (widget.initialData?["dateOfBirth"] as DateTime?)
                         ?.add(Duration(days: 5844)) ??
                     DateTime.now().subtract(Duration(days: 5844)),
@@ -125,7 +125,7 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateLicenseUntil',
-                initialValue: widget.initialData?["dateLicenseUntil"] ?? '',
+                initialValue: widget.initialData?["dateLicenseUntil"],
                 firstDate: DateTime.now(),
                 inputType: InputType.date,
                 decoration:
