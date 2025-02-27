@@ -64,6 +64,8 @@ extension Progress on ContractsOnboarding {
         return 4;
       case ContractsOnboardingStatus.personal:
         return 3;
+      case ContractsOnboardingStatus.documents:
+        return 2;
       case ContractsOnboardingStatus.conviction:
         return 1;
       default:

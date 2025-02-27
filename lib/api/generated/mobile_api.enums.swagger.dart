@@ -403,6 +403,8 @@ enum ContractsOnboardingStatus {
   none('NONE'),
   @JsonValue('CONVICTION')
   conviction('CONVICTION'),
+  @JsonValue('DOCUMENTS')
+  documents('DOCUMENTS'),
   @JsonValue('PERSONAL')
   personal('PERSONAL'),
   @JsonValue('PHONE')

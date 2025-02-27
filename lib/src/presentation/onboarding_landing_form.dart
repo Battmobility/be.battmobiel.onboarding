@@ -36,7 +36,7 @@ class OnboardingLandingForm extends StatefulWidget {
 class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   final _stepperScrollController = ScrollController();
   int _step = 0;
-  bool _ignoreProgress = false;
+  Map<String, dynamic> _scannedData = {};
 
   List<GlobalKey<FormBuilderState>> get _formKeys => [
         GlobalKey<FormBuilderState>(),
@@ -58,13 +58,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           return Center(child: CircularProgressIndicator());
         }
         OnboardingProgress progress = snapshot.data!;
-        if (!_ignoreProgress) {
-          if (progress.progress > 0) {
-            _step = progress.progress;
-          }
-        }
-        final controller =
-            PageController(initialPage: progress.progress, keepPage: true);
+        final controller = PageController(initialPage: _step, keepPage: true);
 
         final pages = [
           IntroPage(
@@ -79,11 +73,12 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           DocumentsPage(
             formKey: _formKeys[2],
             onAction: (_) {},
+            prefilled: progress.progress > 1,
           ),
           PersonalPage(
             formKey: _formKeys[3],
             onAction: (_) {},
-            initialData: progress.personal,
+            initialData: progress.personal..addAll(_scannedData),
           ),
           VerificationPage(
             formKey: _formKeys[4],
@@ -102,7 +97,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               onReset: () {
                 setState(() {
                   _step = 0;
-                  _ignoreProgress = true;
                 });
               })
         ];
@@ -165,7 +159,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                 controller: _stepperScrollController,
                                 child: StepProgress(
                                   totalSteps: pages.length,
-                                  currentStep: progress.progress,
+                                  currentStep: _step,
                                   axis: Axis.horizontal,
                                   nodeActiveIconBuilder: (index) => FaIcon(
                                     index == _step
@@ -239,9 +233,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         }
                                         if (_step == 2) {
                                           if (values != null) {
-                                            progress.personal.addAll(values);
+                                            _scannedData = values;
                                           }
-                                          _validateDocuments(values)
+                                          _validateDocuments(
+                                                  values, progress.progress)
                                               .then((success) {
                                             if (success) {
                                               controller.jumpToPage(_step);
@@ -286,17 +281,18 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     );
   }
 
-  Future<bool> _validateDocuments(Map<String, dynamic>? values) async {
+  Future<bool> _validateDocuments(
+      Map<String, dynamic>? values, int progress) async {
     if (values != null && values.isNotEmpty) {
       final success = await onboardingRepository.postFiles(values);
-      if (success) {
+      if (success || progress > 1) {
         setState(() {
           _step++;
         });
       } else {
         _showUploadFailedDialog(context);
       }
-      return success;
+      return success || progress > 1;
     }
     return false;
   }

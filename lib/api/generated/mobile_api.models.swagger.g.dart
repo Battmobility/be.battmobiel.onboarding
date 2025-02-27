@@ -895,7 +895,9 @@ SearchVehiclesRequest _$SearchVehiclesRequestFromJson(
           ? null
           : GpsCoordinate.fromJson(json['location'] as Map<String, dynamic>),
       maxDistance: (json['maxDistance'] as num?)?.toDouble(),
-      period: Period.fromJson(json['period'] as Map<String, dynamic>),
+      period: json['period'] == null
+          ? null
+          : Period.fromJson(json['period'] as Map<String, dynamic>),
       subscriptionId: json['subscriptionId'] as String?,
       vehicleFilterCriteria: json['vehicleFilterCriteria'] == null
           ? null
@@ -908,7 +910,7 @@ Map<String, dynamic> _$SearchVehiclesRequestToJson(
     <String, dynamic>{
       'location': instance.location?.toJson(),
       'maxDistance': instance.maxDistance,
-      'period': instance.period.toJson(),
+      'period': instance.period?.toJson(),
       'subscriptionId': instance.subscriptionId,
       'vehicleFilterCriteria': instance.vehicleFilterCriteria?.toJson(),
     };
@@ -1683,6 +1685,31 @@ Map<String, dynamic> _$ContractsOnboardingPhoneToJson(
     <String, dynamic>{
       'phoneNumber': instance.phoneNumber,
       'phoneNumberValidationCode': instance.phoneNumberValidationCode,
+    };
+
+ContractsPasswordReset _$ContractsPasswordResetFromJson(
+        Map<String, dynamic> json) =>
+    ContractsPasswordReset(
+      email: json['email'] as String,
+    );
+
+Map<String, dynamic> _$ContractsPasswordResetToJson(
+        ContractsPasswordReset instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+    };
+
+ContractsSignupUser _$ContractsSignupUserFromJson(Map<String, dynamic> json) =>
+    ContractsSignupUser(
+      email: json['email'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$ContractsSignupUserToJson(
+        ContractsSignupUser instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
     };
 
 UserV1ImageUserIdPost$RequestBody _$UserV1ImageUserIdPost$RequestBodyFromJson(

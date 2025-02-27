@@ -245,13 +245,10 @@ class VerificationPageState extends State<VerificationPage> {
       isSendingPhone = true;
     });
     final requested = await onboardingRepository.postPhoneNumber(phoneNumber);
-    Future.delayed(Duration(seconds: 2)).then(
-      (value) {
-        setState(() {
-          isSendingPhone = false;
-        });
-      },
-    );
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      isSendingPhone = false;
+    });
 
     if (!requested) {
       if (sendPhoneRetries < 3) {

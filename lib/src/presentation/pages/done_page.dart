@@ -23,9 +23,6 @@ final class OnboardingDonePage extends OnboardingPage {
 class OnboardingDonePageState extends State<OnboardingDonePage> {
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.onAction({});
-    });
     final l10n = OnboardingLocalizations.of(context);
 
     return ConstrainedBox(

@@ -10,13 +10,14 @@ import 'image_picker_widget.dart';
 final class DocumentFormField extends StatelessWidget {
   final String fieldName;
   final String displayName;
-
+  final bool prefilled;
   final Function(String? rrn, String? surName, String? firstName) onDataFound;
 
   DocumentFormField({
     required this.fieldName,
     required this.displayName,
     required this.onDataFound,
+    required this.prefilled,
   });
 
   @override
@@ -24,7 +25,7 @@ final class DocumentFormField extends StatelessWidget {
     return FormBuilderField<XFile>(
       name: fieldName,
       autovalidateMode: AutovalidateMode.onUnfocus,
-      validator: FormBuilderValidators.required(),
+      validator: prefilled ? null : FormBuilderValidators.required(),
       builder: (field) => Padding(
         padding: AppPaddings.medium.top,
         child: InputDecorator(

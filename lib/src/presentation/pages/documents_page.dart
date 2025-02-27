@@ -8,10 +8,12 @@ import '../widgets/document_form_field.dart';
 import 'onboarding_page.dart';
 
 final class DocumentsPage extends OnboardingPage {
+  final bool prefilled;
   DocumentsPage({
     super.key,
     required super.formKey,
     required super.onAction,
+    required this.prefilled,
     super.initialData,
   });
 
@@ -58,12 +60,14 @@ class DocumentsPageState extends State<DocumentsPage> {
                       DocumentFormField(
                         fieldName: "frontId",
                         displayName: l10n.idCardFieldFront,
+                        prefilled: widget.prefilled,
                         onDataFound: (rrn, surName, firstName) => {},
                       ),
 
                       DocumentFormField(
                         fieldName: "backId",
                         displayName: l10n.idCardFieldBack,
+                        prefilled: widget.prefilled,
                         onDataFound: (rrn, surName, firstName) =>
                             _updateFormData(rrn, surName, firstName),
                       ),
@@ -97,12 +101,14 @@ class DocumentsPageState extends State<DocumentsPage> {
                       DocumentFormField(
                         fieldName: "frontDriverLicense",
                         displayName: l10n.driversLicenseFieldFront,
+                        prefilled: widget.prefilled,
                         onDataFound: (rrn, surName, firstName) =>
                             _updateFormData(null, null, null),
                       ),
                       DocumentFormField(
                         fieldName: "backDriverLicense",
                         displayName: l10n.driversLicenseFieldBack,
+                        prefilled: widget.prefilled,
                         onDataFound: (rrn, surName, firstName) =>
                             _updateFormData(null, null, null),
                       ),

@@ -40,6 +40,7 @@ class PersonalPageState extends State<PersonalPage> {
               Text(l10n.identifyingDataTitle,
                   style: Theme.of(context).textTheme.titleSmall),
               FormBuilderTextField(
+                textCapitalization: TextCapitalization.words,
                 name: 'firstName',
                 initialValue: widget.initialData?["firstName"] ?? '',
                 validator: FormBuilderValidators.firstName(),
@@ -47,6 +48,7 @@ class PersonalPageState extends State<PersonalPage> {
                     InputDecoration(labelText: l10n.firstNameFieldTitle),
               ),
               FormBuilderTextField(
+                textCapitalization: TextCapitalization.words,
                 name: 'lastName',
                 initialValue: widget.initialData?["lastName"] ?? '',
                 validator: FormBuilderValidators.lastName(),
@@ -66,7 +68,8 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateOfBirth',
-                initialValue: widget.initialData?["dateOfBirth"],
+                initialDate: widget.initialData?["dateOfBirth"] ??
+                    DateTime.now().subtract(Duration(days: 5840)),
                 firstDate: DateTime.now().subtract(Duration(days: 43800)),
                 lastDate: DateTime.now().subtract(Duration(days: 5840)),
                 inputType: InputType.date,
@@ -96,13 +99,20 @@ class PersonalPageState extends State<PersonalPage> {
                     child: Padding(
                       padding: AppPaddings.medium.leading,
                       child: FormBuilderDropdown(
+                          isExpanded: true,
+                          menuWidth: _getTextWidth("EUROPEAN",
+                                  Theme.of(context).textTheme.bodyLarge!) +
+                              20,
                           validator: FormBuilderValidators.required(),
                           name: "licenseType",
                           initialValue:
                               widget.initialData?["licenseType"] ?? '',
                           items: ["BELGIAN", "EUROPEAN", "OTHER"]
                               .map((value) => DropdownMenuItem(
-                                    child: Text(value.capitalized),
+                                    child: Text(value.capitalized,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!),
                                     value: value,
                                   ))
                               .toList()),
@@ -113,9 +123,6 @@ class PersonalPageState extends State<PersonalPage> {
               FormBuilderDateTimePicker(
                 name: 'dateCurrentLicense',
                 initialValue: widget.initialData?["dateCurrentLicense"],
-                initialDate: (widget.initialData?["dateOfBirth"] as DateTime?)
-                        ?.add(Duration(days: 5844)) ??
-                    DateTime.now().subtract(Duration(days: 5844)),
                 firstDate: widget.initialData?["dateOfBirth"] as DateTime? ??
                     DateTime.now().subtract(Duration(days: 5844)),
                 lastDate: DateTime.now(),
@@ -157,8 +164,9 @@ class PersonalPageState extends State<PersonalPage> {
                               .map((country) => DropdownMenuItem(
                                     child: Text(
                                       "${country.emoji} ${country.name.common}",
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!,
                                     ),
                                     value: country.iso3166oneAlpha2,
                                   ))
@@ -169,6 +177,7 @@ class PersonalPageState extends State<PersonalPage> {
                   ),
                   FormBuilderTextField(
                     name: 'street',
+                    textCapitalization: TextCapitalization.words,
                     initialValue: widget.initialData?["street"] ?? '',
                     validator: FormBuilderValidators.compose(
                       [
@@ -218,6 +227,7 @@ class PersonalPageState extends State<PersonalPage> {
                     padding: AppPaddings.medium.leading,
                     child: FormBuilderTextField(
                       name: 'city',
+                      textCapitalization: TextCapitalization.words,
                       initialValue: widget.initialData?["city"] ?? '',
                       validator: FormBuilderValidators.compose(
                         [
@@ -237,5 +247,15 @@ class PersonalPageState extends State<PersonalPage> {
         ),
       ),
     );
+  }
+
+  double _getTextWidth(String text, TextStyle style) {
+    final textSpan = TextSpan(
+      text: text,
+      style: style,
+    );
+    final tp = TextPainter(text: textSpan, textDirection: TextDirection.ltr);
+    tp.layout();
+    return tp.width;
   }
 }

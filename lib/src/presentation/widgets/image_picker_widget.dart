@@ -178,15 +178,14 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
             label: OnboardingLocalizations.of(context).imageCropperActionDelete,
             leading: (color) => Icon(Icons.delete, color: color),
           ),
-          if (_croppedFile == null) SizedBox(width: AppSpacings.xl),
-          if (_croppedFile == null)
-            OrangeSolidTextButton(
-              onPressed: () {
-                _cropImage(context);
-              },
-              label: OnboardingLocalizations.of(context).imageCropperActionCrop,
-              leading: (color) => Icon(Icons.crop, color: color),
-            ),
+          SizedBox(width: AppSpacings.xl),
+          OrangeSolidTextButton(
+            onPressed: () {
+              _cropImage(context);
+            },
+            label: OnboardingLocalizations.of(context).imageCropperActionCrop,
+            leading: (color) => Icon(Icons.crop, color: color),
+          ),
         ],
       ),
     );

@@ -3593,7 +3593,7 @@ class SearchVehiclesRequest {
   const SearchVehiclesRequest({
     this.location,
     this.maxDistance,
-    required this.period,
+    this.period,
     this.subscriptionId,
     this.vehicleFilterCriteria,
   });
@@ -3609,7 +3609,7 @@ class SearchVehiclesRequest {
   @JsonKey(name: 'maxDistance')
   final double? maxDistance;
   @JsonKey(name: 'period')
-  final Period period;
+  final Period? period;
   @JsonKey(name: 'subscriptionId')
   final String? subscriptionId;
   @JsonKey(name: 'vehicleFilterCriteria')
@@ -3668,7 +3668,7 @@ extension $SearchVehiclesRequestExtension on SearchVehiclesRequest {
   SearchVehiclesRequest copyWithWrapped(
       {Wrapped<GpsCoordinate?>? location,
       Wrapped<double?>? maxDistance,
-      Wrapped<Period>? period,
+      Wrapped<Period?>? period,
       Wrapped<String?>? subscriptionId,
       Wrapped<VehicleFilterCriteria?>? vehicleFilterCriteria}) {
     return SearchVehiclesRequest(
@@ -6948,6 +6948,103 @@ extension $ContractsOnboardingPhoneExtension on ContractsOnboardingPhone {
         phoneNumberValidationCode: (phoneNumberValidationCode != null
             ? phoneNumberValidationCode.value
             : this.phoneNumberValidationCode));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ContractsPasswordReset {
+  const ContractsPasswordReset({
+    required this.email,
+  });
+
+  factory ContractsPasswordReset.fromJson(Map<String, dynamic> json) =>
+      _$ContractsPasswordResetFromJson(json);
+
+  static const toJsonFactory = _$ContractsPasswordResetToJson;
+  Map<String, dynamic> toJson() => _$ContractsPasswordResetToJson(this);
+
+  @JsonKey(name: 'email')
+  final String email;
+  static const fromJsonFactory = _$ContractsPasswordResetFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ContractsPasswordReset &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(email) ^ runtimeType.hashCode;
+}
+
+extension $ContractsPasswordResetExtension on ContractsPasswordReset {
+  ContractsPasswordReset copyWith({String? email}) {
+    return ContractsPasswordReset(email: email ?? this.email);
+  }
+
+  ContractsPasswordReset copyWithWrapped({Wrapped<String>? email}) {
+    return ContractsPasswordReset(
+        email: (email != null ? email.value : this.email));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ContractsSignupUser {
+  const ContractsSignupUser({
+    required this.email,
+    required this.password,
+  });
+
+  factory ContractsSignupUser.fromJson(Map<String, dynamic> json) =>
+      _$ContractsSignupUserFromJson(json);
+
+  static const toJsonFactory = _$ContractsSignupUserToJson;
+  Map<String, dynamic> toJson() => _$ContractsSignupUserToJson(this);
+
+  @JsonKey(name: 'email')
+  final String email;
+  @JsonKey(name: 'password')
+  final String password;
+  static const fromJsonFactory = _$ContractsSignupUserFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ContractsSignupUser &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(password) ^
+      runtimeType.hashCode;
+}
+
+extension $ContractsSignupUserExtension on ContractsSignupUser {
+  ContractsSignupUser copyWith({String? email, String? password}) {
+    return ContractsSignupUser(
+        email: email ?? this.email, password: password ?? this.password);
+  }
+
+  ContractsSignupUser copyWithWrapped(
+      {Wrapped<String>? email, Wrapped<String>? password}) {
+    return ContractsSignupUser(
+        email: (email != null ? email.value : this.email),
+        password: (password != null ? password.value : this.password));
   }
 }
 

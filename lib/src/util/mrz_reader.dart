@@ -72,10 +72,16 @@ final class MRZReader {
 }
 
 extension StringCasingExtension on String {
-  String get capitalized =>
-      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
-  String get toTitleCase => replaceAll(RegExp(' +'), ' ')
-      .split(' ')
-      .map((str) => str.capitalized)
-      .join(' ');
+  String get capitalized {
+    if (isEmpty) return this;
+
+    List<String> words = split(" ");
+
+    List<String> capitalizedWords = words.map((word) {
+      if (word.isEmpty) return word;
+      return word[0].toUpperCase() + word.substring(1).toLowerCase();
+    }).toList();
+
+    return capitalizedWords.join(" ");
+  }
 }
