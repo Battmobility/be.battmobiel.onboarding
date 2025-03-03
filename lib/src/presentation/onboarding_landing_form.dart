@@ -36,7 +36,7 @@ class OnboardingLandingForm extends StatefulWidget {
 class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   final _stepperScrollController = ScrollController();
   int _step = 0;
-  Map<String, dynamic> _scannedData = {};
+  Map<String, dynamic>? _scannedData;
 
   List<GlobalKey<FormBuilderState>> get _formKeys => [
         GlobalKey<FormBuilderState>(),
@@ -78,7 +78,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           PersonalPage(
             formKey: _formKeys[3],
             onAction: (_) {},
-            initialData: progress.personal..addAll(_scannedData),
+            initialData: progress.personal..addAll(_scannedData ?? {}),
           ),
           VerificationPage(
             formKey: _formKeys[4],
@@ -110,12 +110,15 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                 children: [
                   Flexible(
                     flex: 8,
-                    child: Container(
-                      child: PageView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          controller: controller,
-                          itemBuilder: (context, index) => pages[index],
-                          itemCount: pages.length),
+                    child: Card(
+                      child: Padding(
+                        padding: AppPaddings.medium.all,
+                        child: PageView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            controller: controller,
+                            itemBuilder: (context, index) => pages[index],
+                            itemCount: pages.length),
+                      ),
                     ),
                   ),
                   Flexible(

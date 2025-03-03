@@ -4,6 +4,7 @@ import 'package:batt_onboarding/src/util/mrz_reader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:intl/intl.dart' hide TextDirection;
 import 'onboarding_page.dart';
 import 'package:sealed_countries/sealed_countries.dart';
 
@@ -40,18 +41,18 @@ class PersonalPageState extends State<PersonalPage> {
               Text(l10n.identifyingDataTitle,
                   style: Theme.of(context).textTheme.titleSmall),
               FormBuilderTextField(
-                textCapitalization: TextCapitalization.words,
                 name: 'firstName',
+                textCapitalization: TextCapitalization.words,
                 initialValue: widget.initialData?["firstName"] ?? '',
-                validator: FormBuilderValidators.firstName(),
+                validator: FormBuilderValidators.required(),
                 decoration:
                     InputDecoration(labelText: l10n.firstNameFieldTitle),
               ),
               FormBuilderTextField(
-                textCapitalization: TextCapitalization.words,
                 name: 'lastName',
+                textCapitalization: TextCapitalization.words,
                 initialValue: widget.initialData?["lastName"] ?? '',
-                validator: FormBuilderValidators.lastName(),
+                validator: FormBuilderValidators.required(),
                 decoration: InputDecoration(labelText: l10n.lastNameFieldTitle),
               ),
               FormBuilderTextField(
@@ -68,6 +69,8 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateOfBirth',
+                format: DateFormat("dd-MM-yyyy"),
+                initialValue: widget.initialData?["dateOfBirth"],
                 initialDate: widget.initialData?["dateOfBirth"] ??
                     DateTime.now().subtract(Duration(days: 5840)),
                 firstDate: DateTime.now().subtract(Duration(days: 43800)),
@@ -212,6 +215,7 @@ class PersonalPageState extends State<PersonalPage> {
                   flex: 2,
                   child: FormBuilderTextField(
                     name: 'postalCode',
+                    keyboardType: TextInputType.number,
                     initialValue: widget.initialData?["postalCode"] ?? '',
                     validator: FormBuilderValidators.compose(
                       [
