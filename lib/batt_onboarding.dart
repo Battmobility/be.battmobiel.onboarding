@@ -7,6 +7,7 @@ import 'src/data/token_service.dart';
 
 export 'src/presentation/batt_onboarding_ui.dart';
 export 'src/presentation/onboarding_landing_form.dart';
+export 'src/domain/onboarding_progress.dart';
 
 Future<OnboardingProgress> getOnboardingStatus(String? accessToken) async {
   if (accessToken != null) {
