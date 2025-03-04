@@ -1,6 +1,6 @@
 name: batt_onboarding
-description: A starting point for Dart libraries or applications.
-version: 1.0.7
+description: Onboarding for BattMobility/MobilityOS
+version: 1.0.8
 publish_to: none
 # repository: https://github.com/my_org/my_repo
 

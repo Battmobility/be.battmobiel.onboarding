@@ -53,6 +53,14 @@ final class OnboardingProgress {
       );
     }
   }
+
+  factory OnboardingProgress.none() {
+    return OnboardingProgress(
+      legal: {},
+      personal: {},
+      progress: 0,
+    );
+  }
 }
 
 extension Progress on ContractsOnboarding {
