@@ -134,7 +134,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                             child: _step == 0
                                 ? Opacity(
                                     opacity: 0.66,
-                                    child: OrangeOutlinedBattButton(
+                                    child: OrangeOutlinedTextButton(
                                       label: l10n.closeButtonText,
                                       onPressed: () {
                                         widget.onSubmitted(false);
@@ -143,7 +143,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                   )
                                 : _step == pages.length - 1
                                     ? Container()
-                                    : OrangeOutlinedBattButton(
+                                    : OrangeOutlinedTextButton(
                                         label: l10n.previousButtonText,
                                         onPressed: () {
                                           setState(() {
@@ -309,7 +309,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         actions: [
-          OutlinedTextButton(
+          OrangeOutlinedTextButton(
               label: "Ok", onPressed: () => Navigator.of(ctx).pop())
         ],
       ),
@@ -323,7 +323,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         title: Text(OnboardingLocalizations.of(context).errorPostingMessage,
             style: Theme.of(context).textTheme.bodyLarge),
         actions: [
-          OutlinedTextButton(
+          OrangeOutlinedTextButton(
               label: "Ok", onPressed: () => Navigator.of(ctx).pop())
         ],
       ),

@@ -67,10 +67,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "13cd128c6144182a8e5c9a8e228852233f7e2a5a"
+      resolved-ref: "21cc54fa9e3ef7a0e535bb94238db359367e6769"
       url: "https://github.com/Battmobility/be.battmobility.batt_ds.git"
     source: git
-    version: "0.0.7"
+    version: "0.0.8"
   boolean_selector:
     dependency: transitive
     description:
@@ -1273,7 +1273,7 @@ packages:
     source: hosted
     version: "1.4.0"
   universal_io:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: universal_io
       sha256: "1722b2dcc462b4b2f3ee7d188dad008b6eb4c40bbd03a3de451d82c78bba9aad"
