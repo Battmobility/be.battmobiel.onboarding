@@ -21,7 +21,7 @@
 	"@introPageNeededDocuments": {
 		"type": "text",
 		"placeholders": {}
-	},	
+	},
 	"introPageCancelButtonText": "Ga een andere keer verder",
 	"@introPageCancelButtonText": {
 		"type": "text",
@@ -186,7 +186,7 @@
 	"@imageCropperCancel": {
 		"type": "text",
 		"placeholders": {}
-	},	
+	},
 	"identifyingDataTitle": "Identiteit",
 	"@identifyingDataTitle": {
 		"type": "text",
