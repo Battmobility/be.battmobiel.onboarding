@@ -1,5 +1,4 @@
 import 'package:batt_onboarding/src/data/onboarding_datasource.dart';
-import 'package:batt_onboarding/src/domain/client_data_mapper.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
 import 'package:image_picker/image_picker.dart';
 

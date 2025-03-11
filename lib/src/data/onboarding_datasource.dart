@@ -43,6 +43,10 @@ final class OnboardingDatasource {
 
   Future<bool> postNewContractData(int clientId, int? delegatedTrustClientId,
       Map<String, dynamic> values) async {
-    return false;
+    return service.postNewContractData(
+      clientId,
+      delegatedTrustClientId,
+      values.toContract(),
+    );
   }
 }

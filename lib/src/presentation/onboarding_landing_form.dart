@@ -300,7 +300,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         if (_step == 6) {
                                           if (values != null) {
                                             onboardingRepository
-                                                .postNewContractData(values!)
+                                                .postNewContractData(values)
                                                 .then((success) {
                                               if (success) {
                                                 setState(() {

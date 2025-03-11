@@ -39,6 +39,61 @@ final class _$MobileApi extends MobileApi {
   }
 
   @override
+  Future<Response<Client>> _userV1ClientsPost(
+      {required ContractsCreateClient? body}) {
+    final Uri $url = Uri.parse('/user/v1/clients');
+    final $body = body;
+    final Request $request = Request(
+      'POST',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<Client, Client>($request);
+  }
+
+  @override
+  Future<Response<Client>> _userV1ClientsClientIdGet({required int? clientId}) {
+    final Uri $url = Uri.parse('/user/v1/clients/${clientId}');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<Client, Client>($request);
+  }
+
+  @override
+  Future<Response<Client>> _userV1ClientsClientIdUsersUserEmailDelete({
+    required int? clientId,
+    required String? userEmail,
+  }) {
+    final Uri $url =
+        Uri.parse('/user/v1/clients/${clientId}/users/${userEmail}');
+    final Request $request = Request(
+      'DELETE',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<Client, Client>($request);
+  }
+
+  @override
+  Future<Response<Client>> _userV1ClientsClientIdUsersUserEmailPut({
+    required int? clientId,
+    required String? userEmail,
+  }) {
+    final Uri $url =
+        Uri.parse('/user/v1/clients/${clientId}/users/${userEmail}');
+    final Request $request = Request(
+      'PUT',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<Client, Client>($request);
+  }
+
+  @override
   Future<Response<User>> _userV1UsersMeGet() {
     final Uri $url = Uri.parse('/user/v1/users/me');
     final Request $request = Request(

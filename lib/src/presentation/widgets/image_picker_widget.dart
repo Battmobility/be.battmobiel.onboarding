@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:batt_ds/batt_ds.dart';
-import 'package:batt_ds/molecules/buttons/outlined/orange_outlined_text_button.dart';
 import 'package:batt_onboarding/src/util/mrz_reader.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

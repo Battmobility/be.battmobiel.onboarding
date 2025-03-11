@@ -76,33 +76,25 @@ final class OnboardingService {
   }
 
   Future<int?> postNewClientData(ContractsCreateClient client) async {
-    return 0;
-    /*
     try {
-      final response = await api.userV1ClientsPost(
-          clientId: clientId,
-          delegatedTrustClientId: delegatedTrustClientId,
-          body: clientData);
-      return response.isSuccessful;
+      final response = await api.userV1ClientsPost(body: client);
+      return response.body?.id;
     } catch (e, _) {
-      return false;
+      return null;
     }
-    */
   }
 
   Future<bool> postNewContractData(int clientId, int? delegatedTrustClientId,
-      ContractsCreateClient clientData) async {
-    return false;
-    /*
+      CreateNewUsageContractRequest contractData) async {
     try {
-      final response = await api.userV1ClientsPost(
-          clientId: clientId,
-          delegatedTrustClientId: delegatedTrustClientId,
-          body: clientData);
+      final response = await api
+          .contractV1ContractsClientsClientIdDelegatedTrustDelegatedTrustClientIdPost(
+              clientId: clientId,
+              delegatedTrustClientId: delegatedTrustClientId,
+              body: contractData);
       return response.isSuccessful;
     } catch (e, _) {
       return false;
     }
-    */
   }
 }

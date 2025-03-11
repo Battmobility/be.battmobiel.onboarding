@@ -1,6 +1,5 @@
 // ignore_for_file: type=lint
 
-import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 import 'dart:convert';
 
@@ -79,6 +78,84 @@ abstract class MobileApi extends ChopperService {
     @Path('clientId') required int? clientId,
     @Path('delegatedTrustClientId') required int? delegatedTrustClientId,
     @Body() required CreateNewUsageContractRequest? body,
+  });
+
+  ///Create a new client (company with VAT nr. or private person)
+  Future<chopper.Response<Client>> userV1ClientsPost(
+      {required ContractsCreateClient? body}) {
+    generatedMapping.putIfAbsent(Client, () => Client.fromJsonFactory);
+
+    return _userV1ClientsPost(body: body);
+  }
+
+  ///Create a new client (company with VAT nr. or private person)
+  @Post(
+    path: '/user/v1/clients',
+    optionalBody: true,
+  )
+  Future<chopper.Response<Client>> _userV1ClientsPost(
+      {@Body() required ContractsCreateClient? body});
+
+  ///Get information about a client you are the MainUser of
+  ///@param clientId Client ID
+  Future<chopper.Response<Client>> userV1ClientsClientIdGet(
+      {required int? clientId}) {
+    generatedMapping.putIfAbsent(Client, () => Client.fromJsonFactory);
+
+    return _userV1ClientsClientIdGet(clientId: clientId);
+  }
+
+  ///Get information about a client you are the MainUser of
+  ///@param clientId Client ID
+  @Get(path: '/user/v1/clients/{clientId}')
+  Future<chopper.Response<Client>> _userV1ClientsClientIdGet(
+      {@Path('clientId') required int? clientId});
+
+  ///Delete a user from a client
+  ///@param clientId Client ID
+  ///@param userEmail User Email
+  Future<chopper.Response<Client>> userV1ClientsClientIdUsersUserEmailDelete({
+    required int? clientId,
+    required String? userEmail,
+  }) {
+    generatedMapping.putIfAbsent(Client, () => Client.fromJsonFactory);
+
+    return _userV1ClientsClientIdUsersUserEmailDelete(
+        clientId: clientId, userEmail: userEmail);
+  }
+
+  ///Delete a user from a client
+  ///@param clientId Client ID
+  ///@param userEmail User Email
+  @Delete(path: '/user/v1/clients/{clientId}/users/{userEmail}')
+  Future<chopper.Response<Client>> _userV1ClientsClientIdUsersUserEmailDelete({
+    @Path('clientId') required int? clientId,
+    @Path('userEmail') required String? userEmail,
+  });
+
+  ///Add a user to a client
+  ///@param clientId Client ID
+  ///@param userEmail User Email
+  Future<chopper.Response<Client>> userV1ClientsClientIdUsersUserEmailPut({
+    required int? clientId,
+    required String? userEmail,
+  }) {
+    generatedMapping.putIfAbsent(Client, () => Client.fromJsonFactory);
+
+    return _userV1ClientsClientIdUsersUserEmailPut(
+        clientId: clientId, userEmail: userEmail);
+  }
+
+  ///Add a user to a client
+  ///@param clientId Client ID
+  ///@param userEmail User Email
+  @Put(
+    path: '/user/v1/clients/{clientId}/users/{userEmail}',
+    optionalBody: true,
+  )
+  Future<chopper.Response<Client>> _userV1ClientsClientIdUsersUserEmailPut({
+    @Path('clientId') required int? clientId,
+    @Path('userEmail') required String? userEmail,
   });
 
   ///Get information about your own user

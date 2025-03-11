@@ -51,10 +51,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "979afbad52bce9d010056f085472e59d869886b4"
+      resolved-ref: "6826e104ead2bb0e150378bc688f4379074ce43c"
       url: "https://github.com/Battmobility/be.battmobility.batt_ds.git"
     source: git
-    version: "0.0.9"
+    version: "0.0.10"
   boolean_selector:
     dependency: transitive
     description:
