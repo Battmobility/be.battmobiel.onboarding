@@ -19,8 +19,12 @@
 	"@stepIndicatorText": {
 		"type": "text",
 		"placeholders": {
-			"step": {},
-			"totalSteps": {}
+			"step": {
+				"type": "Object"
+			},
+			"totalSteps": {
+				"type": "Object"
+			}
 		}
 	},
 	"closeButtonText": "Close",
@@ -287,7 +291,9 @@
 	"@verificationPageEnterCodeMessage": {
 		"type": "text",
 		"placeholders": {
-			"phoneNumber": {}
+			"phoneNumber": {
+				"type": "Object"
+			}
 		}
 	},
 	"verificationPageBusyPhone": "Sending code...",

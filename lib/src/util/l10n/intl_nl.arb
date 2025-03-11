@@ -9,8 +9,12 @@
 	"@stepIndicatorText": {
 		"type": "text",
 		"placeholders": {
-			"step": {},
-			"totalSteps": {}
+			"step": {
+				"type": "Object"
+			},
+			"totalSteps": {
+				"type": "Object"
+			}
 		}
 	},
 	"introPageNeededDocuments": "Welkom bij Batt! Voor je verder gaat, zorg zeker dat je volgende documenten in de buurt hebt: \n\n• Identiteitsdocument (Belgische eId, elektronische vreemdelingenkaart ...)\n\n• Rijbewijs",
@@ -288,7 +292,9 @@
 	"@verificationPageEnterCodeMessage": {
 		"type": "text",
 		"placeholders": {
-			"phoneNumber": {}
+			"phoneNumber": {
+				"type": "Object"
+			}
 		}
 	},
 	"verificationPageBusyPhone": "Code versturen",

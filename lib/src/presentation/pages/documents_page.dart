@@ -48,7 +48,6 @@ class DocumentsPageState extends State<DocumentsPage> {
                         style: context.typographyTheme.largeText),
                   ),
                   Flex(
-                    spacing: AppPaddings.small.size,
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     direction: MediaQuery.of(context).size.width >
@@ -89,7 +88,6 @@ class DocumentsPageState extends State<DocumentsPage> {
                         style: context.typographyTheme.largeText),
                   ),
                   Flex(
-                    spacing: AppPaddings.small.size,
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     direction: MediaQuery.of(context).size.width >
