@@ -48,6 +48,39 @@ abstract class MobileApi extends ChopperService {
     return _$MobileApi(newClient);
   }
 
+  ///
+  ///@param clientId
+  ///@param delegatedTrustClientId
+  Future<chopper.Response<ClientContractDtoApiDataResponse>>
+      contractV1ContractsClientsClientIdDelegatedTrustDelegatedTrustClientIdPost({
+    required int? clientId,
+    required int? delegatedTrustClientId,
+    required CreateNewUsageContractRequest? body,
+  }) {
+    generatedMapping.putIfAbsent(ClientContractDtoApiDataResponse,
+        () => ClientContractDtoApiDataResponse.fromJsonFactory);
+
+    return _contractV1ContractsClientsClientIdDelegatedTrustDelegatedTrustClientIdPost(
+        clientId: clientId,
+        delegatedTrustClientId: delegatedTrustClientId,
+        body: body);
+  }
+
+  ///
+  ///@param clientId
+  ///@param delegatedTrustClientId
+  @Post(
+    path:
+        '/contract/v1/contracts/clients/{clientId}/delegatedTrust/{delegatedTrustClientId}',
+    optionalBody: true,
+  )
+  Future<chopper.Response<ClientContractDtoApiDataResponse>>
+      _contractV1ContractsClientsClientIdDelegatedTrustDelegatedTrustClientIdPost({
+    @Path('clientId') required int? clientId,
+    @Path('delegatedTrustClientId') required int? delegatedTrustClientId,
+    @Body() required CreateNewUsageContractRequest? body,
+  });
+
   ///Get information about your own user
   Future<chopper.Response<User>> userV1UsersMeGet() {
     generatedMapping.putIfAbsent(User, () => User.fromJsonFactory);
