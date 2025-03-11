@@ -103,6 +103,84 @@ enum BookingStatus {
   const BookingStatus(this.value);
 }
 
+enum ClientContractFormula {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('BattFun')
+  battfun('BattFun'),
+  @JsonValue('BattFunPlus')
+  battfunplus('BattFunPlus'),
+  @JsonValue('BattFunPlusDL')
+  battfunplusdl('BattFunPlusDL'),
+  @JsonValue('BattForBusiness')
+  battforbusiness('BattForBusiness'),
+  @JsonValue('BattFan')
+  battfan('BattFan'),
+  @JsonValue('BattFanPlus')
+  battfanplus('BattFanPlus'),
+  @JsonValue('BattMax')
+  battmax('BattMax'),
+  @JsonValue('EigenBeheer')
+  eigenbeheer('EigenBeheer'),
+  @JsonValue('Straal')
+  straal('Straal');
+
+  final String? value;
+
+  const ClientContractFormula(this.value);
+}
+
+enum ClientContractStatus {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('Draft')
+  draft('Draft'),
+  @JsonValue('Active')
+  active('Active'),
+  @JsonValue('Suspended')
+  suspended('Suspended'),
+  @JsonValue('Cancelled')
+  cancelled('Cancelled'),
+  @JsonValue('Stopped')
+  stopped('Stopped');
+
+  final String? value;
+
+  const ClientContractStatus(this.value);
+}
+
+enum ClientContractType {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('Unknown')
+  unknown('Unknown'),
+  @JsonValue('Usage')
+  usage('Usage'),
+  @JsonValue('Vehicle')
+  vehicle('Vehicle');
+
+  final String? value;
+
+  const ClientContractType(this.value);
+}
+
+enum CommitmentChangeOption {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('AnyDay')
+  anyday('AnyDay'),
+  @JsonValue('SameDayOfMonth')
+  samedayofmonth('SameDayOfMonth');
+
+  final String? value;
+
+  const CommitmentChangeOption(this.value);
+}
+
 enum ConflictResolutionMode {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -115,6 +193,20 @@ enum ConflictResolutionMode {
   final String? value;
 
   const ConflictResolutionMode(this.value);
+}
+
+enum FormulaChangeOption {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('AnyDay')
+  anyday('AnyDay'),
+  @JsonValue('SameDayOfMonth')
+  samedayofmonth('SameDayOfMonth');
+
+  final String? value;
+
+  const FormulaChangeOption(this.value);
 }
 
 enum HomeFeedCardType {
@@ -267,6 +359,20 @@ enum SubscriptionClientRoles {
   const SubscriptionClientRoles(this.value);
 }
 
+enum TerminateDayOption {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('AnyDay')
+  anyday('AnyDay'),
+  @JsonValue('SameDayOfMonth')
+  samedayofmonth('SameDayOfMonth');
+
+  final String? value;
+
+  const TerminateDayOption(this.value);
+}
+
 enum UpdateUserRequestRole {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),
@@ -299,6 +405,70 @@ enum UpdateVehicleRequestApprovalType {
   final String? value;
 
   const UpdateVehicleRequestApprovalType(this.value);
+}
+
+enum ValidationErrorCode {
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
+
+  @JsonValue('NotFound')
+  notfound('NotFound'),
+  @JsonValue('RequiredField')
+  requiredfield('RequiredField'),
+  @JsonValue('ValueCannotBeNegative')
+  valuecannotbenegative('ValueCannotBeNegative'),
+  @JsonValue('DateCannotBeInThePast')
+  datecannotbeinthepast('DateCannotBeInThePast'),
+  @JsonValue('InvalidDate')
+  invaliddate('InvalidDate'),
+  @JsonValue('InvalidEnum')
+  invalidenum('InvalidEnum'),
+  @JsonValue('MalformedRequestBody')
+  malformedrequestbody('MalformedRequestBody'),
+  @JsonValue('FanCommitmentShouldBeAtLeast75')
+  fancommitmentshouldbeatleast75('FanCommitmentShouldBeAtLeast75'),
+  @JsonValue('ContractAlreadyHasThisFormula')
+  contractalreadyhasthisformula('ContractAlreadyHasThisFormula'),
+  @JsonValue('BeforeContractStartDate')
+  beforecontractstartdate('BeforeContractStartDate'),
+  @JsonValue('AfterContractEndDate')
+  aftercontractenddate('AfterContractEndDate'),
+  @JsonValue('CannotChangeBattForBusinessFormula')
+  cannotchangebattforbusinessformula('CannotChangeBattForBusinessFormula'),
+  @JsonValue('BattMaxRequiresNewContract')
+  battmaxrequiresnewcontract('BattMaxRequiresNewContract'),
+  @JsonValue('BattForBusinessRequiresNewContract')
+  battforbusinessrequiresnewcontract('BattForBusinessRequiresNewContract'),
+  @JsonValue('CanOnlyChangeFormulaForUsageContract')
+  canonlychangeformulaforusagecontract('CanOnlyChangeFormulaForUsageContract'),
+  @JsonValue('CanOnlyChangeCommitmentForFanOrBusinessContract')
+  canonlychangecommitmentforfanorbusinesscontract(
+      'CanOnlyChangeCommitmentForFanOrBusinessContract'),
+  @JsonValue('CanOnlyChangeOnInvoiceDay')
+  canonlychangeoninvoiceday('CanOnlyChangeOnInvoiceDay'),
+  @JsonValue('DelegatedTrustWrongFormula')
+  delegatedtrustwrongformula('DelegatedTrustWrongFormula'),
+  @JsonValue('InvalidBillingPeriodStatusForInvoicing')
+  invalidbillingperiodstatusforinvoicing(
+      'InvalidBillingPeriodStatusForInvoicing'),
+  @JsonValue('PeriodAlreadyInvoiced')
+  periodalreadyinvoiced('PeriodAlreadyInvoiced'),
+  @JsonValue('OldInvoicesNotSupported')
+  oldinvoicesnotsupported('OldInvoicesNotSupported'),
+  @JsonValue('CanOnlyApproveDraftInvoices')
+  canonlyapprovedraftinvoices('CanOnlyApproveDraftInvoices'),
+  @JsonValue('CanOnlyDeleteDraftInvoices')
+  canonlydeletedraftinvoices('CanOnlyDeleteDraftInvoices'),
+  @JsonValue('NotYetSwitchedToNewInvoicing')
+  notyetswitchedtonewinvoicing('NotYetSwitchedToNewInvoicing'),
+  @JsonValue('CanOnlyRegenerateApprovedInvoices')
+  canonlyregenerateapprovedinvoices('CanOnlyRegenerateApprovedInvoices'),
+  @JsonValue('ClientAlreadyHasUsageContract')
+  clientalreadyhasusagecontract('ClientAlreadyHasUsageContract');
+
+  final String? value;
+
+  const ValidationErrorCode(this.value);
 }
 
 enum VehicleOperationalStatus {

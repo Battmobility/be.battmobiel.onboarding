@@ -18,4 +18,5 @@ targets:
               - "/user/v1/users/onboarding/documents"
               - "/user/v1/users/onboarding/legal"
               - "/user/v1/users/onboarding/phone"
+              - "/user/v1/users/clients"
               - "/contract/v1/contracts/clients/{clientId}/delegatedTrust/{delegatedTrustClientId}"

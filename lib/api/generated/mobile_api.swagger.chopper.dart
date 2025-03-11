@@ -19,6 +19,26 @@ final class _$MobileApi extends MobileApi {
   final Type definitionType = MobileApi;
 
   @override
+  Future<Response<ClientContractDtoApiDataResponse>>
+      _contractV1ContractsClientsClientIdDelegatedTrustDelegatedTrustClientIdPost({
+    required int? clientId,
+    required int? delegatedTrustClientId,
+    required CreateNewUsageContractRequest? body,
+  }) {
+    final Uri $url = Uri.parse(
+        '/contract/v1/contracts/clients/${clientId}/delegatedTrust/${delegatedTrustClientId}');
+    final $body = body;
+    final Request $request = Request(
+      'POST',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<ClientContractDtoApiDataResponse,
+        ClientContractDtoApiDataResponse>($request);
+  }
+
+  @override
   Future<Response<User>> _userV1UsersMeGet() {
     final Uri $url = Uri.parse('/user/v1/users/me');
     final Request $request = Request(

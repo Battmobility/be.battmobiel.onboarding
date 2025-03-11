@@ -226,6 +226,98 @@ extension $AdjacentNonAvailabilityExtension on AdjacentNonAvailability {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ApiErrorResponse {
+  const ApiErrorResponse({
+    this.errors,
+  });
+
+  factory ApiErrorResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiErrorResponseFromJson(json);
+
+  static const toJsonFactory = _$ApiErrorResponseToJson;
+  Map<String, dynamic> toJson() => _$ApiErrorResponseToJson(this);
+
+  @JsonKey(name: 'errors', defaultValue: <String>[])
+  final List<String>? errors;
+  static const fromJsonFactory = _$ApiErrorResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ApiErrorResponse &&
+            (identical(other.errors, errors) ||
+                const DeepCollectionEquality().equals(other.errors, errors)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(errors) ^ runtimeType.hashCode;
+}
+
+extension $ApiErrorResponseExtension on ApiErrorResponse {
+  ApiErrorResponse copyWith({List<String>? errors}) {
+    return ApiErrorResponse(errors: errors ?? this.errors);
+  }
+
+  ApiErrorResponse copyWithWrapped({Wrapped<List<String>?>? errors}) {
+    return ApiErrorResponse(
+        errors: (errors != null ? errors.value : this.errors));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ApiValidationResponse {
+  const ApiValidationResponse({
+    this.validationErrors,
+  });
+
+  factory ApiValidationResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidationResponseFromJson(json);
+
+  static const toJsonFactory = _$ApiValidationResponseToJson;
+  Map<String, dynamic> toJson() => _$ApiValidationResponseToJson(this);
+
+  @JsonKey(name: 'validationErrors')
+  final Map<String, dynamic>? validationErrors;
+  static const fromJsonFactory = _$ApiValidationResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ApiValidationResponse &&
+            (identical(other.validationErrors, validationErrors) ||
+                const DeepCollectionEquality()
+                    .equals(other.validationErrors, validationErrors)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(validationErrors) ^
+      runtimeType.hashCode;
+}
+
+extension $ApiValidationResponseExtension on ApiValidationResponse {
+  ApiValidationResponse copyWith({Map<String, dynamic>? validationErrors}) {
+    return ApiValidationResponse(
+        validationErrors: validationErrors ?? this.validationErrors);
+  }
+
+  ApiValidationResponse copyWithWrapped(
+      {Wrapped<Map<String, dynamic>?>? validationErrors}) {
+    return ApiValidationResponse(
+        validationErrors: (validationErrors != null
+            ? validationErrors.value
+            : this.validationErrors));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class AvailabilityConflict {
   const AvailabilityConflict({
     this.nonAvailabilities,
@@ -287,6 +379,50 @@ extension $AvailabilityConflictExtension on AvailabilityConflict {
         splitNonConflictPeriods: (splitNonConflictPeriods != null
             ? splitNonConflictPeriods.value
             : this.splitNonConflictPeriods));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BaseSearchRequest {
+  const BaseSearchRequest({
+    this.flexSearch,
+  });
+
+  factory BaseSearchRequest.fromJson(Map<String, dynamic> json) =>
+      _$BaseSearchRequestFromJson(json);
+
+  static const toJsonFactory = _$BaseSearchRequestToJson;
+  Map<String, dynamic> toJson() => _$BaseSearchRequestToJson(this);
+
+  @JsonKey(name: 'flexSearch')
+  final String? flexSearch;
+  static const fromJsonFactory = _$BaseSearchRequestFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BaseSearchRequest &&
+            (identical(other.flexSearch, flexSearch) ||
+                const DeepCollectionEquality()
+                    .equals(other.flexSearch, flexSearch)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(flexSearch) ^ runtimeType.hashCode;
+}
+
+extension $BaseSearchRequestExtension on BaseSearchRequest {
+  BaseSearchRequest copyWith({String? flexSearch}) {
+    return BaseSearchRequest(flexSearch: flexSearch ?? this.flexSearch);
+  }
+
+  BaseSearchRequest copyWithWrapped({Wrapped<String?>? flexSearch}) {
+    return BaseSearchRequest(
+        flexSearch: (flexSearch != null ? flexSearch.value : this.flexSearch));
   }
 }
 
@@ -910,9 +1046,9 @@ extension $BookingExtension on Booking {
 @JsonSerializable(explicitToJson: true)
 class BookingPrice {
   const BookingPrice({
-    this.dayPrice,
-    this.hourPrice,
-    this.kmPrice,
+    required this.dayPrice,
+    required this.hourPrice,
+    required this.kmPrice,
   });
 
   factory BookingPrice.fromJson(Map<String, dynamic> json) =>
@@ -922,11 +1058,11 @@ class BookingPrice {
   Map<String, dynamic> toJson() => _$BookingPriceToJson(this);
 
   @JsonKey(name: 'dayPrice')
-  final double? dayPrice;
+  final double dayPrice;
   @JsonKey(name: 'hourPrice')
-  final double? hourPrice;
+  final double hourPrice;
   @JsonKey(name: 'kmPrice')
-  final double? kmPrice;
+  final double kmPrice;
   static const fromJsonFactory = _$BookingPriceFromJson;
 
   @override
@@ -964,9 +1100,9 @@ extension $BookingPriceExtension on BookingPrice {
   }
 
   BookingPrice copyWithWrapped(
-      {Wrapped<double?>? dayPrice,
-      Wrapped<double?>? hourPrice,
-      Wrapped<double?>? kmPrice}) {
+      {Wrapped<double>? dayPrice,
+      Wrapped<double>? hourPrice,
+      Wrapped<double>? kmPrice}) {
     return BookingPrice(
         dayPrice: (dayPrice != null ? dayPrice.value : this.dayPrice),
         hourPrice: (hourPrice != null ? hourPrice.value : this.hourPrice),
@@ -1069,6 +1205,653 @@ extension $CancelBookingRequestExtension on CancelBookingRequest {
     return CancelBookingRequest(
         bookingId: (bookingId != null ? bookingId.value : this.bookingId),
         reason: (reason != null ? reason.value : this.reason));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChangeContractCommitmentHints {
+  const ChangeContractCommitmentHints({
+    this.actionAllowed,
+    this.canDecrease,
+    this.canIncrease,
+    this.changeOption,
+    this.currentCommitmentAmountInclVat,
+    this.decreaseBlockedReason,
+    this.earliestDecreaseDate,
+    this.earliestIncreaseDate,
+    this.increaseBlockedReason,
+  });
+
+  factory ChangeContractCommitmentHints.fromJson(Map<String, dynamic> json) =>
+      _$ChangeContractCommitmentHintsFromJson(json);
+
+  static const toJsonFactory = _$ChangeContractCommitmentHintsToJson;
+  Map<String, dynamic> toJson() => _$ChangeContractCommitmentHintsToJson(this);
+
+  @JsonKey(name: 'actionAllowed')
+  final bool? actionAllowed;
+  @JsonKey(name: 'canDecrease')
+  final bool? canDecrease;
+  @JsonKey(name: 'canIncrease')
+  final bool? canIncrease;
+  @JsonKey(
+    name: 'changeOption',
+    toJson: commitmentChangeOptionNullableToJson,
+    fromJson: commitmentChangeOptionNullableFromJson,
+  )
+  final enums.CommitmentChangeOption? changeOption;
+  @JsonKey(name: 'currentCommitmentAmountInclVat')
+  final double? currentCommitmentAmountInclVat;
+  @JsonKey(
+    name: 'decreaseBlockedReason',
+    toJson: validationErrorCodeNullableToJson,
+    fromJson: validationErrorCodeNullableFromJson,
+  )
+  final enums.ValidationErrorCode? decreaseBlockedReason;
+  @JsonKey(name: 'earliestDecreaseDate', toJson: _dateToJson)
+  final DateTime? earliestDecreaseDate;
+  @JsonKey(name: 'earliestIncreaseDate', toJson: _dateToJson)
+  final DateTime? earliestIncreaseDate;
+  @JsonKey(
+    name: 'increaseBlockedReason',
+    toJson: validationErrorCodeNullableToJson,
+    fromJson: validationErrorCodeNullableFromJson,
+  )
+  final enums.ValidationErrorCode? increaseBlockedReason;
+  static const fromJsonFactory = _$ChangeContractCommitmentHintsFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ChangeContractCommitmentHints &&
+            (identical(other.actionAllowed, actionAllowed) ||
+                const DeepCollectionEquality()
+                    .equals(other.actionAllowed, actionAllowed)) &&
+            (identical(other.canDecrease, canDecrease) ||
+                const DeepCollectionEquality()
+                    .equals(other.canDecrease, canDecrease)) &&
+            (identical(other.canIncrease, canIncrease) ||
+                const DeepCollectionEquality()
+                    .equals(other.canIncrease, canIncrease)) &&
+            (identical(other.changeOption, changeOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.changeOption, changeOption)) &&
+            (identical(other.currentCommitmentAmountInclVat,
+                    currentCommitmentAmountInclVat) ||
+                const DeepCollectionEquality().equals(
+                    other.currentCommitmentAmountInclVat,
+                    currentCommitmentAmountInclVat)) &&
+            (identical(other.decreaseBlockedReason, decreaseBlockedReason) ||
+                const DeepCollectionEquality().equals(
+                    other.decreaseBlockedReason, decreaseBlockedReason)) &&
+            (identical(other.earliestDecreaseDate, earliestDecreaseDate) ||
+                const DeepCollectionEquality().equals(
+                    other.earliestDecreaseDate, earliestDecreaseDate)) &&
+            (identical(other.earliestIncreaseDate, earliestIncreaseDate) ||
+                const DeepCollectionEquality().equals(
+                    other.earliestIncreaseDate, earliestIncreaseDate)) &&
+            (identical(other.increaseBlockedReason, increaseBlockedReason) ||
+                const DeepCollectionEquality().equals(
+                    other.increaseBlockedReason, increaseBlockedReason)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(actionAllowed) ^
+      const DeepCollectionEquality().hash(canDecrease) ^
+      const DeepCollectionEquality().hash(canIncrease) ^
+      const DeepCollectionEquality().hash(changeOption) ^
+      const DeepCollectionEquality().hash(currentCommitmentAmountInclVat) ^
+      const DeepCollectionEquality().hash(decreaseBlockedReason) ^
+      const DeepCollectionEquality().hash(earliestDecreaseDate) ^
+      const DeepCollectionEquality().hash(earliestIncreaseDate) ^
+      const DeepCollectionEquality().hash(increaseBlockedReason) ^
+      runtimeType.hashCode;
+}
+
+extension $ChangeContractCommitmentHintsExtension
+    on ChangeContractCommitmentHints {
+  ChangeContractCommitmentHints copyWith(
+      {bool? actionAllowed,
+      bool? canDecrease,
+      bool? canIncrease,
+      enums.CommitmentChangeOption? changeOption,
+      double? currentCommitmentAmountInclVat,
+      enums.ValidationErrorCode? decreaseBlockedReason,
+      DateTime? earliestDecreaseDate,
+      DateTime? earliestIncreaseDate,
+      enums.ValidationErrorCode? increaseBlockedReason}) {
+    return ChangeContractCommitmentHints(
+        actionAllowed: actionAllowed ?? this.actionAllowed,
+        canDecrease: canDecrease ?? this.canDecrease,
+        canIncrease: canIncrease ?? this.canIncrease,
+        changeOption: changeOption ?? this.changeOption,
+        currentCommitmentAmountInclVat: currentCommitmentAmountInclVat ??
+            this.currentCommitmentAmountInclVat,
+        decreaseBlockedReason:
+            decreaseBlockedReason ?? this.decreaseBlockedReason,
+        earliestDecreaseDate: earliestDecreaseDate ?? this.earliestDecreaseDate,
+        earliestIncreaseDate: earliestIncreaseDate ?? this.earliestIncreaseDate,
+        increaseBlockedReason:
+            increaseBlockedReason ?? this.increaseBlockedReason);
+  }
+
+  ChangeContractCommitmentHints copyWithWrapped(
+      {Wrapped<bool?>? actionAllowed,
+      Wrapped<bool?>? canDecrease,
+      Wrapped<bool?>? canIncrease,
+      Wrapped<enums.CommitmentChangeOption?>? changeOption,
+      Wrapped<double?>? currentCommitmentAmountInclVat,
+      Wrapped<enums.ValidationErrorCode?>? decreaseBlockedReason,
+      Wrapped<DateTime?>? earliestDecreaseDate,
+      Wrapped<DateTime?>? earliestIncreaseDate,
+      Wrapped<enums.ValidationErrorCode?>? increaseBlockedReason}) {
+    return ChangeContractCommitmentHints(
+        actionAllowed:
+            (actionAllowed != null ? actionAllowed.value : this.actionAllowed),
+        canDecrease:
+            (canDecrease != null ? canDecrease.value : this.canDecrease),
+        canIncrease:
+            (canIncrease != null ? canIncrease.value : this.canIncrease),
+        changeOption:
+            (changeOption != null ? changeOption.value : this.changeOption),
+        currentCommitmentAmountInclVat: (currentCommitmentAmountInclVat != null
+            ? currentCommitmentAmountInclVat.value
+            : this.currentCommitmentAmountInclVat),
+        decreaseBlockedReason: (decreaseBlockedReason != null
+            ? decreaseBlockedReason.value
+            : this.decreaseBlockedReason),
+        earliestDecreaseDate: (earliestDecreaseDate != null
+            ? earliestDecreaseDate.value
+            : this.earliestDecreaseDate),
+        earliestIncreaseDate: (earliestIncreaseDate != null
+            ? earliestIncreaseDate.value
+            : this.earliestIncreaseDate),
+        increaseBlockedReason: (increaseBlockedReason != null
+            ? increaseBlockedReason.value
+            : this.increaseBlockedReason));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChangeContractCommitmentHintsApiDataResponse {
+  const ChangeContractCommitmentHintsApiDataResponse({
+    this.data,
+  });
+
+  factory ChangeContractCommitmentHintsApiDataResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$ChangeContractCommitmentHintsApiDataResponseFromJson(json);
+
+  static const toJsonFactory =
+      _$ChangeContractCommitmentHintsApiDataResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$ChangeContractCommitmentHintsApiDataResponseToJson(this);
+
+  @JsonKey(name: 'data')
+  final ChangeContractCommitmentHints? data;
+  static const fromJsonFactory =
+      _$ChangeContractCommitmentHintsApiDataResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ChangeContractCommitmentHintsApiDataResponse &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(data) ^ runtimeType.hashCode;
+}
+
+extension $ChangeContractCommitmentHintsApiDataResponseExtension
+    on ChangeContractCommitmentHintsApiDataResponse {
+  ChangeContractCommitmentHintsApiDataResponse copyWith(
+      {ChangeContractCommitmentHints? data}) {
+    return ChangeContractCommitmentHintsApiDataResponse(
+        data: data ?? this.data);
+  }
+
+  ChangeContractCommitmentHintsApiDataResponse copyWithWrapped(
+      {Wrapped<ChangeContractCommitmentHints?>? data}) {
+    return ChangeContractCommitmentHintsApiDataResponse(
+        data: (data != null ? data.value : this.data));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChangeContractCommitmentRequest {
+  const ChangeContractCommitmentRequest({
+    this.changeDate,
+    this.commitmentAmountInclVat,
+    this.memo,
+  });
+
+  factory ChangeContractCommitmentRequest.fromJson(Map<String, dynamic> json) =>
+      _$ChangeContractCommitmentRequestFromJson(json);
+
+  static const toJsonFactory = _$ChangeContractCommitmentRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$ChangeContractCommitmentRequestToJson(this);
+
+  @JsonKey(name: 'changeDate', toJson: _dateToJson)
+  final DateTime? changeDate;
+  @JsonKey(name: 'commitmentAmountInclVat')
+  final double? commitmentAmountInclVat;
+  @JsonKey(name: 'memo')
+  final String? memo;
+  static const fromJsonFactory = _$ChangeContractCommitmentRequestFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ChangeContractCommitmentRequest &&
+            (identical(other.changeDate, changeDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.changeDate, changeDate)) &&
+            (identical(
+                    other.commitmentAmountInclVat, commitmentAmountInclVat) ||
+                const DeepCollectionEquality().equals(
+                    other.commitmentAmountInclVat, commitmentAmountInclVat)) &&
+            (identical(other.memo, memo) ||
+                const DeepCollectionEquality().equals(other.memo, memo)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(changeDate) ^
+      const DeepCollectionEquality().hash(commitmentAmountInclVat) ^
+      const DeepCollectionEquality().hash(memo) ^
+      runtimeType.hashCode;
+}
+
+extension $ChangeContractCommitmentRequestExtension
+    on ChangeContractCommitmentRequest {
+  ChangeContractCommitmentRequest copyWith(
+      {DateTime? changeDate, double? commitmentAmountInclVat, String? memo}) {
+    return ChangeContractCommitmentRequest(
+        changeDate: changeDate ?? this.changeDate,
+        commitmentAmountInclVat:
+            commitmentAmountInclVat ?? this.commitmentAmountInclVat,
+        memo: memo ?? this.memo);
+  }
+
+  ChangeContractCommitmentRequest copyWithWrapped(
+      {Wrapped<DateTime?>? changeDate,
+      Wrapped<double?>? commitmentAmountInclVat,
+      Wrapped<String?>? memo}) {
+    return ChangeContractCommitmentRequest(
+        changeDate: (changeDate != null ? changeDate.value : this.changeDate),
+        commitmentAmountInclVat: (commitmentAmountInclVat != null
+            ? commitmentAmountInclVat.value
+            : this.commitmentAmountInclVat),
+        memo: (memo != null ? memo.value : this.memo));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChangeContractFormulaHints {
+  const ChangeContractFormulaHints({
+    this.actionAllowed,
+    this.currentCommitmentAmountInclVat,
+    this.currentFormula,
+    this.currentFormulaEnd,
+    this.currentFormulaStart,
+    this.hints,
+    this.willOverrideFutureFormula,
+  });
+
+  factory ChangeContractFormulaHints.fromJson(Map<String, dynamic> json) =>
+      _$ChangeContractFormulaHintsFromJson(json);
+
+  static const toJsonFactory = _$ChangeContractFormulaHintsToJson;
+  Map<String, dynamic> toJson() => _$ChangeContractFormulaHintsToJson(this);
+
+  @JsonKey(name: 'actionAllowed')
+  final bool? actionAllowed;
+  @JsonKey(name: 'currentCommitmentAmountInclVat')
+  final double? currentCommitmentAmountInclVat;
+  @JsonKey(
+    name: 'currentFormula',
+    toJson: clientContractFormulaNullableToJson,
+    fromJson: clientContractFormulaNullableFromJson,
+  )
+  final enums.ClientContractFormula? currentFormula;
+  @JsonKey(name: 'currentFormulaEnd', toJson: _dateToJson)
+  final DateTime? currentFormulaEnd;
+  @JsonKey(name: 'currentFormulaStart', toJson: _dateToJson)
+  final DateTime? currentFormulaStart;
+  @JsonKey(name: 'hints', defaultValue: <ChangeToContractFormulaHint>[])
+  final List<ChangeToContractFormulaHint>? hints;
+  @JsonKey(name: 'willOverrideFutureFormula')
+  final bool? willOverrideFutureFormula;
+  static const fromJsonFactory = _$ChangeContractFormulaHintsFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ChangeContractFormulaHints &&
+            (identical(other.actionAllowed, actionAllowed) ||
+                const DeepCollectionEquality()
+                    .equals(other.actionAllowed, actionAllowed)) &&
+            (identical(other.currentCommitmentAmountInclVat,
+                    currentCommitmentAmountInclVat) ||
+                const DeepCollectionEquality().equals(
+                    other.currentCommitmentAmountInclVat,
+                    currentCommitmentAmountInclVat)) &&
+            (identical(other.currentFormula, currentFormula) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentFormula, currentFormula)) &&
+            (identical(other.currentFormulaEnd, currentFormulaEnd) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentFormulaEnd, currentFormulaEnd)) &&
+            (identical(other.currentFormulaStart, currentFormulaStart) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentFormulaStart, currentFormulaStart)) &&
+            (identical(other.hints, hints) ||
+                const DeepCollectionEquality().equals(other.hints, hints)) &&
+            (identical(other.willOverrideFutureFormula,
+                    willOverrideFutureFormula) ||
+                const DeepCollectionEquality().equals(
+                    other.willOverrideFutureFormula,
+                    willOverrideFutureFormula)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(actionAllowed) ^
+      const DeepCollectionEquality().hash(currentCommitmentAmountInclVat) ^
+      const DeepCollectionEquality().hash(currentFormula) ^
+      const DeepCollectionEquality().hash(currentFormulaEnd) ^
+      const DeepCollectionEquality().hash(currentFormulaStart) ^
+      const DeepCollectionEquality().hash(hints) ^
+      const DeepCollectionEquality().hash(willOverrideFutureFormula) ^
+      runtimeType.hashCode;
+}
+
+extension $ChangeContractFormulaHintsExtension on ChangeContractFormulaHints {
+  ChangeContractFormulaHints copyWith(
+      {bool? actionAllowed,
+      double? currentCommitmentAmountInclVat,
+      enums.ClientContractFormula? currentFormula,
+      DateTime? currentFormulaEnd,
+      DateTime? currentFormulaStart,
+      List<ChangeToContractFormulaHint>? hints,
+      bool? willOverrideFutureFormula}) {
+    return ChangeContractFormulaHints(
+        actionAllowed: actionAllowed ?? this.actionAllowed,
+        currentCommitmentAmountInclVat: currentCommitmentAmountInclVat ??
+            this.currentCommitmentAmountInclVat,
+        currentFormula: currentFormula ?? this.currentFormula,
+        currentFormulaEnd: currentFormulaEnd ?? this.currentFormulaEnd,
+        currentFormulaStart: currentFormulaStart ?? this.currentFormulaStart,
+        hints: hints ?? this.hints,
+        willOverrideFutureFormula:
+            willOverrideFutureFormula ?? this.willOverrideFutureFormula);
+  }
+
+  ChangeContractFormulaHints copyWithWrapped(
+      {Wrapped<bool?>? actionAllowed,
+      Wrapped<double?>? currentCommitmentAmountInclVat,
+      Wrapped<enums.ClientContractFormula?>? currentFormula,
+      Wrapped<DateTime?>? currentFormulaEnd,
+      Wrapped<DateTime?>? currentFormulaStart,
+      Wrapped<List<ChangeToContractFormulaHint>?>? hints,
+      Wrapped<bool?>? willOverrideFutureFormula}) {
+    return ChangeContractFormulaHints(
+        actionAllowed:
+            (actionAllowed != null ? actionAllowed.value : this.actionAllowed),
+        currentCommitmentAmountInclVat: (currentCommitmentAmountInclVat != null
+            ? currentCommitmentAmountInclVat.value
+            : this.currentCommitmentAmountInclVat),
+        currentFormula: (currentFormula != null
+            ? currentFormula.value
+            : this.currentFormula),
+        currentFormulaEnd: (currentFormulaEnd != null
+            ? currentFormulaEnd.value
+            : this.currentFormulaEnd),
+        currentFormulaStart: (currentFormulaStart != null
+            ? currentFormulaStart.value
+            : this.currentFormulaStart),
+        hints: (hints != null ? hints.value : this.hints),
+        willOverrideFutureFormula: (willOverrideFutureFormula != null
+            ? willOverrideFutureFormula.value
+            : this.willOverrideFutureFormula));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChangeContractFormulaHintsApiDataResponse {
+  const ChangeContractFormulaHintsApiDataResponse({
+    this.data,
+  });
+
+  factory ChangeContractFormulaHintsApiDataResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$ChangeContractFormulaHintsApiDataResponseFromJson(json);
+
+  static const toJsonFactory =
+      _$ChangeContractFormulaHintsApiDataResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$ChangeContractFormulaHintsApiDataResponseToJson(this);
+
+  @JsonKey(name: 'data')
+  final ChangeContractFormulaHints? data;
+  static const fromJsonFactory =
+      _$ChangeContractFormulaHintsApiDataResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ChangeContractFormulaHintsApiDataResponse &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(data) ^ runtimeType.hashCode;
+}
+
+extension $ChangeContractFormulaHintsApiDataResponseExtension
+    on ChangeContractFormulaHintsApiDataResponse {
+  ChangeContractFormulaHintsApiDataResponse copyWith(
+      {ChangeContractFormulaHints? data}) {
+    return ChangeContractFormulaHintsApiDataResponse(data: data ?? this.data);
+  }
+
+  ChangeContractFormulaHintsApiDataResponse copyWithWrapped(
+      {Wrapped<ChangeContractFormulaHints?>? data}) {
+    return ChangeContractFormulaHintsApiDataResponse(
+        data: (data != null ? data.value : this.data));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChangeContractFormulaRequest {
+  const ChangeContractFormulaRequest({
+    this.changeDate,
+    this.commitmentAmountInclVat,
+    this.formula,
+    this.memo,
+  });
+
+  factory ChangeContractFormulaRequest.fromJson(Map<String, dynamic> json) =>
+      _$ChangeContractFormulaRequestFromJson(json);
+
+  static const toJsonFactory = _$ChangeContractFormulaRequestToJson;
+  Map<String, dynamic> toJson() => _$ChangeContractFormulaRequestToJson(this);
+
+  @JsonKey(name: 'changeDate', toJson: _dateToJson)
+  final DateTime? changeDate;
+  @JsonKey(name: 'commitmentAmountInclVat')
+  final double? commitmentAmountInclVat;
+  @JsonKey(
+    name: 'formula',
+    toJson: clientContractFormulaNullableToJson,
+    fromJson: clientContractFormulaNullableFromJson,
+  )
+  final enums.ClientContractFormula? formula;
+  @JsonKey(name: 'memo')
+  final String? memo;
+  static const fromJsonFactory = _$ChangeContractFormulaRequestFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ChangeContractFormulaRequest &&
+            (identical(other.changeDate, changeDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.changeDate, changeDate)) &&
+            (identical(
+                    other.commitmentAmountInclVat, commitmentAmountInclVat) ||
+                const DeepCollectionEquality().equals(
+                    other.commitmentAmountInclVat, commitmentAmountInclVat)) &&
+            (identical(other.formula, formula) ||
+                const DeepCollectionEquality()
+                    .equals(other.formula, formula)) &&
+            (identical(other.memo, memo) ||
+                const DeepCollectionEquality().equals(other.memo, memo)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(changeDate) ^
+      const DeepCollectionEquality().hash(commitmentAmountInclVat) ^
+      const DeepCollectionEquality().hash(formula) ^
+      const DeepCollectionEquality().hash(memo) ^
+      runtimeType.hashCode;
+}
+
+extension $ChangeContractFormulaRequestExtension
+    on ChangeContractFormulaRequest {
+  ChangeContractFormulaRequest copyWith(
+      {DateTime? changeDate,
+      double? commitmentAmountInclVat,
+      enums.ClientContractFormula? formula,
+      String? memo}) {
+    return ChangeContractFormulaRequest(
+        changeDate: changeDate ?? this.changeDate,
+        commitmentAmountInclVat:
+            commitmentAmountInclVat ?? this.commitmentAmountInclVat,
+        formula: formula ?? this.formula,
+        memo: memo ?? this.memo);
+  }
+
+  ChangeContractFormulaRequest copyWithWrapped(
+      {Wrapped<DateTime?>? changeDate,
+      Wrapped<double?>? commitmentAmountInclVat,
+      Wrapped<enums.ClientContractFormula?>? formula,
+      Wrapped<String?>? memo}) {
+    return ChangeContractFormulaRequest(
+        changeDate: (changeDate != null ? changeDate.value : this.changeDate),
+        commitmentAmountInclVat: (commitmentAmountInclVat != null
+            ? commitmentAmountInclVat.value
+            : this.commitmentAmountInclVat),
+        formula: (formula != null ? formula.value : this.formula),
+        memo: (memo != null ? memo.value : this.memo));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ChangeToContractFormulaHint {
+  const ChangeToContractFormulaHint({
+    this.changeOption,
+    this.earliestChangeDate,
+    this.targetFormula,
+  });
+
+  factory ChangeToContractFormulaHint.fromJson(Map<String, dynamic> json) =>
+      _$ChangeToContractFormulaHintFromJson(json);
+
+  static const toJsonFactory = _$ChangeToContractFormulaHintToJson;
+  Map<String, dynamic> toJson() => _$ChangeToContractFormulaHintToJson(this);
+
+  @JsonKey(
+    name: 'changeOption',
+    toJson: formulaChangeOptionNullableToJson,
+    fromJson: formulaChangeOptionNullableFromJson,
+  )
+  final enums.FormulaChangeOption? changeOption;
+  @JsonKey(name: 'earliestChangeDate', toJson: _dateToJson)
+  final DateTime? earliestChangeDate;
+  @JsonKey(
+    name: 'targetFormula',
+    toJson: clientContractFormulaNullableToJson,
+    fromJson: clientContractFormulaNullableFromJson,
+  )
+  final enums.ClientContractFormula? targetFormula;
+  static const fromJsonFactory = _$ChangeToContractFormulaHintFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ChangeToContractFormulaHint &&
+            (identical(other.changeOption, changeOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.changeOption, changeOption)) &&
+            (identical(other.earliestChangeDate, earliestChangeDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.earliestChangeDate, earliestChangeDate)) &&
+            (identical(other.targetFormula, targetFormula) ||
+                const DeepCollectionEquality()
+                    .equals(other.targetFormula, targetFormula)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(changeOption) ^
+      const DeepCollectionEquality().hash(earliestChangeDate) ^
+      const DeepCollectionEquality().hash(targetFormula) ^
+      runtimeType.hashCode;
+}
+
+extension $ChangeToContractFormulaHintExtension on ChangeToContractFormulaHint {
+  ChangeToContractFormulaHint copyWith(
+      {enums.FormulaChangeOption? changeOption,
+      DateTime? earliestChangeDate,
+      enums.ClientContractFormula? targetFormula}) {
+    return ChangeToContractFormulaHint(
+        changeOption: changeOption ?? this.changeOption,
+        earliestChangeDate: earliestChangeDate ?? this.earliestChangeDate,
+        targetFormula: targetFormula ?? this.targetFormula);
+  }
+
+  ChangeToContractFormulaHint copyWithWrapped(
+      {Wrapped<enums.FormulaChangeOption?>? changeOption,
+      Wrapped<DateTime?>? earliestChangeDate,
+      Wrapped<enums.ClientContractFormula?>? targetFormula}) {
+    return ChangeToContractFormulaHint(
+        changeOption:
+            (changeOption != null ? changeOption.value : this.changeOption),
+        earliestChangeDate: (earliestChangeDate != null
+            ? earliestChangeDate.value
+            : this.earliestChangeDate),
+        targetFormula:
+            (targetFormula != null ? targetFormula.value : this.targetFormula));
   }
 }
 
@@ -1213,6 +1996,923 @@ extension $ClientExtension on Client {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ClientContractDto {
+  const ClientContractDto({
+    this.billingInstructions,
+    this.billingType,
+    this.$client,
+    this.clientContractType,
+    this.contractDate,
+    this.contractFileName,
+    this.currentFormula,
+    this.dateOfCancellation,
+    this.endDate,
+    this.id,
+    this.isCompletelySettled,
+    this.isSuspended,
+    this.memo,
+    this.overrideAutoDescription,
+    this.reasonOfCancellation,
+    this.settings,
+    this.startDate,
+    this.status,
+    this.suspensionReason,
+    this.usage,
+  });
+
+  factory ClientContractDto.fromJson(Map<String, dynamic> json) =>
+      _$ClientContractDtoFromJson(json);
+
+  static const toJsonFactory = _$ClientContractDtoToJson;
+  Map<String, dynamic> toJson() => _$ClientContractDtoToJson(this);
+
+  @JsonKey(name: 'billingInstructions')
+  final String? billingInstructions;
+  @JsonKey(name: 'billingType')
+  final String? billingType;
+  @JsonKey(name: 'client')
+  final ClientReferenceDto? $client;
+  @JsonKey(
+    name: 'clientContractType',
+    toJson: clientContractTypeNullableToJson,
+    fromJson: clientContractTypeNullableFromJson,
+  )
+  final enums.ClientContractType? clientContractType;
+  @JsonKey(name: 'contractDate', toJson: _dateToJson)
+  final DateTime? contractDate;
+  @JsonKey(name: 'contractFileName')
+  final String? contractFileName;
+  @JsonKey(
+    name: 'currentFormula',
+    toJson: clientContractFormulaNullableToJson,
+    fromJson: clientContractFormulaNullableFromJson,
+  )
+  final enums.ClientContractFormula? currentFormula;
+  @JsonKey(name: 'dateOfCancellation', toJson: _dateToJson)
+  final DateTime? dateOfCancellation;
+  @JsonKey(name: 'endDate', toJson: _dateToJson)
+  final DateTime? endDate;
+  @JsonKey(name: 'id')
+  final int? id;
+  @JsonKey(name: 'isCompletelySettled')
+  final bool? isCompletelySettled;
+  @JsonKey(name: 'isSuspended')
+  final bool? isSuspended;
+  @JsonKey(name: 'memo')
+  final String? memo;
+  @JsonKey(name: 'overrideAutoDescription')
+  final String? overrideAutoDescription;
+  @JsonKey(name: 'reasonOfCancellation')
+  final String? reasonOfCancellation;
+  @JsonKey(name: 'settings')
+  final String? settings;
+  @JsonKey(name: 'startDate', toJson: _dateToJson)
+  final DateTime? startDate;
+  @JsonKey(
+    name: 'status',
+    toJson: clientContractStatusNullableToJson,
+    fromJson: clientContractStatusNullableFromJson,
+  )
+  final enums.ClientContractStatus? status;
+  @JsonKey(name: 'suspensionReason')
+  final String? suspensionReason;
+  @JsonKey(name: 'usage')
+  final ClientContractUsageDto? usage;
+  static const fromJsonFactory = _$ClientContractDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ClientContractDto &&
+            (identical(other.billingInstructions, billingInstructions) ||
+                const DeepCollectionEquality()
+                    .equals(other.billingInstructions, billingInstructions)) &&
+            (identical(other.billingType, billingType) ||
+                const DeepCollectionEquality()
+                    .equals(other.billingType, billingType)) &&
+            (identical(other.$client, $client) ||
+                const DeepCollectionEquality()
+                    .equals(other.$client, $client)) &&
+            (identical(other.clientContractType, clientContractType) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientContractType, clientContractType)) &&
+            (identical(other.contractDate, contractDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.contractDate, contractDate)) &&
+            (identical(other.contractFileName, contractFileName) ||
+                const DeepCollectionEquality()
+                    .equals(other.contractFileName, contractFileName)) &&
+            (identical(other.currentFormula, currentFormula) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentFormula, currentFormula)) &&
+            (identical(other.dateOfCancellation, dateOfCancellation) ||
+                const DeepCollectionEquality()
+                    .equals(other.dateOfCancellation, dateOfCancellation)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.isCompletelySettled, isCompletelySettled) ||
+                const DeepCollectionEquality()
+                    .equals(other.isCompletelySettled, isCompletelySettled)) &&
+            (identical(other.isSuspended, isSuspended) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSuspended, isSuspended)) &&
+            (identical(other.memo, memo) ||
+                const DeepCollectionEquality().equals(other.memo, memo)) &&
+            (identical(
+                    other.overrideAutoDescription, overrideAutoDescription) ||
+                const DeepCollectionEquality().equals(
+                    other.overrideAutoDescription, overrideAutoDescription)) &&
+            (identical(other.reasonOfCancellation, reasonOfCancellation) ||
+                const DeepCollectionEquality().equals(
+                    other.reasonOfCancellation, reasonOfCancellation)) &&
+            (identical(other.settings, settings) ||
+                const DeepCollectionEquality()
+                    .equals(other.settings, settings)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.suspensionReason, suspensionReason) ||
+                const DeepCollectionEquality()
+                    .equals(other.suspensionReason, suspensionReason)) &&
+            (identical(other.usage, usage) ||
+                const DeepCollectionEquality().equals(other.usage, usage)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(billingInstructions) ^
+      const DeepCollectionEquality().hash(billingType) ^
+      const DeepCollectionEquality().hash($client) ^
+      const DeepCollectionEquality().hash(clientContractType) ^
+      const DeepCollectionEquality().hash(contractDate) ^
+      const DeepCollectionEquality().hash(contractFileName) ^
+      const DeepCollectionEquality().hash(currentFormula) ^
+      const DeepCollectionEquality().hash(dateOfCancellation) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(isCompletelySettled) ^
+      const DeepCollectionEquality().hash(isSuspended) ^
+      const DeepCollectionEquality().hash(memo) ^
+      const DeepCollectionEquality().hash(overrideAutoDescription) ^
+      const DeepCollectionEquality().hash(reasonOfCancellation) ^
+      const DeepCollectionEquality().hash(settings) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(suspensionReason) ^
+      const DeepCollectionEquality().hash(usage) ^
+      runtimeType.hashCode;
+}
+
+extension $ClientContractDtoExtension on ClientContractDto {
+  ClientContractDto copyWith(
+      {String? billingInstructions,
+      String? billingType,
+      ClientReferenceDto? $client,
+      enums.ClientContractType? clientContractType,
+      DateTime? contractDate,
+      String? contractFileName,
+      enums.ClientContractFormula? currentFormula,
+      DateTime? dateOfCancellation,
+      DateTime? endDate,
+      int? id,
+      bool? isCompletelySettled,
+      bool? isSuspended,
+      String? memo,
+      String? overrideAutoDescription,
+      String? reasonOfCancellation,
+      String? settings,
+      DateTime? startDate,
+      enums.ClientContractStatus? status,
+      String? suspensionReason,
+      ClientContractUsageDto? usage}) {
+    return ClientContractDto(
+        billingInstructions: billingInstructions ?? this.billingInstructions,
+        billingType: billingType ?? this.billingType,
+        $client: $client ?? this.$client,
+        clientContractType: clientContractType ?? this.clientContractType,
+        contractDate: contractDate ?? this.contractDate,
+        contractFileName: contractFileName ?? this.contractFileName,
+        currentFormula: currentFormula ?? this.currentFormula,
+        dateOfCancellation: dateOfCancellation ?? this.dateOfCancellation,
+        endDate: endDate ?? this.endDate,
+        id: id ?? this.id,
+        isCompletelySettled: isCompletelySettled ?? this.isCompletelySettled,
+        isSuspended: isSuspended ?? this.isSuspended,
+        memo: memo ?? this.memo,
+        overrideAutoDescription:
+            overrideAutoDescription ?? this.overrideAutoDescription,
+        reasonOfCancellation: reasonOfCancellation ?? this.reasonOfCancellation,
+        settings: settings ?? this.settings,
+        startDate: startDate ?? this.startDate,
+        status: status ?? this.status,
+        suspensionReason: suspensionReason ?? this.suspensionReason,
+        usage: usage ?? this.usage);
+  }
+
+  ClientContractDto copyWithWrapped(
+      {Wrapped<String?>? billingInstructions,
+      Wrapped<String?>? billingType,
+      Wrapped<ClientReferenceDto?>? $client,
+      Wrapped<enums.ClientContractType?>? clientContractType,
+      Wrapped<DateTime?>? contractDate,
+      Wrapped<String?>? contractFileName,
+      Wrapped<enums.ClientContractFormula?>? currentFormula,
+      Wrapped<DateTime?>? dateOfCancellation,
+      Wrapped<DateTime?>? endDate,
+      Wrapped<int?>? id,
+      Wrapped<bool?>? isCompletelySettled,
+      Wrapped<bool?>? isSuspended,
+      Wrapped<String?>? memo,
+      Wrapped<String?>? overrideAutoDescription,
+      Wrapped<String?>? reasonOfCancellation,
+      Wrapped<String?>? settings,
+      Wrapped<DateTime?>? startDate,
+      Wrapped<enums.ClientContractStatus?>? status,
+      Wrapped<String?>? suspensionReason,
+      Wrapped<ClientContractUsageDto?>? usage}) {
+    return ClientContractDto(
+        billingInstructions: (billingInstructions != null
+            ? billingInstructions.value
+            : this.billingInstructions),
+        billingType:
+            (billingType != null ? billingType.value : this.billingType),
+        $client: ($client != null ? $client.value : this.$client),
+        clientContractType: (clientContractType != null
+            ? clientContractType.value
+            : this.clientContractType),
+        contractDate:
+            (contractDate != null ? contractDate.value : this.contractDate),
+        contractFileName: (contractFileName != null
+            ? contractFileName.value
+            : this.contractFileName),
+        currentFormula: (currentFormula != null
+            ? currentFormula.value
+            : this.currentFormula),
+        dateOfCancellation: (dateOfCancellation != null
+            ? dateOfCancellation.value
+            : this.dateOfCancellation),
+        endDate: (endDate != null ? endDate.value : this.endDate),
+        id: (id != null ? id.value : this.id),
+        isCompletelySettled: (isCompletelySettled != null
+            ? isCompletelySettled.value
+            : this.isCompletelySettled),
+        isSuspended:
+            (isSuspended != null ? isSuspended.value : this.isSuspended),
+        memo: (memo != null ? memo.value : this.memo),
+        overrideAutoDescription: (overrideAutoDescription != null
+            ? overrideAutoDescription.value
+            : this.overrideAutoDescription),
+        reasonOfCancellation: (reasonOfCancellation != null
+            ? reasonOfCancellation.value
+            : this.reasonOfCancellation),
+        settings: (settings != null ? settings.value : this.settings),
+        startDate: (startDate != null ? startDate.value : this.startDate),
+        status: (status != null ? status.value : this.status),
+        suspensionReason: (suspensionReason != null
+            ? suspensionReason.value
+            : this.suspensionReason),
+        usage: (usage != null ? usage.value : this.usage));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ClientContractDtoApiDataResponse {
+  const ClientContractDtoApiDataResponse({
+    this.data,
+  });
+
+  factory ClientContractDtoApiDataResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClientContractDtoApiDataResponseFromJson(json);
+
+  static const toJsonFactory = _$ClientContractDtoApiDataResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$ClientContractDtoApiDataResponseToJson(this);
+
+  @JsonKey(name: 'data')
+  final ClientContractDto? data;
+  static const fromJsonFactory = _$ClientContractDtoApiDataResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ClientContractDtoApiDataResponse &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(data) ^ runtimeType.hashCode;
+}
+
+extension $ClientContractDtoApiDataResponseExtension
+    on ClientContractDtoApiDataResponse {
+  ClientContractDtoApiDataResponse copyWith({ClientContractDto? data}) {
+    return ClientContractDtoApiDataResponse(data: data ?? this.data);
+  }
+
+  ClientContractDtoApiDataResponse copyWithWrapped(
+      {Wrapped<ClientContractDto?>? data}) {
+    return ClientContractDtoApiDataResponse(
+        data: (data != null ? data.value : this.data));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ClientContractSummaryDto {
+  const ClientContractSummaryDto({
+    this.$client,
+    this.clientContractType,
+    this.contractDate,
+    this.currentFormula,
+    this.dateOfCancellation,
+    this.endDate,
+    this.id,
+    this.isSuspended,
+    this.overrideAutoDescription,
+    this.reasonOfCancellation,
+    this.startDate,
+    this.status,
+    this.suspensionReason,
+  });
+
+  factory ClientContractSummaryDto.fromJson(Map<String, dynamic> json) =>
+      _$ClientContractSummaryDtoFromJson(json);
+
+  static const toJsonFactory = _$ClientContractSummaryDtoToJson;
+  Map<String, dynamic> toJson() => _$ClientContractSummaryDtoToJson(this);
+
+  @JsonKey(name: 'client')
+  final ClientReferenceDto? $client;
+  @JsonKey(
+    name: 'clientContractType',
+    toJson: clientContractTypeNullableToJson,
+    fromJson: clientContractTypeNullableFromJson,
+  )
+  final enums.ClientContractType? clientContractType;
+  @JsonKey(name: 'contractDate', toJson: _dateToJson)
+  final DateTime? contractDate;
+  @JsonKey(
+    name: 'currentFormula',
+    toJson: clientContractFormulaNullableToJson,
+    fromJson: clientContractFormulaNullableFromJson,
+  )
+  final enums.ClientContractFormula? currentFormula;
+  @JsonKey(name: 'dateOfCancellation', toJson: _dateToJson)
+  final DateTime? dateOfCancellation;
+  @JsonKey(name: 'endDate', toJson: _dateToJson)
+  final DateTime? endDate;
+  @JsonKey(name: 'id')
+  final int? id;
+  @JsonKey(name: 'isSuspended')
+  final bool? isSuspended;
+  @JsonKey(name: 'overrideAutoDescription')
+  final String? overrideAutoDescription;
+  @JsonKey(name: 'reasonOfCancellation')
+  final String? reasonOfCancellation;
+  @JsonKey(name: 'startDate', toJson: _dateToJson)
+  final DateTime? startDate;
+  @JsonKey(
+    name: 'status',
+    toJson: clientContractStatusNullableToJson,
+    fromJson: clientContractStatusNullableFromJson,
+  )
+  final enums.ClientContractStatus? status;
+  @JsonKey(name: 'suspensionReason')
+  final String? suspensionReason;
+  static const fromJsonFactory = _$ClientContractSummaryDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ClientContractSummaryDto &&
+            (identical(other.$client, $client) ||
+                const DeepCollectionEquality()
+                    .equals(other.$client, $client)) &&
+            (identical(other.clientContractType, clientContractType) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientContractType, clientContractType)) &&
+            (identical(other.contractDate, contractDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.contractDate, contractDate)) &&
+            (identical(other.currentFormula, currentFormula) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentFormula, currentFormula)) &&
+            (identical(other.dateOfCancellation, dateOfCancellation) ||
+                const DeepCollectionEquality()
+                    .equals(other.dateOfCancellation, dateOfCancellation)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.isSuspended, isSuspended) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSuspended, isSuspended)) &&
+            (identical(
+                    other.overrideAutoDescription, overrideAutoDescription) ||
+                const DeepCollectionEquality().equals(
+                    other.overrideAutoDescription, overrideAutoDescription)) &&
+            (identical(other.reasonOfCancellation, reasonOfCancellation) ||
+                const DeepCollectionEquality().equals(
+                    other.reasonOfCancellation, reasonOfCancellation)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.suspensionReason, suspensionReason) ||
+                const DeepCollectionEquality()
+                    .equals(other.suspensionReason, suspensionReason)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash($client) ^
+      const DeepCollectionEquality().hash(clientContractType) ^
+      const DeepCollectionEquality().hash(contractDate) ^
+      const DeepCollectionEquality().hash(currentFormula) ^
+      const DeepCollectionEquality().hash(dateOfCancellation) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(isSuspended) ^
+      const DeepCollectionEquality().hash(overrideAutoDescription) ^
+      const DeepCollectionEquality().hash(reasonOfCancellation) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(suspensionReason) ^
+      runtimeType.hashCode;
+}
+
+extension $ClientContractSummaryDtoExtension on ClientContractSummaryDto {
+  ClientContractSummaryDto copyWith(
+      {ClientReferenceDto? $client,
+      enums.ClientContractType? clientContractType,
+      DateTime? contractDate,
+      enums.ClientContractFormula? currentFormula,
+      DateTime? dateOfCancellation,
+      DateTime? endDate,
+      int? id,
+      bool? isSuspended,
+      String? overrideAutoDescription,
+      String? reasonOfCancellation,
+      DateTime? startDate,
+      enums.ClientContractStatus? status,
+      String? suspensionReason}) {
+    return ClientContractSummaryDto(
+        $client: $client ?? this.$client,
+        clientContractType: clientContractType ?? this.clientContractType,
+        contractDate: contractDate ?? this.contractDate,
+        currentFormula: currentFormula ?? this.currentFormula,
+        dateOfCancellation: dateOfCancellation ?? this.dateOfCancellation,
+        endDate: endDate ?? this.endDate,
+        id: id ?? this.id,
+        isSuspended: isSuspended ?? this.isSuspended,
+        overrideAutoDescription:
+            overrideAutoDescription ?? this.overrideAutoDescription,
+        reasonOfCancellation: reasonOfCancellation ?? this.reasonOfCancellation,
+        startDate: startDate ?? this.startDate,
+        status: status ?? this.status,
+        suspensionReason: suspensionReason ?? this.suspensionReason);
+  }
+
+  ClientContractSummaryDto copyWithWrapped(
+      {Wrapped<ClientReferenceDto?>? $client,
+      Wrapped<enums.ClientContractType?>? clientContractType,
+      Wrapped<DateTime?>? contractDate,
+      Wrapped<enums.ClientContractFormula?>? currentFormula,
+      Wrapped<DateTime?>? dateOfCancellation,
+      Wrapped<DateTime?>? endDate,
+      Wrapped<int?>? id,
+      Wrapped<bool?>? isSuspended,
+      Wrapped<String?>? overrideAutoDescription,
+      Wrapped<String?>? reasonOfCancellation,
+      Wrapped<DateTime?>? startDate,
+      Wrapped<enums.ClientContractStatus?>? status,
+      Wrapped<String?>? suspensionReason}) {
+    return ClientContractSummaryDto(
+        $client: ($client != null ? $client.value : this.$client),
+        clientContractType: (clientContractType != null
+            ? clientContractType.value
+            : this.clientContractType),
+        contractDate:
+            (contractDate != null ? contractDate.value : this.contractDate),
+        currentFormula: (currentFormula != null
+            ? currentFormula.value
+            : this.currentFormula),
+        dateOfCancellation: (dateOfCancellation != null
+            ? dateOfCancellation.value
+            : this.dateOfCancellation),
+        endDate: (endDate != null ? endDate.value : this.endDate),
+        id: (id != null ? id.value : this.id),
+        isSuspended:
+            (isSuspended != null ? isSuspended.value : this.isSuspended),
+        overrideAutoDescription: (overrideAutoDescription != null
+            ? overrideAutoDescription.value
+            : this.overrideAutoDescription),
+        reasonOfCancellation: (reasonOfCancellation != null
+            ? reasonOfCancellation.value
+            : this.reasonOfCancellation),
+        startDate: (startDate != null ? startDate.value : this.startDate),
+        status: (status != null ? status.value : this.status),
+        suspensionReason: (suspensionReason != null
+            ? suspensionReason.value
+            : this.suspensionReason));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ClientContractSummaryDtoApiPagedResponse {
+  const ClientContractSummaryDtoApiPagedResponse({
+    this.nextPage,
+    this.results,
+    this.totalCount,
+  });
+
+  factory ClientContractSummaryDtoApiPagedResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$ClientContractSummaryDtoApiPagedResponseFromJson(json);
+
+  static const toJsonFactory = _$ClientContractSummaryDtoApiPagedResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$ClientContractSummaryDtoApiPagedResponseToJson(this);
+
+  @JsonKey(name: 'nextPage')
+  final String? nextPage;
+  @JsonKey(name: 'results', defaultValue: <ClientContractSummaryDto>[])
+  final List<ClientContractSummaryDto>? results;
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  static const fromJsonFactory =
+      _$ClientContractSummaryDtoApiPagedResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ClientContractSummaryDtoApiPagedResponse &&
+            (identical(other.nextPage, nextPage) ||
+                const DeepCollectionEquality()
+                    .equals(other.nextPage, nextPage)) &&
+            (identical(other.results, results) ||
+                const DeepCollectionEquality()
+                    .equals(other.results, results)) &&
+            (identical(other.totalCount, totalCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalCount, totalCount)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(nextPage) ^
+      const DeepCollectionEquality().hash(results) ^
+      const DeepCollectionEquality().hash(totalCount) ^
+      runtimeType.hashCode;
+}
+
+extension $ClientContractSummaryDtoApiPagedResponseExtension
+    on ClientContractSummaryDtoApiPagedResponse {
+  ClientContractSummaryDtoApiPagedResponse copyWith(
+      {String? nextPage,
+      List<ClientContractSummaryDto>? results,
+      int? totalCount}) {
+    return ClientContractSummaryDtoApiPagedResponse(
+        nextPage: nextPage ?? this.nextPage,
+        results: results ?? this.results,
+        totalCount: totalCount ?? this.totalCount);
+  }
+
+  ClientContractSummaryDtoApiPagedResponse copyWithWrapped(
+      {Wrapped<String?>? nextPage,
+      Wrapped<List<ClientContractSummaryDto>?>? results,
+      Wrapped<int?>? totalCount}) {
+    return ClientContractSummaryDtoApiPagedResponse(
+        nextPage: (nextPage != null ? nextPage.value : this.nextPage),
+        results: (results != null ? results.value : this.results),
+        totalCount: (totalCount != null ? totalCount.value : this.totalCount));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ClientContractUsageDataDto {
+  const ClientContractUsageDataDto({
+    this.commentOnInvoice,
+    this.commitmentAmountInclVat,
+    this.endDate,
+    this.formula,
+    this.memo,
+    this.minimalEndDate,
+    this.overrideRateCardId,
+    this.requestDate,
+    this.startDate,
+  });
+
+  factory ClientContractUsageDataDto.fromJson(Map<String, dynamic> json) =>
+      _$ClientContractUsageDataDtoFromJson(json);
+
+  static const toJsonFactory = _$ClientContractUsageDataDtoToJson;
+  Map<String, dynamic> toJson() => _$ClientContractUsageDataDtoToJson(this);
+
+  @JsonKey(name: 'commentOnInvoice')
+  final String? commentOnInvoice;
+  @JsonKey(name: 'commitmentAmountInclVat')
+  final double? commitmentAmountInclVat;
+  @JsonKey(name: 'endDate', toJson: _dateToJson)
+  final DateTime? endDate;
+  @JsonKey(
+    name: 'formula',
+    toJson: clientContractFormulaNullableToJson,
+    fromJson: clientContractFormulaNullableFromJson,
+  )
+  final enums.ClientContractFormula? formula;
+  @JsonKey(name: 'memo')
+  final String? memo;
+  @JsonKey(name: 'minimalEndDate', toJson: _dateToJson)
+  final DateTime? minimalEndDate;
+  @JsonKey(name: 'overrideRateCardId')
+  final int? overrideRateCardId;
+  @JsonKey(name: 'requestDate', toJson: _dateToJson)
+  final DateTime? requestDate;
+  @JsonKey(name: 'startDate', toJson: _dateToJson)
+  final DateTime? startDate;
+  static const fromJsonFactory = _$ClientContractUsageDataDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ClientContractUsageDataDto &&
+            (identical(other.commentOnInvoice, commentOnInvoice) ||
+                const DeepCollectionEquality()
+                    .equals(other.commentOnInvoice, commentOnInvoice)) &&
+            (identical(
+                    other.commitmentAmountInclVat, commitmentAmountInclVat) ||
+                const DeepCollectionEquality().equals(
+                    other.commitmentAmountInclVat, commitmentAmountInclVat)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.formula, formula) ||
+                const DeepCollectionEquality()
+                    .equals(other.formula, formula)) &&
+            (identical(other.memo, memo) ||
+                const DeepCollectionEquality().equals(other.memo, memo)) &&
+            (identical(other.minimalEndDate, minimalEndDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.minimalEndDate, minimalEndDate)) &&
+            (identical(other.overrideRateCardId, overrideRateCardId) ||
+                const DeepCollectionEquality()
+                    .equals(other.overrideRateCardId, overrideRateCardId)) &&
+            (identical(other.requestDate, requestDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.requestDate, requestDate)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(commentOnInvoice) ^
+      const DeepCollectionEquality().hash(commitmentAmountInclVat) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(formula) ^
+      const DeepCollectionEquality().hash(memo) ^
+      const DeepCollectionEquality().hash(minimalEndDate) ^
+      const DeepCollectionEquality().hash(overrideRateCardId) ^
+      const DeepCollectionEquality().hash(requestDate) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      runtimeType.hashCode;
+}
+
+extension $ClientContractUsageDataDtoExtension on ClientContractUsageDataDto {
+  ClientContractUsageDataDto copyWith(
+      {String? commentOnInvoice,
+      double? commitmentAmountInclVat,
+      DateTime? endDate,
+      enums.ClientContractFormula? formula,
+      String? memo,
+      DateTime? minimalEndDate,
+      int? overrideRateCardId,
+      DateTime? requestDate,
+      DateTime? startDate}) {
+    return ClientContractUsageDataDto(
+        commentOnInvoice: commentOnInvoice ?? this.commentOnInvoice,
+        commitmentAmountInclVat:
+            commitmentAmountInclVat ?? this.commitmentAmountInclVat,
+        endDate: endDate ?? this.endDate,
+        formula: formula ?? this.formula,
+        memo: memo ?? this.memo,
+        minimalEndDate: minimalEndDate ?? this.minimalEndDate,
+        overrideRateCardId: overrideRateCardId ?? this.overrideRateCardId,
+        requestDate: requestDate ?? this.requestDate,
+        startDate: startDate ?? this.startDate);
+  }
+
+  ClientContractUsageDataDto copyWithWrapped(
+      {Wrapped<String?>? commentOnInvoice,
+      Wrapped<double?>? commitmentAmountInclVat,
+      Wrapped<DateTime?>? endDate,
+      Wrapped<enums.ClientContractFormula?>? formula,
+      Wrapped<String?>? memo,
+      Wrapped<DateTime?>? minimalEndDate,
+      Wrapped<int?>? overrideRateCardId,
+      Wrapped<DateTime?>? requestDate,
+      Wrapped<DateTime?>? startDate}) {
+    return ClientContractUsageDataDto(
+        commentOnInvoice: (commentOnInvoice != null
+            ? commentOnInvoice.value
+            : this.commentOnInvoice),
+        commitmentAmountInclVat: (commitmentAmountInclVat != null
+            ? commitmentAmountInclVat.value
+            : this.commitmentAmountInclVat),
+        endDate: (endDate != null ? endDate.value : this.endDate),
+        formula: (formula != null ? formula.value : this.formula),
+        memo: (memo != null ? memo.value : this.memo),
+        minimalEndDate: (minimalEndDate != null
+            ? minimalEndDate.value
+            : this.minimalEndDate),
+        overrideRateCardId: (overrideRateCardId != null
+            ? overrideRateCardId.value
+            : this.overrideRateCardId),
+        requestDate:
+            (requestDate != null ? requestDate.value : this.requestDate),
+        startDate: (startDate != null ? startDate.value : this.startDate));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ClientContractUsageDto {
+  const ClientContractUsageDto({
+    this.finalInvoiceId,
+    this.firstInvoiceId,
+    this.memo,
+    this.trustedByClientContractId,
+    this.usageData,
+  });
+
+  factory ClientContractUsageDto.fromJson(Map<String, dynamic> json) =>
+      _$ClientContractUsageDtoFromJson(json);
+
+  static const toJsonFactory = _$ClientContractUsageDtoToJson;
+  Map<String, dynamic> toJson() => _$ClientContractUsageDtoToJson(this);
+
+  @JsonKey(name: 'finalInvoiceId')
+  final int? finalInvoiceId;
+  @JsonKey(name: 'firstInvoiceId')
+  final int? firstInvoiceId;
+  @JsonKey(name: 'memo')
+  final String? memo;
+  @JsonKey(name: 'trustedByClientContractId')
+  final int? trustedByClientContractId;
+  @JsonKey(name: 'usageData', defaultValue: <ClientContractUsageDataDto>[])
+  final List<ClientContractUsageDataDto>? usageData;
+  static const fromJsonFactory = _$ClientContractUsageDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ClientContractUsageDto &&
+            (identical(other.finalInvoiceId, finalInvoiceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.finalInvoiceId, finalInvoiceId)) &&
+            (identical(other.firstInvoiceId, firstInvoiceId) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstInvoiceId, firstInvoiceId)) &&
+            (identical(other.memo, memo) ||
+                const DeepCollectionEquality().equals(other.memo, memo)) &&
+            (identical(other.trustedByClientContractId,
+                    trustedByClientContractId) ||
+                const DeepCollectionEquality().equals(
+                    other.trustedByClientContractId,
+                    trustedByClientContractId)) &&
+            (identical(other.usageData, usageData) ||
+                const DeepCollectionEquality()
+                    .equals(other.usageData, usageData)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(finalInvoiceId) ^
+      const DeepCollectionEquality().hash(firstInvoiceId) ^
+      const DeepCollectionEquality().hash(memo) ^
+      const DeepCollectionEquality().hash(trustedByClientContractId) ^
+      const DeepCollectionEquality().hash(usageData) ^
+      runtimeType.hashCode;
+}
+
+extension $ClientContractUsageDtoExtension on ClientContractUsageDto {
+  ClientContractUsageDto copyWith(
+      {int? finalInvoiceId,
+      int? firstInvoiceId,
+      String? memo,
+      int? trustedByClientContractId,
+      List<ClientContractUsageDataDto>? usageData}) {
+    return ClientContractUsageDto(
+        finalInvoiceId: finalInvoiceId ?? this.finalInvoiceId,
+        firstInvoiceId: firstInvoiceId ?? this.firstInvoiceId,
+        memo: memo ?? this.memo,
+        trustedByClientContractId:
+            trustedByClientContractId ?? this.trustedByClientContractId,
+        usageData: usageData ?? this.usageData);
+  }
+
+  ClientContractUsageDto copyWithWrapped(
+      {Wrapped<int?>? finalInvoiceId,
+      Wrapped<int?>? firstInvoiceId,
+      Wrapped<String?>? memo,
+      Wrapped<int?>? trustedByClientContractId,
+      Wrapped<List<ClientContractUsageDataDto>?>? usageData}) {
+    return ClientContractUsageDto(
+        finalInvoiceId: (finalInvoiceId != null
+            ? finalInvoiceId.value
+            : this.finalInvoiceId),
+        firstInvoiceId: (firstInvoiceId != null
+            ? firstInvoiceId.value
+            : this.firstInvoiceId),
+        memo: (memo != null ? memo.value : this.memo),
+        trustedByClientContractId: (trustedByClientContractId != null
+            ? trustedByClientContractId.value
+            : this.trustedByClientContractId),
+        usageData: (usageData != null ? usageData.value : this.usageData));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ClientReferenceDto {
+  const ClientReferenceDto({
+    this.id,
+    this.name,
+  });
+
+  factory ClientReferenceDto.fromJson(Map<String, dynamic> json) =>
+      _$ClientReferenceDtoFromJson(json);
+
+  static const toJsonFactory = _$ClientReferenceDtoToJson;
+  Map<String, dynamic> toJson() => _$ClientReferenceDtoToJson(this);
+
+  @JsonKey(name: 'id')
+  final int? id;
+  @JsonKey(name: 'name')
+  final String? name;
+  static const fromJsonFactory = _$ClientReferenceDtoFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ClientReferenceDto &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      runtimeType.hashCode;
+}
+
+extension $ClientReferenceDtoExtension on ClientReferenceDto {
+  ClientReferenceDto copyWith({int? id, String? name}) {
+    return ClientReferenceDto(id: id ?? this.id, name: name ?? this.name);
+  }
+
+  ClientReferenceDto copyWithWrapped(
+      {Wrapped<int?>? id, Wrapped<String?>? name}) {
+    return ClientReferenceDto(
+        id: (id != null ? id.value : this.id),
+        name: (name != null ? name.value : this.name));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ConflictResolution {
   const ConflictResolution({
     this.cancelReason,
@@ -1345,9 +3045,9 @@ extension $CreateBodyStyleRequestExtension on CreateBodyStyleRequest {
 @JsonSerializable(explicitToJson: true)
 class CreateBookingRequest {
   const CreateBookingRequest({
+    required this.bookingPrice,
     this.comments,
-    this.period,
-    this.userId,
+    required this.period,
     required this.vehicleId,
   });
 
@@ -1357,12 +3057,12 @@ class CreateBookingRequest {
   static const toJsonFactory = _$CreateBookingRequestToJson;
   Map<String, dynamic> toJson() => _$CreateBookingRequestToJson(this);
 
+  @JsonKey(name: 'bookingPrice')
+  final BookingPrice bookingPrice;
   @JsonKey(name: 'comments')
   final String? comments;
   @JsonKey(name: 'period')
-  final Period? period;
-  @JsonKey(name: 'userId')
-  final String? userId;
+  final Period period;
   @JsonKey(name: 'vehicleId')
   final String vehicleId;
   static const fromJsonFactory = _$CreateBookingRequestFromJson;
@@ -1371,13 +3071,14 @@ class CreateBookingRequest {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is CreateBookingRequest &&
+            (identical(other.bookingPrice, bookingPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.bookingPrice, bookingPrice)) &&
             (identical(other.comments, comments) ||
                 const DeepCollectionEquality()
                     .equals(other.comments, comments)) &&
             (identical(other.period, period) ||
                 const DeepCollectionEquality().equals(other.period, period)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.vehicleId, vehicleId) ||
                 const DeepCollectionEquality()
                     .equals(other.vehicleId, vehicleId)));
@@ -1388,33 +3089,126 @@ class CreateBookingRequest {
 
   @override
   int get hashCode =>
+      const DeepCollectionEquality().hash(bookingPrice) ^
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(period) ^
-      const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(vehicleId) ^
       runtimeType.hashCode;
 }
 
 extension $CreateBookingRequestExtension on CreateBookingRequest {
   CreateBookingRequest copyWith(
-      {String? comments, Period? period, String? userId, String? vehicleId}) {
+      {BookingPrice? bookingPrice,
+      String? comments,
+      Period? period,
+      String? vehicleId}) {
     return CreateBookingRequest(
+        bookingPrice: bookingPrice ?? this.bookingPrice,
         comments: comments ?? this.comments,
         period: period ?? this.period,
-        userId: userId ?? this.userId,
         vehicleId: vehicleId ?? this.vehicleId);
   }
 
   CreateBookingRequest copyWithWrapped(
-      {Wrapped<String?>? comments,
-      Wrapped<Period?>? period,
-      Wrapped<String?>? userId,
+      {Wrapped<BookingPrice>? bookingPrice,
+      Wrapped<String?>? comments,
+      Wrapped<Period>? period,
       Wrapped<String>? vehicleId}) {
     return CreateBookingRequest(
+        bookingPrice:
+            (bookingPrice != null ? bookingPrice.value : this.bookingPrice),
         comments: (comments != null ? comments.value : this.comments),
         period: (period != null ? period.value : this.period),
-        userId: (userId != null ? userId.value : this.userId),
         vehicleId: (vehicleId != null ? vehicleId.value : this.vehicleId));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class CreateNewUsageContractRequest {
+  const CreateNewUsageContractRequest({
+    this.commitmentAmountInclVat,
+    this.formula,
+    this.memo,
+    this.startDate,
+  });
+
+  factory CreateNewUsageContractRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateNewUsageContractRequestFromJson(json);
+
+  static const toJsonFactory = _$CreateNewUsageContractRequestToJson;
+  Map<String, dynamic> toJson() => _$CreateNewUsageContractRequestToJson(this);
+
+  @JsonKey(name: 'commitmentAmountInclVat')
+  final double? commitmentAmountInclVat;
+  @JsonKey(
+    name: 'formula',
+    toJson: clientContractFormulaNullableToJson,
+    fromJson: clientContractFormulaNullableFromJson,
+  )
+  final enums.ClientContractFormula? formula;
+  @JsonKey(name: 'memo')
+  final String? memo;
+  @JsonKey(name: 'startDate', toJson: _dateToJson)
+  final DateTime? startDate;
+  static const fromJsonFactory = _$CreateNewUsageContractRequestFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is CreateNewUsageContractRequest &&
+            (identical(
+                    other.commitmentAmountInclVat, commitmentAmountInclVat) ||
+                const DeepCollectionEquality().equals(
+                    other.commitmentAmountInclVat, commitmentAmountInclVat)) &&
+            (identical(other.formula, formula) ||
+                const DeepCollectionEquality()
+                    .equals(other.formula, formula)) &&
+            (identical(other.memo, memo) ||
+                const DeepCollectionEquality().equals(other.memo, memo)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(commitmentAmountInclVat) ^
+      const DeepCollectionEquality().hash(formula) ^
+      const DeepCollectionEquality().hash(memo) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      runtimeType.hashCode;
+}
+
+extension $CreateNewUsageContractRequestExtension
+    on CreateNewUsageContractRequest {
+  CreateNewUsageContractRequest copyWith(
+      {double? commitmentAmountInclVat,
+      enums.ClientContractFormula? formula,
+      String? memo,
+      DateTime? startDate}) {
+    return CreateNewUsageContractRequest(
+        commitmentAmountInclVat:
+            commitmentAmountInclVat ?? this.commitmentAmountInclVat,
+        formula: formula ?? this.formula,
+        memo: memo ?? this.memo,
+        startDate: startDate ?? this.startDate);
+  }
+
+  CreateNewUsageContractRequest copyWithWrapped(
+      {Wrapped<double?>? commitmentAmountInclVat,
+      Wrapped<enums.ClientContractFormula?>? formula,
+      Wrapped<String?>? memo,
+      Wrapped<DateTime?>? startDate}) {
+    return CreateNewUsageContractRequest(
+        commitmentAmountInclVat: (commitmentAmountInclVat != null
+            ? commitmentAmountInclVat.value
+            : this.commitmentAmountInclVat),
+        formula: (formula != null ? formula.value : this.formula),
+        memo: (memo != null ? memo.value : this.memo),
+        startDate: (startDate != null ? startDate.value : this.startDate));
   }
 }
 
@@ -3366,6 +5160,124 @@ extension $SearchBookingsRequestExtension on SearchBookingsRequest {
 }
 
 @JsonSerializable(explicitToJson: true)
+class SearchClientContractsRequest {
+  const SearchClientContractsRequest({
+    this.clientId,
+    this.contractId,
+    this.endDateFrom,
+    this.endDateTo,
+    this.startDateFrom,
+    this.startDateTo,
+    this.flexSearch,
+  });
+
+  factory SearchClientContractsRequest.fromJson(Map<String, dynamic> json) =>
+      _$SearchClientContractsRequestFromJson(json);
+
+  static const toJsonFactory = _$SearchClientContractsRequestToJson;
+  Map<String, dynamic> toJson() => _$SearchClientContractsRequestToJson(this);
+
+  @JsonKey(name: 'clientId')
+  final int? clientId;
+  @JsonKey(name: 'contractId')
+  final int? contractId;
+  @JsonKey(name: 'endDateFrom', toJson: _dateToJson)
+  final DateTime? endDateFrom;
+  @JsonKey(name: 'endDateTo', toJson: _dateToJson)
+  final DateTime? endDateTo;
+  @JsonKey(name: 'startDateFrom', toJson: _dateToJson)
+  final DateTime? startDateFrom;
+  @JsonKey(name: 'startDateTo', toJson: _dateToJson)
+  final DateTime? startDateTo;
+  @JsonKey(name: 'flexSearch')
+  final String? flexSearch;
+  static const fromJsonFactory = _$SearchClientContractsRequestFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is SearchClientContractsRequest &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.contractId, contractId) ||
+                const DeepCollectionEquality()
+                    .equals(other.contractId, contractId)) &&
+            (identical(other.endDateFrom, endDateFrom) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDateFrom, endDateFrom)) &&
+            (identical(other.endDateTo, endDateTo) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDateTo, endDateTo)) &&
+            (identical(other.startDateFrom, startDateFrom) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDateFrom, startDateFrom)) &&
+            (identical(other.startDateTo, startDateTo) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDateTo, startDateTo)) &&
+            (identical(other.flexSearch, flexSearch) ||
+                const DeepCollectionEquality()
+                    .equals(other.flexSearch, flexSearch)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(contractId) ^
+      const DeepCollectionEquality().hash(endDateFrom) ^
+      const DeepCollectionEquality().hash(endDateTo) ^
+      const DeepCollectionEquality().hash(startDateFrom) ^
+      const DeepCollectionEquality().hash(startDateTo) ^
+      const DeepCollectionEquality().hash(flexSearch) ^
+      runtimeType.hashCode;
+}
+
+extension $SearchClientContractsRequestExtension
+    on SearchClientContractsRequest {
+  SearchClientContractsRequest copyWith(
+      {int? clientId,
+      int? contractId,
+      DateTime? endDateFrom,
+      DateTime? endDateTo,
+      DateTime? startDateFrom,
+      DateTime? startDateTo,
+      String? flexSearch}) {
+    return SearchClientContractsRequest(
+        clientId: clientId ?? this.clientId,
+        contractId: contractId ?? this.contractId,
+        endDateFrom: endDateFrom ?? this.endDateFrom,
+        endDateTo: endDateTo ?? this.endDateTo,
+        startDateFrom: startDateFrom ?? this.startDateFrom,
+        startDateTo: startDateTo ?? this.startDateTo,
+        flexSearch: flexSearch ?? this.flexSearch);
+  }
+
+  SearchClientContractsRequest copyWithWrapped(
+      {Wrapped<int?>? clientId,
+      Wrapped<int?>? contractId,
+      Wrapped<DateTime?>? endDateFrom,
+      Wrapped<DateTime?>? endDateTo,
+      Wrapped<DateTime?>? startDateFrom,
+      Wrapped<DateTime?>? startDateTo,
+      Wrapped<String?>? flexSearch}) {
+    return SearchClientContractsRequest(
+        clientId: (clientId != null ? clientId.value : this.clientId),
+        contractId: (contractId != null ? contractId.value : this.contractId),
+        endDateFrom:
+            (endDateFrom != null ? endDateFrom.value : this.endDateFrom),
+        endDateTo: (endDateTo != null ? endDateTo.value : this.endDateTo),
+        startDateFrom:
+            (startDateFrom != null ? startDateFrom.value : this.startDateFrom),
+        startDateTo:
+            (startDateTo != null ? startDateTo.value : this.startDateTo),
+        flexSearch: (flexSearch != null ? flexSearch.value : this.flexSearch));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class SearchNonAvailabilityEventsRequest {
   const SearchNonAvailabilityEventsRequest({
     this.period,
@@ -3427,16 +5339,8 @@ extension $SearchNonAvailabilityEventsRequestExtension
 @JsonSerializable(explicitToJson: true)
 class SearchUsersRequest {
   const SearchUsersRequest({
-    this.defaultMembershipId,
-    this.displayName,
-    this.favoriteLocation,
-    this.favoritelocationDistance,
-    this.homeLocation,
-    this.homelocationDistance,
-    this.remoteId,
-    this.userName,
-    this.workLocation,
-    this.worklocationDistance,
+    this.sofBattRemoteId,
+    this.flexSearch,
   });
 
   factory SearchUsersRequest.fromJson(Map<String, dynamic> json) =>
@@ -3445,64 +5349,22 @@ class SearchUsersRequest {
   static const toJsonFactory = _$SearchUsersRequestToJson;
   Map<String, dynamic> toJson() => _$SearchUsersRequestToJson(this);
 
-  @JsonKey(name: 'defaultMembershipId')
-  final String? defaultMembershipId;
-  @JsonKey(name: 'displayName')
-  final String? displayName;
-  @JsonKey(name: 'favoriteLocation')
-  final GpsLocation? favoriteLocation;
-  @JsonKey(name: 'favoritelocationDistance')
-  final int? favoritelocationDistance;
-  @JsonKey(name: 'homeLocation')
-  final GpsLocation? homeLocation;
-  @JsonKey(name: 'homelocationDistance')
-  final int? homelocationDistance;
-  @JsonKey(name: 'remoteId')
-  final String? remoteId;
-  @JsonKey(name: 'userName')
-  final String? userName;
-  @JsonKey(name: 'workLocation')
-  final GpsLocation? workLocation;
-  @JsonKey(name: 'worklocationDistance')
-  final int? worklocationDistance;
+  @JsonKey(name: 'sofBattRemoteId')
+  final String? sofBattRemoteId;
+  @JsonKey(name: 'flexSearch')
+  final String? flexSearch;
   static const fromJsonFactory = _$SearchUsersRequestFromJson;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other is SearchUsersRequest &&
-            (identical(other.defaultMembershipId, defaultMembershipId) ||
+            (identical(other.sofBattRemoteId, sofBattRemoteId) ||
                 const DeepCollectionEquality()
-                    .equals(other.defaultMembershipId, defaultMembershipId)) &&
-            (identical(other.displayName, displayName) ||
+                    .equals(other.sofBattRemoteId, sofBattRemoteId)) &&
+            (identical(other.flexSearch, flexSearch) ||
                 const DeepCollectionEquality()
-                    .equals(other.displayName, displayName)) &&
-            (identical(other.favoriteLocation, favoriteLocation) ||
-                const DeepCollectionEquality()
-                    .equals(other.favoriteLocation, favoriteLocation)) &&
-            (identical(
-                    other.favoritelocationDistance, favoritelocationDistance) ||
-                const DeepCollectionEquality().equals(
-                    other.favoritelocationDistance,
-                    favoritelocationDistance)) &&
-            (identical(other.homeLocation, homeLocation) ||
-                const DeepCollectionEquality()
-                    .equals(other.homeLocation, homeLocation)) &&
-            (identical(other.homelocationDistance, homelocationDistance) ||
-                const DeepCollectionEquality().equals(
-                    other.homelocationDistance, homelocationDistance)) &&
-            (identical(other.remoteId, remoteId) ||
-                const DeepCollectionEquality()
-                    .equals(other.remoteId, remoteId)) &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.workLocation, workLocation) ||
-                const DeepCollectionEquality()
-                    .equals(other.workLocation, workLocation)) &&
-            (identical(other.worklocationDistance, worklocationDistance) ||
-                const DeepCollectionEquality()
-                    .equals(other.worklocationDistance, worklocationDistance)));
+                    .equals(other.flexSearch, flexSearch)));
   }
 
   @override
@@ -3510,81 +5372,25 @@ class SearchUsersRequest {
 
   @override
   int get hashCode =>
-      const DeepCollectionEquality().hash(defaultMembershipId) ^
-      const DeepCollectionEquality().hash(displayName) ^
-      const DeepCollectionEquality().hash(favoriteLocation) ^
-      const DeepCollectionEquality().hash(favoritelocationDistance) ^
-      const DeepCollectionEquality().hash(homeLocation) ^
-      const DeepCollectionEquality().hash(homelocationDistance) ^
-      const DeepCollectionEquality().hash(remoteId) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(workLocation) ^
-      const DeepCollectionEquality().hash(worklocationDistance) ^
+      const DeepCollectionEquality().hash(sofBattRemoteId) ^
+      const DeepCollectionEquality().hash(flexSearch) ^
       runtimeType.hashCode;
 }
 
 extension $SearchUsersRequestExtension on SearchUsersRequest {
-  SearchUsersRequest copyWith(
-      {String? defaultMembershipId,
-      String? displayName,
-      GpsLocation? favoriteLocation,
-      int? favoritelocationDistance,
-      GpsLocation? homeLocation,
-      int? homelocationDistance,
-      String? remoteId,
-      String? userName,
-      GpsLocation? workLocation,
-      int? worklocationDistance}) {
+  SearchUsersRequest copyWith({String? sofBattRemoteId, String? flexSearch}) {
     return SearchUsersRequest(
-        defaultMembershipId: defaultMembershipId ?? this.defaultMembershipId,
-        displayName: displayName ?? this.displayName,
-        favoriteLocation: favoriteLocation ?? this.favoriteLocation,
-        favoritelocationDistance:
-            favoritelocationDistance ?? this.favoritelocationDistance,
-        homeLocation: homeLocation ?? this.homeLocation,
-        homelocationDistance: homelocationDistance ?? this.homelocationDistance,
-        remoteId: remoteId ?? this.remoteId,
-        userName: userName ?? this.userName,
-        workLocation: workLocation ?? this.workLocation,
-        worklocationDistance:
-            worklocationDistance ?? this.worklocationDistance);
+        sofBattRemoteId: sofBattRemoteId ?? this.sofBattRemoteId,
+        flexSearch: flexSearch ?? this.flexSearch);
   }
 
   SearchUsersRequest copyWithWrapped(
-      {Wrapped<String?>? defaultMembershipId,
-      Wrapped<String?>? displayName,
-      Wrapped<GpsLocation?>? favoriteLocation,
-      Wrapped<int?>? favoritelocationDistance,
-      Wrapped<GpsLocation?>? homeLocation,
-      Wrapped<int?>? homelocationDistance,
-      Wrapped<String?>? remoteId,
-      Wrapped<String?>? userName,
-      Wrapped<GpsLocation?>? workLocation,
-      Wrapped<int?>? worklocationDistance}) {
+      {Wrapped<String?>? sofBattRemoteId, Wrapped<String?>? flexSearch}) {
     return SearchUsersRequest(
-        defaultMembershipId: (defaultMembershipId != null
-            ? defaultMembershipId.value
-            : this.defaultMembershipId),
-        displayName:
-            (displayName != null ? displayName.value : this.displayName),
-        favoriteLocation: (favoriteLocation != null
-            ? favoriteLocation.value
-            : this.favoriteLocation),
-        favoritelocationDistance: (favoritelocationDistance != null
-            ? favoritelocationDistance.value
-            : this.favoritelocationDistance),
-        homeLocation:
-            (homeLocation != null ? homeLocation.value : this.homeLocation),
-        homelocationDistance: (homelocationDistance != null
-            ? homelocationDistance.value
-            : this.homelocationDistance),
-        remoteId: (remoteId != null ? remoteId.value : this.remoteId),
-        userName: (userName != null ? userName.value : this.userName),
-        workLocation:
-            (workLocation != null ? workLocation.value : this.workLocation),
-        worklocationDistance: (worklocationDistance != null
-            ? worklocationDistance.value
-            : this.worklocationDistance));
+        sofBattRemoteId: (sofBattRemoteId != null
+            ? sofBattRemoteId.value
+            : this.sofBattRemoteId),
+        flexSearch: (flexSearch != null ? flexSearch.value : this.flexSearch));
   }
 }
 
@@ -3893,6 +5699,203 @@ extension $SubscriptionExtension on Subscription {
             ? subscriptionType.value
             : this.subscriptionType),
         vehicleId: (vehicleId != null ? vehicleId.value : this.vehicleId));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TerminateContractHints {
+  const TerminateContractHints({
+    this.actionAllowed,
+    this.maximalDate,
+    this.minimalDate,
+    this.terminateOption,
+  });
+
+  factory TerminateContractHints.fromJson(Map<String, dynamic> json) =>
+      _$TerminateContractHintsFromJson(json);
+
+  static const toJsonFactory = _$TerminateContractHintsToJson;
+  Map<String, dynamic> toJson() => _$TerminateContractHintsToJson(this);
+
+  @JsonKey(name: 'actionAllowed')
+  final bool? actionAllowed;
+  @JsonKey(name: 'maximalDate', toJson: _dateToJson)
+  final DateTime? maximalDate;
+  @JsonKey(name: 'minimalDate', toJson: _dateToJson)
+  final DateTime? minimalDate;
+  @JsonKey(
+    name: 'terminateOption',
+    toJson: terminateDayOptionNullableToJson,
+    fromJson: terminateDayOptionNullableFromJson,
+  )
+  final enums.TerminateDayOption? terminateOption;
+  static const fromJsonFactory = _$TerminateContractHintsFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TerminateContractHints &&
+            (identical(other.actionAllowed, actionAllowed) ||
+                const DeepCollectionEquality()
+                    .equals(other.actionAllowed, actionAllowed)) &&
+            (identical(other.maximalDate, maximalDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.maximalDate, maximalDate)) &&
+            (identical(other.minimalDate, minimalDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.minimalDate, minimalDate)) &&
+            (identical(other.terminateOption, terminateOption) ||
+                const DeepCollectionEquality()
+                    .equals(other.terminateOption, terminateOption)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(actionAllowed) ^
+      const DeepCollectionEquality().hash(maximalDate) ^
+      const DeepCollectionEquality().hash(minimalDate) ^
+      const DeepCollectionEquality().hash(terminateOption) ^
+      runtimeType.hashCode;
+}
+
+extension $TerminateContractHintsExtension on TerminateContractHints {
+  TerminateContractHints copyWith(
+      {bool? actionAllowed,
+      DateTime? maximalDate,
+      DateTime? minimalDate,
+      enums.TerminateDayOption? terminateOption}) {
+    return TerminateContractHints(
+        actionAllowed: actionAllowed ?? this.actionAllowed,
+        maximalDate: maximalDate ?? this.maximalDate,
+        minimalDate: minimalDate ?? this.minimalDate,
+        terminateOption: terminateOption ?? this.terminateOption);
+  }
+
+  TerminateContractHints copyWithWrapped(
+      {Wrapped<bool?>? actionAllowed,
+      Wrapped<DateTime?>? maximalDate,
+      Wrapped<DateTime?>? minimalDate,
+      Wrapped<enums.TerminateDayOption?>? terminateOption}) {
+    return TerminateContractHints(
+        actionAllowed:
+            (actionAllowed != null ? actionAllowed.value : this.actionAllowed),
+        maximalDate:
+            (maximalDate != null ? maximalDate.value : this.maximalDate),
+        minimalDate:
+            (minimalDate != null ? minimalDate.value : this.minimalDate),
+        terminateOption: (terminateOption != null
+            ? terminateOption.value
+            : this.terminateOption));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TerminateContractHintsApiDataResponse {
+  const TerminateContractHintsApiDataResponse({
+    this.data,
+  });
+
+  factory TerminateContractHintsApiDataResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$TerminateContractHintsApiDataResponseFromJson(json);
+
+  static const toJsonFactory = _$TerminateContractHintsApiDataResponseToJson;
+  Map<String, dynamic> toJson() =>
+      _$TerminateContractHintsApiDataResponseToJson(this);
+
+  @JsonKey(name: 'data')
+  final TerminateContractHints? data;
+  static const fromJsonFactory =
+      _$TerminateContractHintsApiDataResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TerminateContractHintsApiDataResponse &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(data) ^ runtimeType.hashCode;
+}
+
+extension $TerminateContractHintsApiDataResponseExtension
+    on TerminateContractHintsApiDataResponse {
+  TerminateContractHintsApiDataResponse copyWith(
+      {TerminateContractHints? data}) {
+    return TerminateContractHintsApiDataResponse(data: data ?? this.data);
+  }
+
+  TerminateContractHintsApiDataResponse copyWithWrapped(
+      {Wrapped<TerminateContractHints?>? data}) {
+    return TerminateContractHintsApiDataResponse(
+        data: (data != null ? data.value : this.data));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class TerminateContractRequest {
+  const TerminateContractRequest({
+    this.reason,
+    this.terminationDate,
+  });
+
+  factory TerminateContractRequest.fromJson(Map<String, dynamic> json) =>
+      _$TerminateContractRequestFromJson(json);
+
+  static const toJsonFactory = _$TerminateContractRequestToJson;
+  Map<String, dynamic> toJson() => _$TerminateContractRequestToJson(this);
+
+  @JsonKey(name: 'reason')
+  final String? reason;
+  @JsonKey(name: 'terminationDate', toJson: _dateToJson)
+  final DateTime? terminationDate;
+  static const fromJsonFactory = _$TerminateContractRequestFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is TerminateContractRequest &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)) &&
+            (identical(other.terminationDate, terminationDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.terminationDate, terminationDate)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(reason) ^
+      const DeepCollectionEquality().hash(terminationDate) ^
+      runtimeType.hashCode;
+}
+
+extension $TerminateContractRequestExtension on TerminateContractRequest {
+  TerminateContractRequest copyWith(
+      {String? reason, DateTime? terminationDate}) {
+    return TerminateContractRequest(
+        reason: reason ?? this.reason,
+        terminationDate: terminationDate ?? this.terminationDate);
+  }
+
+  TerminateContractRequest copyWithWrapped(
+      {Wrapped<String?>? reason, Wrapped<DateTime?>? terminationDate}) {
+    return TerminateContractRequest(
+        reason: (reason != null ? reason.value : this.reason),
+        terminationDate: (terminationDate != null
+            ? terminationDate.value
+            : this.terminationDate));
   }
 }
 
@@ -6313,6 +8316,1549 @@ extension $VehiclesPageExtension on VehiclesPage {
 }
 
 @JsonSerializable(explicitToJson: true)
+class BookingBillingPrice {
+  const BookingBillingPrice({
+    this.amount,
+    this.changeFromHourlyToDaily,
+    this.endDate,
+    this.hourlyTotalNotCharged,
+    this.hourlyTotalNotChargedExclVat,
+    this.km,
+    this.kmPrice,
+    this.kmPriceExclVat,
+    this.kmTotal,
+    this.kmTotalExclVat,
+    this.startDate,
+    this.timeAmount,
+    this.timeTotal,
+    this.timeTotalExclVat,
+    this.total,
+    this.totalExclVat,
+    this.totalVat,
+    this.unit,
+    this.unitPrice,
+    this.unitPriceExclVat,
+    this.vatRate,
+  });
+
+  factory BookingBillingPrice.fromJson(Map<String, dynamic> json) =>
+      _$BookingBillingPriceFromJson(json);
+
+  static const toJsonFactory = _$BookingBillingPriceToJson;
+  Map<String, dynamic> toJson() => _$BookingBillingPriceToJson(this);
+
+  @JsonKey(name: 'amount')
+  final int? amount;
+  @JsonKey(name: 'changeFromHourlyToDaily')
+  final bool? changeFromHourlyToDaily;
+  @JsonKey(name: 'endDate')
+  final String? endDate;
+  @JsonKey(name: 'hourlyTotalNotCharged')
+  final double? hourlyTotalNotCharged;
+  @JsonKey(name: 'hourlyTotalNotChargedExclVat')
+  final double? hourlyTotalNotChargedExclVat;
+  @JsonKey(name: 'km')
+  final int? km;
+  @JsonKey(name: 'kmPrice')
+  final double? kmPrice;
+  @JsonKey(name: 'kmPriceExclVat')
+  final double? kmPriceExclVat;
+  @JsonKey(name: 'kmTotal')
+  final double? kmTotal;
+  @JsonKey(name: 'kmTotalExclVat')
+  final double? kmTotalExclVat;
+  @JsonKey(name: 'startDate')
+  final String? startDate;
+  @JsonKey(name: 'timeAmount')
+  final double? timeAmount;
+  @JsonKey(name: 'timeTotal')
+  final double? timeTotal;
+  @JsonKey(name: 'timeTotalExclVat')
+  final double? timeTotalExclVat;
+  @JsonKey(name: 'total')
+  final double? total;
+  @JsonKey(name: 'totalExclVat')
+  final double? totalExclVat;
+  @JsonKey(name: 'totalVat')
+  final double? totalVat;
+  @JsonKey(name: 'unit')
+  final String? unit;
+  @JsonKey(name: 'unitPrice')
+  final double? unitPrice;
+  @JsonKey(name: 'unitPriceExclVat')
+  final double? unitPriceExclVat;
+  @JsonKey(name: 'vatRate')
+  final double? vatRate;
+  static const fromJsonFactory = _$BookingBillingPriceFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingBillingPrice &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)) &&
+            (identical(other.changeFromHourlyToDaily, changeFromHourlyToDaily) ||
+                const DeepCollectionEquality().equals(
+                    other.changeFromHourlyToDaily, changeFromHourlyToDaily)) &&
+            (identical(other.endDate, endDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.endDate, endDate)) &&
+            (identical(other.hourlyTotalNotCharged, hourlyTotalNotCharged) ||
+                const DeepCollectionEquality().equals(
+                    other.hourlyTotalNotCharged, hourlyTotalNotCharged)) &&
+            (identical(other.hourlyTotalNotChargedExclVat, hourlyTotalNotChargedExclVat) ||
+                const DeepCollectionEquality().equals(
+                    other.hourlyTotalNotChargedExclVat,
+                    hourlyTotalNotChargedExclVat)) &&
+            (identical(other.km, km) ||
+                const DeepCollectionEquality().equals(other.km, km)) &&
+            (identical(other.kmPrice, kmPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.kmPrice, kmPrice)) &&
+            (identical(other.kmPriceExclVat, kmPriceExclVat) ||
+                const DeepCollectionEquality()
+                    .equals(other.kmPriceExclVat, kmPriceExclVat)) &&
+            (identical(other.kmTotal, kmTotal) ||
+                const DeepCollectionEquality()
+                    .equals(other.kmTotal, kmTotal)) &&
+            (identical(other.kmTotalExclVat, kmTotalExclVat) ||
+                const DeepCollectionEquality()
+                    .equals(other.kmTotalExclVat, kmTotalExclVat)) &&
+            (identical(other.startDate, startDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.startDate, startDate)) &&
+            (identical(other.timeAmount, timeAmount) ||
+                const DeepCollectionEquality()
+                    .equals(other.timeAmount, timeAmount)) &&
+            (identical(other.timeTotal, timeTotal) ||
+                const DeepCollectionEquality()
+                    .equals(other.timeTotal, timeTotal)) &&
+            (identical(other.timeTotalExclVat, timeTotalExclVat) ||
+                const DeepCollectionEquality()
+                    .equals(other.timeTotalExclVat, timeTotalExclVat)) &&
+            (identical(other.total, total) || const DeepCollectionEquality().equals(other.total, total)) &&
+            (identical(other.totalExclVat, totalExclVat) || const DeepCollectionEquality().equals(other.totalExclVat, totalExclVat)) &&
+            (identical(other.totalVat, totalVat) || const DeepCollectionEquality().equals(other.totalVat, totalVat)) &&
+            (identical(other.unit, unit) || const DeepCollectionEquality().equals(other.unit, unit)) &&
+            (identical(other.unitPrice, unitPrice) || const DeepCollectionEquality().equals(other.unitPrice, unitPrice)) &&
+            (identical(other.unitPriceExclVat, unitPriceExclVat) || const DeepCollectionEquality().equals(other.unitPriceExclVat, unitPriceExclVat)) &&
+            (identical(other.vatRate, vatRate) || const DeepCollectionEquality().equals(other.vatRate, vatRate)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(amount) ^
+      const DeepCollectionEquality().hash(changeFromHourlyToDaily) ^
+      const DeepCollectionEquality().hash(endDate) ^
+      const DeepCollectionEquality().hash(hourlyTotalNotCharged) ^
+      const DeepCollectionEquality().hash(hourlyTotalNotChargedExclVat) ^
+      const DeepCollectionEquality().hash(km) ^
+      const DeepCollectionEquality().hash(kmPrice) ^
+      const DeepCollectionEquality().hash(kmPriceExclVat) ^
+      const DeepCollectionEquality().hash(kmTotal) ^
+      const DeepCollectionEquality().hash(kmTotalExclVat) ^
+      const DeepCollectionEquality().hash(startDate) ^
+      const DeepCollectionEquality().hash(timeAmount) ^
+      const DeepCollectionEquality().hash(timeTotal) ^
+      const DeepCollectionEquality().hash(timeTotalExclVat) ^
+      const DeepCollectionEquality().hash(total) ^
+      const DeepCollectionEquality().hash(totalExclVat) ^
+      const DeepCollectionEquality().hash(totalVat) ^
+      const DeepCollectionEquality().hash(unit) ^
+      const DeepCollectionEquality().hash(unitPrice) ^
+      const DeepCollectionEquality().hash(unitPriceExclVat) ^
+      const DeepCollectionEquality().hash(vatRate) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingBillingPriceExtension on BookingBillingPrice {
+  BookingBillingPrice copyWith(
+      {int? amount,
+      bool? changeFromHourlyToDaily,
+      String? endDate,
+      double? hourlyTotalNotCharged,
+      double? hourlyTotalNotChargedExclVat,
+      int? km,
+      double? kmPrice,
+      double? kmPriceExclVat,
+      double? kmTotal,
+      double? kmTotalExclVat,
+      String? startDate,
+      double? timeAmount,
+      double? timeTotal,
+      double? timeTotalExclVat,
+      double? total,
+      double? totalExclVat,
+      double? totalVat,
+      String? unit,
+      double? unitPrice,
+      double? unitPriceExclVat,
+      double? vatRate}) {
+    return BookingBillingPrice(
+        amount: amount ?? this.amount,
+        changeFromHourlyToDaily:
+            changeFromHourlyToDaily ?? this.changeFromHourlyToDaily,
+        endDate: endDate ?? this.endDate,
+        hourlyTotalNotCharged:
+            hourlyTotalNotCharged ?? this.hourlyTotalNotCharged,
+        hourlyTotalNotChargedExclVat:
+            hourlyTotalNotChargedExclVat ?? this.hourlyTotalNotChargedExclVat,
+        km: km ?? this.km,
+        kmPrice: kmPrice ?? this.kmPrice,
+        kmPriceExclVat: kmPriceExclVat ?? this.kmPriceExclVat,
+        kmTotal: kmTotal ?? this.kmTotal,
+        kmTotalExclVat: kmTotalExclVat ?? this.kmTotalExclVat,
+        startDate: startDate ?? this.startDate,
+        timeAmount: timeAmount ?? this.timeAmount,
+        timeTotal: timeTotal ?? this.timeTotal,
+        timeTotalExclVat: timeTotalExclVat ?? this.timeTotalExclVat,
+        total: total ?? this.total,
+        totalExclVat: totalExclVat ?? this.totalExclVat,
+        totalVat: totalVat ?? this.totalVat,
+        unit: unit ?? this.unit,
+        unitPrice: unitPrice ?? this.unitPrice,
+        unitPriceExclVat: unitPriceExclVat ?? this.unitPriceExclVat,
+        vatRate: vatRate ?? this.vatRate);
+  }
+
+  BookingBillingPrice copyWithWrapped(
+      {Wrapped<int?>? amount,
+      Wrapped<bool?>? changeFromHourlyToDaily,
+      Wrapped<String?>? endDate,
+      Wrapped<double?>? hourlyTotalNotCharged,
+      Wrapped<double?>? hourlyTotalNotChargedExclVat,
+      Wrapped<int?>? km,
+      Wrapped<double?>? kmPrice,
+      Wrapped<double?>? kmPriceExclVat,
+      Wrapped<double?>? kmTotal,
+      Wrapped<double?>? kmTotalExclVat,
+      Wrapped<String?>? startDate,
+      Wrapped<double?>? timeAmount,
+      Wrapped<double?>? timeTotal,
+      Wrapped<double?>? timeTotalExclVat,
+      Wrapped<double?>? total,
+      Wrapped<double?>? totalExclVat,
+      Wrapped<double?>? totalVat,
+      Wrapped<String?>? unit,
+      Wrapped<double?>? unitPrice,
+      Wrapped<double?>? unitPriceExclVat,
+      Wrapped<double?>? vatRate}) {
+    return BookingBillingPrice(
+        amount: (amount != null ? amount.value : this.amount),
+        changeFromHourlyToDaily: (changeFromHourlyToDaily != null
+            ? changeFromHourlyToDaily.value
+            : this.changeFromHourlyToDaily),
+        endDate: (endDate != null ? endDate.value : this.endDate),
+        hourlyTotalNotCharged: (hourlyTotalNotCharged != null
+            ? hourlyTotalNotCharged.value
+            : this.hourlyTotalNotCharged),
+        hourlyTotalNotChargedExclVat: (hourlyTotalNotChargedExclVat != null
+            ? hourlyTotalNotChargedExclVat.value
+            : this.hourlyTotalNotChargedExclVat),
+        km: (km != null ? km.value : this.km),
+        kmPrice: (kmPrice != null ? kmPrice.value : this.kmPrice),
+        kmPriceExclVat: (kmPriceExclVat != null
+            ? kmPriceExclVat.value
+            : this.kmPriceExclVat),
+        kmTotal: (kmTotal != null ? kmTotal.value : this.kmTotal),
+        kmTotalExclVat: (kmTotalExclVat != null
+            ? kmTotalExclVat.value
+            : this.kmTotalExclVat),
+        startDate: (startDate != null ? startDate.value : this.startDate),
+        timeAmount: (timeAmount != null ? timeAmount.value : this.timeAmount),
+        timeTotal: (timeTotal != null ? timeTotal.value : this.timeTotal),
+        timeTotalExclVat: (timeTotalExclVat != null
+            ? timeTotalExclVat.value
+            : this.timeTotalExclVat),
+        total: (total != null ? total.value : this.total),
+        totalExclVat:
+            (totalExclVat != null ? totalExclVat.value : this.totalExclVat),
+        totalVat: (totalVat != null ? totalVat.value : this.totalVat),
+        unit: (unit != null ? unit.value : this.unit),
+        unitPrice: (unitPrice != null ? unitPrice.value : this.unitPrice),
+        unitPriceExclVat: (unitPriceExclVat != null
+            ? unitPriceExclVat.value
+            : this.unitPriceExclVat),
+        vatRate: (vatRate != null ? vatRate.value : this.vatRate));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingBodyStyle {
+  const BookingBodyStyle({
+    this.description,
+    this.id,
+  });
+
+  factory BookingBodyStyle.fromJson(Map<String, dynamic> json) =>
+      _$BookingBodyStyleFromJson(json);
+
+  static const toJsonFactory = _$BookingBodyStyleToJson;
+  Map<String, dynamic> toJson() => _$BookingBodyStyleToJson(this);
+
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'id')
+  final String? id;
+  static const fromJsonFactory = _$BookingBodyStyleFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingBodyStyle &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(id) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingBodyStyleExtension on BookingBodyStyle {
+  BookingBodyStyle copyWith({String? description, String? id}) {
+    return BookingBodyStyle(
+        description: description ?? this.description, id: id ?? this.id);
+  }
+
+  BookingBodyStyle copyWithWrapped(
+      {Wrapped<String?>? description, Wrapped<String?>? id}) {
+    return BookingBodyStyle(
+        description:
+            (description != null ? description.value : this.description),
+        id: (id != null ? id.value : this.id));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingBooking {
+  const BookingBooking({
+    this.adminComments,
+    this.billingPrice,
+    this.cancelDate,
+    this.cancelReason,
+    this.clientId,
+    this.comments,
+    this.dateCreated,
+    this.id,
+    this.invoiceStatus,
+    this.lastUpdated,
+    this.nextPossibleStatuses,
+    this.originalEndDate,
+    this.period,
+    this.status,
+    this.userId,
+    this.vehicle,
+    this.vehicleUsage,
+  });
+
+  factory BookingBooking.fromJson(Map<String, dynamic> json) =>
+      _$BookingBookingFromJson(json);
+
+  static const toJsonFactory = _$BookingBookingToJson;
+  Map<String, dynamic> toJson() => _$BookingBookingToJson(this);
+
+  @JsonKey(name: 'adminComments')
+  final String? adminComments;
+  @JsonKey(name: 'billingPrice')
+  final BookingBillingPrice? billingPrice;
+  @JsonKey(name: 'cancelDate')
+  final String? cancelDate;
+  @JsonKey(name: 'cancelReason')
+  final String? cancelReason;
+  @JsonKey(name: 'clientId')
+  final String? clientId;
+  @JsonKey(name: 'comments')
+  final String? comments;
+  @JsonKey(name: 'dateCreated')
+  final String? dateCreated;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'invoiceStatus')
+  final String? invoiceStatus;
+  @JsonKey(name: 'lastUpdated')
+  final String? lastUpdated;
+  @JsonKey(name: 'nextPossibleStatuses', defaultValue: <String>[])
+  final List<String>? nextPossibleStatuses;
+  @JsonKey(name: 'originalEndDate')
+  final String? originalEndDate;
+  @JsonKey(name: 'period')
+  final BookingPeriod? period;
+  @JsonKey(name: 'status')
+  final String? status;
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @JsonKey(name: 'vehicle')
+  final BookingVehicle? vehicle;
+  @JsonKey(name: 'vehicleUsage')
+  final BookingVehicleUsage? vehicleUsage;
+  static const fromJsonFactory = _$BookingBookingFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingBooking &&
+            (identical(other.adminComments, adminComments) ||
+                const DeepCollectionEquality()
+                    .equals(other.adminComments, adminComments)) &&
+            (identical(other.billingPrice, billingPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.billingPrice, billingPrice)) &&
+            (identical(other.cancelDate, cancelDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.cancelDate, cancelDate)) &&
+            (identical(other.cancelReason, cancelReason) ||
+                const DeepCollectionEquality()
+                    .equals(other.cancelReason, cancelReason)) &&
+            (identical(other.clientId, clientId) ||
+                const DeepCollectionEquality()
+                    .equals(other.clientId, clientId)) &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
+            (identical(other.dateCreated, dateCreated) ||
+                const DeepCollectionEquality()
+                    .equals(other.dateCreated, dateCreated)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.invoiceStatus, invoiceStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.invoiceStatus, invoiceStatus)) &&
+            (identical(other.lastUpdated, lastUpdated) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastUpdated, lastUpdated)) &&
+            (identical(other.nextPossibleStatuses, nextPossibleStatuses) ||
+                const DeepCollectionEquality().equals(
+                    other.nextPossibleStatuses, nextPossibleStatuses)) &&
+            (identical(other.originalEndDate, originalEndDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.originalEndDate, originalEndDate)) &&
+            (identical(other.period, period) ||
+                const DeepCollectionEquality().equals(other.period, period)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.vehicle, vehicle) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicle, vehicle)) &&
+            (identical(other.vehicleUsage, vehicleUsage) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleUsage, vehicleUsage)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(adminComments) ^
+      const DeepCollectionEquality().hash(billingPrice) ^
+      const DeepCollectionEquality().hash(cancelDate) ^
+      const DeepCollectionEquality().hash(cancelReason) ^
+      const DeepCollectionEquality().hash(clientId) ^
+      const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(dateCreated) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(invoiceStatus) ^
+      const DeepCollectionEquality().hash(lastUpdated) ^
+      const DeepCollectionEquality().hash(nextPossibleStatuses) ^
+      const DeepCollectionEquality().hash(originalEndDate) ^
+      const DeepCollectionEquality().hash(period) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(vehicle) ^
+      const DeepCollectionEquality().hash(vehicleUsage) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingBookingExtension on BookingBooking {
+  BookingBooking copyWith(
+      {String? adminComments,
+      BookingBillingPrice? billingPrice,
+      String? cancelDate,
+      String? cancelReason,
+      String? clientId,
+      String? comments,
+      String? dateCreated,
+      String? id,
+      String? invoiceStatus,
+      String? lastUpdated,
+      List<String>? nextPossibleStatuses,
+      String? originalEndDate,
+      BookingPeriod? period,
+      String? status,
+      String? userId,
+      BookingVehicle? vehicle,
+      BookingVehicleUsage? vehicleUsage}) {
+    return BookingBooking(
+        adminComments: adminComments ?? this.adminComments,
+        billingPrice: billingPrice ?? this.billingPrice,
+        cancelDate: cancelDate ?? this.cancelDate,
+        cancelReason: cancelReason ?? this.cancelReason,
+        clientId: clientId ?? this.clientId,
+        comments: comments ?? this.comments,
+        dateCreated: dateCreated ?? this.dateCreated,
+        id: id ?? this.id,
+        invoiceStatus: invoiceStatus ?? this.invoiceStatus,
+        lastUpdated: lastUpdated ?? this.lastUpdated,
+        nextPossibleStatuses: nextPossibleStatuses ?? this.nextPossibleStatuses,
+        originalEndDate: originalEndDate ?? this.originalEndDate,
+        period: period ?? this.period,
+        status: status ?? this.status,
+        userId: userId ?? this.userId,
+        vehicle: vehicle ?? this.vehicle,
+        vehicleUsage: vehicleUsage ?? this.vehicleUsage);
+  }
+
+  BookingBooking copyWithWrapped(
+      {Wrapped<String?>? adminComments,
+      Wrapped<BookingBillingPrice?>? billingPrice,
+      Wrapped<String?>? cancelDate,
+      Wrapped<String?>? cancelReason,
+      Wrapped<String?>? clientId,
+      Wrapped<String?>? comments,
+      Wrapped<String?>? dateCreated,
+      Wrapped<String?>? id,
+      Wrapped<String?>? invoiceStatus,
+      Wrapped<String?>? lastUpdated,
+      Wrapped<List<String>?>? nextPossibleStatuses,
+      Wrapped<String?>? originalEndDate,
+      Wrapped<BookingPeriod?>? period,
+      Wrapped<String?>? status,
+      Wrapped<String?>? userId,
+      Wrapped<BookingVehicle?>? vehicle,
+      Wrapped<BookingVehicleUsage?>? vehicleUsage}) {
+    return BookingBooking(
+        adminComments:
+            (adminComments != null ? adminComments.value : this.adminComments),
+        billingPrice:
+            (billingPrice != null ? billingPrice.value : this.billingPrice),
+        cancelDate: (cancelDate != null ? cancelDate.value : this.cancelDate),
+        cancelReason:
+            (cancelReason != null ? cancelReason.value : this.cancelReason),
+        clientId: (clientId != null ? clientId.value : this.clientId),
+        comments: (comments != null ? comments.value : this.comments),
+        dateCreated:
+            (dateCreated != null ? dateCreated.value : this.dateCreated),
+        id: (id != null ? id.value : this.id),
+        invoiceStatus:
+            (invoiceStatus != null ? invoiceStatus.value : this.invoiceStatus),
+        lastUpdated:
+            (lastUpdated != null ? lastUpdated.value : this.lastUpdated),
+        nextPossibleStatuses: (nextPossibleStatuses != null
+            ? nextPossibleStatuses.value
+            : this.nextPossibleStatuses),
+        originalEndDate: (originalEndDate != null
+            ? originalEndDate.value
+            : this.originalEndDate),
+        period: (period != null ? period.value : this.period),
+        status: (status != null ? status.value : this.status),
+        userId: (userId != null ? userId.value : this.userId),
+        vehicle: (vehicle != null ? vehicle.value : this.vehicle),
+        vehicleUsage:
+            (vehicleUsage != null ? vehicleUsage.value : this.vehicleUsage));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingBookingPrice {
+  const BookingBookingPrice({
+    this.dayPrice,
+    this.hourPrice,
+    this.kmPrice,
+  });
+
+  factory BookingBookingPrice.fromJson(Map<String, dynamic> json) =>
+      _$BookingBookingPriceFromJson(json);
+
+  static const toJsonFactory = _$BookingBookingPriceToJson;
+  Map<String, dynamic> toJson() => _$BookingBookingPriceToJson(this);
+
+  @JsonKey(name: 'dayPrice')
+  final double? dayPrice;
+  @JsonKey(name: 'hourPrice')
+  final double? hourPrice;
+  @JsonKey(name: 'kmPrice')
+  final double? kmPrice;
+  static const fromJsonFactory = _$BookingBookingPriceFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingBookingPrice &&
+            (identical(other.dayPrice, dayPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.dayPrice, dayPrice)) &&
+            (identical(other.hourPrice, hourPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.hourPrice, hourPrice)) &&
+            (identical(other.kmPrice, kmPrice) ||
+                const DeepCollectionEquality().equals(other.kmPrice, kmPrice)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(dayPrice) ^
+      const DeepCollectionEquality().hash(hourPrice) ^
+      const DeepCollectionEquality().hash(kmPrice) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingBookingPriceExtension on BookingBookingPrice {
+  BookingBookingPrice copyWith(
+      {double? dayPrice, double? hourPrice, double? kmPrice}) {
+    return BookingBookingPrice(
+        dayPrice: dayPrice ?? this.dayPrice,
+        hourPrice: hourPrice ?? this.hourPrice,
+        kmPrice: kmPrice ?? this.kmPrice);
+  }
+
+  BookingBookingPrice copyWithWrapped(
+      {Wrapped<double?>? dayPrice,
+      Wrapped<double?>? hourPrice,
+      Wrapped<double?>? kmPrice}) {
+    return BookingBookingPrice(
+        dayPrice: (dayPrice != null ? dayPrice.value : this.dayPrice),
+        hourPrice: (hourPrice != null ? hourPrice.value : this.hourPrice),
+        kmPrice: (kmPrice != null ? kmPrice.value : this.kmPrice));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingCreateBooking {
+  const BookingCreateBooking({
+    this.comments,
+    required this.period,
+    required this.vehicleId,
+  });
+
+  factory BookingCreateBooking.fromJson(Map<String, dynamic> json) =>
+      _$BookingCreateBookingFromJson(json);
+
+  static const toJsonFactory = _$BookingCreateBookingToJson;
+  Map<String, dynamic> toJson() => _$BookingCreateBookingToJson(this);
+
+  @JsonKey(name: 'comments')
+  final String? comments;
+  @JsonKey(name: 'period')
+  final BookingPeriod period;
+  @JsonKey(name: 'vehicleId')
+  final String vehicleId;
+  static const fromJsonFactory = _$BookingCreateBookingFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingCreateBooking &&
+            (identical(other.comments, comments) ||
+                const DeepCollectionEquality()
+                    .equals(other.comments, comments)) &&
+            (identical(other.period, period) ||
+                const DeepCollectionEquality().equals(other.period, period)) &&
+            (identical(other.vehicleId, vehicleId) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleId, vehicleId)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(comments) ^
+      const DeepCollectionEquality().hash(period) ^
+      const DeepCollectionEquality().hash(vehicleId) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingCreateBookingExtension on BookingCreateBooking {
+  BookingCreateBooking copyWith(
+      {String? comments, BookingPeriod? period, String? vehicleId}) {
+    return BookingCreateBooking(
+        comments: comments ?? this.comments,
+        period: period ?? this.period,
+        vehicleId: vehicleId ?? this.vehicleId);
+  }
+
+  BookingCreateBooking copyWithWrapped(
+      {Wrapped<String?>? comments,
+      Wrapped<BookingPeriod>? period,
+      Wrapped<String>? vehicleId}) {
+    return BookingCreateBooking(
+        comments: (comments != null ? comments.value : this.comments),
+        period: (period != null ? period.value : this.period),
+        vehicleId: (vehicleId != null ? vehicleId.value : this.vehicleId));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingErrorResponse {
+  const BookingErrorResponse({
+    this.debugKey,
+    this.debugMsg,
+    this.debugParameters,
+  });
+
+  factory BookingErrorResponse.fromJson(Map<String, dynamic> json) =>
+      _$BookingErrorResponseFromJson(json);
+
+  static const toJsonFactory = _$BookingErrorResponseToJson;
+  Map<String, dynamic> toJson() => _$BookingErrorResponseToJson(this);
+
+  @JsonKey(name: 'debugKey')
+  final String? debugKey;
+  @JsonKey(name: 'debugMsg')
+  final String? debugMsg;
+  @JsonKey(name: 'debugParameters', defaultValue: <String>[])
+  final List<String>? debugParameters;
+  static const fromJsonFactory = _$BookingErrorResponseFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingErrorResponse &&
+            (identical(other.debugKey, debugKey) ||
+                const DeepCollectionEquality()
+                    .equals(other.debugKey, debugKey)) &&
+            (identical(other.debugMsg, debugMsg) ||
+                const DeepCollectionEquality()
+                    .equals(other.debugMsg, debugMsg)) &&
+            (identical(other.debugParameters, debugParameters) ||
+                const DeepCollectionEquality()
+                    .equals(other.debugParameters, debugParameters)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(debugKey) ^
+      const DeepCollectionEquality().hash(debugMsg) ^
+      const DeepCollectionEquality().hash(debugParameters) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingErrorResponseExtension on BookingErrorResponse {
+  BookingErrorResponse copyWith(
+      {String? debugKey, String? debugMsg, List<String>? debugParameters}) {
+    return BookingErrorResponse(
+        debugKey: debugKey ?? this.debugKey,
+        debugMsg: debugMsg ?? this.debugMsg,
+        debugParameters: debugParameters ?? this.debugParameters);
+  }
+
+  BookingErrorResponse copyWithWrapped(
+      {Wrapped<String?>? debugKey,
+      Wrapped<String?>? debugMsg,
+      Wrapped<List<String>?>? debugParameters}) {
+    return BookingErrorResponse(
+        debugKey: (debugKey != null ? debugKey.value : this.debugKey),
+        debugMsg: (debugMsg != null ? debugMsg.value : this.debugMsg),
+        debugParameters: (debugParameters != null
+            ? debugParameters.value
+            : this.debugParameters));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingGpsCoordinate {
+  const BookingGpsCoordinate({
+    this.latitude,
+    this.longitude,
+  });
+
+  factory BookingGpsCoordinate.fromJson(Map<String, dynamic> json) =>
+      _$BookingGpsCoordinateFromJson(json);
+
+  static const toJsonFactory = _$BookingGpsCoordinateToJson;
+  Map<String, dynamic> toJson() => _$BookingGpsCoordinateToJson(this);
+
+  @JsonKey(name: 'latitude')
+  final double? latitude;
+  @JsonKey(name: 'longitude')
+  final double? longitude;
+  static const fromJsonFactory = _$BookingGpsCoordinateFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingGpsCoordinate &&
+            (identical(other.latitude, latitude) ||
+                const DeepCollectionEquality()
+                    .equals(other.latitude, latitude)) &&
+            (identical(other.longitude, longitude) ||
+                const DeepCollectionEquality()
+                    .equals(other.longitude, longitude)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(latitude) ^
+      const DeepCollectionEquality().hash(longitude) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingGpsCoordinateExtension on BookingGpsCoordinate {
+  BookingGpsCoordinate copyWith({double? latitude, double? longitude}) {
+    return BookingGpsCoordinate(
+        latitude: latitude ?? this.latitude,
+        longitude: longitude ?? this.longitude);
+  }
+
+  BookingGpsCoordinate copyWithWrapped(
+      {Wrapped<double?>? latitude, Wrapped<double?>? longitude}) {
+    return BookingGpsCoordinate(
+        latitude: (latitude != null ? latitude.value : this.latitude),
+        longitude: (longitude != null ? longitude.value : this.longitude));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingGpsLocation {
+  const BookingGpsLocation({
+    this.address,
+    this.coordinates,
+    this.vehicleBaseLocationId,
+  });
+
+  factory BookingGpsLocation.fromJson(Map<String, dynamic> json) =>
+      _$BookingGpsLocationFromJson(json);
+
+  static const toJsonFactory = _$BookingGpsLocationToJson;
+  Map<String, dynamic> toJson() => _$BookingGpsLocationToJson(this);
+
+  @JsonKey(name: 'address')
+  final String? address;
+  @JsonKey(name: 'coordinates')
+  final BookingGpsCoordinate? coordinates;
+  @JsonKey(name: 'vehicleBaseLocationId')
+  final String? vehicleBaseLocationId;
+  static const fromJsonFactory = _$BookingGpsLocationFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingGpsLocation &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.coordinates, coordinates) ||
+                const DeepCollectionEquality()
+                    .equals(other.coordinates, coordinates)) &&
+            (identical(other.vehicleBaseLocationId, vehicleBaseLocationId) ||
+                const DeepCollectionEquality().equals(
+                    other.vehicleBaseLocationId, vehicleBaseLocationId)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(coordinates) ^
+      const DeepCollectionEquality().hash(vehicleBaseLocationId) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingGpsLocationExtension on BookingGpsLocation {
+  BookingGpsLocation copyWith(
+      {String? address,
+      BookingGpsCoordinate? coordinates,
+      String? vehicleBaseLocationId}) {
+    return BookingGpsLocation(
+        address: address ?? this.address,
+        coordinates: coordinates ?? this.coordinates,
+        vehicleBaseLocationId:
+            vehicleBaseLocationId ?? this.vehicleBaseLocationId);
+  }
+
+  BookingGpsLocation copyWithWrapped(
+      {Wrapped<String?>? address,
+      Wrapped<BookingGpsCoordinate?>? coordinates,
+      Wrapped<String?>? vehicleBaseLocationId}) {
+    return BookingGpsLocation(
+        address: (address != null ? address.value : this.address),
+        coordinates:
+            (coordinates != null ? coordinates.value : this.coordinates),
+        vehicleBaseLocationId: (vehicleBaseLocationId != null
+            ? vehicleBaseLocationId.value
+            : this.vehicleBaseLocationId));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingPeriod {
+  const BookingPeriod({
+    this.end,
+    this.start,
+  });
+
+  factory BookingPeriod.fromJson(Map<String, dynamic> json) =>
+      _$BookingPeriodFromJson(json);
+
+  static const toJsonFactory = _$BookingPeriodToJson;
+  Map<String, dynamic> toJson() => _$BookingPeriodToJson(this);
+
+  @JsonKey(name: 'end')
+  final DateTime? end;
+  @JsonKey(name: 'start')
+  final DateTime? start;
+  static const fromJsonFactory = _$BookingPeriodFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingPeriod &&
+            (identical(other.end, end) ||
+                const DeepCollectionEquality().equals(other.end, end)) &&
+            (identical(other.start, start) ||
+                const DeepCollectionEquality().equals(other.start, start)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(end) ^
+      const DeepCollectionEquality().hash(start) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingPeriodExtension on BookingPeriod {
+  BookingPeriod copyWith({DateTime? end, DateTime? start}) {
+    return BookingPeriod(end: end ?? this.end, start: start ?? this.start);
+  }
+
+  BookingPeriod copyWithWrapped(
+      {Wrapped<DateTime?>? end, Wrapped<DateTime?>? start}) {
+    return BookingPeriod(
+        end: (end != null ? end.value : this.end),
+        start: (start != null ? start.value : this.start));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingTrip {
+  const BookingTrip({
+    this.endPosition,
+    this.endTime,
+    this.mileageDelta,
+    this.mileageEnd,
+    this.mileageStart,
+    this.startPosition,
+    this.startTime,
+  });
+
+  factory BookingTrip.fromJson(Map<String, dynamic> json) =>
+      _$BookingTripFromJson(json);
+
+  static const toJsonFactory = _$BookingTripToJson;
+  Map<String, dynamic> toJson() => _$BookingTripToJson(this);
+
+  @JsonKey(name: 'endPosition')
+  final BookingGpsLocation? endPosition;
+  @JsonKey(name: 'endTime')
+  final String? endTime;
+  @JsonKey(name: 'mileageDelta')
+  final double? mileageDelta;
+  @JsonKey(name: 'mileageEnd')
+  final double? mileageEnd;
+  @JsonKey(name: 'mileageStart')
+  final double? mileageStart;
+  @JsonKey(name: 'startPosition')
+  final BookingGpsLocation? startPosition;
+  @JsonKey(name: 'startTime')
+  final String? startTime;
+  static const fromJsonFactory = _$BookingTripFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingTrip &&
+            (identical(other.endPosition, endPosition) ||
+                const DeepCollectionEquality()
+                    .equals(other.endPosition, endPosition)) &&
+            (identical(other.endTime, endTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.endTime, endTime)) &&
+            (identical(other.mileageDelta, mileageDelta) ||
+                const DeepCollectionEquality()
+                    .equals(other.mileageDelta, mileageDelta)) &&
+            (identical(other.mileageEnd, mileageEnd) ||
+                const DeepCollectionEquality()
+                    .equals(other.mileageEnd, mileageEnd)) &&
+            (identical(other.mileageStart, mileageStart) ||
+                const DeepCollectionEquality()
+                    .equals(other.mileageStart, mileageStart)) &&
+            (identical(other.startPosition, startPosition) ||
+                const DeepCollectionEquality()
+                    .equals(other.startPosition, startPosition)) &&
+            (identical(other.startTime, startTime) ||
+                const DeepCollectionEquality()
+                    .equals(other.startTime, startTime)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(endPosition) ^
+      const DeepCollectionEquality().hash(endTime) ^
+      const DeepCollectionEquality().hash(mileageDelta) ^
+      const DeepCollectionEquality().hash(mileageEnd) ^
+      const DeepCollectionEquality().hash(mileageStart) ^
+      const DeepCollectionEquality().hash(startPosition) ^
+      const DeepCollectionEquality().hash(startTime) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingTripExtension on BookingTrip {
+  BookingTrip copyWith(
+      {BookingGpsLocation? endPosition,
+      String? endTime,
+      double? mileageDelta,
+      double? mileageEnd,
+      double? mileageStart,
+      BookingGpsLocation? startPosition,
+      String? startTime}) {
+    return BookingTrip(
+        endPosition: endPosition ?? this.endPosition,
+        endTime: endTime ?? this.endTime,
+        mileageDelta: mileageDelta ?? this.mileageDelta,
+        mileageEnd: mileageEnd ?? this.mileageEnd,
+        mileageStart: mileageStart ?? this.mileageStart,
+        startPosition: startPosition ?? this.startPosition,
+        startTime: startTime ?? this.startTime);
+  }
+
+  BookingTrip copyWithWrapped(
+      {Wrapped<BookingGpsLocation?>? endPosition,
+      Wrapped<String?>? endTime,
+      Wrapped<double?>? mileageDelta,
+      Wrapped<double?>? mileageEnd,
+      Wrapped<double?>? mileageStart,
+      Wrapped<BookingGpsLocation?>? startPosition,
+      Wrapped<String?>? startTime}) {
+    return BookingTrip(
+        endPosition:
+            (endPosition != null ? endPosition.value : this.endPosition),
+        endTime: (endTime != null ? endTime.value : this.endTime),
+        mileageDelta:
+            (mileageDelta != null ? mileageDelta.value : this.mileageDelta),
+        mileageEnd: (mileageEnd != null ? mileageEnd.value : this.mileageEnd),
+        mileageStart:
+            (mileageStart != null ? mileageStart.value : this.mileageStart),
+        startPosition:
+            (startPosition != null ? startPosition.value : this.startPosition),
+        startTime: (startTime != null ? startTime.value : this.startTime));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingVehicle {
+  const BookingVehicle({
+    this.distance,
+    this.electricRange,
+    this.fanPrice,
+    this.favorite,
+    this.funPrice,
+    this.homePosition,
+    this.id,
+    this.imageUrl,
+    this.lastPosition,
+    this.lastPositionTimestamp,
+    this.licensePlate,
+    this.name,
+    this.operationalStatus,
+    this.vehicleBodyStyle,
+    this.vehicleBrand,
+    this.vehicleModel,
+  });
+
+  factory BookingVehicle.fromJson(Map<String, dynamic> json) =>
+      _$BookingVehicleFromJson(json);
+
+  static const toJsonFactory = _$BookingVehicleToJson;
+  Map<String, dynamic> toJson() => _$BookingVehicleToJson(this);
+
+  @JsonKey(name: 'distance')
+  final double? distance;
+  @JsonKey(name: 'electricRange')
+  final int? electricRange;
+  @JsonKey(name: 'fanPrice')
+  final BookingBookingPrice? fanPrice;
+  @JsonKey(name: 'favorite')
+  final bool? favorite;
+  @JsonKey(name: 'funPrice')
+  final BookingBookingPrice? funPrice;
+  @JsonKey(name: 'homePosition')
+  final BookingGpsLocation? homePosition;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'imageUrl')
+  final String? imageUrl;
+  @JsonKey(name: 'lastPosition')
+  final BookingGpsLocation? lastPosition;
+  @JsonKey(name: 'lastPositionTimestamp')
+  final String? lastPositionTimestamp;
+  @JsonKey(name: 'licensePlate')
+  final String? licensePlate;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'operationalStatus')
+  final String? operationalStatus;
+  @JsonKey(name: 'vehicleBodyStyle')
+  final BookingBodyStyle? vehicleBodyStyle;
+  @JsonKey(name: 'vehicleBrand')
+  final BookingVehicleBrand? vehicleBrand;
+  @JsonKey(name: 'vehicleModel')
+  final BookingVehicleModel? vehicleModel;
+  static const fromJsonFactory = _$BookingVehicleFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingVehicle &&
+            (identical(other.distance, distance) ||
+                const DeepCollectionEquality()
+                    .equals(other.distance, distance)) &&
+            (identical(other.electricRange, electricRange) ||
+                const DeepCollectionEquality()
+                    .equals(other.electricRange, electricRange)) &&
+            (identical(other.fanPrice, fanPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.fanPrice, fanPrice)) &&
+            (identical(other.favorite, favorite) ||
+                const DeepCollectionEquality()
+                    .equals(other.favorite, favorite)) &&
+            (identical(other.funPrice, funPrice) ||
+                const DeepCollectionEquality()
+                    .equals(other.funPrice, funPrice)) &&
+            (identical(other.homePosition, homePosition) ||
+                const DeepCollectionEquality()
+                    .equals(other.homePosition, homePosition)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.lastPosition, lastPosition) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastPosition, lastPosition)) &&
+            (identical(other.lastPositionTimestamp, lastPositionTimestamp) ||
+                const DeepCollectionEquality().equals(
+                    other.lastPositionTimestamp, lastPositionTimestamp)) &&
+            (identical(other.licensePlate, licensePlate) ||
+                const DeepCollectionEquality()
+                    .equals(other.licensePlate, licensePlate)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.operationalStatus, operationalStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.operationalStatus, operationalStatus)) &&
+            (identical(other.vehicleBodyStyle, vehicleBodyStyle) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleBodyStyle, vehicleBodyStyle)) &&
+            (identical(other.vehicleBrand, vehicleBrand) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleBrand, vehicleBrand)) &&
+            (identical(other.vehicleModel, vehicleModel) ||
+                const DeepCollectionEquality()
+                    .equals(other.vehicleModel, vehicleModel)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(distance) ^
+      const DeepCollectionEquality().hash(electricRange) ^
+      const DeepCollectionEquality().hash(fanPrice) ^
+      const DeepCollectionEquality().hash(favorite) ^
+      const DeepCollectionEquality().hash(funPrice) ^
+      const DeepCollectionEquality().hash(homePosition) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(lastPosition) ^
+      const DeepCollectionEquality().hash(lastPositionTimestamp) ^
+      const DeepCollectionEquality().hash(licensePlate) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(operationalStatus) ^
+      const DeepCollectionEquality().hash(vehicleBodyStyle) ^
+      const DeepCollectionEquality().hash(vehicleBrand) ^
+      const DeepCollectionEquality().hash(vehicleModel) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingVehicleExtension on BookingVehicle {
+  BookingVehicle copyWith(
+      {double? distance,
+      int? electricRange,
+      BookingBookingPrice? fanPrice,
+      bool? favorite,
+      BookingBookingPrice? funPrice,
+      BookingGpsLocation? homePosition,
+      String? id,
+      String? imageUrl,
+      BookingGpsLocation? lastPosition,
+      String? lastPositionTimestamp,
+      String? licensePlate,
+      String? name,
+      String? operationalStatus,
+      BookingBodyStyle? vehicleBodyStyle,
+      BookingVehicleBrand? vehicleBrand,
+      BookingVehicleModel? vehicleModel}) {
+    return BookingVehicle(
+        distance: distance ?? this.distance,
+        electricRange: electricRange ?? this.electricRange,
+        fanPrice: fanPrice ?? this.fanPrice,
+        favorite: favorite ?? this.favorite,
+        funPrice: funPrice ?? this.funPrice,
+        homePosition: homePosition ?? this.homePosition,
+        id: id ?? this.id,
+        imageUrl: imageUrl ?? this.imageUrl,
+        lastPosition: lastPosition ?? this.lastPosition,
+        lastPositionTimestamp:
+            lastPositionTimestamp ?? this.lastPositionTimestamp,
+        licensePlate: licensePlate ?? this.licensePlate,
+        name: name ?? this.name,
+        operationalStatus: operationalStatus ?? this.operationalStatus,
+        vehicleBodyStyle: vehicleBodyStyle ?? this.vehicleBodyStyle,
+        vehicleBrand: vehicleBrand ?? this.vehicleBrand,
+        vehicleModel: vehicleModel ?? this.vehicleModel);
+  }
+
+  BookingVehicle copyWithWrapped(
+      {Wrapped<double?>? distance,
+      Wrapped<int?>? electricRange,
+      Wrapped<BookingBookingPrice?>? fanPrice,
+      Wrapped<bool?>? favorite,
+      Wrapped<BookingBookingPrice?>? funPrice,
+      Wrapped<BookingGpsLocation?>? homePosition,
+      Wrapped<String?>? id,
+      Wrapped<String?>? imageUrl,
+      Wrapped<BookingGpsLocation?>? lastPosition,
+      Wrapped<String?>? lastPositionTimestamp,
+      Wrapped<String?>? licensePlate,
+      Wrapped<String?>? name,
+      Wrapped<String?>? operationalStatus,
+      Wrapped<BookingBodyStyle?>? vehicleBodyStyle,
+      Wrapped<BookingVehicleBrand?>? vehicleBrand,
+      Wrapped<BookingVehicleModel?>? vehicleModel}) {
+    return BookingVehicle(
+        distance: (distance != null ? distance.value : this.distance),
+        electricRange:
+            (electricRange != null ? electricRange.value : this.electricRange),
+        fanPrice: (fanPrice != null ? fanPrice.value : this.fanPrice),
+        favorite: (favorite != null ? favorite.value : this.favorite),
+        funPrice: (funPrice != null ? funPrice.value : this.funPrice),
+        homePosition:
+            (homePosition != null ? homePosition.value : this.homePosition),
+        id: (id != null ? id.value : this.id),
+        imageUrl: (imageUrl != null ? imageUrl.value : this.imageUrl),
+        lastPosition:
+            (lastPosition != null ? lastPosition.value : this.lastPosition),
+        lastPositionTimestamp: (lastPositionTimestamp != null
+            ? lastPositionTimestamp.value
+            : this.lastPositionTimestamp),
+        licensePlate:
+            (licensePlate != null ? licensePlate.value : this.licensePlate),
+        name: (name != null ? name.value : this.name),
+        operationalStatus: (operationalStatus != null
+            ? operationalStatus.value
+            : this.operationalStatus),
+        vehicleBodyStyle: (vehicleBodyStyle != null
+            ? vehicleBodyStyle.value
+            : this.vehicleBodyStyle),
+        vehicleBrand:
+            (vehicleBrand != null ? vehicleBrand.value : this.vehicleBrand),
+        vehicleModel:
+            (vehicleModel != null ? vehicleModel.value : this.vehicleModel));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingVehicleBrand {
+  const BookingVehicleBrand({
+    this.id,
+    this.name,
+  });
+
+  factory BookingVehicleBrand.fromJson(Map<String, dynamic> json) =>
+      _$BookingVehicleBrandFromJson(json);
+
+  static const toJsonFactory = _$BookingVehicleBrandToJson;
+  Map<String, dynamic> toJson() => _$BookingVehicleBrandToJson(this);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'name')
+  final String? name;
+  static const fromJsonFactory = _$BookingVehicleBrandFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingVehicleBrand &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingVehicleBrandExtension on BookingVehicleBrand {
+  BookingVehicleBrand copyWith({String? id, String? name}) {
+    return BookingVehicleBrand(id: id ?? this.id, name: name ?? this.name);
+  }
+
+  BookingVehicleBrand copyWithWrapped(
+      {Wrapped<String?>? id, Wrapped<String?>? name}) {
+    return BookingVehicleBrand(
+        id: (id != null ? id.value : this.id),
+        name: (name != null ? name.value : this.name));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingVehicleModel {
+  const BookingVehicleModel({
+    this.bodyStyle,
+    this.brandId,
+    this.id,
+    this.name,
+  });
+
+  factory BookingVehicleModel.fromJson(Map<String, dynamic> json) =>
+      _$BookingVehicleModelFromJson(json);
+
+  static const toJsonFactory = _$BookingVehicleModelToJson;
+  Map<String, dynamic> toJson() => _$BookingVehicleModelToJson(this);
+
+  @JsonKey(name: 'bodyStyle')
+  final BookingBodyStyle? bodyStyle;
+  @JsonKey(name: 'brandId')
+  final String? brandId;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'name')
+  final String? name;
+  static const fromJsonFactory = _$BookingVehicleModelFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingVehicleModel &&
+            (identical(other.bodyStyle, bodyStyle) ||
+                const DeepCollectionEquality()
+                    .equals(other.bodyStyle, bodyStyle)) &&
+            (identical(other.brandId, brandId) ||
+                const DeepCollectionEquality()
+                    .equals(other.brandId, brandId)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(bodyStyle) ^
+      const DeepCollectionEquality().hash(brandId) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingVehicleModelExtension on BookingVehicleModel {
+  BookingVehicleModel copyWith(
+      {BookingBodyStyle? bodyStyle,
+      String? brandId,
+      String? id,
+      String? name}) {
+    return BookingVehicleModel(
+        bodyStyle: bodyStyle ?? this.bodyStyle,
+        brandId: brandId ?? this.brandId,
+        id: id ?? this.id,
+        name: name ?? this.name);
+  }
+
+  BookingVehicleModel copyWithWrapped(
+      {Wrapped<BookingBodyStyle?>? bodyStyle,
+      Wrapped<String?>? brandId,
+      Wrapped<String?>? id,
+      Wrapped<String?>? name}) {
+    return BookingVehicleModel(
+        bodyStyle: (bodyStyle != null ? bodyStyle.value : this.bodyStyle),
+        brandId: (brandId != null ? brandId.value : this.brandId),
+        id: (id != null ? id.value : this.id),
+        name: (name != null ? name.value : this.name));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class BookingVehicleUsage {
+  const BookingVehicleUsage({
+    this.id,
+    this.mileageDelta,
+    this.mileageEndValue,
+    this.mileageStartValue,
+    this.period,
+    this.status,
+    this.statusMessage,
+    this.trips,
+  });
+
+  factory BookingVehicleUsage.fromJson(Map<String, dynamic> json) =>
+      _$BookingVehicleUsageFromJson(json);
+
+  static const toJsonFactory = _$BookingVehicleUsageToJson;
+  Map<String, dynamic> toJson() => _$BookingVehicleUsageToJson(this);
+
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'mileageDelta')
+  final double? mileageDelta;
+  @JsonKey(name: 'mileageEndValue')
+  final double? mileageEndValue;
+  @JsonKey(name: 'mileageStartValue')
+  final double? mileageStartValue;
+  @JsonKey(name: 'period')
+  final BookingPeriod? period;
+  @JsonKey(name: 'status')
+  final String? status;
+  @JsonKey(name: 'statusMessage')
+  final String? statusMessage;
+  @JsonKey(name: 'trips', defaultValue: <BookingTrip>[])
+  final List<BookingTrip>? trips;
+  static const fromJsonFactory = _$BookingVehicleUsageFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is BookingVehicleUsage &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.mileageDelta, mileageDelta) ||
+                const DeepCollectionEquality()
+                    .equals(other.mileageDelta, mileageDelta)) &&
+            (identical(other.mileageEndValue, mileageEndValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.mileageEndValue, mileageEndValue)) &&
+            (identical(other.mileageStartValue, mileageStartValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.mileageStartValue, mileageStartValue)) &&
+            (identical(other.period, period) ||
+                const DeepCollectionEquality().equals(other.period, period)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.statusMessage, statusMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.statusMessage, statusMessage)) &&
+            (identical(other.trips, trips) ||
+                const DeepCollectionEquality().equals(other.trips, trips)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(mileageDelta) ^
+      const DeepCollectionEquality().hash(mileageEndValue) ^
+      const DeepCollectionEquality().hash(mileageStartValue) ^
+      const DeepCollectionEquality().hash(period) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(statusMessage) ^
+      const DeepCollectionEquality().hash(trips) ^
+      runtimeType.hashCode;
+}
+
+extension $BookingVehicleUsageExtension on BookingVehicleUsage {
+  BookingVehicleUsage copyWith(
+      {String? id,
+      double? mileageDelta,
+      double? mileageEndValue,
+      double? mileageStartValue,
+      BookingPeriod? period,
+      String? status,
+      String? statusMessage,
+      List<BookingTrip>? trips}) {
+    return BookingVehicleUsage(
+        id: id ?? this.id,
+        mileageDelta: mileageDelta ?? this.mileageDelta,
+        mileageEndValue: mileageEndValue ?? this.mileageEndValue,
+        mileageStartValue: mileageStartValue ?? this.mileageStartValue,
+        period: period ?? this.period,
+        status: status ?? this.status,
+        statusMessage: statusMessage ?? this.statusMessage,
+        trips: trips ?? this.trips);
+  }
+
+  BookingVehicleUsage copyWithWrapped(
+      {Wrapped<String?>? id,
+      Wrapped<double?>? mileageDelta,
+      Wrapped<double?>? mileageEndValue,
+      Wrapped<double?>? mileageStartValue,
+      Wrapped<BookingPeriod?>? period,
+      Wrapped<String?>? status,
+      Wrapped<String?>? statusMessage,
+      Wrapped<List<BookingTrip>?>? trips}) {
+    return BookingVehicleUsage(
+        id: (id != null ? id.value : this.id),
+        mileageDelta:
+            (mileageDelta != null ? mileageDelta.value : this.mileageDelta),
+        mileageEndValue: (mileageEndValue != null
+            ? mileageEndValue.value
+            : this.mileageEndValue),
+        mileageStartValue: (mileageStartValue != null
+            ? mileageStartValue.value
+            : this.mileageStartValue),
+        period: (period != null ? period.value : this.period),
+        status: (status != null ? status.value : this.status),
+        statusMessage:
+            (statusMessage != null ? statusMessage.value : this.statusMessage),
+        trips: (trips != null ? trips.value : this.trips));
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ContractsConvictions {
   const ContractsConvictions({
     this.convictionBloodTestRefusal,
@@ -7610,6 +11156,293 @@ List<enums.BookingStatus>? bookingStatusNullableListFromJson(
   return bookingStatus.map((e) => bookingStatusFromJson(e.toString())).toList();
 }
 
+String? clientContractFormulaNullableToJson(
+    enums.ClientContractFormula? clientContractFormula) {
+  return clientContractFormula?.value;
+}
+
+String? clientContractFormulaToJson(
+    enums.ClientContractFormula clientContractFormula) {
+  return clientContractFormula.value;
+}
+
+enums.ClientContractFormula clientContractFormulaFromJson(
+  Object? clientContractFormula, [
+  enums.ClientContractFormula? defaultValue,
+]) {
+  return enums.ClientContractFormula.values
+          .firstWhereOrNull((e) => e.value == clientContractFormula) ??
+      defaultValue ??
+      enums.ClientContractFormula.swaggerGeneratedUnknown;
+}
+
+enums.ClientContractFormula? clientContractFormulaNullableFromJson(
+  Object? clientContractFormula, [
+  enums.ClientContractFormula? defaultValue,
+]) {
+  if (clientContractFormula == null) {
+    return null;
+  }
+  return enums.ClientContractFormula.values
+          .firstWhereOrNull((e) => e.value == clientContractFormula) ??
+      defaultValue;
+}
+
+String clientContractFormulaExplodedListToJson(
+    List<enums.ClientContractFormula>? clientContractFormula) {
+  return clientContractFormula?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> clientContractFormulaListToJson(
+    List<enums.ClientContractFormula>? clientContractFormula) {
+  if (clientContractFormula == null) {
+    return [];
+  }
+
+  return clientContractFormula.map((e) => e.value!).toList();
+}
+
+List<enums.ClientContractFormula> clientContractFormulaListFromJson(
+  List? clientContractFormula, [
+  List<enums.ClientContractFormula>? defaultValue,
+]) {
+  if (clientContractFormula == null) {
+    return defaultValue ?? [];
+  }
+
+  return clientContractFormula
+      .map((e) => clientContractFormulaFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.ClientContractFormula>? clientContractFormulaNullableListFromJson(
+  List? clientContractFormula, [
+  List<enums.ClientContractFormula>? defaultValue,
+]) {
+  if (clientContractFormula == null) {
+    return defaultValue;
+  }
+
+  return clientContractFormula
+      .map((e) => clientContractFormulaFromJson(e.toString()))
+      .toList();
+}
+
+String? clientContractStatusNullableToJson(
+    enums.ClientContractStatus? clientContractStatus) {
+  return clientContractStatus?.value;
+}
+
+String? clientContractStatusToJson(
+    enums.ClientContractStatus clientContractStatus) {
+  return clientContractStatus.value;
+}
+
+enums.ClientContractStatus clientContractStatusFromJson(
+  Object? clientContractStatus, [
+  enums.ClientContractStatus? defaultValue,
+]) {
+  return enums.ClientContractStatus.values
+          .firstWhereOrNull((e) => e.value == clientContractStatus) ??
+      defaultValue ??
+      enums.ClientContractStatus.swaggerGeneratedUnknown;
+}
+
+enums.ClientContractStatus? clientContractStatusNullableFromJson(
+  Object? clientContractStatus, [
+  enums.ClientContractStatus? defaultValue,
+]) {
+  if (clientContractStatus == null) {
+    return null;
+  }
+  return enums.ClientContractStatus.values
+          .firstWhereOrNull((e) => e.value == clientContractStatus) ??
+      defaultValue;
+}
+
+String clientContractStatusExplodedListToJson(
+    List<enums.ClientContractStatus>? clientContractStatus) {
+  return clientContractStatus?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> clientContractStatusListToJson(
+    List<enums.ClientContractStatus>? clientContractStatus) {
+  if (clientContractStatus == null) {
+    return [];
+  }
+
+  return clientContractStatus.map((e) => e.value!).toList();
+}
+
+List<enums.ClientContractStatus> clientContractStatusListFromJson(
+  List? clientContractStatus, [
+  List<enums.ClientContractStatus>? defaultValue,
+]) {
+  if (clientContractStatus == null) {
+    return defaultValue ?? [];
+  }
+
+  return clientContractStatus
+      .map((e) => clientContractStatusFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.ClientContractStatus>? clientContractStatusNullableListFromJson(
+  List? clientContractStatus, [
+  List<enums.ClientContractStatus>? defaultValue,
+]) {
+  if (clientContractStatus == null) {
+    return defaultValue;
+  }
+
+  return clientContractStatus
+      .map((e) => clientContractStatusFromJson(e.toString()))
+      .toList();
+}
+
+String? clientContractTypeNullableToJson(
+    enums.ClientContractType? clientContractType) {
+  return clientContractType?.value;
+}
+
+String? clientContractTypeToJson(enums.ClientContractType clientContractType) {
+  return clientContractType.value;
+}
+
+enums.ClientContractType clientContractTypeFromJson(
+  Object? clientContractType, [
+  enums.ClientContractType? defaultValue,
+]) {
+  return enums.ClientContractType.values
+          .firstWhereOrNull((e) => e.value == clientContractType) ??
+      defaultValue ??
+      enums.ClientContractType.swaggerGeneratedUnknown;
+}
+
+enums.ClientContractType? clientContractTypeNullableFromJson(
+  Object? clientContractType, [
+  enums.ClientContractType? defaultValue,
+]) {
+  if (clientContractType == null) {
+    return null;
+  }
+  return enums.ClientContractType.values
+          .firstWhereOrNull((e) => e.value == clientContractType) ??
+      defaultValue;
+}
+
+String clientContractTypeExplodedListToJson(
+    List<enums.ClientContractType>? clientContractType) {
+  return clientContractType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> clientContractTypeListToJson(
+    List<enums.ClientContractType>? clientContractType) {
+  if (clientContractType == null) {
+    return [];
+  }
+
+  return clientContractType.map((e) => e.value!).toList();
+}
+
+List<enums.ClientContractType> clientContractTypeListFromJson(
+  List? clientContractType, [
+  List<enums.ClientContractType>? defaultValue,
+]) {
+  if (clientContractType == null) {
+    return defaultValue ?? [];
+  }
+
+  return clientContractType
+      .map((e) => clientContractTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.ClientContractType>? clientContractTypeNullableListFromJson(
+  List? clientContractType, [
+  List<enums.ClientContractType>? defaultValue,
+]) {
+  if (clientContractType == null) {
+    return defaultValue;
+  }
+
+  return clientContractType
+      .map((e) => clientContractTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? commitmentChangeOptionNullableToJson(
+    enums.CommitmentChangeOption? commitmentChangeOption) {
+  return commitmentChangeOption?.value;
+}
+
+String? commitmentChangeOptionToJson(
+    enums.CommitmentChangeOption commitmentChangeOption) {
+  return commitmentChangeOption.value;
+}
+
+enums.CommitmentChangeOption commitmentChangeOptionFromJson(
+  Object? commitmentChangeOption, [
+  enums.CommitmentChangeOption? defaultValue,
+]) {
+  return enums.CommitmentChangeOption.values
+          .firstWhereOrNull((e) => e.value == commitmentChangeOption) ??
+      defaultValue ??
+      enums.CommitmentChangeOption.swaggerGeneratedUnknown;
+}
+
+enums.CommitmentChangeOption? commitmentChangeOptionNullableFromJson(
+  Object? commitmentChangeOption, [
+  enums.CommitmentChangeOption? defaultValue,
+]) {
+  if (commitmentChangeOption == null) {
+    return null;
+  }
+  return enums.CommitmentChangeOption.values
+          .firstWhereOrNull((e) => e.value == commitmentChangeOption) ??
+      defaultValue;
+}
+
+String commitmentChangeOptionExplodedListToJson(
+    List<enums.CommitmentChangeOption>? commitmentChangeOption) {
+  return commitmentChangeOption?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> commitmentChangeOptionListToJson(
+    List<enums.CommitmentChangeOption>? commitmentChangeOption) {
+  if (commitmentChangeOption == null) {
+    return [];
+  }
+
+  return commitmentChangeOption.map((e) => e.value!).toList();
+}
+
+List<enums.CommitmentChangeOption> commitmentChangeOptionListFromJson(
+  List? commitmentChangeOption, [
+  List<enums.CommitmentChangeOption>? defaultValue,
+]) {
+  if (commitmentChangeOption == null) {
+    return defaultValue ?? [];
+  }
+
+  return commitmentChangeOption
+      .map((e) => commitmentChangeOptionFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.CommitmentChangeOption>? commitmentChangeOptionNullableListFromJson(
+  List? commitmentChangeOption, [
+  List<enums.CommitmentChangeOption>? defaultValue,
+]) {
+  if (commitmentChangeOption == null) {
+    return defaultValue;
+  }
+
+  return commitmentChangeOption
+      .map((e) => commitmentChangeOptionFromJson(e.toString()))
+      .toList();
+}
+
 String? conflictResolutionModeNullableToJson(
     enums.ConflictResolutionMode? conflictResolutionMode) {
   return conflictResolutionMode?.value;
@@ -7679,6 +11512,78 @@ List<enums.ConflictResolutionMode>? conflictResolutionModeNullableListFromJson(
 
   return conflictResolutionMode
       .map((e) => conflictResolutionModeFromJson(e.toString()))
+      .toList();
+}
+
+String? formulaChangeOptionNullableToJson(
+    enums.FormulaChangeOption? formulaChangeOption) {
+  return formulaChangeOption?.value;
+}
+
+String? formulaChangeOptionToJson(
+    enums.FormulaChangeOption formulaChangeOption) {
+  return formulaChangeOption.value;
+}
+
+enums.FormulaChangeOption formulaChangeOptionFromJson(
+  Object? formulaChangeOption, [
+  enums.FormulaChangeOption? defaultValue,
+]) {
+  return enums.FormulaChangeOption.values
+          .firstWhereOrNull((e) => e.value == formulaChangeOption) ??
+      defaultValue ??
+      enums.FormulaChangeOption.swaggerGeneratedUnknown;
+}
+
+enums.FormulaChangeOption? formulaChangeOptionNullableFromJson(
+  Object? formulaChangeOption, [
+  enums.FormulaChangeOption? defaultValue,
+]) {
+  if (formulaChangeOption == null) {
+    return null;
+  }
+  return enums.FormulaChangeOption.values
+          .firstWhereOrNull((e) => e.value == formulaChangeOption) ??
+      defaultValue;
+}
+
+String formulaChangeOptionExplodedListToJson(
+    List<enums.FormulaChangeOption>? formulaChangeOption) {
+  return formulaChangeOption?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> formulaChangeOptionListToJson(
+    List<enums.FormulaChangeOption>? formulaChangeOption) {
+  if (formulaChangeOption == null) {
+    return [];
+  }
+
+  return formulaChangeOption.map((e) => e.value!).toList();
+}
+
+List<enums.FormulaChangeOption> formulaChangeOptionListFromJson(
+  List? formulaChangeOption, [
+  List<enums.FormulaChangeOption>? defaultValue,
+]) {
+  if (formulaChangeOption == null) {
+    return defaultValue ?? [];
+  }
+
+  return formulaChangeOption
+      .map((e) => formulaChangeOptionFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.FormulaChangeOption>? formulaChangeOptionNullableListFromJson(
+  List? formulaChangeOption, [
+  List<enums.FormulaChangeOption>? defaultValue,
+]) {
+  if (formulaChangeOption == null) {
+    return defaultValue;
+  }
+
+  return formulaChangeOption
+      .map((e) => formulaChangeOptionFromJson(e.toString()))
       .toList();
 }
 
@@ -8276,6 +12181,77 @@ List<enums.SubscriptionClientRoles>?
       .toList();
 }
 
+String? terminateDayOptionNullableToJson(
+    enums.TerminateDayOption? terminateDayOption) {
+  return terminateDayOption?.value;
+}
+
+String? terminateDayOptionToJson(enums.TerminateDayOption terminateDayOption) {
+  return terminateDayOption.value;
+}
+
+enums.TerminateDayOption terminateDayOptionFromJson(
+  Object? terminateDayOption, [
+  enums.TerminateDayOption? defaultValue,
+]) {
+  return enums.TerminateDayOption.values
+          .firstWhereOrNull((e) => e.value == terminateDayOption) ??
+      defaultValue ??
+      enums.TerminateDayOption.swaggerGeneratedUnknown;
+}
+
+enums.TerminateDayOption? terminateDayOptionNullableFromJson(
+  Object? terminateDayOption, [
+  enums.TerminateDayOption? defaultValue,
+]) {
+  if (terminateDayOption == null) {
+    return null;
+  }
+  return enums.TerminateDayOption.values
+          .firstWhereOrNull((e) => e.value == terminateDayOption) ??
+      defaultValue;
+}
+
+String terminateDayOptionExplodedListToJson(
+    List<enums.TerminateDayOption>? terminateDayOption) {
+  return terminateDayOption?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> terminateDayOptionListToJson(
+    List<enums.TerminateDayOption>? terminateDayOption) {
+  if (terminateDayOption == null) {
+    return [];
+  }
+
+  return terminateDayOption.map((e) => e.value!).toList();
+}
+
+List<enums.TerminateDayOption> terminateDayOptionListFromJson(
+  List? terminateDayOption, [
+  List<enums.TerminateDayOption>? defaultValue,
+]) {
+  if (terminateDayOption == null) {
+    return defaultValue ?? [];
+  }
+
+  return terminateDayOption
+      .map((e) => terminateDayOptionFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.TerminateDayOption>? terminateDayOptionNullableListFromJson(
+  List? terminateDayOption, [
+  List<enums.TerminateDayOption>? defaultValue,
+]) {
+  if (terminateDayOption == null) {
+    return defaultValue;
+  }
+
+  return terminateDayOption
+      .map((e) => terminateDayOptionFromJson(e.toString()))
+      .toList();
+}
+
 String? updateUserRequestRoleNullableToJson(
     enums.UpdateUserRequestRole? updateUserRequestRole) {
   return updateUserRequestRole?.value;
@@ -8422,6 +12398,78 @@ List<enums.UpdateVehicleRequestApprovalType>?
 
   return updateVehicleRequestApprovalType
       .map((e) => updateVehicleRequestApprovalTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? validationErrorCodeNullableToJson(
+    enums.ValidationErrorCode? validationErrorCode) {
+  return validationErrorCode?.value;
+}
+
+String? validationErrorCodeToJson(
+    enums.ValidationErrorCode validationErrorCode) {
+  return validationErrorCode.value;
+}
+
+enums.ValidationErrorCode validationErrorCodeFromJson(
+  Object? validationErrorCode, [
+  enums.ValidationErrorCode? defaultValue,
+]) {
+  return enums.ValidationErrorCode.values
+          .firstWhereOrNull((e) => e.value == validationErrorCode) ??
+      defaultValue ??
+      enums.ValidationErrorCode.swaggerGeneratedUnknown;
+}
+
+enums.ValidationErrorCode? validationErrorCodeNullableFromJson(
+  Object? validationErrorCode, [
+  enums.ValidationErrorCode? defaultValue,
+]) {
+  if (validationErrorCode == null) {
+    return null;
+  }
+  return enums.ValidationErrorCode.values
+          .firstWhereOrNull((e) => e.value == validationErrorCode) ??
+      defaultValue;
+}
+
+String validationErrorCodeExplodedListToJson(
+    List<enums.ValidationErrorCode>? validationErrorCode) {
+  return validationErrorCode?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> validationErrorCodeListToJson(
+    List<enums.ValidationErrorCode>? validationErrorCode) {
+  if (validationErrorCode == null) {
+    return [];
+  }
+
+  return validationErrorCode.map((e) => e.value!).toList();
+}
+
+List<enums.ValidationErrorCode> validationErrorCodeListFromJson(
+  List? validationErrorCode, [
+  List<enums.ValidationErrorCode>? defaultValue,
+]) {
+  if (validationErrorCode == null) {
+    return defaultValue ?? [];
+  }
+
+  return validationErrorCode
+      .map((e) => validationErrorCodeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.ValidationErrorCode>? validationErrorCodeNullableListFromJson(
+  List? validationErrorCode, [
+  List<enums.ValidationErrorCode>? defaultValue,
+]) {
+  if (validationErrorCode == null) {
+    return defaultValue;
+  }
+
+  return validationErrorCode
+      .map((e) => validationErrorCodeFromJson(e.toString()))
       .toList();
 }
 

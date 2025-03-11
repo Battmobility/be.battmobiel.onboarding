@@ -1,4 +1,6 @@
 import 'package:batt_onboarding/src/data/onboarding_service.dart';
+import 'package:batt_onboarding/src/domain/client_data_mapper.dart';
+import 'package:batt_onboarding/src/domain/contract_data_mapper.dart';
 import 'package:batt_onboarding/src/domain/legal_mapper.dart';
 import 'package:batt_onboarding/src/domain/personal_data_mapper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -35,11 +37,12 @@ final class OnboardingDatasource {
     return service.postVerificationCode(phone, code);
   }
 
-  Future<bool> postNewClientData(Map<String, dynamic>? values) {
-    return Future.value(false);
+  Future<int?> postNewClientData(Map<String, dynamic> values) async {
+    return service.postNewClientData(values.toClientCreation());
   }
 
-  Future<bool> postNewContractData(Map<String, dynamic>? values) {
-    return Future.value(false);
+  Future<bool> postNewContractData(int clientId, int? delegatedTrustClientId,
+      Map<String, dynamic> values) async {
+    return false;
   }
 }

@@ -74,4 +74,35 @@ final class OnboardingService {
       return false;
     }
   }
+
+  Future<int?> postNewClientData(ContractsCreateClient client) async {
+    return 0;
+    /*
+    try {
+      final response = await api.userV1ClientsPost(
+          clientId: clientId,
+          delegatedTrustClientId: delegatedTrustClientId,
+          body: clientData);
+      return response.isSuccessful;
+    } catch (e, _) {
+      return false;
+    }
+    */
+  }
+
+  Future<bool> postNewContractData(int clientId, int? delegatedTrustClientId,
+      ContractsCreateClient clientData) async {
+    return false;
+    /*
+    try {
+      final response = await api.userV1ClientsPost(
+          clientId: clientId,
+          delegatedTrustClientId: delegatedTrustClientId,
+          body: clientData);
+      return response.isSuccessful;
+    } catch (e, _) {
+      return false;
+    }
+    */
+  }
 }

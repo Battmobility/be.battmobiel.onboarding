@@ -1,7 +1,7 @@
 import 'package:batt_onboarding/api/generated/mobile_api.swagger.dart' as api;
 
 extension FromMap on Map<String, dynamic> {
-  api.ContractsCreateClient toContractsOnboardingLegal() {
+  api.ContractsCreateClient toClientCreation() {
     return api.ContractsCreateClient(
       name: this["name"],
       email: this["email"],

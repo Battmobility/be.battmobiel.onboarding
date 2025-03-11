@@ -58,6 +58,8 @@ class CreateClientPageState extends State<CreateClientPage> {
                       style: Theme.of(context).textTheme.titleMedium),
                 ),
                 FormBuilderTextField(
+                    decoration: InputDecoration(
+                        labelText: l10n.addSubscriptionFormName),
                     name: "name",
                     initialValue:
                         "${widget.initialData?["firstName"] ?? ""} ${widget.initialData?["lastName"] ?? ""}",
@@ -65,17 +67,23 @@ class CreateClientPageState extends State<CreateClientPage> {
                         (_) => _later == true,
                         FormBuilderValidators.required())),
                 FormBuilderTextField(
+                    decoration: InputDecoration(
+                        labelText: l10n.addSubscriptionFormEmail),
                     name: "email",
                     initialValue: widget.initialData?["email"] ?? "",
                     validator: FormBuilderValidators.skipWhen(
                         (_) => _later == true, FormBuilderValidators.email())),
                 FormBuilderTextField(
+                    decoration: InputDecoration(
+                        labelText: l10n.addSubscriptionFormStreet),
                     name: "street",
                     initialValue: widget.initialData?["street"] ?? "",
                     validator: FormBuilderValidators.skipWhen(
                         (_) => _later == true,
                         FormBuilderValidators.required())),
                 FormBuilderTextField(
+                    decoration: InputDecoration(
+                        labelText: l10n.addSubscriptionFormHouseNumber),
                     name: "houseNumber",
                     initialValue:
                         "${widget.initialData?["houseNumber"] ?? ""} ${widget.initialData?["box"] ?? ""}",
@@ -83,12 +91,16 @@ class CreateClientPageState extends State<CreateClientPage> {
                         (_) => _later == true,
                         FormBuilderValidators.required())),
                 FormBuilderTextField(
+                    decoration: InputDecoration(
+                        labelText: l10n.addSubscriptionFormPostalCode),
                     name: "postalCode",
                     initialValue: widget.initialData?["postalCode"] ?? "",
                     validator: FormBuilderValidators.skipWhen(
                         (_) => _later == true,
                         FormBuilderValidators.required())),
                 FormBuilderTextField(
+                    decoration: InputDecoration(
+                        labelText: l10n.addSubscriptionFormCity),
                     name: "city",
                     initialValue: widget.initialData?["city"] ?? "",
                     validator: FormBuilderValidators.skipWhen(
@@ -101,7 +113,17 @@ class CreateClientPageState extends State<CreateClientPage> {
                       style: Theme.of(context).textTheme.titleMedium),
                 ),
                 FormBuilderTextField(
+                  decoration:
+                      InputDecoration(labelText: l10n.addSubscriptionFormVAT),
                   name: "vatNumber",
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.skipWhen((value) {
+                      return value == null || value.isEmpty;
+                    }, FormBuilderValidators.minLength(9)),
+                    FormBuilderValidators.skipWhen((value) {
+                      return value == null || value.isEmpty;
+                    }, FormBuilderValidators.maxLength(15)),
+                  ]),
                 ),
               ].map((child) => Flexible(child: child)).toList(),
             ),

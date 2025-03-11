@@ -39,6 +39,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   final _stepperScrollController = ScrollController();
   int _step = 0;
   Map<String, dynamic>? _scannedData;
+  int? clientId;
 
   List<GlobalKey<FormBuilderState>> get _formKeys => [
         GlobalKey<FormBuilderState>(),
@@ -100,7 +101,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           ),
           PickFormulaPage(
             formKey: _formKeys[6],
-            initialData: progress.personal,
+            initialData: progress.personal..addAll({"clientId": clientId}),
             onAction: (_) {},
           ),
           OnboardingDonePage(
@@ -282,8 +283,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                           if (values != null) {
                                             onboardingRepository
                                                 .postNewClientData(values)
-                                                .then((success) {
-                                              if (success) {
+                                                .then((newClientId) {
+                                              if (newClientId != null) {
+                                                clientId = newClientId;
                                                 setState(() {
                                                   _step++;
                                                 });
@@ -298,7 +300,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         if (_step == 6) {
                                           if (values != null) {
                                             onboardingRepository
-                                                .postNewContractData(values)
+                                                .postNewContractData(values!)
                                                 .then((success) {
                                               if (success) {
                                                 setState(() {
