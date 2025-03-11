@@ -41,4 +41,12 @@ final class OnboardingRepository {
   Future<bool> postVerificationCode(String phone, String code) async {
     return await datasource.postVerificationCode(phone, code);
   }
+
+  Future<bool> postNewClientData(Map<String, dynamic>? values) async {
+    return await datasource.postNewClientData(values);
+  }
+
+  Future<bool> postNewContractData(Map<String, dynamic>? values) async {
+    return await datasource.postNewContractData(values);
+  }
 }

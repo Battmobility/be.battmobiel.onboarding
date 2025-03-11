@@ -510,6 +510,168 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Close this window'**
   String get donePageButtonTitle;
+
+  /// No description provided for @addSubscriptionFormTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Facturatie'**
+  String get addSubscriptionFormTitle;
+
+  /// No description provided for @addSubscriptionFormMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Geef hieronder je facturatiegegevens in.'**
+  String get addSubscriptionFormMessage;
+
+  /// No description provided for @addSubscriptionFormLaterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ik doe dit later.'**
+  String get addSubscriptionFormLaterLabel;
+
+  /// No description provided for @addSubscriptionFormName.
+  ///
+  /// In en, this message translates to:
+  /// **'Naam'**
+  String get addSubscriptionFormName;
+
+  /// No description provided for @addSubscriptionFormEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get addSubscriptionFormEmail;
+
+  /// No description provided for @addSubscriptionFormAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Adres'**
+  String get addSubscriptionFormAddress;
+
+  /// No description provided for @addSubscriptionFormStreet.
+  ///
+  /// In en, this message translates to:
+  /// **'Straat'**
+  String get addSubscriptionFormStreet;
+
+  /// No description provided for @addSubscriptionFormHouseNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Huisnummer (+ toevoegingen)'**
+  String get addSubscriptionFormHouseNumber;
+
+  /// No description provided for @addSubscriptionFormPostalCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Postcode'**
+  String get addSubscriptionFormPostalCode;
+
+  /// No description provided for @addSubscriptionFormCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Gemeente'**
+  String get addSubscriptionFormCity;
+
+  /// No description provided for @addSubscriptionFormCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Land'**
+  String get addSubscriptionFormCountry;
+
+  /// No description provided for @addSubscriptionFormBusiness.
+  ///
+  /// In en, this message translates to:
+  /// **'Voor bedrijven'**
+  String get addSubscriptionFormBusiness;
+
+  /// No description provided for @addSubscriptionFormVAT.
+  ///
+  /// In en, this message translates to:
+  /// **'BTW-nummer (optioneel)'**
+  String get addSubscriptionFormVAT;
+
+  /// No description provided for @addSubscriptionFormConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Kies een contract'**
+  String get addSubscriptionFormConfirm;
+
+  /// No description provided for @addSubscriptionFormSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Abonnement {subscription} toegevoegd!'**
+  String addSubscriptionFormSuccess(String subscription);
+
+  /// No description provided for @addSubscriptionFormFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding subscription failed, try again or contact support if the problem persists'**
+  String get addSubscriptionFormFailure;
+
+  /// No description provided for @addSubscriptionFormLoadingFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Data konden niet worden geladen, probeer het alstublieft opnieuw.'**
+  String get addSubscriptionFormLoadingFailure;
+
+  /// No description provided for @createContractTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nieuw contract'**
+  String get createContractTitle;
+
+  /// No description provided for @createContractPickFormulaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Kies een formule'**
+  String get createContractPickFormulaLabel;
+
+  /// No description provided for @createContractFormulaBattFunExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.'**
+  String get createContractFormulaBattFunExplanation;
+
+  /// No description provided for @createContractFormulaBattFanExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Betaal je gepland maandelijks rijtegoed vooraf (min. 75 EUR/maand) en rij 25% goedkoper.n'**
+  String get createContractFormulaBattFanExplanation;
+
+  /// No description provided for @createContractFormulaBattMaxExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.'**
+  String get createContractFormulaBattMaxExplanation;
+
+  /// No description provided for @createContractCommitmentExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy om commitment aan gebruikers uit te leggen'**
+  String get createContractCommitmentExplanation;
+
+  /// No description provided for @createContractMinimumCommitmentErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Commitment must be at least €75'**
+  String get createContractMinimumCommitmentErrorMessage;
+
+  /// No description provided for @createContractConfirmButtonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create contract'**
+  String get createContractConfirmButtonTitle;
+
+  /// No description provided for @createContractSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract created successfully!'**
+  String get createContractSuccessMessage;
+
+  /// No description provided for @createContractFailureMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create contract! Try again or contact customer service if the problem persists.'**
+  String get createContractFailureMessage;
 }
 
 class _OnboardingLocalizationsDelegate extends LocalizationsDelegate<OnboardingLocalizations> {

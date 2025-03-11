@@ -349,5 +349,142 @@
 	"@donePageButtonTitle": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"addSubscriptionFormTitle" : "Facturatie",
+	"@addSubscriptionFormTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormMessage" : "Geef hieronder je facturatiegegevens in.",
+	"@addSubscriptionFormMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormLaterLabel" : "Ik doe dit later.",
+	"@addSubscriptionFormLaterLabel": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormName" : "Naam",
+	"@addSubscriptionFormName": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormEmail" : "Email",
+	"@addSubscriptionFormEmail": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormAddress" : "Adres",
+	"@addSubscriptionFormAddress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormStreet" : "Straat",
+	"@addSubscriptionFormStreet": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormHouseNumber" : "Huisnummer (+ toevoegingen)",
+	"@addSubscriptionFormHouseNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormPostalCode" : "Postcode",
+	"@addSubscriptionFormPostalCode": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormCity" : "Gemeente",
+	"@addSubscriptionFormCity": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormCountry" : "Land",
+	"@addSubscriptionFormCountry": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormBusiness" : "Voor bedrijven",
+	"@addSubscriptionFormBusiness": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormVAT" : "BTW-nummer (optioneel)",
+	"@addSubscriptionFormVAT": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormConfirm" : "Kies een contract",
+	"@addSubscriptionFormConfirm": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormSuccess" : "Abonnement {subscription} toegevoegd!",
+	"@addSubscriptionFormSuccess": {
+		"type": "text",
+		"placeholders": {"subscription": {
+				"type": "String"
+			}}
+	},
+	"addSubscriptionFormFailure" : "Adding subscription failed, try again or contact support if the problem persists",
+	"@addSubscriptionFormFailure": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormLoadingFailure" : "Data konden niet worden geladen, probeer het alstublieft opnieuw.",
+	"@addSubscriptionFormLoadingFailure": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractTitle" : "Nieuw contract",
+	"@createContractTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractPickFormulaLabel" : "Kies een formule",
+	"@createContractPickFormulaLabel": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractFormulaBattFunExplanation" : "Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.",
+	"@createContractFormulaBattFunExplanation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractFormulaBattFanExplanation" : "Betaal je gepland maandelijks rijtegoed vooraf (min. 75 EUR/maand) en rij 25% goedkoper.n",
+	"@createContractFormulaBattFanExplanation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractFormulaBattMaxExplanation" : "Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.",
+	"@createContractFormulaBattMaxExplanation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractCommitmentExplanation" : "Copy om commitment aan gebruikers uit te leggen",
+	"@createContractCommitmentExplanation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractMinimumCommitmentErrorMessage" : "Commitment must be at least €75",
+	"@createContractMinimumCommitmentErrorMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractConfirmButtonTitle" : "Create contract",
+	"@createContractConfirmButtonTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractSuccessMessage" : "Contract created successfully!",
+	"@createContractSuccessMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractFailureMessage" : "Failed to create contract! Try again or contact customer service if the problem persists.",
+	"@createContractFailureMessage": {
+		"type": "text",
+		"placeholders": {}
 	}
 }

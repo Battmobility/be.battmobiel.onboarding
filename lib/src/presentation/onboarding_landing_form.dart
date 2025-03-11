@@ -2,9 +2,11 @@ import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
+import 'package:batt_onboarding/src/presentation/pages/create_client_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/legal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/documents_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/done_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/pick_formula_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/personal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
@@ -39,6 +41,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   Map<String, dynamic>? _scannedData;
 
   List<GlobalKey<FormBuilderState>> get _formKeys => [
+        GlobalKey<FormBuilderState>(),
+        GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
         GlobalKey<FormBuilderState>(),
@@ -89,8 +93,18 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               controller.jumpToPage(_step);
             },
           ),
+          CreateClientPage(
+            formKey: _formKeys[5],
+            initialData: progress.personal,
+            onAction: (_) {},
+          ),
+          PickFormulaPage(
+            formKey: _formKeys[6],
+            initialData: progress.personal,
+            onAction: (_) {},
+          ),
           OnboardingDonePage(
-              formKey: _formKeys[5],
+              formKey: _formKeys[7],
               onAction: (_) {
                 widget.onSubmitted(true);
               },
@@ -264,7 +278,41 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                           }
                                         }
                                         if (_step == 4) {}
-                                        if (_step == 5) {}
+                                        if (_step == 5) {
+                                          if (values != null) {
+                                            onboardingRepository
+                                                .postNewClientData(values)
+                                                .then((success) {
+                                              if (success) {
+                                                setState(() {
+                                                  _step++;
+                                                });
+                                                controller.jumpToPage(_step);
+                                              } else {
+                                                _showUploadFailedDialog(
+                                                    context);
+                                              }
+                                            });
+                                          }
+                                        }
+                                        if (_step == 6) {
+                                          if (values != null) {
+                                            onboardingRepository
+                                                .postNewContractData(values)
+                                                .then((success) {
+                                              if (success) {
+                                                setState(() {
+                                                  _step++;
+                                                });
+                                                controller.jumpToPage(_step);
+                                              } else {
+                                                _showUploadFailedDialog(
+                                                    context);
+                                              }
+                                            });
+                                          }
+                                        }
+                                        if (_step == 7) {}
                                       } else {
                                         _showIncompleteFormDialog(context);
                                       }

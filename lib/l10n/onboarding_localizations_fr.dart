@@ -216,4 +216,87 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get donePageButtonTitle => 'Close this window';
+
+  @override
+  String get addSubscriptionFormTitle => 'Billing';
+
+  @override
+  String get addSubscriptionFormMessage => 'Enter your billing data below.';
+
+  @override
+  String get addSubscriptionFormLaterLabel => 'Ill do this later';
+
+  @override
+  String get addSubscriptionFormName => 'Naam';
+
+  @override
+  String get addSubscriptionFormEmail => 'Email';
+
+  @override
+  String get addSubscriptionFormAddress => 'Adres';
+
+  @override
+  String get addSubscriptionFormStreet => 'Straat';
+
+  @override
+  String get addSubscriptionFormHouseNumber => 'Huisnummer (+ toevoegingen)';
+
+  @override
+  String get addSubscriptionFormPostalCode => 'Postcode';
+
+  @override
+  String get addSubscriptionFormCity => 'Gemeente';
+
+  @override
+  String get addSubscriptionFormCountry => 'Land';
+
+  @override
+  String get addSubscriptionFormBusiness => 'Voor bedrijven';
+
+  @override
+  String get addSubscriptionFormVAT => 'BTW-nummer (optioneel)';
+
+  @override
+  String get addSubscriptionFormConfirm => 'Kies een contract';
+
+  @override
+  String addSubscriptionFormSuccess(String subscription) {
+    return 'Abonnement $subscription toegevoegd!';
+  }
+
+  @override
+  String get addSubscriptionFormFailure => 'Adding subscription failed, try again or contact support if the problem persists';
+
+  @override
+  String get addSubscriptionFormLoadingFailure => 'Data konden niet worden geladen, probeer het alstublieft opnieuw.';
+
+  @override
+  String get createContractTitle => 'Nieuw contract';
+
+  @override
+  String get createContractPickFormulaLabel => 'Kies een formule';
+
+  @override
+  String get createContractFormulaBattFunExplanation => 'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.';
+
+  @override
+  String get createContractFormulaBattFanExplanation => 'Betaal je gepland maandelijks rijtegoed vooraf (min. 75 EUR/maand) en rij 25% goedkoper.n';
+
+  @override
+  String get createContractFormulaBattMaxExplanation => 'Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.';
+
+  @override
+  String get createContractCommitmentExplanation => 'Copy om commitment aan gebruikers uit te leggen';
+
+  @override
+  String get createContractMinimumCommitmentErrorMessage => 'Commitment must be at least €75';
+
+  @override
+  String get createContractConfirmButtonTitle => 'Maak contract';
+
+  @override
+  String get createContractSuccessMessage => 'Contract maken geslaagd!';
+
+  @override
+  String get createContractFailureMessage => 'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
 }

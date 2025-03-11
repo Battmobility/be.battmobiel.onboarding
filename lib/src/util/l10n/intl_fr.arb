@@ -349,5 +349,144 @@
 	"@donePageButtonTitle": {
 		"type": "text",
 		"placeholders": {}
+	
+	},
+	"addSubscriptionFormTitle" : "Billing",
+	"@addSubscriptionFormTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormMessage" : "Enter your billing data below.",
+	"@addSubscriptionFormMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormLaterLabel" : "I'll do this later'",
+	"@addSubscriptionFormLaterLabel": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormName" : "Naam",
+	"@addSubscriptionFormName": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormEmail" : "Email",
+	"@addSubscriptionFormEmail": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormAddress" : "Adres",
+	"@addSubscriptionFormAddress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormStreet" : "Straat",
+	"@addSubscriptionFormStreet": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormHouseNumber" : "Huisnummer (+ toevoegingen)",
+	"@addSubscriptionFormHouseNumber": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormPostalCode" : "Postcode",
+	"@addSubscriptionFormPostalCode": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormCity" : "Gemeente",
+	"@addSubscriptionFormCity": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormCountry" : "Land",
+	"@addSubscriptionFormCountry": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormBusiness" : "Voor bedrijven",
+	"@addSubscriptionFormBusiness": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormVAT" : "BTW-nummer (optioneel)",
+	"@addSubscriptionFormVAT": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormConfirm" : "Kies een contract",
+	"@addSubscriptionFormConfirm": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormSuccess" : "Abonnement {subscription} toegevoegd!",
+	"@addSubscriptionFormSuccess": {
+		"type": "text",
+		"placeholders": {"subscription": {
+				"type": "String"
+			}}
+	},
+	"addSubscriptionFormFailure" : "Adding subscription failed, try again or contact support if the problem persists",
+	"@addSubscriptionFormFailure": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormLoadingFailure" : "Data konden niet worden geladen, probeer het alstublieft opnieuw.",
+	"@addSubscriptionFormLoadingFailure": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractTitle" : "Nieuw contract",
+	"@createContractTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractPickFormulaLabel" : "Kies een formule",
+	"@createContractPickFormulaLabel": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractFormulaBattFunExplanation" : "Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.",
+	"@createContractFormulaBattFunExplanation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractFormulaBattFanExplanation" : "Betaal je gepland maandelijks rijtegoed vooraf (min. 75 EUR/maand) en rij 25% goedkoper.n",
+	"@createContractFormulaBattFanExplanation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractFormulaBattMaxExplanation" : "Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.",
+	"@createContractFormulaBattMaxExplanation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractCommitmentExplanation" : "Copy om commitment aan gebruikers uit te leggen",
+	"@createContractCommitmentExplanation": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractMinimumCommitmentErrorMessage" : "Commitment must be at least €75",
+	"@createContractMinimumCommitmentErrorMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractConfirmButtonTitle" : "Maak contract",
+	"@createContractConfirmButtonTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractSuccessMessage" : "Contract maken geslaagd!",
+	"@createContractSuccessMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createContractFailureMessage" : "Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.",
+	"@createContractFailureMessage": {
+		"type": "text",
+		"placeholders": {}
 	}
 }
+
