@@ -634,7 +634,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @createContractFormulaBattFanExplanation.
   ///
   /// In en, this message translates to:
-  /// **'Betaal je gepland maandelijks rijtegoed vooraf (min. 75 EUR/maand) en rij 25% goedkoper.n'**
+  /// **'Betaal je gepland maandelijks rijtegoed vooraf (min. €75/maand) en rij 25% goedkoper.'**
   String get createContractFormulaBattFanExplanation;
 
   /// No description provided for @createContractFormulaBattMaxExplanation.

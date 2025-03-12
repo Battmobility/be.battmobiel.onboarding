@@ -282,7 +282,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get createContractFormulaBattFunExplanation => 'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.';
 
   @override
-  String get createContractFormulaBattFanExplanation => 'Betaal je gepland maandelijks rijtegoed vooraf (min. 75 EUR/maand) en rij 25% goedkoper.n';
+  String get createContractFormulaBattFanExplanation => 'Betaal je gepland maandelijks rijtegoed vooraf (min. €75/maand) en rij 25% goedkoper.';
 
   @override
   String get createContractFormulaBattMaxExplanation => 'Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.';
