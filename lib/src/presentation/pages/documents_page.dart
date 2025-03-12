@@ -50,6 +50,7 @@ class DocumentsPageState extends State<DocumentsPage> {
                   Flex(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppSpacings.md,
                     direction: MediaQuery.of(context).size.width >
                             MediaQuery.of(context).size.height
                         ? Axis.horizontal
@@ -71,10 +72,7 @@ class DocumentsPageState extends State<DocumentsPage> {
                             _updateFormData(rrn, surName, firstName),
                       ),
                     ].map((child) {
-                      return MediaQuery.of(context).size.width >
-                              MediaQuery.of(context).size.height
-                          ? Flexible(child: child)
-                          : Flexible(child: child);
+                      return Flexible(child: child);
                     }).toList(),
                   ),
                 ],
@@ -90,6 +88,7 @@ class DocumentsPageState extends State<DocumentsPage> {
                   Flex(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppSpacings.md,
                     direction: MediaQuery.of(context).size.width >
                             MediaQuery.of(context).size.height
                         ? Axis.horizontal
