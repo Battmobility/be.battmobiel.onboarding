@@ -10,6 +10,7 @@ import 'package:batt_onboarding/src/presentation/pages/pick_formula_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/personal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
+import 'package:batt_onboarding/src/util/nonnull_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -83,7 +84,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           PersonalPage(
             formKey: _formKeys[3],
             onAction: (_) {},
-            initialData: progress.personal..addAll(_scannedData ?? {}),
+            initialData: progress.personal
+              ..addAll(
+                (_scannedData ?? {}),
+              ),
           ),
           VerificationPage(
             formKey: _formKeys[4],
@@ -97,7 +101,13 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           CreateClientPage(
             formKey: _formKeys[5],
             initialData: progress.personal,
-            onAction: (_) {},
+            onAction: (_) {
+              // Skip to finish
+              setState(() {
+                _step += 2;
+              });
+              controller.jumpToPage(_step);
+            },
           ),
           PickFormulaPage(
             formKey: _formKeys[6],
@@ -252,7 +262,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         }
                                         if (_step == 2) {
                                           if (values != null) {
-                                            _scannedData = values;
+                                            _scannedData =
+                                                values.withNullsRemoved;
                                           }
                                           _validateDocuments(
                                                   values, progress.progress)
@@ -268,9 +279,16 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                                 .postPersonalData(values)
                                                 .then((success) {
                                               if (success) {
-                                                setState(() {
-                                                  _step++;
-                                                });
+                                                if (progress.progress >= 4) {
+                                                  setState(() {
+                                                    _step += 2;
+                                                  });
+                                                } else {
+                                                  setState(() {
+                                                    _step++;
+                                                  });
+                                                }
+
                                                 controller.jumpToPage(_step);
                                               } else {
                                                 _showUploadFailedDialog(

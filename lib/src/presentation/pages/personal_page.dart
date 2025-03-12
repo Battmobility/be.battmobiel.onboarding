@@ -70,6 +70,7 @@ class PersonalPageState extends State<PersonalPage> {
               FormBuilderDateTimePicker(
                 name: 'dateOfBirth',
                 format: DateFormat("dd-MM-yyyy"),
+                helpText: l10n.birthDateFieldTitle,
                 initialValue: widget.initialData?["dateOfBirth"],
                 initialDate: widget.initialData?["dateOfBirth"] ??
                     DateTime.now().subtract(Duration(days: 5840)),
@@ -125,9 +126,11 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateCurrentLicense',
+                format: DateFormat("dd-MM-yyyy"),
+                helpText: l10n.driversLicenseIssuedDate,
                 initialValue: widget.initialData?["dateCurrentLicense"],
                 firstDate: widget.initialData?["dateOfBirth"] as DateTime? ??
-                    DateTime.now().subtract(Duration(days: 5844)),
+                    DateTime.now().subtract(Duration(days: 36500)),
                 lastDate: DateTime.now(),
                 inputType: InputType.date,
                 decoration:
@@ -135,6 +138,8 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateLicenseUntil',
+                helpText: l10n.driversLicenseExpiresDate,
+                format: DateFormat("dd-MM-yyyy"),
                 initialValue: widget.initialData?["dateLicenseUntil"],
                 firstDate: DateTime.now(),
                 inputType: InputType.date,
@@ -160,9 +165,8 @@ class PersonalPageState extends State<PersonalPage> {
                         child: FormBuilderDropdown(
                           validator: FormBuilderValidators.required(),
                           name: "nationality",
-                          initialValue:
-                              widget.initialData?["dateLicenseUntil"] ??
-                                  WorldCountry.fromCode("Bel").iso3166oneAlpha2,
+                          initialValue: widget.initialData?["nationality"] ??
+                              WorldCountry.fromCode("Bel").iso3166oneAlpha2,
                           items: WorldCountry.list
                               .map((country) => DropdownMenuItem(
                                     child: Text(

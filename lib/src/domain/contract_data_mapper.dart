@@ -5,7 +5,7 @@ import '../../api/generated/mobile_api.enums.swagger.dart';
 extension ContractDataMapper on Map<String, dynamic> {
   CreateNewUsageContractRequest toContract() {
     return CreateNewUsageContractRequest(
-        formula: this["formula"].toApi(),
+        formula: (this["formula"] as String).toApi(),
         commitmentAmountInclVat: double.tryParse(this['commitment']),
         startDate: DateTime.now().toUtc());
   }

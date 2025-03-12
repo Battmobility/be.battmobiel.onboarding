@@ -459,7 +459,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"createContractFormulaBattFanExplanation" : "Betaal je gepland maandelijks rijtegoed vooraf (min. 75 EUR/maand) en rij 25% goedkoper.n",
+	"createContractFormulaBattFanExplanation" : "Betaal je gepland maandelijks rijtegoed vooraf (min. €75/maand) en rij 25% goedkoper.",
 	"@createContractFormulaBattFanExplanation": {
 		"type": "text",
 		"placeholders": {}

@@ -31,8 +31,38 @@ class VerificationPageState extends State<VerificationPage> {
   int sendPhoneRetries = 0;
   int checkPhoneRetries = 0;
 
+  late FocusNode pinFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+
+    pinFocusNode = FocusNode();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final defaultPinTheme = PinTheme(
+      textStyle: Theme.of(context)
+          .textTheme
+          .labelLarge!
+          .copyWith(fontWeight: FontWeight.w600),
+      decoration: BoxDecoration(
+        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+
+    final errorPinTheme = PinTheme(
+      textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
+          fontWeight: FontWeight.w600,
+          color: Theme.of(context).colorScheme.error),
+      decoration: BoxDecoration(
+        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+
     final l10n = OnboardingLocalizations.of(context);
     return SingleChildScrollView(
       child: Padding(
@@ -100,6 +130,28 @@ class VerificationPageState extends State<VerificationPage> {
                                     padding: AppPaddings.medium.leading,
                                     child: FormBuilderTextField(
                                       name: "phone",
+                                      onSubmitted: (value) {
+                                        setState(() {
+                                          isSendingPhone = true;
+                                        });
+                                        if (widget.formKey.currentState!
+                                            .saveAndValidate()) {
+                                          setState(() async {
+                                            phoneNumber = (widget
+                                                    .formKey
+                                                    .currentState!
+                                                    .fields["countryCode"]!
+                                                    .value as String) +
+                                                (widget
+                                                        .formKey
+                                                        .currentState!
+                                                        .fields["phone"]!
+                                                        .value as String)
+                                                    .replaceFirst("0", "");
+                                            _sendPhone(context, phoneNumber!);
+                                          });
+                                        }
+                                      },
                                       validator:
                                           FormBuilderValidators.phoneNumber(),
                                       style:
@@ -154,6 +206,10 @@ class VerificationPageState extends State<VerificationPage> {
                           Padding(
                             padding: AppPaddings.large.all,
                             child: Pinput(
+                              defaultPinTheme: defaultPinTheme,
+                              errorPinTheme: errorPinTheme,
+                              focusNode: pinFocusNode,
+                              autofocus: true,
                               onCompleted: (code) async {
                                 _sendCode(context, phoneNumber!, code);
                               },
@@ -240,12 +296,19 @@ class VerificationPageState extends State<VerificationPage> {
     );
   }
 
+  @override
+  void dispose() {
+    pinFocusNode.dispose();
+    super.dispose();
+  }
+
   void _sendPhone(BuildContext context, String phoneNumber) async {
     setState(() {
       isSendingPhone = true;
     });
     final requested = await onboardingRepository.postPhoneNumber(phoneNumber);
     await Future.delayed(Duration(seconds: 2));
+    pinFocusNode.requestFocus();
     setState(() {
       isSendingPhone = false;
     });

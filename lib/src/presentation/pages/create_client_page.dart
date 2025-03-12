@@ -3,6 +3,7 @@ import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:sealed_countries/sealed_countries.dart';
 
 import 'onboarding_page.dart';
 
@@ -19,8 +20,6 @@ final class CreateClientPage extends OnboardingPage {
 }
 
 class CreateClientPageState extends State<CreateClientPage> {
-  bool _later = false;
-
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
@@ -41,21 +40,9 @@ class CreateClientPageState extends State<CreateClientPage> {
                   child: Text(l10n.addSubscriptionFormMessage,
                       style: Theme.of(context).textTheme.titleMedium),
                 ),
-                FormBuilderCheckbox(
-                  name: "later",
-                  title: Text(l10n.addSubscriptionFormLaterLabel,
-                      style: Theme.of(context).textTheme.bodyLarge),
-                  onChanged: (value) {
-                    setState(() {
-                      _later = value ?? false;
-                    });
-                  },
-                ),
-                Divider(),
-                Padding(
-                  padding: AppPaddings.medium.vertical,
-                  child: Text(l10n.addSubscriptionFormMessage,
-                      style: Theme.of(context).textTheme.titleMedium),
+                DefaultSimpleTextButton(
+                  label: l10n.addSubscriptionFormLaterLabel,
+                  onPressed: () => widget.onAction({}),
                 ),
                 FormBuilderTextField(
                     decoration: InputDecoration(
@@ -63,49 +50,53 @@ class CreateClientPageState extends State<CreateClientPage> {
                     name: "name",
                     initialValue:
                         "${widget.initialData?["firstName"] ?? ""} ${widget.initialData?["lastName"] ?? ""}",
-                    validator: FormBuilderValidators.skipWhen(
-                        (_) => _later == true,
-                        FormBuilderValidators.required())),
+                    validator: FormBuilderValidators.required()),
                 FormBuilderTextField(
                     decoration: InputDecoration(
                         labelText: l10n.addSubscriptionFormEmail),
                     name: "email",
                     initialValue: widget.initialData?["email"] ?? "",
-                    validator: FormBuilderValidators.skipWhen(
-                        (_) => _later == true, FormBuilderValidators.email())),
+                    validator: FormBuilderValidators.email()),
                 FormBuilderTextField(
                     decoration: InputDecoration(
                         labelText: l10n.addSubscriptionFormStreet),
                     name: "street",
                     initialValue: widget.initialData?["street"] ?? "",
-                    validator: FormBuilderValidators.skipWhen(
-                        (_) => _later == true,
-                        FormBuilderValidators.required())),
+                    validator: FormBuilderValidators.required()),
                 FormBuilderTextField(
                     decoration: InputDecoration(
                         labelText: l10n.addSubscriptionFormHouseNumber),
                     name: "houseNumber",
                     initialValue:
                         "${widget.initialData?["houseNumber"] ?? ""} ${widget.initialData?["box"] ?? ""}",
-                    validator: FormBuilderValidators.skipWhen(
-                        (_) => _later == true,
-                        FormBuilderValidators.required())),
-                FormBuilderTextField(
-                    decoration: InputDecoration(
-                        labelText: l10n.addSubscriptionFormPostalCode),
-                    name: "postalCode",
-                    initialValue: widget.initialData?["postalCode"] ?? "",
-                    validator: FormBuilderValidators.skipWhen(
-                        (_) => _later == true,
-                        FormBuilderValidators.required())),
+                    validator: FormBuilderValidators.required()),
                 FormBuilderTextField(
                     decoration: InputDecoration(
                         labelText: l10n.addSubscriptionFormCity),
                     name: "city",
                     initialValue: widget.initialData?["city"] ?? "",
-                    validator: FormBuilderValidators.skipWhen(
-                        (_) => _later == true,
-                        FormBuilderValidators.required())),
+                    validator: FormBuilderValidators.required()),
+                FormBuilderDropdown(
+                  validator: FormBuilderValidators.required(),
+                  name: "country",
+                  initialValue: widget.initialData?["country"] ??
+                      WorldCountry.fromCode("Bel").iso3166oneAlpha2,
+                  items: WorldCountry.list
+                      .map((country) => DropdownMenuItem(
+                            child: Text(
+                              "${country.emoji} ${country.name.common}",
+                              style: Theme.of(context).textTheme.bodyLarge!,
+                            ),
+                            value: country.iso3166oneAlpha2,
+                          ))
+                      .toList(),
+                ),
+                FormBuilderTextField(
+                    decoration: InputDecoration(
+                        labelText: l10n.addSubscriptionFormPostalCode),
+                    name: "postalCode",
+                    initialValue: widget.initialData?["postalCode"] ?? "",
+                    validator: FormBuilderValidators.required()),
                 Divider(),
                 Padding(
                   padding: AppPaddings.medium.vertical,
@@ -125,7 +116,10 @@ class CreateClientPageState extends State<CreateClientPage> {
                     }, FormBuilderValidators.maxLength(15)),
                   ]),
                 ),
-              ].map((child) => Flexible(child: child)).toList(),
+              ]
+                  .map((field) => Padding(
+                      padding: AppPaddings.medium.vertical, child: field))
+                  .toList(),
             ),
           ),
         ),

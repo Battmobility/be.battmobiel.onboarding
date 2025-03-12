@@ -48,8 +48,8 @@ final class OnboardingRepository {
 
   Future<bool> postNewContractData(Map<String, dynamic> values) async {
     return await datasource.postNewContractData(
-      int.parse(values["clientId"]),
-      int.tryParse(values["delegatedTrustClientId"]) ?? 0,
+      values["clientId"],
+      values["delegatedTrustClientId"] ?? 0,
       values,
     );
   }
