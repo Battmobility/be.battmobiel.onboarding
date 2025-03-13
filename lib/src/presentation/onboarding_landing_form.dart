@@ -189,8 +189,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                   totalSteps: pages.length,
                                   currentStep: _step,
                                   axis: Axis.horizontal,
-                                  nodeIconBuilder:
-                                      (index, completedStepIndex) => FaIcon(
+                                  nodeIconBuilder: (index) => FaIcon(
                                     index == _step
                                         ? FontAwesomeIcons.carSide
                                         : FontAwesomeIcons.check,

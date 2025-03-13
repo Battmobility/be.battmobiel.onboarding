@@ -991,10 +991,10 @@ packages:
     dependency: "direct main"
     description:
       name: step_progress
-      sha256: "918550307f81fe2eca8a5779e38100603d162df96501c6506ec1acbe9ca3941e"
+      sha256: f913ea47556a54de786e492bbc4b3b2925a7ea1fb41a36742c649e521e86f3fc
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.0.1"
   stream_channel:
     dependency: transitive
     description:
