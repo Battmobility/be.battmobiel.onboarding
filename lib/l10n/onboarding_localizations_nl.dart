@@ -30,6 +30,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get nextButtonText => 'Volgende';
 
   @override
+  String get laterButtonText => 'Ik vul dit later aan';
+
+  @override
   String get fillOutBeforeContinuing => 'Vul alle velden in om verder te gaan';
 
   @override

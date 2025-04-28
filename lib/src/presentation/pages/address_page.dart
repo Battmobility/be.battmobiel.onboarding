@@ -1,10 +1,8 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
-import 'package:batt_onboarding/src/util/mrz_reader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:intl/intl.dart' hide TextDirection;
 import 'onboarding_page.dart';
 import 'package:sealed_countries/sealed_countries.dart';
 

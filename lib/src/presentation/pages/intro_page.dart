@@ -24,10 +24,10 @@ class IntroPageState extends State<IntroPage> {
       widget.onAction({});
     });
     return Container(
-      padding: AppPaddings.xxlarge.vertical.add(AppPaddings.large.horizontal),
+      padding: AppPaddings.large.all,
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 800, maxHeight: 800),
+          constraints: BoxConstraints(maxWidth: 800),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

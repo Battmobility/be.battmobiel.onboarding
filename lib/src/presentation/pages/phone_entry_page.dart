@@ -6,7 +6,6 @@ import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:pinput/pinput.dart';
 import 'package:sealed_countries/sealed_countries.dart';
 import 'onboarding_page.dart';
 
@@ -46,7 +45,7 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
           key: widget.formKey,
           child: Column(
             children: [
-              Text(l10n.verificationPageTitle,
+              Text(l10n.phoneEntryPageTitle,
                   style: Theme.of(context).textTheme.headlineLarge),
               Padding(
                 padding: AppPaddings.xxlarge.vertical,

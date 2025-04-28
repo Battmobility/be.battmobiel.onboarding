@@ -139,6 +139,12 @@ abstract class OnboardingLocalizations {
   /// **'Next'**
   String get nextButtonText;
 
+  /// No description provided for @laterButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'\'ll do this later'**
+  String get laterButtonText;
+
   /// No description provided for @fillOutBeforeContinuing.
   ///
   /// In en, this message translates to:

@@ -42,6 +42,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"laterButtonText": "Ik vul dit later aan",
+	"@laterButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"fillOutBeforeContinuing": "Vul alle velden in om verder te gaan",
 	"@fillOutBeforeContinuing": {
 		"type": "text",

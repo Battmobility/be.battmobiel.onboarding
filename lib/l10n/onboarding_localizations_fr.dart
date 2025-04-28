@@ -30,6 +30,9 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get nextButtonText => 'Next';
 
   @override
+  String get laterButtonText => 'I\'ll do this later';
+
+  @override
   String get fillOutBeforeContinuing => 'Please fill out all fields before continuing';
 
   @override

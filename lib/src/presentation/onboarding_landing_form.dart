@@ -7,16 +7,20 @@ import 'package:batt_onboarding/src/presentation/pages/id_documents_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/legal_details_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/drivers_license_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/done_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/onboarding_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/phone_verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/personal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
+import 'package:batt_onboarding/src/presentation/widgets/onboarding_form_footer.dart';
 import 'package:batt_onboarding/src/util/nonnull_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../../l10n/onboarding_localizations.dart';
+import 'onboarding_steps.dart';
 import 'pages/deposit_page.dart';
 import 'pages/documents_explainer.dart';
 import 'pages/phone_entry_page.dart';
+import 'widgets/onboarding_form_header.dart';
 
 class OnboardingLandingForm extends StatefulWidget {
   final String accessToken;
@@ -37,28 +41,12 @@ class OnboardingLandingForm extends StatefulWidget {
   }
 }
 
-enum OnboardingSteps {
-  intro,
-  personal,
-  address,
-  phone,
-  phoneVerification,
-  documentsExplainer,
-  idDocuments,
-  driversLicense,
-  legal,
-  legalDetails,
-  deposit,
-  confirmation
-}
-
 class OnboardingLandingFormState extends State<OnboardingLandingForm> {
-  final _stepperScrollController = ScrollController();
   int _step = 0;
   Map<String, dynamic>? _scannedIdPics;
   Map<String, dynamic>? _scannedDriversLicensePics;
 
-  String? _phoneNumber;
+  String _phoneNumber = "";
   int? clientId;
 
   List<GlobalKey<FormBuilderState>> get _formKeys =>
@@ -66,8 +54,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = OnboardingLocalizations.of(context);
-
     return FutureBuilder(
       future: onboardingRepository.getOnboardingProgress(),
       builder: (context, snapshot) {
@@ -109,7 +95,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             onAction: (_) {},
           ),
           PhoneVerificationPage(
-            phoneNumber: _phoneNumber!,
+            phoneNumber: _phoneNumber,
             formKey: _formKeys[OnboardingSteps.phoneVerification.index],
             onAction: (_) {},
           ),
@@ -175,234 +161,182 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
 
         return Scaffold(
           body: SafeArea(
-            child: Padding(
-              padding: AppPaddings.medium.all,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  // TODO: top bar
-                  Flexible(
-                    flex: 8,
-                    child: Card(
-                      child: Padding(
-                        padding: AppPaddings.medium.all,
-                        child: PageView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            controller: controller,
-                            itemBuilder: (context, index) => pages[index],
-                            itemCount: pages.length),
-                      ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                OnboardingFormHeader(
+                  title: OnboardingSteps.values[_step].name,
+                  progress:
+                      _step > 0 ? OnboardingSteps.values.length / _step : 0,
+                  backButtonEnabled: _step != OnboardingSteps.intro.index &&
+                      _step != OnboardingSteps.confirmation.index,
+                  onbackPressed: () {
+                    setState(() {
+                      _step--;
+                    });
+                    controller.jumpToPage(_step);
+                  },
+                ),
+                Divider(thickness: 0.5, color: AppColors.grey[500]),
+                Expanded(
+                  flex: 12,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: AppPaddings.medium.all,
+                      child: PageView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          controller: controller,
+                          itemBuilder: (context, index) => pages[index],
+                          itemCount: pages.length),
                     ),
                   ),
-                  Flexible(
-                    flex: 1,
-                    child: Padding(
-                      padding: AppPaddings.medium.top,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 100,
-                            child: _step == OnboardingSteps.intro.index
-                                ? Opacity(
-                                    opacity: 0.66,
-                                    child: OrangeOutlinedTextButton(
-                                      label: l10n.closeButtonText,
-                                      onPressed: () {
-                                        widget.onSubmitted(false);
-                                      },
-                                    ),
-                                  )
-                                : _step == OnboardingSteps.confirmation.index
-                                    ? Container()
-                                    : OrangeOutlinedTextButton(
-                                        label: l10n.previousButtonText,
-                                        onPressed: () {
-                                          setState(() {
-                                            _step--;
-                                          });
-                                          controller.jumpToPage(_step);
-                                        },
-                                      ),
-                          ),
-                          Flexible(
-                            flex: 6,
-                            child: Container(
-                              padding: AppPaddings.medium.horizontal,
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                controller: _stepperScrollController,
-                                child: LinearProgressIndicator(
-                                  value: OnboardingSteps.values.length / _step,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 100,
-                            child: _step == OnboardingSteps.confirmation.index
-                                ? Container()
-                                : OrangeSolidTextButton(
-                                    label: l10n.nextButtonText,
-                                    onPressed: () {
-                                      // Skippable steps
-                                      if (_step ==
-                                              OnboardingSteps.intro.index ||
-                                          _step ==
-                                              OnboardingSteps
-                                                  .documentsExplainer.index) {
-                                        setState(() {
-                                          _step++;
-                                        });
-                                        controller.jumpToPage(_step);
-                                      } else if (pages[_step]
-                                              .formKey
-                                              .currentState
-                                              ?.saveAndValidate() ??
-                                          false) {
-                                        final values = pages[_step]
-                                            .formKey
-                                            .currentState
-                                            ?.value;
-                                        if (_step ==
-                                            OnboardingSteps.personal.index) {
-                                          // TODO: check if split into two calls on  backend, if not cache data here and post in OnboardingSteps.address
-                                          if (values != null) {
-                                            onboardingRepository
-                                                .postPersonalData(values)
-                                                .then((success) {
-                                              if (success) {
-                                                if (progress.progress >= 5) {
-                                                  setState(() {
-                                                    _step += 2;
-                                                  });
-                                                } else {
-                                                  setState(() {
-                                                    _step++;
-                                                  });
-                                                }
+                ),
+                Divider(thickness: 0.5, color: AppColors.grey[500]),
+                Expanded(
+                    flex: OnboardingSteps.values[_step].canSkip ? 3 : 2,
+                    child: OnboardingFormFooter(
+                      showLaterButton: OnboardingSteps.values[_step].canSkip,
+                      onNextPressed: () {
+                        _nextStep(controller, pages, progress);
+                      },
+                      onLaterPressed: () {
+                        // TODO: confirmation dialog
+                        widget.onSubmitted(false);
+                      },
+                    )),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
-                                                controller.jumpToPage(_step);
-                                              } else {
-                                                _showUploadFailedDialog(
-                                                    context);
-                                              }
-                                            });
-                                          }
-                                        }
-                                        if (_step ==
-                                            OnboardingSteps.address.index) {
-                                          // TODO: check if split into two calls on  backend, if not append cached data from OnboardingSteps.personal
-                                          if (values != null) {
-                                            onboardingRepository
-                                                .postPersonalData(values)
-                                                .then((success) {
-                                              if (success) {
-                                                if (progress.progress >= 5) {
-                                                  setState(() {
-                                                    _step += 2;
-                                                  });
-                                                } else {
-                                                  setState(() {
-                                                    _step++;
-                                                  });
-                                                }
+  void _nextStep(
+    PageController controller,
+    List<OnboardingPage> pages,
+    OnboardingProgress progress,
+  ) {
+    // Skippable steps
+    if (_step == OnboardingSteps.intro.index ||
+        _step == OnboardingSteps.documentsExplainer.index) {
+      setState(() {
+        _step++;
+      });
+      controller.jumpToPage(_step);
+    } else if (pages[_step].formKey.currentState?.saveAndValidate() ?? false) {
+      final values = pages[_step].formKey.currentState?.value;
+      if (_step == OnboardingSteps.personal.index) {
+        // TODO: check if split into two calls on  backend, if not cache data here and post in OnboardingSteps.address
+        if (values != null) {
+          onboardingRepository.postPersonalData(values).then((success) {
+            if (success) {
+              if (progress.progress >= 5) {
+                setState(() {
+                  _step += 2;
+                });
+              } else {
+                setState(() {
+                  _step++;
+                });
+              }
 
-                                                controller.jumpToPage(_step);
-                                              } else {
-                                                _showUploadFailedDialog(
-                                                    context);
-                                              }
-                                            });
-                                          }
-                                        }
-                                        if (_step ==
-                                            OnboardingSteps.phone.index) {
-                                          if (values != null) {
-                                            _phoneNumber =
-                                                values["phoneNumber"];
-                                            controller.jumpToPage(_step);
-                                          }
-                                        }
-                                        if (_step ==
-                                            OnboardingSteps
-                                                .phoneVerification.index) {
-                                          controller.jumpToPage(_step);
-                                        }
-                                        if (_step ==
-                                            OnboardingSteps.idDocuments.index) {
-                                          if (values != null) {
-                                            _scannedIdPics =
-                                                values.withNullsRemoved;
-                                          }
+              controller.jumpToPage(_step);
+            } else {
+              _showUploadFailedDialog(context);
+            }
+          });
+        }
+      }
+      if (_step == OnboardingSteps.address.index) {
+        // TODO: check if split into two calls on  backend, if not append cached data from OnboardingSteps.personal
+        if (values != null) {
+          onboardingRepository.postPersonalData(values).then((success) {
+            if (success) {
+              if (progress.progress >= 5) {
+                setState(() {
+                  _step += 2;
+                });
+              } else {
+                setState(() {
+                  _step++;
+                });
+              }
 
-                                          _validateIdDocuments(
-                                                  values, progress.progress)
-                                              .then((success) {
-                                            if (success) {
-                                              controller.jumpToPage(_step);
-                                            }
-                                          });
-                                        }
-                                        if (_step ==
-                                            OnboardingSteps
-                                                .driversLicense.index) {
-                                          if (values != null) {
-                                            _scannedDriversLicensePics =
-                                                values.withNullsRemoved;
-                                          }
-                                          _validateDriversLicense(
-                                                  values, progress.progress)
-                                              .then((success) {
-                                            if (success) {
-                                              controller.jumpToPage(_step);
-                                            }
-                                          });
-                                        }
-                                        if (_step ==
-                                            OnboardingSteps.legal.index) {
-                                          // TODO: post if no convictions
-                                          if (values != null) {
-                                            onboardingRepository
-                                                .postConvictions(values)
-                                                .then((success) {
-                                              if (success) {
-                                                setState(() {
-                                                  _step++;
-                                                });
-                                                controller.jumpToPage(_step);
-                                              } else {
-                                                _showUploadFailedDialog(
-                                                    context);
-                                              }
-                                            });
-                                          }
-                                        }
-                                        if (_step ==
-                                            OnboardingSteps
-                                                .legalDetails.index) {
-                                          // TODO: post if user has convictions
+              controller.jumpToPage(_step);
+            } else {
+              _showUploadFailedDialog(context);
+            }
+          });
+        }
+      }
+      if (_step == OnboardingSteps.phone.index) {
+        if (values != null) {
+          _phoneNumber = values["phoneNumber"];
+          controller.jumpToPage(_step);
+        }
+      }
+      if (_step == OnboardingSteps.phoneVerification.index) {
+        controller.jumpToPage(_step);
+      }
+      if (_step == OnboardingSteps.idDocuments.index) {
+        if (values != null) {
+          _scannedIdPics = values.withNullsRemoved;
+        }
 
-                                          if (values != null) {
-                                            onboardingRepository
-                                                .postConvictions(values)
-                                                .then((success) {
-                                              if (success) {
-                                                setState(() {
-                                                  _step++;
-                                                });
-                                                controller.jumpToPage(_step);
-                                              } else {
-                                                _showUploadFailedDialog(
-                                                    context);
-                                              }
-                                            });
-                                          }
-                                        }
+        _validateIdDocuments(values, progress.progress).then((success) {
+          if (success) {
+            controller.jumpToPage(_step);
+          }
+        });
+      }
+      if (_step == OnboardingSteps.driversLicense.index) {
+        if (values != null) {
+          _scannedDriversLicensePics = values.withNullsRemoved;
+        }
+        _validateDriversLicense(values, progress.progress).then((success) {
+          if (success) {
+            controller.jumpToPage(_step);
+          }
+        });
+      }
+      if (_step == OnboardingSteps.legal.index) {
+        // TODO: post if no convictions
+        if (values != null) {
+          onboardingRepository.postConvictions(values).then((success) {
+            if (success) {
+              setState(() {
+                _step++;
+              });
+              controller.jumpToPage(_step);
+            } else {
+              _showUploadFailedDialog(context);
+            }
+          });
+        }
+      }
+      if (_step == OnboardingSteps.legalDetails.index) {
+        // TODO: post if user has convictions
 
-                                        // TBC:
-                                        /*
+        if (values != null) {
+          onboardingRepository.postConvictions(values).then((success) {
+            if (success) {
+              setState(() {
+                _step++;
+              });
+              controller.jumpToPage(_step);
+            } else {
+              _showUploadFailedDialog(context);
+            }
+          });
+        }
+      }
+
+      // TBC:
+      /*
                                         if (_step == 6) {
                                           if (values != null) {
                                             onboardingRepository
@@ -439,23 +373,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                           }
                                         }
                                         */
-                                      } else {
-                                        _showIncompleteFormDialog(context);
-                                      }
-                                    },
-                                  ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    } else {
+      _showIncompleteFormDialog(context);
+    }
   }
 
   Future<bool> _validateIdDocuments(
