@@ -361,6 +361,12 @@ abstract class OnboardingLocalizations {
   /// **'Drivers license expires'**
   String get driversLicenseExpiresDate;
 
+  /// No description provided for @addressPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your home address?'**
+  String get addressPageTitle;
+
   /// No description provided for @address.
   ///
   /// In en, this message translates to:

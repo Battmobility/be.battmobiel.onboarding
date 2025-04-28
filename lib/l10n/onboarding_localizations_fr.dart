@@ -1,5 +1,3 @@
-// ignore: unused_import
-import 'package:intl/intl.dart' as intl;
 import 'onboarding_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -141,6 +139,9 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get driversLicenseExpiresDate => 'Drivers license expires';
+
+  @override
+  String get addressPageTitle => 'What is your home address?';
 
   @override
   String get address => 'Adresse';

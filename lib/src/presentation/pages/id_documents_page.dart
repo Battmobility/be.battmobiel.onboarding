@@ -7,9 +7,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../widgets/document_form_field.dart';
 import 'onboarding_page.dart';
 
-final class DocumentsPage extends OnboardingPage {
+final class IdDocumentsPage extends OnboardingPage {
   final bool prefilled;
-  DocumentsPage({
+  IdDocumentsPage({
     super.key,
     required super.formKey,
     required super.onAction,
@@ -18,10 +18,10 @@ final class DocumentsPage extends OnboardingPage {
   });
 
   @override
-  DocumentsPageState createState() => DocumentsPageState();
+  IdDocumentsPageState createState() => IdDocumentsPageState();
 }
 
-class DocumentsPageState extends State<DocumentsPage> {
+class IdDocumentsPageState extends State<IdDocumentsPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);

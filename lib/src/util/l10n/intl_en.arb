@@ -223,6 +223,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"addressPageTitle": "What is your home address?",
+	"@addressPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"address": "Adress",
 	"@address": {
 		"type": "text",

@@ -10,8 +10,8 @@ import 'package:pinput/pinput.dart';
 import 'package:sealed_countries/sealed_countries.dart';
 import 'onboarding_page.dart';
 
-final class VerificationPage extends OnboardingPage {
-  VerificationPage({
+final class PhoneEntryPage extends OnboardingPage {
+  PhoneEntryPage({
     super.key,
     required super.formKey,
     required super.onAction,
@@ -19,10 +19,10 @@ final class VerificationPage extends OnboardingPage {
   });
 
   @override
-  VerificationPageState createState() => VerificationPageState();
+  PhoneEntryPageState createState() => PhoneEntryPageState();
 }
 
-class VerificationPageState extends State<VerificationPage> {
+class PhoneEntryPageState extends State<PhoneEntryPage> {
   String? phoneNumber;
   bool isSendingPhone = false;
   bool isChecking = false;
@@ -31,38 +31,13 @@ class VerificationPageState extends State<VerificationPage> {
   int sendPhoneRetries = 0;
   int checkPhoneRetries = 0;
 
-  late FocusNode pinFocusNode;
-
   @override
   void initState() {
     super.initState();
-
-    pinFocusNode = FocusNode();
   }
 
   @override
   Widget build(BuildContext context) {
-    final defaultPinTheme = PinTheme(
-      textStyle: Theme.of(context)
-          .textTheme
-          .labelLarge!
-          .copyWith(fontWeight: FontWeight.w600),
-      decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20),
-      ),
-    );
-
-    final errorPinTheme = PinTheme(
-      textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
-          fontWeight: FontWeight.w600,
-          color: Theme.of(context).colorScheme.error),
-      decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20),
-      ),
-    );
-
     final l10n = OnboardingLocalizations.of(context);
     return SingleChildScrollView(
       child: Padding(
@@ -163,6 +138,10 @@ class VerificationPageState extends State<VerificationPage> {
                                     ),
                                   ),
                                 ),
+                                FormBuilderField(
+                                  builder: ((_) => Container()),
+                                  name: "phoneNumber",
+                                )
                               ],
                             ),
                           ),
@@ -191,38 +170,6 @@ class VerificationPageState extends State<VerificationPage> {
                                       _sendPhone(context, phoneNumber!);
                                     });
                                   }
-                                }),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: (phoneNumber != null),
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: AppPaddings.large.all,
-                            child: Pinput(
-                              defaultPinTheme: defaultPinTheme,
-                              errorPinTheme: errorPinTheme,
-                              focusNode: pinFocusNode,
-                              autofocus: true,
-                              onCompleted: (code) async {
-                                _sendCode(context, phoneNumber!, code);
-                              },
-                              length: 6,
-                              errorTextStyle: context.typographyTheme.errorText,
-                            ),
-                          ),
-                          Padding(
-                            padding: AppPaddings.medium.all,
-                            child: OrangeSimpleTextButton(
-                                label: l10n.verificationPageVerificationResend,
-                                onPressed: () async {
-                                  _sendPhone(context, phoneNumber!);
                                 }),
                           ),
                         ],
@@ -296,19 +243,13 @@ class VerificationPageState extends State<VerificationPage> {
     );
   }
 
-  @override
-  void dispose() {
-    pinFocusNode.dispose();
-    super.dispose();
-  }
-
   void _sendPhone(BuildContext context, String phoneNumber) async {
     setState(() {
       isSendingPhone = true;
     });
     final requested = await onboardingRepository.postPhoneNumber(phoneNumber);
     await Future.delayed(Duration(seconds: 2));
-    pinFocusNode.requestFocus();
+
     setState(() {
       isSendingPhone = false;
     });
@@ -325,29 +266,9 @@ class VerificationPageState extends State<VerificationPage> {
               .build(context),
         );
       }
-    }
-  }
-
-  void _sendCode(BuildContext context, String phoneNumber, String code) async {
-    setState(() {
-      isChecking = true;
-    });
-    final success =
-        await onboardingRepository.postVerificationCode(phoneNumber, code);
-    if (success) {
-      widget.onAction({});
     } else {
-      if (checkPhoneRetries < 3) {
-        checkPhoneRetries++;
-        _sendCode(context, phoneNumber, code);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          BattSnackbar.error(
-                  title: OnboardingLocalizations.of(context)
-                      .verificationPageCheckPhoneFailed)
-              .build(context),
-        );
-      }
+      widget.formKey.currentState!.fields["phoneNumber"]!
+          .didChange(phoneNumber);
     }
   }
 }
