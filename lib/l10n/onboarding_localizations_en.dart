@@ -60,10 +60,28 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get convictionTypeNoOfAccidents => 'Amount of accidents where you were at fault';
 
   @override
-  String get documentsPageTitle => 'Documents';
+  String get documentsExplainerPageTitle => 'Documents';
 
   @override
-  String get documentsPageMessage => 'Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.';
+  String get documentsExplainerPageMessage => 'To complete your registration, we\'ll need a few documents';
+
+  @override
+  String get documentsExplainerPageInfoButtonlabel => 'Why do we need this?';
+
+  @override
+  String get documentsExplainerPageInfoMessage => 'Placeholder explainer for why we need these documents';
+
+  @override
+  String get idDocumentsPageTitle => 'ID Documents';
+
+  @override
+  String get idDocumentsPageMessage => 'Add pictures of the front and back of your identity document below. Make sure the images are right side up and cropped to show just the document.';
+
+  @override
+  String get driversLicensePageTitle => 'Documents';
+
+  @override
+  String get driversLicensePageMessage => 'Add pictures of the front and back of your drivers license below. Make sure the images are right side up and cropped to show just the document.';
 
   @override
   String get identityPageTitle => 'Identity';
@@ -166,6 +184,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get numberHint => 'Numbers only, no spaces or special characters.';
+
+  @override
+  String get phoneEntryPageTitle => 'Enter phone';
 
   @override
   String get verificationPageTitle => 'Verify phone';

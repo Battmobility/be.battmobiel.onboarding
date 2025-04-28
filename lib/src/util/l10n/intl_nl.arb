@@ -92,6 +92,46 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"idDocumentsPageTitle": "Identiteitskaart",
+	"@idDocumentsPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"documentsExplainerPageTitle": "Documenten",
+	"@documentsExplainerPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"documentsExplainerPageMessage": "Om je registratie te voltooien, vragen we je in de volgende stap om duidelijke foto''s te maken van zowel de voor- en achterkant van je identiteitskaart als van je rijbewijs (categorie B). ",
+	"@documentsExplainerPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"documentsExplainerPageInfoButtonlabel": "Waarom vragen we dit?",
+	"@documentsExplainerPageInfoButtonlabel": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"documentsExplainerPageInfoMessage": "Placeholder explainer for why we need these documents",
+	"@documentsExplainerPageInfoMessage": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"idDocumentsPageMessage": "Voeg hieronder foto''s van de voor- en achterkant van je identiteitskaart in. Zorg ervoor dat de documenten rechtop staan en correct bijgesneden zijn.",
+	"@idDocumentsPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicensePageTitle": "Rijbewijs",
+	"@driversLicensePageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicensePageMessage": "Voeg hieronder foto''s van de voor- en achterkant van je rijbewijs in. Zorg ervoor dat de documenten rechtop staan en correct bijgesneden zijn.",
+	"@driversLicensePageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"documentsPageTitle": "Documents",
 	"@documentsPageTitle": {
 		"type": "text",
@@ -270,6 +310,11 @@
 	},
 	"numberHint": "Enkel cijfers, geen spaties of speciale tekens.",
 	"@numberHint": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"phoneEntryPageTitle": "Wat is je telefoonnummer?",
+	"@phoneEntryPageTitle": {
 		"type": "text",
 		"placeholders": {}
 	},

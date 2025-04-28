@@ -35,11 +35,11 @@ class DriversLicensePageState extends State<DriversLicensePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(l10n.documentsPageTitle,
+                  Text(l10n.driversLicensePageTitle,
                       style: Theme.of(context).textTheme.headlineLarge),
                   Padding(
                     padding: AppPaddings.medium.vertical,
-                    child: Text(l10n.documentsPageMessage,
+                    child: Text(l10n.driversLicensePageMessage,
                         style: Theme.of(context).textTheme.titleMedium),
                   ),
                   Padding(

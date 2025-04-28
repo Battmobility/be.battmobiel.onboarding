@@ -60,10 +60,28 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get convictionTypeNoOfAccidents => 'Aantal ongevallen waar u in fout was';
 
   @override
-  String get documentsPageTitle => 'Documents';
+  String get documentsExplainerPageTitle => 'Documenten';
 
   @override
-  String get documentsPageMessage => 'Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.';
+  String get documentsExplainerPageMessage => 'Om je registratie te voltooien, vragen we je in de volgende stap om duidelijke foto\'s te maken van zowel de voor- en achterkant van je identiteitskaart als van je rijbewijs (categorie B). ';
+
+  @override
+  String get documentsExplainerPageInfoButtonlabel => 'Waarom vragen we dit?';
+
+  @override
+  String get documentsExplainerPageInfoMessage => 'Placeholder explainer for why we need these documents';
+
+  @override
+  String get idDocumentsPageTitle => 'Identiteitskaart';
+
+  @override
+  String get idDocumentsPageMessage => 'Voeg hieronder foto\'s van de voor- en achterkant van je identiteitskaart in. Zorg ervoor dat de documenten rechtop staan en correct bijgesneden zijn.';
+
+  @override
+  String get driversLicensePageTitle => 'Rijbewijs';
+
+  @override
+  String get driversLicensePageMessage => 'Voeg hieronder foto\'s van de voor- en achterkant van je rijbewijs in. Zorg ervoor dat de documenten rechtop staan en correct bijgesneden zijn.';
 
   @override
   String get identityPageTitle => 'Identiteit';
@@ -166,6 +184,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get numberHint => 'Enkel cijfers, geen spaties of speciale tekens.';
+
+  @override
+  String get phoneEntryPageTitle => 'Wat is je telefoonnummer?';
 
   @override
   String get verificationPageTitle => 'Verifieer telefoonnummer';

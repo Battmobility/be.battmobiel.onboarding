@@ -88,13 +88,43 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"documentsPageTitle": "Documents",
-	"@documentsPageTitle": {
+	"documentsExplainerPageTitle": "Documents",
+	"@documentsExplainerPageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"documentsExplainerPageMessage": "To complete your registration, we''ll need a few documents",
+	"@documentsExplainerPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"documentsExplainerPageInfoButtonlabel": "Why do we need this?",
+	"@documentsExplainerPageInfoButtonlabel": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"documentsExplainerPageInfoMessage": "Placeholder explainer for why we need these documents",
+	"@documentsExplainerPageInfoMessage": {
+		"type": "text",
+		"placeholders": {}
+	},	
+	"idDocumentsPageTitle": "ID Documents",
+	"@idDocumentsPageTitle": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"documentsPageMessage": "Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.",
-	"@documentsPageMessage": {
+	"idDocumentsPageMessage": "Add pictures of the front and back of your identity document below. Make sure the images are right side up and cropped to show just the document.",
+	"@idDocumentsPageMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicensePageTitle": "Documents",
+	"@driversLicensePageTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"driversLicensePageMessage": "Add pictures of the front and back of your drivers license below. Make sure the images are right side up and cropped to show just the document.",
+	"@driversLicensePageMessage": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -265,6 +295,11 @@
 	},
 	"numberHint": "Numbers only, no spaces or special characters.",
 	"@numberHint": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"phoneEntryPageTitle": "Enter phone",
+	"@phoneEntryPageTitle": {
 		"type": "text",
 		"placeholders": {}
 	},

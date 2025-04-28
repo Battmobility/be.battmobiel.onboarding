@@ -21,7 +21,11 @@ final class OnboardingDatasource {
     return service.postConvictions(convictions.toContractsOnboardingLegal());
   }
 
-  Future<bool> postFiles(Map<String, XFile> documents) async {
+  Future<bool> postIdFiles(Map<String, XFile> documents) async {
+    return service.postDocsHttp(documents);
+  }
+
+  Future<bool> postDriversLicense(Map<String, XFile> documents) async {
     return service.postDocsHttp(documents);
   }
 

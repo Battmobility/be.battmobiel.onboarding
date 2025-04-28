@@ -68,38 +68,6 @@ class LegalDetailsPageState extends State<LegalDetailsPage> {
                             false,
                     title: Text(l10n.convictionTypeLicenseRevocation,
                         style: Theme.of(context).textTheme.bodyLarge)),
-                Padding(
-                  padding:
-                      AppPaddings.large.leading.add(AppPaddings.xsmall.leading),
-                  child: Row(
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: FormBuilderDropdown(
-                            validator: FormBuilderValidators.required(),
-                            name: "nrOfAccidents",
-                            initialValue:
-                                widget.initialData?["nrOfAccidents"] ?? 0,
-                            items: [0, 1, 2, 3, 4, 5]
-                                .map((value) => DropdownMenuItem(
-                                      child: Text("$value"),
-                                      value: value,
-                                    ))
-                                .toList()),
-                      ),
-                      Flexible(
-                        flex: 5,
-                        child: Padding(
-                          padding: AppPaddings.xlarge.leading
-                              .add(AppPaddings.small.horizontal),
-                          child: Text(l10n.convictionTypeNoOfAccidents,
-                              maxLines: 2,
-                              style: Theme.of(context).textTheme.bodyLarge),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(height: AppSpacings.xxl),
                 FormBuilderCheckbox(
                     name: "answeredTruthfully",

@@ -199,17 +199,53 @@ abstract class OnboardingLocalizations {
   /// **'Amount of accidents where you were at fault'**
   String get convictionTypeNoOfAccidents;
 
-  /// No description provided for @documentsPageTitle.
+  /// No description provided for @documentsExplainerPageTitle.
   ///
   /// In en, this message translates to:
   /// **'Documents'**
-  String get documentsPageTitle;
+  String get documentsExplainerPageTitle;
 
-  /// No description provided for @documentsPageMessage.
+  /// No description provided for @documentsExplainerPageMessage.
   ///
   /// In en, this message translates to:
-  /// **'Add pictures of the front and back of your identity document and drivers license below. Make sure the images are right side up and cropped to show just the document.'**
-  String get documentsPageMessage;
+  /// **'To complete your registration, we\'\'ll need a few documents'**
+  String get documentsExplainerPageMessage;
+
+  /// No description provided for @documentsExplainerPageInfoButtonlabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Why do we need this?'**
+  String get documentsExplainerPageInfoButtonlabel;
+
+  /// No description provided for @documentsExplainerPageInfoMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder explainer for why we need these documents'**
+  String get documentsExplainerPageInfoMessage;
+
+  /// No description provided for @idDocumentsPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'ID Documents'**
+  String get idDocumentsPageTitle;
+
+  /// No description provided for @idDocumentsPageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add pictures of the front and back of your identity document below. Make sure the images are right side up and cropped to show just the document.'**
+  String get idDocumentsPageMessage;
+
+  /// No description provided for @driversLicensePageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get driversLicensePageTitle;
+
+  /// No description provided for @driversLicensePageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add pictures of the front and back of your drivers license below. Make sure the images are right side up and cropped to show just the document.'**
+  String get driversLicensePageMessage;
 
   /// No description provided for @identityPageTitle.
   ///
@@ -414,6 +450,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Numbers only, no spaces or special characters.'**
   String get numberHint;
+
+  /// No description provided for @phoneEntryPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter phone'**
+  String get phoneEntryPageTitle;
 
   /// No description provided for @verificationPageTitle.
   ///

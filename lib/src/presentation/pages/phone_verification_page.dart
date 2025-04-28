@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:pinput/pinput.dart';
-import 'package:sealed_countries/sealed_countries.dart';
 import 'onboarding_page.dart';
 
 final class PhoneVerificationPage extends OnboardingPage {
@@ -71,6 +70,12 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
           key: widget.formKey,
           child: Column(
             children: [
+              FormBuilderField<bool>(
+                builder: (_) => Container(),
+                name: "verified",
+                initialValue: false,
+                validator: FormBuilderValidators.isTrue(),
+              ),
               Text(l10n.verificationPageTitle,
                   style: Theme.of(context).textTheme.headlineLarge),
               Padding(
@@ -174,7 +179,7 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
     final success =
         await onboardingRepository.postVerificationCode(phoneNumber, code);
     if (success) {
-      widget.onAction({});
+      widget.formKey.currentState!.fields["verified"]!.didChange(true);
     } else {
       if (checkPhoneRetries < 3) {
         checkPhoneRetries++;

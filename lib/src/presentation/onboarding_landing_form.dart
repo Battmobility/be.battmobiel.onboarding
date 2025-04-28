@@ -3,21 +3,19 @@ import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:batt_onboarding/src/presentation/pages/address_page.dart';
-import 'package:batt_onboarding/src/presentation/pages/create_client_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/id_documents_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/legal_details_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/drivers_license_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/done_page.dart';
-import 'package:batt_onboarding/src/presentation/pages/pick_formula_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/phone_verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/personal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
 import 'package:batt_onboarding/src/util/nonnull_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:step_progress/step_progress.dart';
 import '../../l10n/onboarding_localizations.dart';
+import 'pages/deposit_page.dart';
+import 'pages/documents_explainer.dart';
 import 'pages/phone_entry_page.dart';
 
 class OnboardingLandingForm extends StatefulWidget {
@@ -45,6 +43,7 @@ enum OnboardingSteps {
   address,
   phone,
   phoneVerification,
+  documentsExplainer,
   idDocuments,
   driversLicense,
   legal,
@@ -56,7 +55,9 @@ enum OnboardingSteps {
 class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   final _stepperScrollController = ScrollController();
   int _step = 0;
-  Map<String, dynamic>? _scannedData;
+  Map<String, dynamic>? _scannedIdPics;
+  Map<String, dynamic>? _scannedDriversLicensePics;
+
   String? _phoneNumber;
   int? clientId;
 
@@ -86,7 +87,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             onAction: (_) {},
             initialData: progress.personal
               ..addAll(
-                (_scannedData ?? {}),
+                (_scannedIdPics ?? {}),
+              )
+              ..addAll(
+                (_scannedDriversLicensePics ?? {}),
               ),
           ),
           AddressPage(
@@ -94,8 +98,24 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             onAction: (_) {},
             initialData: progress.personal
               ..addAll(
-                (_scannedData ?? {}),
+                (_scannedIdPics ?? {}),
+              )
+              ..addAll(
+                (_scannedDriversLicensePics ?? {}),
               ),
+          ),
+          PhoneEntryPage(
+            formKey: _formKeys[OnboardingSteps.phone.index],
+            onAction: (_) {},
+          ),
+          PhoneVerificationPage(
+            phoneNumber: _phoneNumber!,
+            formKey: _formKeys[OnboardingSteps.phoneVerification.index],
+            onAction: (_) {},
+          ),
+          DocumentsExplainerPage(
+            formKey: _formKeys[OnboardingSteps.documentsExplainer.index],
+            onAction: (_) {},
           ),
           IdDocumentsPage(
             formKey: _formKeys[OnboardingSteps.idDocuments.index],
@@ -117,14 +137,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             onAction: (_) {},
             initialData: progress.legal,
           ),
-          PhoneEntryPage(
-            formKey: _formKeys[OnboardingSteps.phone.index],
+          DepositPage(
+            formKey: _formKeys[OnboardingSteps.deposit.index],
             onAction: (_) {},
-          ),
-          PhoneVerificationPage(
-            phoneNumber: _phoneNumber!,
-            formKey: _formKeys[OnboardingSteps.phoneVerification.index],
-            onAction: (_) {},
+            initialData: progress.legal,
           ),
           /*
           CreateClientPage(
@@ -145,15 +161,16 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           ),
           */
           OnboardingDonePage(
-              formKey: _formKeys[OnboardingSteps.confirmation.index],
-              onAction: (_) {
-                widget.onSubmitted(true);
-              },
-              onReset: () {
-                setState(() {
-                  _step = 0;
-                });
-              })
+            formKey: _formKeys[OnboardingSteps.confirmation.index],
+            onAction: (_) {
+              widget.onSubmitted(true);
+            },
+            onReset: () {
+              setState(() {
+                _step = 0;
+              });
+            },
+          )
         ];
 
         return Scaffold(
@@ -163,6 +180,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  // TODO: top bar
                   Flexible(
                     flex: 8,
                     child: Card(
@@ -228,7 +246,12 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                 : OrangeSolidTextButton(
                                     label: l10n.nextButtonText,
                                     onPressed: () {
-                                      if (_step == 0) {
+                                      // Skippable steps
+                                      if (_step ==
+                                              OnboardingSteps.intro.index ||
+                                          _step ==
+                                              OnboardingSteps
+                                                  .documentsExplainer.index) {
                                         setState(() {
                                           _step++;
                                         });
@@ -310,11 +333,11 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         if (_step ==
                                             OnboardingSteps.idDocuments.index) {
                                           if (values != null) {
-                                            _scannedData =
+                                            _scannedIdPics =
                                                 values.withNullsRemoved;
                                           }
 
-                                          _validateDocuments(
+                                          _validateIdDocuments(
                                                   values, progress.progress)
                                               .then((success) {
                                             if (success) {
@@ -326,10 +349,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                             OnboardingSteps
                                                 .driversLicense.index) {
                                           if (values != null) {
-                                            _scannedData =
+                                            _scannedDriversLicensePics =
                                                 values.withNullsRemoved;
                                           }
-                                          _validateDocuments(
+                                          _validateDriversLicense(
                                                   values, progress.progress)
                                               .then((success) {
                                             if (success) {
@@ -416,7 +439,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                           }
                                         }
                                         */
-                                        if (_step == 8) {}
                                       } else {
                                         _showIncompleteFormDialog(context);
                                       }
@@ -436,11 +458,26 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     );
   }
 
-  Future<bool> _validateDocuments(
+  Future<bool> _validateIdDocuments(
       Map<String, dynamic>? values, int progress) async {
-    // TODO: split into id and license
     if (values != null && values.isNotEmpty) {
-      final success = await onboardingRepository.postFiles(values);
+      final success = await onboardingRepository.postIdFiles(values);
+      if (success || progress > 1) {
+        setState(() {
+          _step++;
+        });
+      } else {
+        _showUploadFailedDialog(context);
+      }
+      return success || progress > 1;
+    }
+    return false;
+  }
+
+  Future<bool> _validateDriversLicense(
+      Map<String, dynamic>? values, int progress) async {
+    if (values != null && values.isNotEmpty) {
+      final success = await onboardingRepository.postDriversLicense(values);
       if (success || progress > 1) {
         setState(() {
           _step++;

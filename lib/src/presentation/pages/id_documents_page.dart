@@ -35,11 +35,11 @@ class IdDocumentsPageState extends State<IdDocumentsPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(l10n.documentsPageTitle,
+                  Text(l10n.idDocumentsPageTitle,
                       style: Theme.of(context).textTheme.headlineLarge),
                   Padding(
                     padding: AppPaddings.medium.vertical,
-                    child: Text(l10n.documentsPageMessage,
+                    child: Text(l10n.idDocumentsPageMessage,
                         style: Theme.of(context).textTheme.titleMedium),
                   ),
                   Padding(
@@ -58,19 +58,16 @@ class IdDocumentsPageState extends State<IdDocumentsPage> {
                     children: [
                       // FRONT
                       DocumentFormField(
-                        fieldName: "frontId",
-                        displayName: l10n.idCardFieldFront,
-                        prefilled: widget.prefilled,
-                        onDataFound: (rrn, surName, firstName) => {},
-                      ),
+                          fieldName: "frontId",
+                          displayName: l10n.idCardFieldFront,
+                          prefilled: widget.prefilled,
+                          onDataFound: (_, __, ___) => {}),
 
                       DocumentFormField(
-                        fieldName: "backId",
-                        displayName: l10n.idCardFieldBack,
-                        prefilled: widget.prefilled,
-                        onDataFound: (rrn, surName, firstName) =>
-                            _updateFormData(rrn, surName, firstName),
-                      ),
+                          fieldName: "backId",
+                          displayName: l10n.idCardFieldBack,
+                          prefilled: widget.prefilled,
+                          onDataFound: (_, __, ___) => {}),
                     ].map((child) {
                       return Flexible(child: child);
                     }).toList(),
@@ -96,19 +93,15 @@ class IdDocumentsPageState extends State<IdDocumentsPage> {
                     children: [
                       // FRONT
                       DocumentFormField(
-                        fieldName: "frontDriverLicense",
-                        displayName: l10n.driversLicenseFieldFront,
-                        prefilled: widget.prefilled,
-                        onDataFound: (rrn, surName, firstName) =>
-                            _updateFormData(null, null, null),
-                      ),
+                          fieldName: "frontDriverLicense",
+                          displayName: l10n.driversLicenseFieldFront,
+                          prefilled: widget.prefilled,
+                          onDataFound: (_, __, ___) => {}),
                       DocumentFormField(
-                        fieldName: "backDriverLicense",
-                        displayName: l10n.driversLicenseFieldBack,
-                        prefilled: widget.prefilled,
-                        onDataFound: (rrn, surName, firstName) =>
-                            _updateFormData(null, null, null),
-                      ),
+                          fieldName: "backDriverLicense",
+                          displayName: l10n.driversLicenseFieldBack,
+                          prefilled: widget.prefilled,
+                          onDataFound: (_, __, ___) => {}),
                     ].map((child) {
                       return MediaQuery.of(context).size.width >
                               MediaQuery.of(context).size.height
@@ -118,14 +111,6 @@ class IdDocumentsPageState extends State<IdDocumentsPage> {
                   ),
                 ],
               ),
-              // Invisible, just to pass data
-              FormBuilderField(
-                  builder: ((_) => Container()), name: "socialSecurityNumber"),
-              FormBuilderField(builder: ((_) => Container()), name: "lastName"),
-              FormBuilderField(
-                  builder: ((_) => Container()), name: "firstName"),
-              FormBuilderField(
-                  builder: ((_) => Container()), name: "dateOfBirth"),
             ]
                 .map((field) =>
                     Padding(padding: AppPaddings.medium.vertical, child: field))
@@ -134,24 +119,5 @@ class IdDocumentsPageState extends State<IdDocumentsPage> {
         ),
       ),
     );
-  }
-
-  void _updateFormData(String? rrn, String? surname, String? firstName) {
-    rrn != null
-        ? widget.formKey.currentState?.patchValue({"socialSecurityNumber": rrn})
-        : {};
-    surname != null
-        ? widget.formKey.currentState?.patchValue({"lastName": surname})
-        : {};
-    firstName != null
-        ? widget.formKey.currentState?.patchValue({"firstName": firstName})
-        : {};
-
-    if (rrn != null) {
-      final birthDate = RrnBirthdayParser.birthdayFromRrn(rrn);
-      if (birthDate != null) {
-        widget.formKey.currentState?.patchValue({"dateOfBirth": birthDate});
-      }
-    }
   }
 }

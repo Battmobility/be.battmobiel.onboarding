@@ -41,6 +41,38 @@ class LegalPageState extends State<LegalPage> {
                   child: Text(l10n.convictionsPageMessage,
                       style: Theme.of(context).textTheme.titleMedium),
                 ),
+                Padding(
+                  padding:
+                      AppPaddings.large.leading.add(AppPaddings.xsmall.leading),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: FormBuilderDropdown(
+                            validator: FormBuilderValidators.required(),
+                            name: "nrOfAccidents",
+                            initialValue:
+                                widget.initialData?["nrOfAccidents"] ?? 0,
+                            items: [0, 1, 2, 3, 4, 5]
+                                .map((value) => DropdownMenuItem(
+                                      child: Text("$value"),
+                                      value: value,
+                                    ))
+                                .toList()),
+                      ),
+                      Flexible(
+                        flex: 5,
+                        child: Padding(
+                          padding: AppPaddings.xlarge.leading
+                              .add(AppPaddings.small.horizontal),
+                          child: Text(l10n.convictionTypeNoOfAccidents,
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ].map((child) => Flexible(child: child)).toList(),
             ),
           ),

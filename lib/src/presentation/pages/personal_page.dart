@@ -1,6 +1,8 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
+import 'package:batt_onboarding/src/presentation/widgets/document_form_field.dart';
 import 'package:batt_onboarding/src/util/mrz_reader.dart';
+import 'package:batt_onboarding/src/util/rrn_birthday_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -36,6 +38,13 @@ class PersonalPageState extends State<PersonalPage> {
                 padding: AppPaddings.medium.vertical,
                 child: Text(l10n.identityPageMessage,
                     style: Theme.of(context).textTheme.titleMedium),
+              ),
+              DocumentFormField(
+                fieldName: "backId",
+                displayName: l10n.idCardFieldBack,
+                prefilled: false,
+                onDataFound: (rrn, surName, firstName) =>
+                    _updateFormData(rrn, surName, firstName),
               ),
               Text(l10n.identifyingDataTitle,
                   style: Theme.of(context).textTheme.titleSmall),
@@ -163,5 +172,24 @@ class PersonalPageState extends State<PersonalPage> {
     final tp = TextPainter(text: textSpan, textDirection: TextDirection.ltr);
     tp.layout();
     return tp.width;
+  }
+
+  void _updateFormData(String? rrn, String? surname, String? firstName) {
+    rrn != null
+        ? widget.formKey.currentState?.patchValue({"socialSecurityNumber": rrn})
+        : {};
+    surname != null
+        ? widget.formKey.currentState?.patchValue({"lastName": surname})
+        : {};
+    firstName != null
+        ? widget.formKey.currentState?.patchValue({"firstName": firstName})
+        : {};
+
+    if (rrn != null) {
+      final birthDate = RrnBirthdayParser.birthdayFromRrn(rrn);
+      if (birthDate != null) {
+        widget.formKey.currentState?.patchValue({"dateOfBirth": birthDate});
+      }
+    }
   }
 }
