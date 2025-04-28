@@ -5,6 +5,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"moreInfoButtonLabel": "Waarom vragen we dit?",
+	"@moreInfoButtonLabel": {
+		"type": "text",
+		"placeholders": {}
+	},	
 	"stepIndicatorText": "Stap {step} van {totalSteps}",
 	"@stepIndicatorText": {
 		"type": "text",
@@ -32,6 +37,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"cancelButtonText": "Annuleer",
+	"@cancelButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"previousButtonText": "Vorige",
 	"@previousButtonText": {
 		"type": "text",
@@ -44,6 +54,21 @@
 	},
 	"laterButtonText": "Ik vul dit later aan",
 	"@laterButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"doneButtonText": "Klaar",
+	"@doneButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"scanBackIdButtonLabel": "Vul in met id-kaart",
+	"@scanBackIdButtonLabel": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"scanBackIdFieldLabel": "Back of identity card",
+	"@scanBackIdFieldLabel": {
 		"type": "text",
 		"placeholders": {}
 	},

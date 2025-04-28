@@ -10,6 +10,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get formTitle => 'Become Batt';
 
   @override
+  String get moreInfoButtonLabel => 'Why do we ask you this?';
+
+  @override
   String get introPageNeededDocuments => 'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license';
 
   @override
@@ -24,6 +27,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get closeButtonText => 'Close';
 
   @override
+  String get cancelButtonText => 'Cancel';
+
+  @override
   String get previousButtonText => 'Previous';
 
   @override
@@ -31,6 +37,15 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get laterButtonText => 'I\'ll do this later';
+
+  @override
+  String get doneButtonText => 'Done';
+
+  @override
+  String get scanBackIdButtonLabel => 'Get values from ID card';
+
+  @override
+  String get scanBackIdFieldLabel => 'Back of identity card';
 
   @override
   String get fillOutBeforeContinuing => 'Please fill out all fields before continuing';

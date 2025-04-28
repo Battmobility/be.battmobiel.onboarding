@@ -24,7 +24,6 @@ final class DocumentFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBuilderField<XFile>(
       name: fieldName,
-      autovalidateMode: AutovalidateMode.onUnfocus,
       validator: prefilled ? null : FormBuilderValidators.required(),
       builder: (field) => Padding(
         padding: AppPaddings.medium.top,
@@ -33,7 +32,7 @@ final class DocumentFormField extends StatelessWidget {
             labelText: displayName,
             labelStyle: context.typographyTheme.largeText,
             contentPadding: AppPaddings.small.vertical,
-            errorText: field.value == null
+            errorText: (field.value == null && !prefilled)
                 ? OnboardingLocalizations.of(context).identityPageFileRequired
                 : null,
           ),

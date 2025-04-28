@@ -5,6 +5,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"moreInfoButtonLabel": "Why do we ask you this?",
+	"@moreInfoButtonLabel": {
+		"type": "text",
+		"placeholders": {}
+	},	
 	"introPageNeededDocuments": "Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license",
 	"@introPageNeededDocuments": {
 		"type": "text",
@@ -32,6 +37,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"cancelButtonText": "Cancel",
+	"@cancelButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"previousButtonText": "Previous",
 	"@previousButtonText": {
 		"type": "text",
@@ -44,6 +54,21 @@
 	},
 	"laterButtonText": "I''ll do this later",
 	"@laterButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"doneButtonText": "Done",
+	"@doneButtonText": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"scanBackIdButtonLabel": "Get values from ID card",
+	"@scanBackIdButtonLabel": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"scanBackIdFieldLabel": "Back of identity card",
+	"@scanBackIdFieldLabel": {
 		"type": "text",
 		"placeholders": {}
 	},

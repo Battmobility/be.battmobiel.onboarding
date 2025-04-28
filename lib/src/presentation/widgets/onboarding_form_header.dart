@@ -37,12 +37,21 @@ class OnboardingFormHeaderState extends State<OnboardingFormHeader> {
                 Opacity(
                   opacity: widget.backButtonEnabled ? 1 : 0,
                   child: IconButton(
-                    alignment: Alignment.centerLeft,
-                    padding: AppPaddings.xxsmall.trailing,
+                    style: ButtonStyle(
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(CornerRadii.s.x),
+                          ),
+                        ),
+                        elevation: WidgetStatePropertyAll(0),
+                        backgroundColor:
+                            WidgetStatePropertyAll(AppColors.grey[100]),
+                        visualDensity: VisualDensity.compact),
                     icon: Icon(
                       Icons.arrow_back_sharp,
                       weight: 0.75,
-                      color: AppColors.grey[300],
+                      color: AppColors.grey[800],
                     ),
                     onPressed: () => widget.onbackPressed(),
                   ),

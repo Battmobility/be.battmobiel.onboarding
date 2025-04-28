@@ -16,7 +16,7 @@ final class OnboardingFormFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppPaddings.medium.all,
+      padding: AppPaddings.medium.all.add(AppPaddings.xlarge.horizontal),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,

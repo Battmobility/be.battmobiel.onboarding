@@ -10,6 +10,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get formTitle => 'Word Batt';
 
   @override
+  String get moreInfoButtonLabel => 'Waarom vragen we dit?';
+
+  @override
   String get introPageNeededDocuments => 'Welkom bij Batt! Voor je verder gaat, zorg zeker dat je volgende documenten in de buurt hebt: \n\n• Identiteitsdocument (Belgische eId, elektronische vreemdelingenkaart ...)\n\n• Rijbewijs';
 
   @override
@@ -24,6 +27,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get closeButtonText => 'Close';
 
   @override
+  String get cancelButtonText => 'Annuleer';
+
+  @override
   String get previousButtonText => 'Vorige';
 
   @override
@@ -31,6 +37,15 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get laterButtonText => 'Ik vul dit later aan';
+
+  @override
+  String get doneButtonText => 'Klaar';
+
+  @override
+  String get scanBackIdButtonLabel => 'Vul in met id-kaart';
+
+  @override
+  String get scanBackIdFieldLabel => 'Back of identity card';
 
   @override
   String get fillOutBeforeContinuing => 'Vul alle velden in om verder te gaan';

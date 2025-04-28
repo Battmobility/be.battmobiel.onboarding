@@ -24,6 +24,10 @@ final class PersonalPage extends OnboardingPage {
 class PersonalPageState extends State<PersonalPage> {
   @override
   Widget build(BuildContext context) {
+    String? _rrn;
+    String? _surName;
+    String? _firstName;
+
     final l10n = OnboardingLocalizations.of(context);
     return SingleChildScrollView(
       child: Padding(
@@ -31,6 +35,7 @@ class PersonalPageState extends State<PersonalPage> {
         child: FormBuilder(
           key: widget.formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(l10n.identityPageTitle,
                   style: Theme.of(context).textTheme.headlineLarge),
@@ -39,13 +44,60 @@ class PersonalPageState extends State<PersonalPage> {
                 child: Text(l10n.identityPageMessage,
                     style: Theme.of(context).textTheme.titleMedium),
               ),
-              DocumentFormField(
-                fieldName: "backId",
-                displayName: l10n.idCardFieldBack,
-                prefilled: false,
-                onDataFound: (rrn, surName, firstName) =>
-                    _updateFormData(rrn, surName, firstName),
-              ),
+              DefaultOutlinedTextButton(
+                  label: l10n.scanBackIdButtonLabel,
+                  leading: (iconColor) => Icon(
+                        Icons.camera,
+                        color: iconColor,
+                      ),
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            child: Padding(
+                              padding: AppPaddings.large.all,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  DocumentFormField(
+                                    fieldName: "backId",
+                                    displayName: l10n.scanBackIdFieldLabel,
+                                    prefilled: true,
+                                    onDataFound: (rrn, surName, firstName) {
+                                      _rrn = rrn;
+                                      _surName = surName;
+                                      _firstName = firstName;
+                                    },
+                                  ),
+                                  Padding(
+                                    padding: AppPaddings.medium.vertical,
+                                    child: DefaultSolidTextButton(
+                                        label: l10n.doneButtonText,
+                                        onPressed: () {
+                                          _updateFormData(
+                                              _rrn, _surName, _firstName);
+                                          Navigator.of(context).pop();
+                                        }),
+                                  ),
+                                  Padding(
+                                    padding: AppPaddings.medium.bottom,
+                                    child: DefaultOutlinedTextButton(
+                                        label: l10n.cancelButtonText,
+                                        onPressed: () {
+                                          _rrn = null;
+                                          _surName = null;
+                                          _firstName = null;
+                                          Navigator.of(context).pop();
+                                        }),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                  }),
               Text(l10n.identifyingDataTitle,
                   style: Theme.of(context).textTheme.titleSmall),
               FormBuilderTextField(

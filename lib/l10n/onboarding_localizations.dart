@@ -103,6 +103,12 @@ abstract class OnboardingLocalizations {
   /// **'Become Batt'**
   String get formTitle;
 
+  /// No description provided for @moreInfoButtonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Why do we ask you this?'**
+  String get moreInfoButtonLabel;
+
   /// No description provided for @introPageNeededDocuments.
   ///
   /// In en, this message translates to:
@@ -127,6 +133,12 @@ abstract class OnboardingLocalizations {
   /// **'Close'**
   String get closeButtonText;
 
+  /// No description provided for @cancelButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButtonText;
+
   /// No description provided for @previousButtonText.
   ///
   /// In en, this message translates to:
@@ -144,6 +156,24 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'I\'\'ll do this later'**
   String get laterButtonText;
+
+  /// No description provided for @doneButtonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get doneButtonText;
+
+  /// No description provided for @scanBackIdButtonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Get values from ID card'**
+  String get scanBackIdButtonLabel;
+
+  /// No description provided for @scanBackIdFieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Back of identity card'**
+  String get scanBackIdFieldLabel;
 
   /// No description provided for @fillOutBeforeContinuing.
   ///
