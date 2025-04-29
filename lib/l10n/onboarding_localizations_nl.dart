@@ -42,6 +42,18 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get doneButtonText => 'Klaar';
 
   @override
+  String get continueLaterDialogTitle => 'Later verderdoen?';
+
+  @override
+  String get continueLaterDialogMessage => 'Wil je een andere keer verder doen? We houden wat je al ingevuld had bij voor je.';
+
+  @override
+  String get continueLaterDialogOptionContinueLater => 'Ga leter verder';
+
+  @override
+  String get continueLaterDialogOptionContinueNow => 'Ga nu verder';
+
+  @override
   String get scanBackIdButtonLabel => 'Vul in met id-kaart';
 
   @override

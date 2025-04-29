@@ -62,6 +62,26 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"continueLaterDialogTitle": "Later verderdoen?",
+	"@continueLaterDialogTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"continueLaterDialogMessage": "Wil je een andere keer verder doen? We houden wat je al ingevuld had bij voor je.",
+	"@continueLaterDialogMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"continueLaterDialogOptionContinueLater": "Ga leter verder",
+	"@continueLaterDialogOptionContinueLater": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"continueLaterDialogOptionContinueNow": "Ga nu verder",
+	"@continueLaterDialogOptionContinueNow": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"scanBackIdButtonLabel": "Vul in met id-kaart",
 	"@scanBackIdButtonLabel": {
 		"type": "text",

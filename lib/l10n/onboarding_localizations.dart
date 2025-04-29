@@ -163,6 +163,30 @@ abstract class OnboardingLocalizations {
   /// **'Done'**
   String get doneButtonText;
 
+  /// No description provided for @continueLaterDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue later?'**
+  String get continueLaterDialogTitle;
+
+  /// No description provided for @continueLaterDialogMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to continue at a later point? You can always resume this process later, your data will be there.'**
+  String get continueLaterDialogMessage;
+
+  /// No description provided for @continueLaterDialogOptionContinueLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue later'**
+  String get continueLaterDialogOptionContinueLater;
+
+  /// No description provided for @continueLaterDialogOptionContinueNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue now'**
+  String get continueLaterDialogOptionContinueNow;
+
   /// No description provided for @scanBackIdButtonLabel.
   ///
   /// In en, this message translates to:

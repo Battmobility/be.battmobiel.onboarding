@@ -42,6 +42,18 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get doneButtonText => 'Done';
 
   @override
+  String get continueLaterDialogTitle => 'Continue later?';
+
+  @override
+  String get continueLaterDialogMessage => 'Do you want to continue at a later point? You can always resume this process later, your data will be there.';
+
+  @override
+  String get continueLaterDialogOptionContinueLater => 'Continue later';
+
+  @override
+  String get continueLaterDialogOptionContinueNow => 'Continue now';
+
+  @override
   String get scanBackIdButtonLabel => 'Get values from ID card';
 
   @override

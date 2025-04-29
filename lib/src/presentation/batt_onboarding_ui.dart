@@ -6,6 +6,13 @@ Future<void> showOnboarding({
   required String accessToken,
   required Function(Object) onAuthenticationError,
   required Function(bool) onSubmitted,
+  Function(
+    String name,
+    String? action,
+    int timeStamp,
+    Map<String, dynamic>? data,
+  )? onTrackEvent,
+  Function(String name)? onTrackPageView,
 }) {
   return showDialog(
     context: context,
@@ -15,6 +22,8 @@ Future<void> showOnboarding({
         accessToken: accessToken,
         onAuthenticationError: onAuthenticationError,
         onSubmitted: onSubmitted,
+        onTrackEvent: onTrackEvent,
+        onTrackPageView: onTrackPageView,
       );
     },
   );

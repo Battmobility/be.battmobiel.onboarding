@@ -58,6 +58,26 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"continueLaterDialogTitle": "Continue later?",
+	"@continueLaterDialogTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"continueLaterDialogMessage": "Do you want to continue at a later point? You can always resume this process later, your data will be there.",
+	"@continueLaterDialogMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"continueLaterDialogOptionContinueLater": "Continue later",
+	"@continueLaterDialogOptionContinueLater": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"continueLaterDialogOptionContinueNow": "Continue now",
+	"@continueLaterDialogOptionContinueNow": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"scanBackIdButtonLabel": "Get values from ID card",
 	"@scanBackIdButtonLabel": {
 		"type": "text",
