@@ -2,6 +2,7 @@ import 'package:batt_onboarding/src/presentation/onboarding_landing_form.dart';
 import 'package:flutter/material.dart';
 
 Future<void> showOnboarding({
+  required String? apiUri,
   required BuildContext context,
   required String accessToken,
   required Function(Object) onAuthenticationError,
@@ -19,7 +20,8 @@ Future<void> showOnboarding({
     barrierDismissible: false,
     builder: (BuildContext context) {
       return OnboardingLandingForm(
-        accessToken: accessToken,
+        apiUri: apiUri,
+        token: accessToken,
         onAuthenticationError: onAuthenticationError,
         onSubmitted: onSubmitted,
         onTrackEvent: onTrackEvent,

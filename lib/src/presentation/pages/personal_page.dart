@@ -1,6 +1,8 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:batt_onboarding/src/presentation/widgets/document_form_field.dart';
+import 'package:batt_onboarding/src/util/analytics/analytics_events.dart';
+import 'package:batt_onboarding/src/util/analytics/analytics_util.dart';
 import 'package:batt_onboarding/src/util/mrz_reader.dart';
 import 'package:batt_onboarding/src/util/rrn_birthday_parser.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +26,9 @@ final class PersonalPage extends OnboardingPage {
 class PersonalPageState extends State<PersonalPage> {
   @override
   Widget build(BuildContext context) {
-    String? _rrn;
-    String? _surName;
-    String? _firstName;
+    String? rrn;
+    String? surName;
+    String? firstName;
 
     final l10n = OnboardingLocalizations.of(context);
     return SingleChildScrollView(
@@ -51,6 +53,8 @@ class PersonalPageState extends State<PersonalPage> {
                         color: iconColor,
                       ),
                   onPressed: () {
+                    Analyticsutil.trackEvent(
+                        event: AnalyticsEvent.scanIdBackPressed);
                     showDialog(
                         context: context,
                         builder: (context) {
@@ -66,9 +70,9 @@ class PersonalPageState extends State<PersonalPage> {
                                     displayName: l10n.scanBackIdFieldLabel,
                                     prefilled: true,
                                     onDataFound: (rrn, surName, firstName) {
-                                      _rrn = rrn;
-                                      _surName = surName;
-                                      _firstName = firstName;
+                                      rrn = rrn;
+                                      surName = surName;
+                                      firstName = firstName;
                                     },
                                   ),
                                   Padding(
@@ -77,7 +81,7 @@ class PersonalPageState extends State<PersonalPage> {
                                         label: l10n.doneButtonText,
                                         onPressed: () {
                                           _updateFormData(
-                                              _rrn, _surName, _firstName);
+                                              rrn, surName, firstName);
                                           Navigator.of(context).pop();
                                         }),
                                   ),
@@ -86,9 +90,9 @@ class PersonalPageState extends State<PersonalPage> {
                                     child: DefaultOutlinedTextButton(
                                         label: l10n.cancelButtonText,
                                         onPressed: () {
-                                          _rrn = null;
-                                          _surName = null;
-                                          _firstName = null;
+                                          rrn = null;
+                                          surName = null;
+                                          firstName = null;
                                           Navigator.of(context).pop();
                                         }),
                                   )

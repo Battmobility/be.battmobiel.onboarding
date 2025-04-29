@@ -1,4 +1,5 @@
 import 'package:batt_ds/batt_ds.dart';
+import 'package:batt_onboarding/src/data/api_factory.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
@@ -12,7 +13,8 @@ import 'package:batt_onboarding/src/presentation/pages/phone_verification_page.d
 import 'package:batt_onboarding/src/presentation/pages/personal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
 import 'package:batt_onboarding/src/presentation/widgets/onboarding_form_footer.dart';
-import 'package:batt_onboarding/src/util/event_names.dart';
+import 'package:batt_onboarding/src/util/analytics/analytics_events.dart';
+import 'package:batt_onboarding/src/util/analytics/analytics_util.dart';
 import 'package:batt_onboarding/src/util/nonnull_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -24,29 +26,30 @@ import 'pages/phone_entry_page.dart';
 import 'widgets/onboarding_form_header.dart';
 
 class OnboardingLandingForm extends StatefulWidget {
-  final String accessToken;
   final Function(Object) onAuthenticationError;
   final Function(bool) onSubmitted;
-  final Function(
-    String name,
-    String? action,
-    int timeStamp,
-    Map<String, dynamic>? data,
-  )? onTrackEvent;
-  final Function(String name)? onTrackPageView;
 
-  const OnboardingLandingForm({
-    super.key,
-    required this.accessToken,
+  OnboardingLandingForm({
+    String? apiUri,
+    required String token,
     required this.onAuthenticationError,
     required this.onSubmitted,
-    this.onTrackEvent,
-    this.onTrackPageView,
-  });
+    Function(
+      String name,
+      String? action,
+      int timeStamp,
+      Map<String, dynamic>? data,
+    )? onTrackEvent,
+    Function(String name)? onTrackPageView,
+  }) {
+    TokenService(token);
+    ApiFactory.init(apiUri: apiUri);
+    Analyticsutil.init(
+        onTrackEvent: onTrackEvent, onTrackPageView: onTrackPageView);
+  }
 
   @override
   OnboardingLandingFormState createState() {
-    TokenService(accessToken);
     return OnboardingLandingFormState();
   }
 }
@@ -175,13 +178,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         );
         controller.addListener(() {
           if (_step == 0 && startedAt == null) {
-            startedAt = DateTime.now();
+            Analyticsutil.start();
           }
-          if (widget.onTrackPageView != null &&
-              controller.page != null &&
-              _step < OnboardingSteps.values.length - 1) {
-            widget.onTrackPageView!(OnboardingSteps.values[_step].name);
-          }
+          Analyticsutil
+              .instance.onTrackPageView!(OnboardingSteps.values[_step].name);
         });
 
         return Scaffold(
@@ -201,6 +201,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                     setState(() {
                       _step--;
                     });
+                    Analyticsutil.trackEvent(
+                      event: AnalyticsEvent.backPressed,
+                      action: OnboardingSteps.values[_step].name,
+                    );
                     controller.jumpToPage(_step);
                   },
                 ),
@@ -241,9 +245,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         label: l10n
                                             .continueLaterDialogOptionContinueNow,
                                         onPressed: () {
-                                          _trackEvent(
-                                            eventName: EventNames
-                                                .continueLaterCanceled.name,
+                                          Analyticsutil.trackEvent(
+                                            event: AnalyticsEvent
+                                                .continueLaterCanceled,
                                             action: OnboardingSteps
                                                 .values[_step].name,
                                           );
@@ -255,9 +259,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         onPressed: () {
                                           Navigator.of(ctx).pop();
 
-                                          _trackEvent(
-                                            eventName: EventNames
-                                                .continueLaterPressed.name,
+                                          Analyticsutil.trackEvent(
+                                            event: AnalyticsEvent
+                                                .continueLaterPressed,
                                             action: OnboardingSteps
                                                 .values[_step].name,
                                           );
@@ -448,9 +452,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         setState(() {
           _step++;
         });
-        _trackEvent(eventName: EventNames.idUploaded.name);
+        Analyticsutil.trackEvent(event: AnalyticsEvent.idUploaded);
       } else {
-        _trackEvent(eventName: EventNames.idUploadFailed.name);
+        Analyticsutil.trackEvent(event: AnalyticsEvent.idUploadFailed);
         _showUploadFailedDialog(context);
       }
       return success || progress > 1;
@@ -463,12 +467,13 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     if (values != null && values.isNotEmpty) {
       final success = await onboardingRepository.postDriversLicense(values);
       if (success || progress > 1) {
-        _trackEvent(eventName: EventNames.drivingLicenseUploaded.name);
+        Analyticsutil.trackEvent(event: AnalyticsEvent.drivingLicenseUploaded);
         setState(() {
           _step++;
         });
       } else {
-        _trackEvent(eventName: EventNames.drivingLicenseUploadFailed.name);
+        Analyticsutil.trackEvent(
+            event: AnalyticsEvent.drivingLicenseUploadFailed);
 
         _showUploadFailedDialog(context);
       }
@@ -505,17 +510,5 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         ],
       ),
     );
-  }
-
-  void _trackEvent(
-      {required String eventName,
-      String? action,
-      Map<String, dynamic>? eventParams}) {
-    if (widget.onTrackEvent != null) {
-      final timeStamp = startedAt != null
-          ? DateTime.now().difference(startedAt!).inSeconds
-          : -1;
-      widget.onTrackEvent!(eventName, action, timeStamp, eventParams);
-    }
   }
 }

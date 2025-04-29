@@ -26,7 +26,7 @@ final class OnboardingService {
       List<int> frontId = await documents["frontId"]!.readAsBytes();
 
       return false;
-      // TODO: re-enable with regenerated API
+      // TODO: re-enable with regenerated
       /*
       final response = await api.userV1UsersOnboardingDocumentsPut(
           backDriverLicense: MultipartFile.fromBytes(

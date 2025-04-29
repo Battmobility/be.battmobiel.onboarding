@@ -116,11 +116,17 @@ class _MyAppState extends State<MyApp> {
 
   Widget _formBody(BuildContext context, String accessToken) =>
       OnboardingLandingForm(
-          accessToken: accessToken,
-          onAuthenticationError: (_) => {},
-          onSubmitted: (_) {
-            clearToken().then((_) {
-              setState(() {});
-            });
+        token: accessToken,
+        onAuthenticationError: (_) => {},
+        onSubmitted: (_) {
+          clearToken().then((_) {
+            setState(() {});
           });
+        },
+        onTrackEvent: (name, action, timeStamp, data) =>
+            print("Tracking event: $name, $action, $timeStamp seconds, $data"),
+        onTrackPageView: (name) => print(
+          "Tracking page view: $name",
+        ),
+      );
 }
