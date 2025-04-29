@@ -1,9 +1,9 @@
-import 'package:batt_onboarding/api/generated/mobile_api.swagger.dart';
+import 'package:batt_kit/api/generated/batt_kit.swagger.dart';
 
 extension FromMap on Map<String, dynamic> {
-  ContractsOnboardingLegal toContractsOnboardingLegal() {
-    return ContractsOnboardingLegal(
-      convictions: ContractsConvictions(
+  OnboardingLegal toContractsOnboardingLegal() {
+    return OnboardingLegal(
+      convictions: Convictions(
           convictionBloodTestRefusal:
               this["convictionBloodTestRefusal"] == true,
           convictionDrunk: this["convictionDrunk"] == true,
@@ -15,7 +15,7 @@ extension FromMap on Map<String, dynamic> {
   }
 }
 
-extension ToMap on ContractsOnboardingLegal {
+extension ToMap on OnboardingLegal {
   Map<String, dynamic> toMap() {
     return {
       "convictionBloodTestRefusal": convictions.convictionBloodTestRefusal,

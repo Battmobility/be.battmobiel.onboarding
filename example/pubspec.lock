@@ -9,6 +9,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  batt_auth:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "547a5616ec6a1208dd5145685147628317424d51"
+      url: "https://github.com/Battmobility/dart_auth.git"
+    source: git
+    version: "1.0.2"
   batt_ds:
     dependency: "direct main"
     description:
@@ -18,6 +27,15 @@ packages:
       url: "https://github.com/Battmobility/be.battmobility.batt_ds.git"
     source: git
     version: "0.0.10"
+  batt_kit:
+    dependency: transitive
+    description:
+      path: "."
+      ref: main
+      resolved-ref: dd0eb1d9200129248551313fb652dd9e39fa2138
+      url: "https://github.com/Battmobility/batt_api.git"
+    source: git
+    version: "0.0.3"
   batt_onboarding:
     dependency: "direct main"
     description:
@@ -73,15 +91,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.4+2"
-  dart_auth:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: main
-      resolved-ref: abb4c60c48ced87ff7184257491f94ca60e8065a
-      url: "https://github.com/Battmobility/dart_auth.git"
-    source: git
-    version: "0.0.12"
   dio:
     dependency: transitive
     description:
@@ -470,6 +479,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      sha256: be4b23575aac7ebf01f225a241eb7f6b5641eeaf43c6a8613510fc2f8cf187d1
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.0"
   logging:
     dependency: transitive
     description:
@@ -804,5 +821,5 @@ packages:
     source: hosted
     version: "1.1.0"
 sdks:
-  dart: ">=3.6.0 <4.0.0"
-  flutter: ">=3.27.0"
+  dart: ">=3.6.2 <4.0.0"
+  flutter: ">=3.27.3"

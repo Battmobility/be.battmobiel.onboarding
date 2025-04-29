@@ -1,6 +1,5 @@
-import 'package:batt_onboarding/api/generated/mobile_api.models.swagger.dart';
-
-import '../../api/generated/mobile_api.enums.swagger.dart';
+import 'package:batt_kit/api/generated/batt_kit.enums.swagger.dart';
+import 'package:batt_kit/api/generated/batt_kit.models.swagger.dart';
 
 extension ContractDataMapper on Map<String, dynamic> {
   CreateNewUsageContractRequest toContract() {

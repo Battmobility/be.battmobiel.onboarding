@@ -1,4 +1,4 @@
-import 'package:batt_onboarding/api/generated/mobile_api.swagger.dart';
+import 'package:batt_kit/api/generated/batt_kit.swagger.dart' as api;
 
 final class OnboardingProgress {
   final Map<String, dynamic> legal;
@@ -11,7 +11,7 @@ final class OnboardingProgress {
     required this.progress,
   });
 
-  factory OnboardingProgress.fromContract(ContractsOnboarding? contract) {
+  factory OnboardingProgress.fromContract(api.Onboarding? contract) {
     if (contract != null) {
       return OnboardingProgress(
         legal: {
@@ -63,18 +63,18 @@ final class OnboardingProgress {
   }
 }
 
-extension Progress on ContractsOnboarding {
+extension Progress on api.Onboarding {
   int get progress {
     switch (status) {
-      case ContractsOnboardingStatus.completed:
+      case api.OnboardingStatus.completed:
         return 5;
-      case ContractsOnboardingStatus.phone:
+      case api.OnboardingStatus.phone:
         return 4;
-      case ContractsOnboardingStatus.personal:
+      case api.OnboardingStatus.personal:
         return 3;
-      case ContractsOnboardingStatus.documents:
+      case api.OnboardingStatus.documents:
         return 2;
-      case ContractsOnboardingStatus.conviction:
+      case api.OnboardingStatus.conviction:
         return 1;
       default:
         return 0; // Default progress if status is unknown or not applicable

@@ -1,17 +1,17 @@
-import 'package:batt_onboarding/api/generated/mobile_api.swagger.dart';
+import 'package:batt_kit/api/generated/batt_kit.swagger.dart';
 import 'package:batt_onboarding/src/data/api_factory.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 
 final class OnboardingService {
-  MobileApi get api => ApiFactory.getMobileApi();
+  BattKit get api => ApiFactory.getMobileApi();
 
-  Future<ContractsOnboarding?> getOnboardingProgress() async {
+  Future<Onboarding?> getOnboardingProgress() async {
     final response = await api.userV1UsersOnboardingGet();
     return response.body;
   }
 
-  Future<bool> postConvictions(ContractsOnboardingLegal convictions) async {
+  Future<bool> postConvictions(OnboardingLegal convictions) async {
     final response = await api.userV1UsersOnboardingLegalPut(body: convictions);
     return response.isSuccessful;
   }
@@ -25,6 +25,9 @@ final class OnboardingService {
       List<int> backId = await documents["backId"]!.readAsBytes();
       List<int> frontId = await documents["frontId"]!.readAsBytes();
 
+      return false;
+      // TODO: re-enable with regenerated API
+      /*
       final response = await api.userV1UsersOnboardingDocumentsPut(
           backDriverLicense: MultipartFile.fromBytes(
               "backDriverLicense", backDriverLicense,
@@ -38,13 +41,13 @@ final class OnboardingService {
               filename: 'frontId.jpg'));
 
       return response.isSuccessful;
+      */
     } catch (e, _) {
       return false;
     }
   }
 
-  Future<bool> postPersonalData(
-      ContractsOnboardingPersonal personalData) async {
+  Future<bool> postPersonalData(OnboardingPersonal personalData) async {
     try {
       final response =
           await api.userV1UsersOnboardingPersonalPut(body: personalData);
@@ -57,7 +60,7 @@ final class OnboardingService {
   Future<bool> postPhoneNumber(String phone) async {
     try {
       final response = await api.userV1UsersOnboardingPhonePut(
-          body: ContractsOnboardingPhone(phoneNumber: phone));
+          body: OnboardingPhone(phoneNumber: phone));
       return response.isSuccessful;
     } catch (e, _) {
       return false;
@@ -67,7 +70,7 @@ final class OnboardingService {
   Future<bool> postVerificationCode(String phone, String code) async {
     try {
       final response = await api.userV1UsersOnboardingPhonePut(
-          body: ContractsOnboardingPhone(
+          body: OnboardingPhone(
               phoneNumber: phone, phoneNumberValidationCode: code));
       return response.isSuccessful;
     } catch (e, _) {
@@ -75,7 +78,7 @@ final class OnboardingService {
     }
   }
 
-  Future<int?> postNewClientData(ContractsCreateClient client) async {
+  Future<int?> postNewClientData(CreateClient client) async {
     try {
       final response = await api.userV1ClientsPost(body: client);
       return response.body?.id;

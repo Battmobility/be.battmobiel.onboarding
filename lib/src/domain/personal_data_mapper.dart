@@ -1,8 +1,8 @@
-import 'package:batt_onboarding/api/generated/mobile_api.swagger.dart';
+import 'package:batt_kit/api/generated/batt_kit.swagger.dart';
 
 extension FromMap on Map<String, dynamic> {
-  ContractsOnboardingPersonal toContractsOnboardingPersonal() {
-    return ContractsOnboardingPersonal(
+  OnboardingPersonal toContractsOnboardingPersonal() {
+    return OnboardingPersonal(
       box: this["box"] ?? "",
       city: this["city"],
       dateCurrentLicense: (this["dateCurrentLicense"] as DateTime).toUtc(),
@@ -22,7 +22,7 @@ extension FromMap on Map<String, dynamic> {
   }
 }
 
-extension ToMap on ContractsOnboardingPersonal {
+extension ToMap on OnboardingPersonal {
   Map<String, dynamic> toMap() {
     return {
       "box": box,
@@ -44,14 +44,13 @@ extension ToMap on ContractsOnboardingPersonal {
 }
 
 extension FromString on String {
-  ContractsOnboardingPersonalLicenseType
-      toContractsOnboardingPersonalLicenseType() {
+  OnboardingPersonalLicenseType toContractsOnboardingPersonalLicenseType() {
     if (this == "BELGIAN") {
-      return ContractsOnboardingPersonalLicenseType.belgian;
+      return OnboardingPersonalLicenseType.belgian;
     } else if (this == "EUROPEAN") {
-      return ContractsOnboardingPersonalLicenseType.european;
+      return OnboardingPersonalLicenseType.european;
     } else {
-      return ContractsOnboardingPersonalLicenseType.other;
+      return OnboardingPersonalLicenseType.other;
     }
   }
 }

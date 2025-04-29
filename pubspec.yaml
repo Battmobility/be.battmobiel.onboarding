@@ -34,6 +34,12 @@ dependencies:
     git:
       url: https://github.com/Battmobility/be.battmobility.batt_ds.git
       ref: 'main'
+  
+  batt_kit:
+    git:
+      url: https://github.com/Battmobility/batt_api.git
+      ref: 'main'
+
 
 dev_dependencies:
   build_runner: ^2.4.15
