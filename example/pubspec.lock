@@ -32,7 +32,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: dd0eb1d9200129248551313fb652dd9e39fa2138
+      resolved-ref: "75b627a3e95a33a1829d6f660b5df5d5f17be2c4"
       url: "https://github.com/Battmobility/batt_api.git"
     source: git
     version: "0.0.3"

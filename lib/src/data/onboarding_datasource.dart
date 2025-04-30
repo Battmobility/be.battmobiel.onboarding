@@ -22,11 +22,11 @@ final class OnboardingDatasource {
   }
 
   Future<bool> postIdFiles(Map<String, XFile> documents) async {
-    return service.postDocsHttp(documents);
+    return service.postIdFiles(documents);
   }
 
   Future<bool> postDriversLicense(Map<String, XFile> documents) async {
-    return service.postDocsHttp(documents);
+    return service.postDriversLicenseFiles(documents);
   }
 
   Future<bool> postPersonalData(Map<String, dynamic> formData) async {

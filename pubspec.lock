@@ -60,10 +60,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "41ec507dc5bf4f27a85f51ce1fb6a051bd5bb7b2"
+      resolved-ref: "75b627a3e95a33a1829d6f660b5df5d5f17be2c4"
       url: "https://github.com/Battmobility/batt_api.git"
     source: git
-    version: "0.0.2"
+    version: "0.0.3"
   boolean_selector:
     dependency: transitive
     description:

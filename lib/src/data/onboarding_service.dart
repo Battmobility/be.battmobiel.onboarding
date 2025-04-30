@@ -16,15 +16,39 @@ final class OnboardingService {
     return response.isSuccessful;
   }
 
-  Future<bool> postDocsHttp(Map<String, XFile> documents) async {
+  Future<bool> postIdFiles(Map<String, XFile> documents) async {
+    try {
+      List<int> backId = await documents["backId"]!.readAsBytes();
+      List<int> frontId = await documents["frontId"]!.readAsBytes();
+
+      return false;
+      // TODO: re-enable with regenerated
+      /*
+      final response = await api.userV1UsersOnboardingDocumentsPut(
+          backDriverLicense: MultipartFile.fromBytes(
+              "backDriverLicense", backDriverLicense,
+              filename: 'backDriverLicense.jpg'),
+          frontDriverLicense: MultipartFile.fromBytes(
+              "frontDriverLicense", frontDriverLicense,
+              filename: 'frontDriverLicense.jpg'),
+          backId:
+              MultipartFile.fromBytes("backId", backId, filename: 'backId.jpg'),
+          frontId: MultipartFile.fromBytes("frontId", frontId,
+              filename: 'frontId.jpg'));
+
+      return response.isSuccessful;
+      */
+    } catch (e, _) {
+      return false;
+    }
+  }
+
+  Future<bool> postDriversLicenseFiles(Map<String, XFile> documents) async {
     try {
       List<int> backDriverLicense =
           await documents["backDriverLicense"]!.readAsBytes();
       List<int> frontDriverLicense =
           await documents["frontDriverLicense"]!.readAsBytes();
-      List<int> backId = await documents["backId"]!.readAsBytes();
-      List<int> frontId = await documents["frontId"]!.readAsBytes();
-
       return false;
       // TODO: re-enable with regenerated
       /*
