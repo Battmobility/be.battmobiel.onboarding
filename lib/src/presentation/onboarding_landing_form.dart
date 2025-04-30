@@ -180,8 +180,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           if (_step == 0 && startedAt == null) {
             Analyticsutil.start();
           }
-          Analyticsutil
-              .instance.onTrackPageView!(OnboardingSteps.values[_step].name);
+          if (Analyticsutil.instance.onTrackPageView != null) {
+            Analyticsutil
+                .instance.onTrackPageView!(OnboardingSteps.values[_step].name);
+          }
         });
 
         return Scaffold(

@@ -14,6 +14,7 @@ class ApiFactory {
   }
 
   static final ApiFactory instance = ApiFactory._internal();
+
   static BattKit getMobileApi() {
     List<Interceptor> interceptors = [
       AuthInterceptor(TokenService.instance.accessToken)
