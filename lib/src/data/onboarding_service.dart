@@ -21,23 +21,13 @@ final class OnboardingService {
       List<int> backId = await documents["backId"]!.readAsBytes();
       List<int> frontId = await documents["frontId"]!.readAsBytes();
 
-      return false;
-      // TODO: re-enable with regenerated
-      /*
       final response = await api.userV1UsersOnboardingDocumentsPut(
-          backDriverLicense: MultipartFile.fromBytes(
-              "backDriverLicense", backDriverLicense,
-              filename: 'backDriverLicense.jpg'),
-          frontDriverLicense: MultipartFile.fromBytes(
-              "frontDriverLicense", frontDriverLicense,
-              filename: 'frontDriverLicense.jpg'),
           backId:
               MultipartFile.fromBytes("backId", backId, filename: 'backId.jpg'),
           frontId: MultipartFile.fromBytes("frontId", frontId,
               filename: 'frontId.jpg'));
 
       return response.isSuccessful;
-      */
     } catch (e, _) {
       return false;
     }
@@ -49,23 +39,17 @@ final class OnboardingService {
           await documents["backDriverLicense"]!.readAsBytes();
       List<int> frontDriverLicense =
           await documents["frontDriverLicense"]!.readAsBytes();
-      return false;
-      // TODO: re-enable with regenerated
-      /*
+
       final response = await api.userV1UsersOnboardingDocumentsPut(
-          backDriverLicense: MultipartFile.fromBytes(
-              "backDriverLicense", backDriverLicense,
-              filename: 'backDriverLicense.jpg'),
-          frontDriverLicense: MultipartFile.fromBytes(
-              "frontDriverLicense", frontDriverLicense,
-              filename: 'frontDriverLicense.jpg'),
-          backId:
-              MultipartFile.fromBytes("backId", backId, filename: 'backId.jpg'),
-          frontId: MultipartFile.fromBytes("frontId", frontId,
-              filename: 'frontId.jpg'));
+        backDriverLicense: MultipartFile.fromBytes(
+            "backDriverLicense", backDriverLicense,
+            filename: 'backDriverLicense.jpg'),
+        frontDriverLicense: MultipartFile.fromBytes(
+            "frontDriverLicense", frontDriverLicense,
+            filename: 'frontDriverLicense.jpg'),
+      );
 
       return response.isSuccessful;
-      */
     } catch (e, _) {
       return false;
     }
