@@ -17,6 +17,7 @@ final class PersonalPage extends OnboardingPage {
     required super.formKey,
     required super.onAction,
     super.initialData,
+    super.analyticsAction = AnalyticsAction.editPersonalData,
   });
 
   @override
@@ -53,8 +54,6 @@ class PersonalPageState extends State<PersonalPage> {
                         color: iconColor,
                       ),
                   onPressed: () {
-                    Analyticsutil.trackEvent(
-                        event: AnalyticsEvent.scanIdBackPressed);
                     showDialog(
                         context: context,
                         builder: (context) {

@@ -204,8 +204,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                       _step--;
                     });
                     Analyticsutil.trackEvent(
-                      event: AnalyticsEvent.backPressed,
-                      action: OnboardingSteps.values[_step].name,
+                      name: OnboardingSteps.values[_step].name,
+                      action: AnalyticsAction.goBack,
                     );
                     controller.jumpToPage(_step);
                   },
@@ -217,11 +217,13 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                     alignment: Alignment.topLeft,
                     child: Padding(
                       padding: AppPaddings.medium.all,
-                      child: PageView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          controller: controller,
-                          itemBuilder: (context, index) => pages[index],
-                          itemCount: pages.length),
+                      child: Scaffold(
+                        body: PageView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            controller: controller,
+                            itemBuilder: (context, index) => pages[index],
+                            itemCount: pages.length),
+                      ),
                     ),
                   ),
                 ),
@@ -247,12 +249,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         label: l10n
                                             .continueLaterDialogOptionContinueNow,
                                         onPressed: () {
-                                          Analyticsutil.trackEvent(
-                                            event: AnalyticsEvent
-                                                .continueLaterCanceled,
-                                            action: OnboardingSteps
-                                                .values[_step].name,
-                                          );
                                           Navigator.of(ctx).pop();
                                         }),
                                     OrangeSolidTextButton(
@@ -262,9 +258,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                           Navigator.of(ctx).pop();
 
                                           Analyticsutil.trackEvent(
-                                            event: AnalyticsEvent
-                                                .continueLaterPressed,
-                                            action: OnboardingSteps
+                                            action:
+                                                AnalyticsAction.exitOnboarding,
+                                            name: OnboardingSteps
                                                 .values[_step].name,
                                           );
                                           widget.onSubmitted(false);
@@ -278,6 +274,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               ],
             ),
           ),
+          resizeToAvoidBottomInset: false,
         );
       },
     );
@@ -288,6 +285,11 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     List<OnboardingPage> pages,
     OnboardingProgress progress,
   ) {
+    final analyticsAction = pages[_step].analyticsAction;
+    Analyticsutil.trackEvent(
+      action: analyticsAction,
+      name: OnboardingSteps.values[_step].name,
+    );
     // Skippable steps
     if (_step == OnboardingSteps.intro.index ||
         _step == OnboardingSteps.documentsExplainer.index) {
@@ -454,9 +456,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         setState(() {
           _step++;
         });
-        Analyticsutil.trackEvent(event: AnalyticsEvent.idUploaded);
+        Analyticsutil.trackEvent(
+            name: "upload_id", action: AnalyticsAction.uploadId);
       } else {
-        Analyticsutil.trackEvent(event: AnalyticsEvent.idUploadFailed);
         _showUploadFailedDialog(context);
       }
       return success || progress > 1;
@@ -469,14 +471,12 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     if (values != null && values.isNotEmpty) {
       final success = await onboardingRepository.postDriversLicense(values);
       if (success || progress > 1) {
-        Analyticsutil.trackEvent(event: AnalyticsEvent.drivingLicenseUploaded);
+        Analyticsutil.trackEvent(
+            name: "upload_license", action: AnalyticsAction.uploadLicense);
         setState(() {
           _step++;
         });
       } else {
-        Analyticsutil.trackEvent(
-            event: AnalyticsEvent.drivingLicenseUploadFailed);
-
         _showUploadFailedDialog(context);
       }
       return success || progress > 1;

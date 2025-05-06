@@ -3,6 +3,7 @@ import 'package:batt_ds/batt_ds.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../l10n/onboarding_localizations.dart';
+import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
 
 final class DocumentsExplainerPage extends OnboardingPage {
@@ -11,6 +12,7 @@ final class DocumentsExplainerPage extends OnboardingPage {
     required super.formKey,
     required super.onAction,
     super.initialData,
+    super.analyticsAction = AnalyticsAction.payDeposit,
   });
 
   @override

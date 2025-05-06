@@ -3,6 +3,7 @@ import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
 
 final class OnboardingDonePage extends OnboardingPage {
@@ -14,6 +15,7 @@ final class OnboardingDonePage extends OnboardingPage {
     required super.onAction,
     this.onReset,
     super.initialData,
+    super.analyticsAction = AnalyticsAction.finishOnboarding,
   });
 
   @override

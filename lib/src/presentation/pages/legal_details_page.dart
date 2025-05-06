@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
 
 final class LegalDetailsPage extends OnboardingPage {
@@ -14,6 +15,7 @@ final class LegalDetailsPage extends OnboardingPage {
     required super.formKey,
     required super.onAction,
     super.initialData,
+    super.analyticsAction = AnalyticsAction.enterAccidents,
   });
 
   @override

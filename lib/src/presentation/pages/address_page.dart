@@ -1,5 +1,6 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
+import 'package:batt_onboarding/src/util/analytics/analytics_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -12,6 +13,7 @@ final class AddressPage extends OnboardingPage {
     required super.formKey,
     required super.onAction,
     super.initialData,
+    super.analyticsAction = AnalyticsAction.editAddress,
   });
 
   @override

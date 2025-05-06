@@ -44,14 +44,14 @@ class Analyticsutil {
   }
 
   static void trackEvent(
-      {required AnalyticsEvent event,
-      String? action,
+      {required String name,
+      required AnalyticsAction action,
       Map<String, dynamic>? eventParams}) {
     if (instance._onTrackEvent != null) {
       final timeStamp = instance._startedAt != null
           ? DateTime.now().difference(instance._startedAt!).inSeconds
           : -1;
-      instance._onTrackEvent!(event.name, action, timeStamp, eventParams);
+      instance._onTrackEvent!(name, action.name, timeStamp, eventParams);
     }
   }
 

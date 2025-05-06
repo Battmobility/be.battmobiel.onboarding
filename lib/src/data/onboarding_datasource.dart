@@ -30,7 +30,7 @@ final class OnboardingDatasource {
   }
 
   Future<bool> postPersonalData(Map<String, dynamic> formData) async {
-    return service.postPersonalData(formData.toContractsOnboardingPersonal());
+    return service.postPersonalData(formData.toOnboardingPersonal());
   }
 
   Future<bool> postPhoneNumber(String phone) async {

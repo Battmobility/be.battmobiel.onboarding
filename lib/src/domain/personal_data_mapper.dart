@@ -1,7 +1,7 @@
 import 'package:batt_kit/api/generated/batt_kit.swagger.dart';
 
 extension FromMap on Map<String, dynamic> {
-  OnboardingPersonal toContractsOnboardingPersonal() {
+  OnboardingPersonal toOnboardingPersonal() {
     return OnboardingPersonal(
       box: this["box"] ?? "",
       city: this["city"],

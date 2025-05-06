@@ -4,6 +4,7 @@ import 'package:batt_onboarding/src/util/rrn_birthday_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+import '../../util/analytics/analytics_events.dart';
 import '../widgets/document_form_field.dart';
 import 'onboarding_page.dart';
 
@@ -15,6 +16,7 @@ final class DriversLicensePage extends OnboardingPage {
     required super.onAction,
     required this.prefilled,
     super.initialData,
+    super.analyticsAction = AnalyticsAction.uploadLicense,
   });
 
   @override

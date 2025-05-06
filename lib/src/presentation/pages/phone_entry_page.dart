@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sealed_countries/sealed_countries.dart';
+import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
 
 final class PhoneEntryPage extends OnboardingPage {
@@ -15,6 +16,7 @@ final class PhoneEntryPage extends OnboardingPage {
     required super.formKey,
     required super.onAction,
     super.initialData,
+    super.analyticsAction = AnalyticsAction.enterPhone,
   });
 
   @override
