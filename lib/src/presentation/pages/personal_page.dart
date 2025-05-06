@@ -2,7 +2,6 @@ import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:batt_onboarding/src/presentation/widgets/document_form_field.dart';
 import 'package:batt_onboarding/src/util/analytics/analytics_events.dart';
-import 'package:batt_onboarding/src/util/analytics/analytics_util.dart';
 import 'package:batt_onboarding/src/util/mrz_reader.dart';
 import 'package:batt_onboarding/src/util/rrn_birthday_parser.dart';
 import 'package:flutter/material.dart';
