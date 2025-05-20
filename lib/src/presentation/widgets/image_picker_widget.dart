@@ -199,7 +199,7 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: OnboardingLocalizations.of(context).imageCropperTitle,
-          toolbarColor: AppColors.warning,
+          toolbarColor: AppColors.ctaSand,
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.square,
           lockAspectRatio: false,
