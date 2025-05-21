@@ -56,7 +56,7 @@ class DocumentsExplainerPageState extends State<DocumentsExplainerPage> {
               Padding(
                 padding: AppPaddings.large.top,
                 child: FaIcon(FontAwesomeIcons.idCard,
-                    size: 100, color: AppColors.defaultBlue),
+                    size: 100, color: AppColors.futureBlue),
               ),
             ],
           )),

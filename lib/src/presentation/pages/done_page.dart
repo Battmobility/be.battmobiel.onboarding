@@ -38,7 +38,7 @@ class OnboardingDonePageState extends State<OnboardingDonePage> {
                 style: Theme.of(context).textTheme.headlineLarge),
             SizedBox(height: AppSpacings.xl),
             FaIcon(FontAwesomeIcons.chargingStation,
-                size: 100, color: AppColors.defaultBlue),
+                size: 100, color: AppColors.futureBlue),
             SizedBox(height: AppSpacings.xxl),
             Text(l10n.donePageMessage,
                 textAlign: TextAlign.center,

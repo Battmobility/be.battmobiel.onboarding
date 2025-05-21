@@ -49,7 +49,7 @@ class DepositPageState extends State<DepositPage> {
               Padding(
                 padding: AppPaddings.large.top,
                 child: FaIcon(FontAwesomeIcons.coins,
-                    size: 100, color: AppColors.defaultBlue),
+                    size: 100, color: AppColors.futureBlue),
               ),
             ],
           )),
