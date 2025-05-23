@@ -1,6 +1,6 @@
 name: batt_onboarding
 description: Onboarding for BattMobility/MobilityOS
-version: 1.1.7
+version: 1.1.8
 publish_to: none
 # repository: https://github.com/my_org/my_repo
 
@@ -42,7 +42,7 @@ dependencies:
 
 dependency_overrides:
   intl: 0.20.2
-  
+
 dev_dependencies:
   build_runner: ^2.4.15
   flutter_gen: ^5.10.0
