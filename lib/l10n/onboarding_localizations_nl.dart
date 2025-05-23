@@ -15,8 +15,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get moreInfoButtonLabel => 'Waarom vragen we dit?';
 
   @override
-  String get introPageNeededDocuments =>
-      'Welkom bij Batt! Voor je verder gaat, zorg zeker dat je volgende documenten in de buurt hebt: \n\n• Identiteitsdocument (Belgische eId, elektronische vreemdelingenkaart ...)\n\n• Rijbewijs';
+  String get introPageNeededDocuments => 'Welkom bij Batt! Voor je verder gaat, zorg zeker dat je volgende documenten in de buurt hebt: \n\n• Identiteitsdocument (Belgische eId, elektronische vreemdelingenkaart ...)\n\n• Rijbewijs';
 
   @override
   String get introPageCancelButtonText => 'Ga een andere keer verder';
@@ -48,8 +47,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get continueLaterDialogTitle => 'Later verderdoen?';
 
   @override
-  String get continueLaterDialogMessage =>
-      'Wil je een andere keer verder doen? We houden wat je al ingevuld had bij voor je.';
+  String get continueLaterDialogMessage => 'Wil je een andere keer verder doen? We houden wat je al ingevuld had bij voor je.';
 
   @override
   String get continueLaterDialogOptionContinueLater => 'Ga leter verder';
@@ -70,69 +68,58 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get convictionsPageTitle => 'Misdrijven of veroordelingen';
 
   @override
-  String get convictionsPageMessage =>
-      'Om verzekeringsredenen zijn wij verplicht u een aantal vragen rond eerdere misdrijven of veroordelingen in het verkeer te stellen.';
+  String get convictionsPageMessage => 'Om verzekeringsredenen zijn wij verplicht u een aantal vragen rond eerdere misdrijven of veroordelingen in het verkeer te stellen.';
 
   @override
-  String get convictionsPageFooter =>
-      'Door dit vak aan te kruisen verklaar ik dat alle op deze pagina ingevulde informatie waar is en aanvaard ik de aansprakelijkheid indien dit niet zo is.';
+  String get convictionsPageFooter => 'Door dit vak aan te kruisen verklaar ik dat alle op deze pagina ingevulde informatie waar is en aanvaard ik de aansprakelijkheid indien dit niet zo is.';
 
   @override
-  String get convictionTypeDrunk =>
-      'Besturen van een voertuig onder de invloed van alcohol';
+  String get convictionTypeDrunk => 'Besturen van een voertuig onder de invloed van alcohol';
 
   @override
-  String get convictionTypeIntoxication =>
-      'Besturen van een voertuig onder de invloed van andere verdovende stoffen';
+  String get convictionTypeIntoxication => 'Besturen van een voertuig onder de invloed van andere verdovende stoffen';
 
   @override
   String get convictionTypeTestRefusal => 'Het weigeren van een drugtest';
 
   @override
-  String get convictionTypeHitAndRun =>
-      'Het verlaten van de plaats van een ongeval dat ik veroorzaakt heb (vluchtmisdrijf)';
+  String get convictionTypeHitAndRun => 'Het verlaten van de plaats van een ongeval dat ik veroorzaakt heb (vluchtmisdrijf)';
 
   @override
   String get convictionTypeLicenseRevocation => 'Intrekken van rijbewijs';
 
   @override
-  String get convictionTypeNoOfAccidents =>
-      'Aantal ongevallen waar u in fout was';
+  String get convictionTypeNoOfAccidents => 'Aantal ongevallen waar u in fout was';
 
   @override
   String get documentsExplainerPageTitle => 'Documenten';
 
   @override
-  String get documentsExplainerPageMessage =>
-      'Om je registratie te voltooien, vragen we je in de volgende stap om duidelijke foto\'s te maken van zowel de voor- en achterkant van je identiteitskaart als van je rijbewijs (categorie B). ';
+  String get documentsExplainerPageMessage => 'Om je registratie te voltooien, vragen we je in de volgende stap om duidelijke foto\'s te maken van zowel de voor- en achterkant van je identiteitskaart als van je rijbewijs (categorie B). ';
 
   @override
   String get documentsExplainerPageInfoButtonlabel => 'Waarom vragen we dit?';
 
   @override
-  String get documentsExplainerPageInfoMessage =>
-      'Placeholder explainer for why we need these documents';
+  String get documentsExplainerPageInfoMessage => 'Placeholder explainer for why we need these documents';
 
   @override
   String get idDocumentsPageTitle => 'Identiteitskaart';
 
   @override
-  String get idDocumentsPageMessage =>
-      'Voeg hieronder foto\'s van de voor- en achterkant van je identiteitskaart in. Zorg ervoor dat de documenten rechtop staan en correct bijgesneden zijn.';
+  String get idDocumentsPageMessage => 'Voeg hieronder foto\'s van de voor- en achterkant van je identiteitskaart in. Zorg ervoor dat de documenten rechtop staan en correct bijgesneden zijn.';
 
   @override
   String get driversLicensePageTitle => 'Rijbewijs';
 
   @override
-  String get driversLicensePageMessage =>
-      'Voeg hieronder foto\'s van de voor- en achterkant van je rijbewijs in. Zorg ervoor dat de documenten rechtop staan en correct bijgesneden zijn.';
+  String get driversLicensePageMessage => 'Voeg hieronder foto\'s van de voor- en achterkant van je rijbewijs in. Zorg ervoor dat de documenten rechtop staan en correct bijgesneden zijn.';
 
   @override
   String get identityPageTitle => 'Identiteit';
 
   @override
-  String get identityPageMessage =>
-      'We hebben enkele van je persoonsgegevens nodig. Deze worden enkel met onze verzekeraar gedeeld indien nodig. Lees meer over ons privacybeleid en hoe we met je gegevens omgaan op https://www.battmobility.be/privacy-voorwaarden/';
+  String get identityPageMessage => 'We hebben enkele van je persoonsgegevens nodig. Deze worden enkel met onze verzekeraar gedeeld indien nodig. Lees meer over ons privacybeleid en hoe we met je gegevens omgaan op https://www.battmobility.be/privacy-voorwaarden/';
 
   @override
   String get identityPageFileRequired => 'Kies een bestand.';
@@ -237,8 +224,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get verificationPageTitle => 'Verifieer telefoonnummer';
 
   @override
-  String get verificationPageMessage =>
-      'Selecteer je landcode en geef het nummer in waarop je een code wil ontvangen.';
+  String get verificationPageMessage => 'Selecteer je landcode en geef het nummer in waarop je een code wil ontvangen.';
 
   @override
   String get verificationPageVerifyButtonTitle => 'Stuur code';
@@ -258,20 +244,16 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get verificationPageBusyCode => 'Code controleren...';
 
   @override
-  String get verificationPageSendCodeFailed =>
-      'Code versturen mislukt. Probeer het later opnieuw.';
+  String get verificationPageSendCodeFailed => 'Code versturen mislukt. Probeer het later opnieuw.';
 
   @override
-  String get verificationPageCheckPhoneFailed =>
-      'Code verifiëren mislukt. Probeer het later opnieuw.';
+  String get verificationPageCheckPhoneFailed => 'Code verifiëren mislukt. Probeer het later opnieuw.';
 
   @override
-  String get verificationPageVerificationSuccessMessage =>
-      'Verificatie geslaagd!';
+  String get verificationPageVerificationSuccessMessage => 'Verificatie geslaagd!';
 
   @override
-  String get verificationPageVerificationFailureMessage =>
-      'Verificatie mislukt!';
+  String get verificationPageVerificationFailureMessage => 'Verificatie mislukt!';
 
   @override
   String get verificationPageVerificationResend => 'Verstuur code opnieuw';
@@ -280,15 +262,13 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get phoneFieldTitle => 'Telefoon';
 
   @override
-  String get errorPostingMessage =>
-      'We konden je gegevens niet verwerken, gelieve het later opnieuw te proberen.';
+  String get errorPostingMessage => 'We konden je gegevens niet verwerken, gelieve het later opnieuw te proberen.';
 
   @override
   String get donePageTitle => 'Klaar!';
 
   @override
-  String get donePageMessage =>
-      'Je hebt alle gegevens ingegeven, welkom bij Batt!';
+  String get donePageMessage => 'Je hebt alle gegevens ingegeven, welkom bij Batt!';
 
   @override
   String get donePageButtonTitle => 'Sluit dit venster';
@@ -297,8 +277,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Facturatie';
 
   @override
-  String get addSubscriptionFormMessage =>
-      'Geef hieronder je facturatiegegevens in.';
+  String get addSubscriptionFormMessage => 'Geef hieronder je facturatiegegevens in.';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';
@@ -342,12 +321,10 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   }
 
   @override
-  String get addSubscriptionFormFailure =>
-      'Adding subscription failed, try again or contact support if the problem persists';
+  String get addSubscriptionFormFailure => 'Adding subscription failed, try again or contact support if the problem persists';
 
   @override
-  String get addSubscriptionFormLoadingFailure =>
-      'Data konden niet worden geladen, probeer het alstublieft opnieuw.';
+  String get addSubscriptionFormLoadingFailure => 'Data konden niet worden geladen, probeer het alstublieft opnieuw.';
 
   @override
   String get createContractTitle => 'Nieuw contract';
@@ -356,24 +333,19 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get createContractPickFormulaLabel => 'Kies een formule';
 
   @override
-  String get createContractFormulaBattFunExplanation =>
-      'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.';
+  String get createContractFormulaBattFunExplanation => 'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.';
 
   @override
-  String get createContractFormulaBattFanExplanation =>
-      'Betaal je gepland maandelijks rijtegoed vooraf (min. €75/maand) en rij 25% goedkoper.';
+  String get createContractFormulaBattFanExplanation => 'Betaal je gepland maandelijks rijtegoed vooraf (min. €75/maand) en rij 25% goedkoper.';
 
   @override
-  String get createContractFormulaBattMaxExplanation =>
-      'Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.';
+  String get createContractFormulaBattMaxExplanation => 'Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.';
 
   @override
-  String get createContractCommitmentExplanation =>
-      'Copy om commitment aan gebruikers uit te leggen';
+  String get createContractCommitmentExplanation => 'Copy om commitment aan gebruikers uit te leggen';
 
   @override
-  String get createContractMinimumCommitmentErrorMessage =>
-      'Commitment must be at least €75';
+  String get createContractMinimumCommitmentErrorMessage => 'Commitment must be at least €75';
 
   @override
   String get createContractConfirmButtonTitle => 'Maak contract';
@@ -382,6 +354,5 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get createContractSuccessMessage => 'Contract maken geslaagd!';
 
   @override
-  String get createContractFailureMessage =>
-      'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
+  String get createContractFailureMessage => 'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
 }

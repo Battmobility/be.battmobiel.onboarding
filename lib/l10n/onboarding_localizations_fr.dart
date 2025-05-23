@@ -15,8 +15,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get moreInfoButtonLabel => 'Why do we ask you this?';
 
   @override
-  String get introPageNeededDocuments =>
-      'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license';
+  String get introPageNeededDocuments => 'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license';
 
   @override
   String get introPageCancelButtonText => 'Continue later';
@@ -48,8 +47,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get continueLaterDialogTitle => 'Continue later?';
 
   @override
-  String get continueLaterDialogMessage =>
-      'Do you want to continue at a later point? You can always resume this process later, your data will be there.';
+  String get continueLaterDialogMessage => 'Do you want to continue at a later point? You can always resume this process later, your data will be there.';
 
   @override
   String get continueLaterDialogOptionContinueLater => 'Continue later';
@@ -64,75 +62,64 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get scanBackIdFieldLabel => 'Back of identity card';
 
   @override
-  String get fillOutBeforeContinuing =>
-      'Please fill out all fields before continuing';
+  String get fillOutBeforeContinuing => 'Please fill out all fields before continuing';
 
   @override
   String get convictionsPageTitle => 'Convictions page title';
 
   @override
-  String get convictionsPageMessage =>
-      'For insurance reasons, we need to ask you to provide information about any previous convictions.';
+  String get convictionsPageMessage => 'For insurance reasons, we need to ask you to provide information about any previous convictions.';
 
   @override
-  String get convictionsPageFooter =>
-      'By checking this box, I declare the information entered on this page to be truthful and to accept any liability in the case it is not.';
+  String get convictionsPageFooter => 'By checking this box, I declare the information entered on this page to be truthful and to accept any liability in the case it is not.';
 
   @override
   String get convictionTypeDrunk => 'Driving under the influence of alcohol';
 
   @override
-  String get convictionTypeIntoxication =>
-      'Driving under the influence of narcotics';
+  String get convictionTypeIntoxication => 'Driving under the influence of narcotics';
 
   @override
   String get convictionTypeTestRefusal => 'Refusal to take a drug test';
 
   @override
-  String get convictionTypeHitAndRun =>
-      'Fleeing the scene of an accident (\"hit and run\")';
+  String get convictionTypeHitAndRun => 'Fleeing the scene of an accident (\"hit and run\")';
 
   @override
   String get convictionTypeLicenseRevocation => 'Revocation of license';
 
   @override
-  String get convictionTypeNoOfAccidents =>
-      'Amount of accidents where you were at fault';
+  String get convictionTypeNoOfAccidents => 'Amount of accidents where you were at fault';
 
   @override
   String get documentsExplainerPageTitle => 'Documents';
 
   @override
-  String get documentsExplainerPageMessage =>
-      'To complete your registration, we\'ll need a few documents';
+  String get documentsExplainerPageMessage => 'To complete your registration, we\'ll need a few documents';
 
   @override
   String get documentsExplainerPageInfoButtonlabel => 'Why do we need this?';
 
   @override
-  String get documentsExplainerPageInfoMessage =>
-      'Placeholder explainer for why we need these documents';
+  String get documentsExplainerPageInfoMessage => 'Placeholder explainer for why we need these documents';
 
   @override
   String get idDocumentsPageTitle => 'ID Documents';
 
   @override
-  String get idDocumentsPageMessage =>
-      'Add pictures of the front and back of your identity document below. Make sure the images are right side up and cropped to show just the document.';
+  String get idDocumentsPageMessage => 'Add pictures of the front and back of your identity document below. Make sure the images are right side up and cropped to show just the document.';
 
   @override
   String get driversLicensePageTitle => 'Documents';
 
   @override
-  String get driversLicensePageMessage =>
-      'Add pictures of the front and back of your drivers license below. Make sure the images are right side up and cropped to show just the document.';
+  String get driversLicensePageMessage => 'Add pictures of the front and back of your drivers license below. Make sure the images are right side up and cropped to show just the document.';
 
   @override
   String get identityPageTitle => 'Identity';
 
   @override
-  String get identityPageMessage =>
-      'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/';
+  String get identityPageMessage => 'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/';
 
   @override
   String get identityPageFileRequired => 'Please upload a file.';
@@ -237,8 +224,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get verificationPageTitle => 'Verify phone';
 
   @override
-  String get verificationPageMessage =>
-      'Select your country code and phone number to verify it.';
+  String get verificationPageMessage => 'Select your country code and phone number to verify it.';
 
   @override
   String get verificationPageVerifyButtonTitle => 'Send code';
@@ -258,20 +244,16 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get verificationPageBusyCode => 'Checking code...';
 
   @override
-  String get verificationPageSendCodeFailed =>
-      'Failed to send verification code. Please try again later.';
+  String get verificationPageSendCodeFailed => 'Failed to send verification code. Please try again later.';
 
   @override
-  String get verificationPageCheckPhoneFailed =>
-      'Failed to check phone number. Please try again later.';
+  String get verificationPageCheckPhoneFailed => 'Failed to check phone number. Please try again later.';
 
   @override
-  String get verificationPageVerificationSuccessMessage =>
-      'Verification successful!';
+  String get verificationPageVerificationSuccessMessage => 'Verification successful!';
 
   @override
-  String get verificationPageVerificationFailureMessage =>
-      'Verification failed!';
+  String get verificationPageVerificationFailureMessage => 'Verification failed!';
 
   @override
   String get verificationPageVerificationResend => 'Resend code';
@@ -280,15 +262,13 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get phoneFieldTitle => 'Téléphone';
 
   @override
-  String get errorPostingMessage =>
-      'We encountered an error processing your data, please try again later';
+  String get errorPostingMessage => 'We encountered an error processing your data, please try again later';
 
   @override
   String get donePageTitle => 'All done!';
 
   @override
-  String get donePageMessage =>
-      'You completed the onboarding process, welcome to Batt!';
+  String get donePageMessage => 'You completed the onboarding process, welcome to Batt!';
 
   @override
   String get donePageButtonTitle => 'Close this window';
@@ -341,12 +321,10 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   }
 
   @override
-  String get addSubscriptionFormFailure =>
-      'Adding subscription failed, try again or contact support if the problem persists';
+  String get addSubscriptionFormFailure => 'Adding subscription failed, try again or contact support if the problem persists';
 
   @override
-  String get addSubscriptionFormLoadingFailure =>
-      'Data konden niet worden geladen, probeer het alstublieft opnieuw.';
+  String get addSubscriptionFormLoadingFailure => 'Data konden niet worden geladen, probeer het alstublieft opnieuw.';
 
   @override
   String get createContractTitle => 'Nieuw contract';
@@ -355,24 +333,19 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get createContractPickFormulaLabel => 'Kies een formule';
 
   @override
-  String get createContractFormulaBattFunExplanation =>
-      'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.';
+  String get createContractFormulaBattFunExplanation => 'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.';
 
   @override
-  String get createContractFormulaBattFanExplanation =>
-      'Betaal je gepland maandelijks rijtegoed vooraf (min. €75/maand) en rij 25% goedkoper.';
+  String get createContractFormulaBattFanExplanation => 'Betaal je gepland maandelijks rijtegoed vooraf (min. €75/maand) en rij 25% goedkoper.';
 
   @override
-  String get createContractFormulaBattMaxExplanation =>
-      'Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.';
+  String get createContractFormulaBattMaxExplanation => 'Voordelig leasen via BattMobility. Deel en verdien tot 50% terug.';
 
   @override
-  String get createContractCommitmentExplanation =>
-      'Copy om commitment aan gebruikers uit te leggen';
+  String get createContractCommitmentExplanation => 'Copy om commitment aan gebruikers uit te leggen';
 
   @override
-  String get createContractMinimumCommitmentErrorMessage =>
-      'Commitment must be at least €75';
+  String get createContractMinimumCommitmentErrorMessage => 'Commitment must be at least €75';
 
   @override
   String get createContractConfirmButtonTitle => 'Maak contract';
@@ -381,6 +354,5 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get createContractSuccessMessage => 'Contract maken geslaagd!';
 
   @override
-  String get createContractFailureMessage =>
-      'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
+  String get createContractFailureMessage => 'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
 }

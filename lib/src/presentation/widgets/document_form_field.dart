@@ -30,7 +30,7 @@ final class DocumentFormField extends StatelessWidget {
         child: InputDecorator(
           decoration: InputDecoration(
             labelText: displayName,
-            labelStyle: context.typographyTheme.largeText,
+            labelStyle: context.typographyTheme.bodyLarge,
             contentPadding: AppPaddings.small.vertical,
             errorText: (field.value == null && !prefilled)
                 ? OnboardingLocalizations.of(context).identityPageFileRequired

@@ -47,7 +47,7 @@ class DriversLicensePageState extends State<DriversLicensePage> {
                   Padding(
                     padding: AppPaddings.xxsmall.vertical,
                     child: Text(l10n.idCardFieldTitle,
-                        style: context.typographyTheme.largeText),
+                        style: context.typographyTheme.bodyLarge),
                   ),
                   Flex(
                     mainAxisSize: MainAxisSize.min,
@@ -85,7 +85,7 @@ class DriversLicensePageState extends State<DriversLicensePage> {
                   Padding(
                     padding: AppPaddings.xxsmall.vertical,
                     child: Text(l10n.driversLicenseFieldTitle,
-                        style: context.typographyTheme.largeText),
+                        style: context.typographyTheme.bodyLarge),
                   ),
                   Flex(
                     mainAxisSize: MainAxisSize.min,

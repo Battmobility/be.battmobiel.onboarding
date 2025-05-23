@@ -131,11 +131,11 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                       validator:
                                           FormBuilderValidators.phoneNumber(),
                                       style:
-                                          context.typographyTheme.mediumTitle,
+                                          context.typographyTheme.titleMedium,
                                       decoration: InputDecoration(
                                           labelText: l10n.phoneFieldTitle,
                                           labelStyle: context
-                                              .typographyTheme.mediumTitle),
+                                              .typographyTheme.titleMedium),
                                     ),
                                   ),
                                 ),
