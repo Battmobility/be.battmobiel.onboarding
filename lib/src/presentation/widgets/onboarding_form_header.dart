@@ -46,12 +46,12 @@ class OnboardingFormHeaderState extends State<OnboardingFormHeader> {
                         ),
                         elevation: WidgetStatePropertyAll(0),
                         backgroundColor:
-                            WidgetStatePropertyAll(AppColors.grey[100]),
+                            WidgetStatePropertyAll(AppColors.urbanMist),
                         visualDensity: VisualDensity.compact),
                     icon: Icon(
                       Icons.arrow_back_sharp,
                       weight: 0.75,
-                      color: AppColors.grey[800],
+                      color: AppColors.graphiteDrive,
                     ),
                     onPressed: () => widget.onbackPressed(),
                   ),
@@ -64,7 +64,7 @@ class OnboardingFormHeaderState extends State<OnboardingFormHeader> {
             ),
             LinearProgressIndicator(
                 value: widget.progress,
-                backgroundColor: AppColors.grey[200],
+                backgroundColor: AppColors.urbanMist,
                 color: AppColors.futureBlue),
           ],
         ),
