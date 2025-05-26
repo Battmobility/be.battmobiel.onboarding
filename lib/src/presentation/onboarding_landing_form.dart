@@ -210,7 +210,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                     controller.jumpToPage(_step);
                   },
                 ),
-                Divider(thickness: 0.5, color: AppColors.grey[500]),
+                Divider(thickness: 0.5),
                 Expanded(
                   flex: 12,
                   child: Align(
@@ -227,7 +227,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                     ),
                   ),
                 ),
-                Divider(thickness: 0.5, color: AppColors.grey[500]),
+                Divider(thickness: 0.5),
                 Expanded(
                     flex: OnboardingSteps.values[_step].canSkip ? 3 : 2,
                     child: OnboardingFormFooter(

@@ -13,7 +13,7 @@ final class MoreInfoButton extends StatelessWidget {
     return ElevatedButton(
       style: ButtonStyle(
         elevation: WidgetStatePropertyAll(0),
-        backgroundColor: WidgetStatePropertyAll(AppColors.grey[300]),
+        backgroundColor: WidgetStatePropertyAll(AppColors.urbanMist),
       ),
       onPressed: onPressed(),
       child: Text(
