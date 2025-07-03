@@ -2,7 +2,7 @@ import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
 
@@ -37,7 +37,7 @@ class OnboardingDonePageState extends State<OnboardingDonePage> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineLarge),
             SizedBox(height: AppSpacings.xl),
-            FaIcon(FontAwesomeIcons.chargingStation,
+            Icon(PhosphorIcons.chargingStation(),
                 size: 100, color: AppColors.futureBlue),
             SizedBox(height: AppSpacings.xxl),
             Text(l10n.donePageMessage,

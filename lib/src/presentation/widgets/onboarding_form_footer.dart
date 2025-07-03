@@ -20,6 +20,7 @@ final class OnboardingFormFooter extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: AppSpacings.sm,
         children: [
           DefaultSolidTextButton(
             onPressed: onNextPressed,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:batt_ds/batt_ds.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../../l10n/onboarding_localizations.dart';
 import '../../util/analytics/analytics_events.dart';
@@ -48,8 +48,8 @@ class IntroPageState extends State<IntroPage> {
               ),
               Padding(
                 padding: AppPaddings.large.top,
-                child: FaIcon(FontAwesomeIcons.idCard,
-                    size: 100, color: AppColors.futureBlue),
+                child: Icon(PhosphorIcons.identificationCard(),
+                    size: 100, color: AppColors.b2bKeyColor),
               ),
             ],
           )),

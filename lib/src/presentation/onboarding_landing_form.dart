@@ -4,6 +4,7 @@ import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:batt_onboarding/src/presentation/pages/address_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/create_client_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/id_documents_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/legal_details_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/drivers_license_page.dart';
@@ -12,6 +13,7 @@ import 'package:batt_onboarding/src/presentation/pages/onboarding_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/phone_verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/personal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
+import 'package:batt_onboarding/src/presentation/pages/pick_formula_page.dart';
 import 'package:batt_onboarding/src/presentation/widgets/onboarding_form_footer.dart';
 import 'package:batt_onboarding/src/util/analytics/analytics_events.dart';
 import 'package:batt_onboarding/src/util/analytics/analytics_util.dart';
@@ -59,6 +61,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   DateTime? startedAt;
   Map<String, dynamic>? _scannedIdPics;
   Map<String, dynamic>? _scannedDriversLicensePics;
+  Map<String, dynamic>? _personalData;
 
   String _phoneNumber = "";
   int? clientId;
@@ -141,7 +144,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             onAction: (_) {},
             initialData: progress.legal,
           ),
-          /*
           CreateClientPage(
             formKey: _formKeys[6],
             initialData: progress.personal,
@@ -150,7 +152,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               setState(() {
                 _step += 2;
               });
-              controller.jumpToPage(_step);
+              //controller.jumpToPage(_step);
             },
           ),
           PickFormulaPage(
@@ -158,7 +160,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             initialData: progress.personal..addAll({"clientId": clientId}),
             onAction: (_) {},
           ),
-          */
           OnboardingDonePage(
             formKey: _formKeys[OnboardingSteps.confirmation.index],
             onAction: (_) {
@@ -195,8 +196,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               children: [
                 OnboardingFormHeader(
                   title: OnboardingSteps.values[_step].name,
-                  progress:
-                      _step > 0 ? OnboardingSteps.values.length / _step : 0,
+                  progress: (_step.toDouble() /
+                      OnboardingSteps.values.length.toDouble()),
                   backButtonEnabled: _step != OnboardingSteps.intro.index &&
                       _step != OnboardingSteps.confirmation.index,
                   onbackPressed: () {
@@ -216,14 +217,12 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: AppPaddings.medium.all,
-                      child: Scaffold(
-                        body: PageView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            controller: controller,
-                            itemBuilder: (context, index) => pages[index],
-                            itemCount: pages.length),
-                      ),
+                      padding: AppPaddings.xxlarge.horizontal,
+                      child: PageView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          controller: controller,
+                          itemBuilder: (context, index) => pages[index],
+                          itemCount: pages.length),
                     ),
                   ),
                 ),
@@ -300,31 +299,26 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     } else if (pages[_step].formKey.currentState?.saveAndValidate() ?? false) {
       final values = pages[_step].formKey.currentState?.value;
       if (_step == OnboardingSteps.personal.index) {
-        // TODO: check if split into two calls on  backend, if not cache data here and post in OnboardingSteps.address
-        if (values != null) {
-          onboardingRepository.postPersonalData(values).then((success) {
-            if (success) {
-              if (progress.progress >= 5) {
-                setState(() {
-                  _step += 2;
-                });
-              } else {
-                setState(() {
-                  _step++;
-                });
-              }
+        _personalData = values;
 
-              controller.jumpToPage(_step);
-            } else {
-              _showUploadFailedDialog(context);
-            }
+        if (progress.progress >= 5) {
+          setState(() {
+            _step += 2;
+          });
+        } else {
+          setState(() {
+            _step++;
           });
         }
+
+        controller.jumpToPage(_step);
+        return;
       }
       if (_step == OnboardingSteps.address.index) {
-        // TODO: check if split into two calls on  backend, if not append cached data from OnboardingSteps.personal
         if (values != null) {
-          onboardingRepository.postPersonalData(values).then((success) {
+          var combinedMaps = Map<String, dynamic>.from(_personalData ?? {});
+          combinedMaps.addAll(values);
+          onboardingRepository.postPersonalData(combinedMaps).then((success) {
             if (success) {
               if (progress.progress >= 5) {
                 setState(() {
@@ -337,20 +331,27 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               }
 
               controller.jumpToPage(_step);
+              return;
             } else {
               _showUploadFailedDialog(context);
             }
           });
         }
       }
+
       if (_step == OnboardingSteps.phone.index) {
         if (values != null) {
           _phoneNumber = values["phoneNumber"];
+          setState(() {
+            _step++;
+          });
           controller.jumpToPage(_step);
+          return;
         }
       }
       if (_step == OnboardingSteps.phoneVerification.index) {
         controller.jumpToPage(_step);
+        return;
       }
       if (_step == OnboardingSteps.idDocuments.index) {
         if (values != null) {
@@ -360,6 +361,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         _validateIdDocuments(values, progress.progress).then((success) {
           if (success) {
             controller.jumpToPage(_step);
+            return;
           }
         });
       }
@@ -370,6 +372,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         _validateDriversLicense(values, progress.progress).then((success) {
           if (success) {
             controller.jumpToPage(_step);
+            return;
           }
         });
       }
@@ -382,6 +385,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                 _step++;
               });
               controller.jumpToPage(_step);
+              return;
             } else {
               _showUploadFailedDialog(context);
             }
@@ -398,6 +402,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                 _step++;
               });
               controller.jumpToPage(_step);
+              return;
             } else {
               _showUploadFailedDialog(context);
             }

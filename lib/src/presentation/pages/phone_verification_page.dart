@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:batt_ds/batt_ds.dart';
+import 'package:batt_ds/theme/gradient_theme.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:flutter/material.dart';
@@ -44,113 +45,80 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
+      width: 40,
+      height: 40,
       textStyle: Theme.of(context)
           .textTheme
           .labelLarge!
           .copyWith(fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20),
+        border: GradientBorder(
+            gradient: GradientTheme.standard().flowGradient, width: 1),
+        borderRadius: BorderRadius.circular(CornerRadii.s.x),
       ),
     );
 
     final errorPinTheme = PinTheme(
+      width: 40,
+      height: 40,
       textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
           fontWeight: FontWeight.w600,
           color: Theme.of(context).colorScheme.error),
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20),
+        border: GradientBorder(
+            gradient: GradientTheme.standard().errorBorderGradient, width: 1),
+        borderRadius: BorderRadius.circular(CornerRadii.s.x),
       ),
     );
 
     final l10n = OnboardingLocalizations.of(context);
-    return SingleChildScrollView(
-      child: Padding(
-        padding: AppPaddings.large.trailing,
-        child: FormBuilder(
-          key: widget.formKey,
-          child: Column(
-            children: [
-              FormBuilderField<bool>(
-                builder: (_) => Container(),
-                name: "verified",
-                initialValue: false,
-                validator: FormBuilderValidators.isTrue(),
+    return Padding(
+      padding: AppPaddings.large.trailing,
+      child: FormBuilder(
+        key: widget.formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FormBuilderField<bool>(
+              builder: (_) => Container(),
+              name: "verified",
+              initialValue: false,
+              validator: FormBuilderValidators.isTrue(),
+            ),
+            Text(l10n.verificationPageTitle,
+                style: Theme.of(context).textTheme.headlineLarge),
+            Padding(
+              padding: AppPaddings.xxlarge.vertical,
+              child: Text(
+                  l10n.verificationPageEnterCodeMessage(widget.phoneNumber),
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium),
+            ),
+            Container(width: 100, height: 100, color: AppColors.b2bKeyColor),
+            Padding(
+              padding: AppPaddings.large.all,
+              child: Pinput(
+                defaultPinTheme: defaultPinTheme,
+                errorPinTheme: errorPinTheme,
+                focusNode: pinFocusNode,
+                autofocus: true,
+                enabled: !isSendingPhone && !isChecking,
+                onCompleted: (code) async {
+                  _sendCode(context, widget.phoneNumber, code);
+                },
+                length: 6,
+                errorTextStyle: context.typographyTheme.errorText,
               ),
-              Text(l10n.verificationPageTitle,
-                  style: Theme.of(context).textTheme.headlineLarge),
-              Padding(
-                padding: AppPaddings.xxlarge.vertical,
-                child: Text(
-                    l10n.verificationPageEnterCodeMessage(widget.phoneNumber),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleMedium),
-              ),
-              Stack(
-                children: [
-                  Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: AppPaddings.large.all,
-                          child: Pinput(
-                            defaultPinTheme: defaultPinTheme,
-                            errorPinTheme: errorPinTheme,
-                            focusNode: pinFocusNode,
-                            autofocus: true,
-                            onCompleted: (code) async {
-                              _sendCode(context, widget.phoneNumber, code);
-                            },
-                            length: 6,
-                            errorTextStyle: context.typographyTheme.errorText,
-                          ),
-                        ),
-                        Padding(
-                          padding: AppPaddings.medium.all,
-                          child: SolidCtaButton(
-                              label: l10n.verificationPageVerificationResend,
-                              onPressed: () async {
-                                _sendPhone(context, widget.phoneNumber);
-                              }),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Visibility(
-                    visible: isChecking,
-                    child: Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Padding(
-                            padding: AppPaddings.large.all,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: AppPaddings.large.all,
-                                  child: Text(l10n.verificationPageBusyCode,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium),
-                                ),
-                                Padding(
-                                    padding: AppPaddings.medium.all,
-                                    child: CircularProgressIndicator()),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: AppPaddings.medium.all,
+              child: SolidCtaButton(
+                  label: l10n.verificationPageVerificationResend,
+                  onPressed: () async {
+                    _sendPhone(context, widget.phoneNumber);
+                  }),
+            ),
+          ],
         ),
       ),
     );

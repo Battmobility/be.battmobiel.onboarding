@@ -135,16 +135,12 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateOfBirth',
-                format: DateFormat("dd-MM-yyyy"),
-                helpText: l10n.birthDateFieldTitle,
                 initialValue: widget.initialData?["dateOfBirth"],
-                initialDate: widget.initialData?["dateOfBirth"] ??
-                    DateTime.now().subtract(Duration(days: 5840)),
-                firstDate: DateTime.now().subtract(Duration(days: 43800)),
-                lastDate: DateTime.now().subtract(Duration(days: 5840)),
                 inputType: InputType.date,
-                decoration:
-                    InputDecoration(labelText: l10n.birthDateFieldTitle),
+                decoration: InputDecoration(
+                  labelText: l10n.birthDateFieldTitle,
+                  suffixIcon: Icon(Icons.calendar_today),
+                ),
               ),
               Text(l10n.driversLicenseFieldTitle,
                   style: Theme.of(context).textTheme.titleSmall),
@@ -195,8 +191,7 @@ class PersonalPageState extends State<PersonalPage> {
                 format: DateFormat("dd-MM-yyyy"),
                 helpText: l10n.driversLicenseIssuedDate,
                 initialValue: widget.initialData?["dateCurrentLicense"],
-                firstDate: widget.initialData?["dateOfBirth"] as DateTime? ??
-                    DateTime.now().subtract(Duration(days: 36500)),
+                firstDate: DateTime.now().subtract(Duration(days: 365 * 90)),
                 lastDate: DateTime.now(),
                 inputType: InputType.date,
                 decoration:
@@ -204,13 +199,13 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateLicenseUntil',
-                helpText: l10n.driversLicenseExpiresDate,
-                format: DateFormat("dd-MM-yyyy"),
                 initialValue: widget.initialData?["dateLicenseUntil"],
                 firstDate: DateTime.now(),
                 inputType: InputType.date,
-                decoration:
-                    InputDecoration(labelText: l10n.driversLicenseExpiresDate),
+                decoration: InputDecoration(
+                  labelText: l10n.driversLicenseExpiresDate,
+                  suffixIcon: Icon(Icons.calendar_today),
+                ),
               ),
             ]
                 .map((field) =>
@@ -246,7 +241,8 @@ class PersonalPageState extends State<PersonalPage> {
     if (rrn != null) {
       final birthDate = RrnBirthdayParser.birthdayFromRrn(rrn);
       if (birthDate != null) {
-        widget.formKey.currentState?.patchValue({"dateOfBirth": birthDate});
+        final formattedDate = DateFormat("dd-MM-yyyy").format(birthDate);
+        widget.formKey.currentState?.patchValue({"dateOfBirth": formattedDate});
       }
     }
   }

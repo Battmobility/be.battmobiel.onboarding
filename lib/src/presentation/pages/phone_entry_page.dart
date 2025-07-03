@@ -57,7 +57,7 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                         : l10n.verificationPageEnterCodeMessage(
                             phoneNumber ?? ""),
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleMedium),
+                    style: Theme.of(context).textTheme.bodyLarge),
               ),
               Stack(
                 children: [
@@ -74,30 +74,26 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                               children: [
                                 Flexible(
                                   flex: 5,
-                                  child: Expanded(
-                                    child: FormBuilderDropdown(
-                                      decoration: InputDecoration(
-                                          contentPadding:
-                                              AppPaddings.large.all),
-                                      itemHeight: 80,
-                                      validator:
-                                          FormBuilderValidators.required(),
-                                      name: "countryCode",
-                                      initialValue: WorldCountry.fromCode("Bel")
-                                          .idd
-                                          .phoneCode(),
-                                      items: WorldCountry.list
-                                          .map((country) => DropdownMenuItem(
-                                                child: Text(
-                                                  "${country.emoji} ${country.idd.phoneCode()} ${country.name.common}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyLarge,
-                                                ),
-                                                value: country.idd.phoneCode(),
-                                              ))
-                                          .toList(),
-                                    ),
+                                  child: FormBuilderDropdown(
+                                    decoration: InputDecoration(
+                                        contentPadding: AppPaddings.large.all),
+                                    itemHeight: 80,
+                                    validator: FormBuilderValidators.required(),
+                                    name: "countryCode",
+                                    initialValue: WorldCountry.fromCode("Bel")
+                                        .idd
+                                        .phoneCode(),
+                                    items: WorldCountry.list
+                                        .map((country) => DropdownMenuItem(
+                                              child: Text(
+                                                "${country.emoji} ${country.idd.phoneCode()} ${country.name.common}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge,
+                                              ),
+                                              value: country.idd.phoneCode(),
+                                            ))
+                                        .toList(),
                                   ),
                                 ),
                                 Flexible(
@@ -112,20 +108,18 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                         });
                                         if (widget.formKey.currentState!
                                             .saveAndValidate()) {
-                                          setState(() async {
-                                            phoneNumber = (widget
-                                                    .formKey
-                                                    .currentState!
-                                                    .fields["countryCode"]!
-                                                    .value as String) +
-                                                (widget
-                                                        .formKey
-                                                        .currentState!
-                                                        .fields["phone"]!
-                                                        .value as String)
-                                                    .replaceFirst("0", "");
-                                            _sendPhone(context, phoneNumber!);
-                                          });
+                                          phoneNumber = (widget
+                                                  .formKey
+                                                  .currentState!
+                                                  .fields["countryCode"]!
+                                                  .value as String) +
+                                              (widget
+                                                      .formKey
+                                                      .currentState!
+                                                      .fields["phone"]!
+                                                      .value as String)
+                                                  .replaceFirst("0", "");
+                                          _sendPhone(context, phoneNumber!);
                                         }
                                       },
                                       validator:
@@ -151,25 +145,20 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                             child: SolidCtaButton(
                                 label: l10n.verificationPageVerifyButtonTitle,
                                 onPressed: () {
-                                  setState(() {
-                                    isSendingPhone = true;
-                                  });
                                   if (widget.formKey.currentState!
                                       .saveAndValidate()) {
-                                    setState(() async {
-                                      phoneNumber = (widget
-                                              .formKey
-                                              .currentState!
-                                              .fields["countryCode"]!
-                                              .value as String) +
-                                          (widget
-                                                  .formKey
-                                                  .currentState!
-                                                  .fields["phone"]!
-                                                  .value as String)
-                                              .replaceFirst("0", "");
-                                      _sendPhone(context, phoneNumber!);
-                                    });
+                                    phoneNumber = (widget
+                                            .formKey
+                                            .currentState!
+                                            .fields["countryCode"]!
+                                            .value as String) +
+                                        (widget
+                                                .formKey
+                                                .currentState!
+                                                .fields["phone"]!
+                                                .value as String)
+                                            .replaceFirst("0", "");
+                                    _sendPhone(context, phoneNumber!);
                                   }
                                 }),
                           ),
@@ -245,11 +234,7 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
   }
 
   void _sendPhone(BuildContext context, String phoneNumber) async {
-    setState(() {
-      isSendingPhone = true;
-    });
     final requested = await onboardingRepository.postPhoneNumber(phoneNumber);
-    await Future.delayed(Duration(seconds: 2));
 
     setState(() {
       isSendingPhone = false;
