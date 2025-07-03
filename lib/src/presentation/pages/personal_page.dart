@@ -4,6 +4,7 @@ import 'package:batt_onboarding/src/presentation/widgets/document_form_field.dar
 import 'package:batt_onboarding/src/util/analytics/analytics_events.dart';
 import 'package:batt_onboarding/src/util/mrz_reader.dart';
 import 'package:batt_onboarding/src/util/rrn_birthday_parser.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -46,60 +47,63 @@ class PersonalPageState extends State<PersonalPage> {
                 child: Text(l10n.identityPageMessage,
                     style: Theme.of(context).textTheme.titleMedium),
               ),
-              DefaultOutlinedTextButton(
-                  label: l10n.scanBackIdButtonLabel,
-                  leading: (iconColor) => Icon(
-                        Icons.camera,
-                        color: iconColor,
-                      ),
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                            child: Padding(
-                              padding: AppPaddings.large.all,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  DocumentFormField(
-                                    fieldName: "backId",
-                                    displayName: l10n.scanBackIdFieldLabel,
-                                    prefilled: true,
-                                    onDataFound: (rrn, surName, firstName) {
-                                      rrn = rrn;
-                                      surName = surName;
-                                      firstName = firstName;
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: AppPaddings.medium.vertical,
-                                    child: DefaultSolidTextButton(
-                                        label: l10n.doneButtonText,
-                                        onPressed: () {
-                                          _updateFormData(
-                                              rrn, surName, firstName);
-                                          Navigator.of(context).pop();
-                                        }),
-                                  ),
-                                  Padding(
-                                    padding: AppPaddings.medium.bottom,
-                                    child: DefaultOutlinedTextButton(
-                                        label: l10n.cancelButtonText,
-                                        onPressed: () {
-                                          rrn = null;
-                                          surName = null;
-                                          firstName = null;
-                                          Navigator.of(context).pop();
-                                        }),
-                                  )
-                                ],
+              if (!kIsWeb) ...[
+                DefaultOutlinedTextButton(
+                    label: l10n.scanBackIdButtonLabel,
+                    leading: (iconColor) => Icon(
+                          Icons.camera,
+                          color: iconColor,
+                        ),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Dialog(
+                              child: Padding(
+                                padding: AppPaddings.large.all,
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    DocumentFormField(
+                                      fieldName: "backId",
+                                      displayName: l10n.scanBackIdFieldLabel,
+                                      prefilled: true,
+                                      onDataFound: (rrn, surName, firstName) {
+                                        rrn = rrn;
+                                        surName = surName;
+                                        firstName = firstName;
+                                      },
+                                    ),
+                                    Padding(
+                                      padding: AppPaddings.medium.vertical,
+                                      child: DefaultSolidTextButton(
+                                          label: l10n.doneButtonText,
+                                          onPressed: () {
+                                            _updateFormData(
+                                                rrn, surName, firstName);
+                                            Navigator.of(context).pop();
+                                          }),
+                                    ),
+                                    Padding(
+                                      padding: AppPaddings.medium.bottom,
+                                      child: DefaultOutlinedTextButton(
+                                          label: l10n.cancelButtonText,
+                                          onPressed: () {
+                                            rrn = null;
+                                            surName = null;
+                                            firstName = null;
+                                            Navigator.of(context).pop();
+                                          }),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                          );
-                        });
-                  }),
+                            );
+                          });
+                    }),
+              ],
               Text(l10n.identifyingDataTitle,
                   style: Theme.of(context).textTheme.titleSmall),
               FormBuilderTextField(

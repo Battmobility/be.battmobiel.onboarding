@@ -245,13 +245,13 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                   title: l10n.continueLaterDialogTitle,
                                   message: l10n.continueLaterDialogMessage,
                                   actions: [
-                                    DefaultOutlinedTextButton(
+                                    OutlinedCtaButton(
                                         label: l10n
                                             .continueLaterDialogOptionContinueNow,
                                         onPressed: () {
                                           Navigator.of(ctx).pop();
                                         }),
-                                    OrangeSolidTextButton(
+                                    SolidCtaButton(
                                         label: l10n
                                             .continueLaterDialogOptionContinueLater,
                                         onPressed: () {
@@ -493,8 +493,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         actions: [
-          OrangeOutlinedTextButton(
-              label: "Ok", onPressed: () => Navigator.of(ctx).pop())
+          SolidCtaButton(label: "Ok", onPressed: () => Navigator.of(ctx).pop())
         ],
       ),
     );
@@ -507,8 +506,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         title: Text(OnboardingLocalizations.of(context).errorPostingMessage,
             style: Theme.of(context).textTheme.bodyLarge),
         actions: [
-          OrangeOutlinedTextButton(
-              label: "Ok", onPressed: () => Navigator.of(ctx).pop())
+          SolidCtaButton(label: "Ok", onPressed: () => Navigator.of(ctx).pop())
         ],
       ),
     );

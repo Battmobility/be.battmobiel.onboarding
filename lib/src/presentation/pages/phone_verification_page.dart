@@ -109,7 +109,7 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
                         ),
                         Padding(
                           padding: AppPaddings.medium.all,
-                          child: OrangeSimpleTextButton(
+                          child: SolidCtaButton(
                               label: l10n.verificationPageVerificationResend,
                               onPressed: () async {
                                 _sendPhone(context, widget.phoneNumber);

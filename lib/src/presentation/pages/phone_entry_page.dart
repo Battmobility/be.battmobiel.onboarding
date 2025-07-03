@@ -148,7 +148,7 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                           ),
                           Padding(
                             padding: AppPaddings.medium.all,
-                            child: OrangeSolidTextButton(
+                            child: SolidCtaButton(
                                 label: l10n.verificationPageVerifyButtonTitle,
                                 onPressed: () {
                                   setState(() {

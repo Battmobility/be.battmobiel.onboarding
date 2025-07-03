@@ -167,7 +167,7 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          OrangeOutlinedTextButton(
+          DefaultOutlinedTextButton(
             onPressed: () {
               widget.onPicked(null);
               setState(() {
@@ -179,7 +179,7 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
             leading: (color) => Icon(Icons.delete, color: color),
           ),
           SizedBox(width: AppSpacings.xl),
-          OrangeSolidTextButton(
+          DefaultOutlinedTextButton(
             onPressed: () {
               _cropImage(context);
             },

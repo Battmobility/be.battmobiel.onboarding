@@ -44,7 +44,7 @@ class OnboardingDonePageState extends State<OnboardingDonePage> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleMedium),
             SizedBox(height: AppSpacings.xxl),
-            OrangeOutlinedTextButton(
+            SolidCtaButton(
               onPressed: () {
                 widget.onAction({});
               },
@@ -53,7 +53,7 @@ class OnboardingDonePageState extends State<OnboardingDonePage> {
             if (kDebugMode)
               Padding(
                 padding: AppPaddings.xlarge.all,
-                child: OrangeSimpleTextButton(
+                child: DefaultSimpleTextButton(
                   onPressed: () {
                     widget.onReset!();
                   },

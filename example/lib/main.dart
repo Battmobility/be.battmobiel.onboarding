@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Batt Onboarding",
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       theme: lightTheme(context),
       darkTheme: darkTheme(context),
       localizationsDelegates: [
