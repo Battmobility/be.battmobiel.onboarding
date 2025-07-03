@@ -17,26 +17,11 @@ final class OnboardingRepository {
     try {
       final docsMap = {
         "backId": idFiles["backId"] as XFile,
-        "frontId": idFiles["frontId"] as XFile
+        "frontId": idFiles["frontId"] as XFile,
+        "backDriverLicense": idFiles["backDriverLicense"] as XFile,
+        "frontDriverLicense": idFiles["frontDriverLicense"] as XFile,
       };
       return await datasource.postIdFiles(docsMap);
-    } catch (e, _) {
-      if (e is TypeError) {
-        return false;
-      }
-      rethrow;
-    }
-  }
-
-  Future<bool> postDriversLicense(
-      Map<String, dynamic> driversLicenseFiles) async {
-    try {
-      final docsMap = {
-        "backDriverLicense": driversLicenseFiles["backDriverLicense"] as XFile,
-        "frontDriverLicense":
-            driversLicenseFiles["frontDriverLicense"] as XFile,
-      };
-      return await datasource.postDriversLicense(docsMap);
     } catch (e, _) {
       if (e is TypeError) {
         return false;

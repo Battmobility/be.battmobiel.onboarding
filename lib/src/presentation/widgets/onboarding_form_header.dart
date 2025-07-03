@@ -65,7 +65,7 @@ class OnboardingFormHeaderState extends State<OnboardingFormHeader> {
             LinearProgressIndicator(
                 value: widget.progress,
                 backgroundColor: AppColors.urbanMist,
-                color: AppColors.futureBlue),
+                color: AppColors.b2bKeyColor),
           ],
         ),
       ),

@@ -10,7 +10,7 @@ extension FromMap on Map<String, dynamic> {
           convictionHitAndRun: this["convictionHitAndRun"] == true,
           convictionIntoxicated: this["convictionIntoxicated"] == true,
           convictionLicenseRevocation: this["convictionDrunk"] == true),
-      nrOfAccidents: this["nrOfAccidents"],
+      nrOfAccidents: this["nrOfAccidents"] ?? 0,
     );
   }
 }

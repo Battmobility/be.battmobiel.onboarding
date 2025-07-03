@@ -255,6 +255,7 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
     } else {
       widget.formKey.currentState!.fields["phoneNumber"]!
           .didChange(phoneNumber);
+      widget.onAction({"phoneNumber": phoneNumber});
     }
   }
 }

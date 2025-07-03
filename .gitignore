@@ -46,3 +46,14 @@ app.*.map.json
 /android/app/release
 .flutter-plugins-dependencies
 example/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+*.js
+*.png
+*.html
+.claude/settings.local.json

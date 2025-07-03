@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_ds/theme/gradient_theme.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
@@ -30,7 +28,7 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
   bool isChecking = false;
   bool isSendingPhone = false;
   bool verified = false;
-
+  final controller = TextEditingController();
   int checkPhoneRetries = 0;
 
   late FocusNode pinFocusNode;
@@ -45,8 +43,8 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 40,
-      height: 40,
+      width: 50,
+      height: 70,
       textStyle: Theme.of(context)
           .textTheme
           .labelLarge!
@@ -72,12 +70,13 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
     );
 
     final l10n = OnboardingLocalizations.of(context);
-    return Padding(
+    return SingleChildScrollView(
+        child: Padding(
       padding: AppPaddings.large.trailing,
       child: FormBuilder(
         key: widget.formKey,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             FormBuilderField<bool>(
               builder: (_) => Container(),
@@ -94,15 +93,14 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleMedium),
             ),
-            Container(width: 100, height: 100, color: AppColors.b2bKeyColor),
             Padding(
               padding: AppPaddings.large.all,
               child: Pinput(
+                controller: controller,
                 defaultPinTheme: defaultPinTheme,
                 errorPinTheme: errorPinTheme,
                 focusNode: pinFocusNode,
                 autofocus: true,
-                enabled: !isSendingPhone && !isChecking,
                 onCompleted: (code) async {
                   _sendCode(context, widget.phoneNumber, code);
                 },
@@ -121,7 +119,7 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
           ],
         ),
       ),
-    );
+    ));
   }
 
   @override
@@ -143,13 +141,19 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
   }
 
   void _sendCode(BuildContext context, String phoneNumber, String code) async {
+    controller.clear();
+
     setState(() {
       isChecking = true;
     });
     final success =
         await onboardingRepository.postVerificationCode(phoneNumber, code);
+
+    setState(() {
+      isChecking = true;
+    });
     if (success) {
-      widget.formKey.currentState!.fields["verified"]!.didChange(true);
+      widget.onAction({"verified": "true"});
     } else {
       if (checkPhoneRetries < 3) {
         checkPhoneRetries++;

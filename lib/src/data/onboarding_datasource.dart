@@ -25,10 +25,6 @@ final class OnboardingDatasource {
     return service.postIdFiles(documents);
   }
 
-  Future<bool> postDriversLicense(Map<String, XFile> documents) async {
-    return service.postDriversLicenseFiles(documents);
-  }
-
   Future<bool> postPersonalData(Map<String, dynamic> formData) async {
     return service.postPersonalData(formData.toOnboardingPersonal());
   }

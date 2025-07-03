@@ -24,6 +24,10 @@ final class CreateClientPage extends OnboardingPage {
 class CreateClientPageState extends State<CreateClientPage> {
   @override
   Widget build(BuildContext context) {
+    // TODO: restructure
+    // - Personal use: Prefilled with address from address page
+    // - Employer use: Prefilled with data from progress
+    // - Company use (hide if employer use checked?): Form with address + optional VAT
     final l10n = OnboardingLocalizations.of(context);
     return Padding(
       padding: AppPaddings.large.trailing,

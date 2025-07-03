@@ -188,7 +188,7 @@ class PersonalPageState extends State<PersonalPage> {
               ),
               FormBuilderDateTimePicker(
                 name: 'dateCurrentLicense',
-                format: DateFormat("dd-MM-yyyy"),
+                format: DateFormat("dd/MM/yyyy"),
                 helpText: l10n.driversLicenseIssuedDate,
                 initialValue: widget.initialData?["dateCurrentLicense"],
                 firstDate: DateTime.now().subtract(Duration(days: 365 * 90)),

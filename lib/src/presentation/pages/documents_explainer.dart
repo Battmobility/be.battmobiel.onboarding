@@ -56,7 +56,7 @@ class DocumentsExplainerPageState extends State<DocumentsExplainerPage> {
               Padding(
                 padding: AppPaddings.large.top,
                 child: Icon(PhosphorIcons.identificationCard(),
-                    size: 100, color: AppColors.futureBlue),
+                    size: 100, color: AppColors.b2bKeyColor),
               ),
             ],
           )),

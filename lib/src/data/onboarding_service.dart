@@ -20,27 +20,15 @@ final class OnboardingService {
     try {
       List<int> backId = await documents["backId"]!.readAsBytes();
       List<int> frontId = await documents["frontId"]!.readAsBytes();
-
-      final response = await api.userV1UsersOnboardingDocumentsPut(
-          backId:
-              MultipartFile.fromBytes("backId", backId, filename: 'backId.jpg'),
-          frontId: MultipartFile.fromBytes("frontId", frontId,
-              filename: 'frontId.jpg'));
-
-      return response.isSuccessful;
-    } catch (e, _) {
-      return false;
-    }
-  }
-
-  Future<bool> postDriversLicenseFiles(Map<String, XFile> documents) async {
-    try {
       List<int> backDriverLicense =
           await documents["backDriverLicense"]!.readAsBytes();
       List<int> frontDriverLicense =
           await documents["frontDriverLicense"]!.readAsBytes();
-
       final response = await api.userV1UsersOnboardingDocumentsPut(
+        backId:
+            MultipartFile.fromBytes("backId", backId, filename: 'backId.jpg'),
+        frontId: MultipartFile.fromBytes("frontId", frontId,
+            filename: 'frontId.jpg'),
         backDriverLicense: MultipartFile.fromBytes(
             "backDriverLicense", backDriverLicense,
             filename: 'backDriverLicense.jpg'),

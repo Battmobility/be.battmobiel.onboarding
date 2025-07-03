@@ -8,9 +8,7 @@ enum OnboardingSteps {
   phoneVerification,
   documentsExplainer,
   idDocuments,
-  driversLicense,
   legal,
-  legalDetails,
   deposit,
   confirmation
 }
@@ -20,22 +18,31 @@ extension OnboardingStepName on OnboardingSteps {
 }
 
 extension Skip on OnboardingSteps {
+  bool get hasNext {
+    switch (this) {
+      case OnboardingSteps.phoneVerification:
+      case OnboardingSteps.phone:
+      case OnboardingSteps.confirmation:
+        return false;
+      default:
+        return true;
+    }
+  }
+
   bool get canSkip {
     switch (this) {
       case OnboardingSteps.intro:
       case OnboardingSteps.personal:
       case OnboardingSteps.address:
-      case OnboardingSteps.phoneVerification:
       case OnboardingSteps.confirmation:
         return false;
       case OnboardingSteps.phone:
+      case OnboardingSteps.phoneVerification:
       case OnboardingSteps.legal:
-      case OnboardingSteps.legalDetails:
       case OnboardingSteps.deposit:
       case OnboardingSteps.documentsExplainer:
       case OnboardingSteps.idDocuments:
-      case OnboardingSteps.driversLicense:
-        return true;
+        return false; // TODO: re-enable when deploying for app
     }
   }
 }

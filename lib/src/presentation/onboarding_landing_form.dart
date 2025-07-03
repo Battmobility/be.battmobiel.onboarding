@@ -7,7 +7,6 @@ import 'package:batt_onboarding/src/presentation/pages/address_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/create_client_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/id_documents_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/legal_details_page.dart';
-import 'package:batt_onboarding/src/presentation/pages/drivers_license_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/done_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/onboarding_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/phone_verification_page.dart';
@@ -66,6 +65,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   String _phoneNumber = "";
   int? clientId;
 
+  late PageController controller;
+
   List<GlobalKey<FormBuilderState>> get _formKeys =>
       OnboardingSteps.values.map((_) => GlobalKey<FormBuilderState>()).toList();
 
@@ -108,12 +109,23 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           ),
           PhoneEntryPage(
             formKey: _formKeys[OnboardingSteps.phone.index],
-            onAction: (_) {},
+            onAction: (data) {
+              _phoneNumber = data["phoneNumber"]!;
+              setState(() {
+                _step++;
+              });
+              controller.jumpToPage(_step);
+            },
           ),
           PhoneVerificationPage(
             phoneNumber: _phoneNumber,
             formKey: _formKeys[OnboardingSteps.phoneVerification.index],
-            onAction: (_) {},
+            onAction: (_) {
+              setState(() {
+                _step++;
+              });
+              controller.jumpToPage(_step);
+            },
           ),
           DocumentsExplainerPage(
             formKey: _formKeys[OnboardingSteps.documentsExplainer.index],
@@ -124,18 +136,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             onAction: (_) {},
             prefilled: false,
           ),
-          DriversLicensePage(
-            formKey: _formKeys[OnboardingSteps.driversLicense.index],
-            onAction: (_) {},
-            prefilled: false,
-          ),
           LegalDetailsPage(
             formKey: _formKeys[OnboardingSteps.legal.index],
-            onAction: (_) {},
-            initialData: progress.legal,
-          ),
-          LegalDetailsPage(
-            formKey: _formKeys[OnboardingSteps.legalDetails.index],
             onAction: (_) {},
             initialData: progress.legal,
           ),
@@ -152,7 +154,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               setState(() {
                 _step += 2;
               });
-              //controller.jumpToPage(_step);
+              controller.jumpToPage(_step);
             },
           ),
           PickFormulaPage(
@@ -173,7 +175,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           )
         ];
 
-        final controller = PageController(
+        controller = PageController(
           initialPage: _step,
           keepPage: true,
         );
@@ -231,6 +233,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                     flex: OnboardingSteps.values[_step].canSkip ? 3 : 2,
                     child: OnboardingFormFooter(
                       showLaterButton: OnboardingSteps.values[_step].canSkip,
+                      showNextButton: OnboardingSteps.values[_step].hasNext,
                       onNextPressed: () {
                         _nextStep(controller, pages, progress);
                       },
@@ -250,6 +253,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                                         onPressed: () {
                                           Navigator.of(ctx).pop();
                                         }),
+                                    SizedBox(height: AppSpacings.sm),
                                     SolidCtaButton(
                                         label: l10n
                                             .continueLaterDialogOptionContinueLater,
@@ -301,15 +305,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       if (_step == OnboardingSteps.personal.index) {
         _personalData = values;
 
-        if (progress.progress >= 5) {
-          setState(() {
-            _step += 2;
-          });
-        } else {
-          setState(() {
-            _step++;
-          });
-        }
+        setState(() {
+          _step++;
+        });
 
         controller.jumpToPage(_step);
         return;
@@ -320,15 +318,9 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           combinedMaps.addAll(values);
           onboardingRepository.postPersonalData(combinedMaps).then((success) {
             if (success) {
-              if (progress.progress >= 5) {
-                setState(() {
-                  _step += 2;
-                });
-              } else {
-                setState(() {
-                  _step++;
-                });
-              }
+              setState(() {
+                _step++;
+              });
 
               controller.jumpToPage(_step);
               return;
@@ -339,20 +331,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         }
       }
 
-      if (_step == OnboardingSteps.phone.index) {
-        if (values != null) {
-          _phoneNumber = values["phoneNumber"];
-          setState(() {
-            _step++;
-          });
-          controller.jumpToPage(_step);
-          return;
-        }
-      }
-      if (_step == OnboardingSteps.phoneVerification.index) {
-        controller.jumpToPage(_step);
-        return;
-      }
+      // phone steps have no next button
+
       if (_step == OnboardingSteps.idDocuments.index) {
         if (values != null) {
           _scannedIdPics = values.withNullsRemoved;
@@ -365,36 +345,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           }
         });
       }
-      if (_step == OnboardingSteps.driversLicense.index) {
-        if (values != null) {
-          _scannedDriversLicensePics = values.withNullsRemoved;
-        }
-        _validateDriversLicense(values, progress.progress).then((success) {
-          if (success) {
-            controller.jumpToPage(_step);
-            return;
-          }
-        });
-      }
-      if (_step == OnboardingSteps.legal.index) {
-        // TODO: post if no convictions
-        if (values != null) {
-          onboardingRepository.postConvictions(values).then((success) {
-            if (success) {
-              setState(() {
-                _step++;
-              });
-              controller.jumpToPage(_step);
-              return;
-            } else {
-              _showUploadFailedDialog(context);
-            }
-          });
-        }
-      }
-      if (_step == OnboardingSteps.legalDetails.index) {
-        // TODO: post if user has convictions
 
+      if (_step == OnboardingSteps.legal.index) {
         if (values != null) {
           onboardingRepository.postConvictions(values).then((success) {
             if (success) {
@@ -463,24 +415,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         });
         Analyticsutil.trackEvent(
             name: "upload_id", action: AnalyticsAction.uploadId);
-      } else {
-        _showUploadFailedDialog(context);
-      }
-      return success || progress > 1;
-    }
-    return false;
-  }
-
-  Future<bool> _validateDriversLicense(
-      Map<String, dynamic>? values, int progress) async {
-    if (values != null && values.isNotEmpty) {
-      final success = await onboardingRepository.postDriversLicense(values);
-      if (success || progress > 1) {
-        Analyticsutil.trackEvent(
-            name: "upload_license", action: AnalyticsAction.uploadLicense);
-        setState(() {
-          _step++;
-        });
       } else {
         _showUploadFailedDialog(context);
       }

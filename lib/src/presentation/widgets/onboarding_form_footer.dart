@@ -3,6 +3,7 @@ import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:flutter/material.dart';
 
 final class OnboardingFormFooter extends StatelessWidget {
+  final bool showNextButton;
   final bool showLaterButton;
   final Function() onNextPressed;
   final Function()? onLaterPressed;
@@ -10,6 +11,7 @@ final class OnboardingFormFooter extends StatelessWidget {
   const OnboardingFormFooter({
     required this.showLaterButton,
     required this.onNextPressed,
+    this.showNextButton = true,
     this.onLaterPressed,
     super.key,
   });
@@ -22,10 +24,11 @@ final class OnboardingFormFooter extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: AppSpacings.sm,
         children: [
-          DefaultSolidTextButton(
-            onPressed: onNextPressed,
-            label: OnboardingLocalizations.of(context).nextButtonText,
-          ),
+          if (showNextButton)
+            DefaultSolidTextButton(
+              onPressed: onNextPressed,
+              label: OnboardingLocalizations.of(context).nextButtonText,
+            ),
           if (showLaterButton)
             DefaultOutlinedTextButton(
               onPressed: onLaterPressed ?? () {},

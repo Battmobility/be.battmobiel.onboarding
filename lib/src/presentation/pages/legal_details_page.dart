@@ -38,6 +38,35 @@ class LegalDetailsPageState extends State<LegalDetailsPage> {
               children: [
                 Text(l10n.convictionsPageTitle,
                     style: Theme.of(context).textTheme.headlineLarge),
+                SizedBox(width: AppSpacings.lg),
+                Text(l10n.convictionsPageMessage,
+                    style: Theme.of(context).textTheme.headlineMedium),
+                SizedBox(width: AppSpacings.md),
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 3,
+                      child: Text(l10n.convictionTypeNoOfAccidents,
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ),
+                    SizedBox(width: AppSpacings.sm),
+                    Flexible(
+                      flex: 1,
+                      child: FormBuilderDropdown(
+                          validator: FormBuilderValidators.required(),
+                          name: "nrOfAccidents",
+                          initialValue:
+                              widget.initialData?["nrOfAccidents"] ?? 0,
+                          items: [0, 1, 2, 3, 4, 5]
+                              .map((value) => DropdownMenuItem(
+                                    child: Text("$value"),
+                                    value: value,
+                                  ))
+                              .toList()),
+                    ),
+                  ],
+                ),
+                Divider(),
                 FormBuilderCheckbox(
                     name: "convictionDrunk",
                     initialValue:
