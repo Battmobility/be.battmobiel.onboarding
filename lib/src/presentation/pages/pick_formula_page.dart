@@ -46,7 +46,7 @@ class PickformulaPageState extends State<PickFormulaPage> {
                     initialValue: subscriptionType.name,
                     builder: (field) => SegmentedButton(
                       showSelectedIcon: false,
-                      segments: [
+                      segments: [ // TODO: cupertino picker like bookings in app
                         ButtonSegment(
                           value: SubscriptionType.battFun,
                           label: Text(SubscriptionType.battFun.description),

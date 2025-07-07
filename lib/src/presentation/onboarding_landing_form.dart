@@ -141,18 +141,13 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             onAction: (_) {},
             initialData: progress.legal,
           ),
-          DepositPage(
-            formKey: _formKeys[OnboardingSteps.deposit.index],
-            onAction: (_) {},
-            initialData: progress.legal,
-          ),
           CreateClientPage(
             formKey: _formKeys[6],
             initialData: progress.personal,
             onAction: (_) {
               // Skip to finish
               setState(() {
-                _step += 2;
+                _step += 3;
               });
               controller.jumpToPage(_step);
             },
@@ -161,6 +156,11 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             formKey: _formKeys[7],
             initialData: progress.personal..addAll({"clientId": clientId}),
             onAction: (_) {},
+          ),
+          DepositPage(
+            formKey: _formKeys[OnboardingSteps.deposit.index],
+            onAction: (_) {},
+            initialData: progress.legal,
           ),
           OnboardingDonePage(
             formKey: _formKeys[OnboardingSteps.confirmation.index],
@@ -361,45 +361,35 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           });
         }
       }
-
-      // TBC:
-      /*
-                                        if (_step == 6) {
-                                          if (values != null) {
-                                            onboardingRepository
-                                                .postNewClientData(values)
-                                                .then((newClientId) {
-                                              if (newClientId != null) {
-                                                clientId = newClientId;
-                                                setState(() {
-                                                  _step++;
-                                                });
-                                                controller.jumpToPage(_step);
-                                              } else {
-                                                _showUploadFailedDialog(
-                                                    context);
-                                              }
-                                            });
-                                          }
-                                        }
-                                        if (_step == 7) {
-                                          if (values != null) {
-                                            onboardingRepository
-                                                .postNewContractData(values)
-                                                .then((success) {
-                                              if (success) {
-                                                setState(() {
-                                                  _step++;
-                                                });
-                                                controller.jumpToPage(_step);
-                                              } else {
-                                                _showUploadFailedDialog(
-                                                    context);
-                                              }
-                                            });
-                                          }
-                                        }
-                                        */
+      if (_step == OnboardingSteps.createClient.index) {
+        if (values != null) {
+          onboardingRepository.postNewClientData(values).then((newClientId) {
+            if (newClientId != null) {
+              clientId = newClientId;
+              setState(() {
+                _step++;
+              });
+              controller.jumpToPage(_step);
+            } else {
+              _showUploadFailedDialog(context);
+            }
+          });
+        }
+      }
+      if (_step == OnboardingSteps.pickContract.index) {
+        if (values != null) {
+          onboardingRepository.postNewContractData(values).then((success) {
+            if (success) {
+              setState(() {
+                _step++;
+              });
+              controller.jumpToPage(_step);
+            } else {
+              _showUploadFailedDialog(context);
+            }
+          });
+        }
+      }
     } else {
       _showIncompleteFormDialog(context);
     }

@@ -40,7 +40,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "8fc1e6580bf7f9bca0310f3ea09c7345cad228e0"
+      resolved-ref: c5b566794b30467d2e36181e0eeb7a283910a0b5
       url: "https://github.com/Battmobility/batt_api.git"
     source: git
     version: "0.0.3"

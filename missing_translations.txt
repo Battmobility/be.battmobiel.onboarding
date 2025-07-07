@@ -1,1 +1,9 @@
-{}
+{
+  "fr": [
+    "addSubscriptionFormMessagePersonalUse"
+  ],
+
+  "nl": [
+    "addSubscriptionFormMessagePersonalUse"
+  ]
+}

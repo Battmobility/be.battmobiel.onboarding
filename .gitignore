@@ -57,3 +57,4 @@ package-lock.json
 *.png
 *.html
 .claude/settings.local.json
+.mcp.json

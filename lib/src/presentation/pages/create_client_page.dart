@@ -43,7 +43,7 @@ class CreateClientPageState extends State<CreateClientPage> {
                     style: Theme.of(context).textTheme.headlineLarge),
                 Padding(
                   padding: AppPaddings.medium.vertical,
-                  child: Text(l10n.addSubscriptionFormMessage,
+                  child: Text(l10n.addSubscriptionFormMessagePersonalUse,
                       style: Theme.of(context).textTheme.titleMedium),
                 ),
                 DefaultSimpleTextButton(

@@ -9,6 +9,8 @@ enum OnboardingSteps {
   documentsExplainer,
   idDocuments,
   legal,
+  createClient,
+  pickContract,
   deposit,
   confirmation
 }
@@ -42,6 +44,8 @@ extension Skip on OnboardingSteps {
       case OnboardingSteps.deposit:
       case OnboardingSteps.documentsExplainer:
       case OnboardingSteps.idDocuments:
+      case OnboardingSteps.createClient:
+      case OnboardingSteps.pickContract:
         return false; // TODO: re-enable when deploying for app
     }
   }

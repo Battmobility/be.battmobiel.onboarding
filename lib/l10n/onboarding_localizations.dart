@@ -629,11 +629,11 @@ abstract class OnboardingLocalizations {
   /// **'Facturatie'**
   String get addSubscriptionFormTitle;
 
-  /// No description provided for @addSubscriptionFormMessage.
+  /// No description provided for @addSubscriptionFormMessagePersonalUse.
   ///
   /// In en, this message translates to:
-  /// **'Geef hieronder je facturatiegegevens in.'**
-  String get addSubscriptionFormMessage;
+  /// **'Your billing data for personal use:'**
+  String get addSubscriptionFormMessagePersonalUse;
 
   /// No description provided for @addSubscriptionFormLaterLabel.
   ///
@@ -644,7 +644,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @addSubscriptionFormName.
   ///
   /// In en, this message translates to:
-  /// **'Naam'**
+  /// **'Name'**
   String get addSubscriptionFormName;
 
   /// No description provided for @addSubscriptionFormEmail.
@@ -656,61 +656,61 @@ abstract class OnboardingLocalizations {
   /// No description provided for @addSubscriptionFormAddress.
   ///
   /// In en, this message translates to:
-  /// **'Adres'**
+  /// **'Adress'**
   String get addSubscriptionFormAddress;
 
   /// No description provided for @addSubscriptionFormStreet.
   ///
   /// In en, this message translates to:
-  /// **'Straat'**
+  /// **'Street'**
   String get addSubscriptionFormStreet;
 
   /// No description provided for @addSubscriptionFormHouseNumber.
   ///
   /// In en, this message translates to:
-  /// **'Huisnummer (+ toevoegingen)'**
+  /// **'House number + additions'**
   String get addSubscriptionFormHouseNumber;
 
   /// No description provided for @addSubscriptionFormPostalCode.
   ///
   /// In en, this message translates to:
-  /// **'Postcode'**
+  /// **'Zip code'**
   String get addSubscriptionFormPostalCode;
 
   /// No description provided for @addSubscriptionFormCity.
   ///
   /// In en, this message translates to:
-  /// **'Gemeente'**
+  /// **'City'**
   String get addSubscriptionFormCity;
 
   /// No description provided for @addSubscriptionFormCountry.
   ///
   /// In en, this message translates to:
-  /// **'Land'**
+  /// **'Country'**
   String get addSubscriptionFormCountry;
 
   /// No description provided for @addSubscriptionFormBusiness.
   ///
   /// In en, this message translates to:
-  /// **'Voor bedrijven'**
+  /// **'For enterprises'**
   String get addSubscriptionFormBusiness;
 
   /// No description provided for @addSubscriptionFormVAT.
   ///
   /// In en, this message translates to:
-  /// **'BTW-nummer (optioneel)'**
+  /// **'VAT-number (optional)'**
   String get addSubscriptionFormVAT;
 
   /// No description provided for @addSubscriptionFormConfirm.
   ///
   /// In en, this message translates to:
-  /// **'Kies een contract'**
+  /// **'Pick a contract'**
   String get addSubscriptionFormConfirm;
 
   /// No description provided for @addSubscriptionFormSuccess.
   ///
   /// In en, this message translates to:
-  /// **'Abonnement {subscription} toegevoegd!'**
+  /// **'Subscription {subscription} added!'**
   String addSubscriptionFormSuccess(String subscription);
 
   /// No description provided for @addSubscriptionFormFailure.
@@ -722,19 +722,19 @@ abstract class OnboardingLocalizations {
   /// No description provided for @addSubscriptionFormLoadingFailure.
   ///
   /// In en, this message translates to:
-  /// **'Data konden niet worden geladen, probeer het alstublieft opnieuw.'**
+  /// **'Data could not be loaded, please try again.'**
   String get addSubscriptionFormLoadingFailure;
 
   /// No description provided for @createContractTitle.
   ///
   /// In en, this message translates to:
-  /// **'Nieuw contract'**
+  /// **'New subscription'**
   String get createContractTitle;
 
   /// No description provided for @createContractPickFormulaLabel.
   ///
   /// In en, this message translates to:
-  /// **'Kies een formule'**
+  /// **'Pick a contract'**
   String get createContractPickFormulaLabel;
 
   /// No description provided for @createContractFormulaBattFunExplanation.

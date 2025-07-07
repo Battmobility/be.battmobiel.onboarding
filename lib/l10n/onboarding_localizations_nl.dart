@@ -297,8 +297,8 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Facturatie';
 
   @override
-  String get addSubscriptionFormMessage =>
-      'Geef hieronder je facturatiegegevens in.';
+  String get addSubscriptionFormMessagePersonalUse =>
+      'Your billing data for personal use:';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';

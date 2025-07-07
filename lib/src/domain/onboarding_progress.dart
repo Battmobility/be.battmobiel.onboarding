@@ -1,14 +1,18 @@
 import 'package:batt_kit/api/generated/batt_kit.swagger.dart' as api;
+import 'package:batt_onboarding/src/domain/subscription.dart';
+import 'package:batt_onboarding/src/domain/subscription_mapper.dart';
 
 final class OnboardingProgress {
   final Map<String, dynamic> legal;
   final Map<String, dynamic> personal;
   int progress;
+  final List<Subscription> subscriptions;
 
   OnboardingProgress({
     required this.legal,
     required this.personal,
     required this.progress,
+    required this.subscriptions,
   });
 
   factory OnboardingProgress.fromContract(api.Onboarding? contract) {
@@ -43,12 +47,16 @@ final class OnboardingProgress {
           "socialSecurityNumber": contract.personal?.socialSecurityNumber,
           "street": contract.personal?.street,
         },
+        subscriptions:
+            (contract.$client?.subscriptions ?? List<api.Subscription>.empty())
+                .toDomain(),
         progress: contract.progress,
       );
     } else {
       return OnboardingProgress(
         legal: {},
         personal: {},
+        subscriptions: [],
         progress: 0,
       );
     }
@@ -58,6 +66,7 @@ final class OnboardingProgress {
     return OnboardingProgress(
       legal: {},
       personal: {},
+      subscriptions: [],
       progress: 0,
     );
   }

@@ -297,7 +297,8 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Billing';
 
   @override
-  String get addSubscriptionFormMessage => 'Enter your billing data below.';
+  String get addSubscriptionFormMessagePersonalUse =>
+      'Your billing data for personal use:';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ill do this later';

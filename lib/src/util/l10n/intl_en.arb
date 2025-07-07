@@ -445,8 +445,8 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormMessage" : "Geef hieronder je facturatiegegevens in.",
-	"@addSubscriptionFormMessage": {
+	"addSubscriptionFormMessagePersonalUse" : "Your billing data for personal use:",
+	"@addSubscriptionFormMessagePersonalUse": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -455,7 +455,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormName" : "Naam",
+	"addSubscriptionFormName" : "Name",
 	"@addSubscriptionFormName": {
 		"type": "text",
 		"placeholders": {}
@@ -465,52 +465,52 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormAddress" : "Adres",
+	"addSubscriptionFormAddress" : "Adress",
 	"@addSubscriptionFormAddress": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormStreet" : "Straat",
+	"addSubscriptionFormStreet" : "Street",
 	"@addSubscriptionFormStreet": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormHouseNumber" : "Huisnummer (+ toevoegingen)",
+	"addSubscriptionFormHouseNumber" : "House number + additions",
 	"@addSubscriptionFormHouseNumber": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormPostalCode" : "Postcode",
+	"addSubscriptionFormPostalCode" : "Zip code",
 	"@addSubscriptionFormPostalCode": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormCity" : "Gemeente",
+	"addSubscriptionFormCity" : "City",
 	"@addSubscriptionFormCity": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormCountry" : "Land",
+	"addSubscriptionFormCountry" : "Country",
 	"@addSubscriptionFormCountry": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormBusiness" : "Voor bedrijven",
+	"addSubscriptionFormBusiness" : "For enterprises",
 	"@addSubscriptionFormBusiness": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormVAT" : "BTW-nummer (optioneel)",
+	"addSubscriptionFormVAT" : "VAT-number (optional)",
 	"@addSubscriptionFormVAT": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormConfirm" : "Kies een contract",
+	"addSubscriptionFormConfirm" : "Pick a contract",
 	"@addSubscriptionFormConfirm": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormSuccess" : "Abonnement {subscription} toegevoegd!",
+	"addSubscriptionFormSuccess" : "Subscription {subscription} added!",
 	"@addSubscriptionFormSuccess": {
 		"type": "text",
 		"placeholders": {"subscription": {
@@ -522,17 +522,17 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormLoadingFailure" : "Data konden niet worden geladen, probeer het alstublieft opnieuw.",
+	"addSubscriptionFormLoadingFailure" : "Data could not be loaded, please try again.",
 	"@addSubscriptionFormLoadingFailure": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"createContractTitle" : "Nieuw contract",
+	"createContractTitle" : "New subscription",
 	"@createContractTitle": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"createContractPickFormulaLabel" : "Kies een formule",
+	"createContractPickFormulaLabel" : "Pick a contract",
 	"@createContractPickFormulaLabel": {
 		"type": "text",
 		"placeholders": {}

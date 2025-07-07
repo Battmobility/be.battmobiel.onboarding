@@ -297,48 +297,48 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Facturatie';
 
   @override
-  String get addSubscriptionFormMessage =>
-      'Geef hieronder je facturatiegegevens in.';
+  String get addSubscriptionFormMessagePersonalUse =>
+      'Your billing data for personal use:';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';
 
   @override
-  String get addSubscriptionFormName => 'Naam';
+  String get addSubscriptionFormName => 'Name';
 
   @override
   String get addSubscriptionFormEmail => 'Email';
 
   @override
-  String get addSubscriptionFormAddress => 'Adres';
+  String get addSubscriptionFormAddress => 'Adress';
 
   @override
-  String get addSubscriptionFormStreet => 'Straat';
+  String get addSubscriptionFormStreet => 'Street';
 
   @override
-  String get addSubscriptionFormHouseNumber => 'Huisnummer (+ toevoegingen)';
+  String get addSubscriptionFormHouseNumber => 'House number + additions';
 
   @override
-  String get addSubscriptionFormPostalCode => 'Postcode';
+  String get addSubscriptionFormPostalCode => 'Zip code';
 
   @override
-  String get addSubscriptionFormCity => 'Gemeente';
+  String get addSubscriptionFormCity => 'City';
 
   @override
-  String get addSubscriptionFormCountry => 'Land';
+  String get addSubscriptionFormCountry => 'Country';
 
   @override
-  String get addSubscriptionFormBusiness => 'Voor bedrijven';
+  String get addSubscriptionFormBusiness => 'For enterprises';
 
   @override
-  String get addSubscriptionFormVAT => 'BTW-nummer (optioneel)';
+  String get addSubscriptionFormVAT => 'VAT-number (optional)';
 
   @override
-  String get addSubscriptionFormConfirm => 'Kies een contract';
+  String get addSubscriptionFormConfirm => 'Pick a contract';
 
   @override
   String addSubscriptionFormSuccess(String subscription) {
-    return 'Abonnement $subscription toegevoegd!';
+    return 'Subscription $subscription added!';
   }
 
   @override
@@ -347,13 +347,13 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get addSubscriptionFormLoadingFailure =>
-      'Data konden niet worden geladen, probeer het alstublieft opnieuw.';
+      'Data could not be loaded, please try again.';
 
   @override
-  String get createContractTitle => 'Nieuw contract';
+  String get createContractTitle => 'New subscription';
 
   @override
-  String get createContractPickFormulaLabel => 'Kies een formule';
+  String get createContractPickFormulaLabel => 'Pick a contract';
 
   @override
   String get createContractFormulaBattFunExplanation =>
