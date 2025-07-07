@@ -1,0 +1,25 @@
+name: docker ci
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    env:
+      IMAGENAME: onboarding-web
+      REGISTRY: battmobility.azurecr.io
+      DIRECTORY: BattMobility
+      USERNAME: github
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker build
+        uses: mr-smithers-excellent/docker-build-push@v5
+        id: build
+        with:
+          image: ${{ env.IMAGENAME }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ env.USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
