@@ -452,8 +452,18 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormMessage" : "Enter your billing data below.",
-	"@addSubscriptionFormMessage": {
+	"addSubscriptionFormMessagePersonalUse" : "Your billing data for personal use:",
+	"@addSubscriptionFormMessagePersonalUse": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormMessageBusinessUse" : "Your billing data for business use:",
+	"@addSubscriptionFormMessageBusinessUse": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormNoBusinessButton" : "I will not be using BattMobility for business purposes.",
+	"@addSubscriptionFormNoBusinessButton": {
 		"type": "text",
 		"placeholders": {}
 	},

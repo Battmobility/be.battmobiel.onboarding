@@ -56,4 +56,11 @@ final class BattFormula {
   });
 }
 
-enum BattFormulaType { battFun, battFan }
+enum BattFormulaType {
+  battFun,
+  battFan,
+  battFunPlus,
+  battFanPlus,
+  battMax,
+  battForBusiness,
+}

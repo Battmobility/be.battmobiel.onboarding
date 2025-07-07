@@ -301,6 +301,14 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
       'Your billing data for personal use:';
 
   @override
+  String get addSubscriptionFormNoBusinessButton =>
+      'I will not be using BattMobility for business purposes.';
+
+  @override
+  String get addSubscriptionFormMessageBusinessUse =>
+      'Your billing data for business use:';
+
+  @override
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';
 
   @override

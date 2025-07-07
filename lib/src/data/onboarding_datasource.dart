@@ -38,7 +38,8 @@ final class OnboardingDatasource {
   }
 
   Future<int?> postNewClientData(Map<String, dynamic> values) async {
-    return service.postNewClientData(values.toClientCreation());
+    final client = await service.postNewClientData(values.toClientCreation());
+    return client?.id;
   }
 
   Future<bool> postNewContractData(int clientId, int? delegatedTrustClientId,

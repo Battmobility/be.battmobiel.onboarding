@@ -635,6 +635,18 @@ abstract class OnboardingLocalizations {
   /// **'Your billing data for personal use:'**
   String get addSubscriptionFormMessagePersonalUse;
 
+  /// No description provided for @addSubscriptionFormNoBusinessButton.
+  ///
+  /// In en, this message translates to:
+  /// **'I will not be using BattMobility for business purposes.'**
+  String get addSubscriptionFormNoBusinessButton;
+
+  /// No description provided for @addSubscriptionFormMessageBusinessUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Your billing data for business use:'**
+  String get addSubscriptionFormMessageBusinessUse;
+
   /// No description provided for @addSubscriptionFormLaterLabel.
   ///
   /// In en, this message translates to:

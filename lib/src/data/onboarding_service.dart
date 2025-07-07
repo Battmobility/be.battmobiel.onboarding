@@ -1,6 +1,6 @@
 import 'package:batt_kit/api/generated/batt_kit.swagger.dart';
 import 'package:batt_onboarding/src/data/api_factory.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' hide Client;
 import 'package:image_picker/image_picker.dart';
 
 final class OnboardingService {
@@ -74,10 +74,10 @@ final class OnboardingService {
     }
   }
 
-  Future<int?> postNewClientData(CreateClient client) async {
+  Future<Client?> postNewClientData(CreateClient client) async {
     try {
       final response = await api.userV1ClientsPost(body: client);
-      return response.body?.id;
+      return response.body;
     } catch (e, _) {
       return null;
     }

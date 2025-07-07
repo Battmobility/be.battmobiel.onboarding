@@ -12,7 +12,6 @@ import 'package:batt_onboarding/src/presentation/pages/onboarding_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/phone_verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/personal_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/intro_page.dart';
-import 'package:batt_onboarding/src/presentation/pages/pick_formula_page.dart';
 import 'package:batt_onboarding/src/presentation/widgets/onboarding_form_footer.dart';
 import 'package:batt_onboarding/src/util/analytics/analytics_events.dart';
 import 'package:batt_onboarding/src/util/analytics/analytics_util.dart';
@@ -134,7 +133,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           IdDocumentsPage(
             formKey: _formKeys[OnboardingSteps.idDocuments.index],
             onAction: (_) {},
-            prefilled: false,
+            prefilled:
+                false, // TODO: use progress and possible back id data from personal data page
           ),
           LegalDetailsPage(
             formKey: _formKeys[OnboardingSteps.legal.index],
@@ -147,15 +147,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             onAction: (_) {
               // Skip to finish
               setState(() {
-                _step += 3;
+                _step += 2;
               });
               controller.jumpToPage(_step);
             },
-          ),
-          PickFormulaPage(
-            formKey: _formKeys[7],
-            initialData: progress.personal..addAll({"clientId": clientId}),
-            onAction: (_) {},
           ),
           DepositPage(
             formKey: _formKeys[OnboardingSteps.deposit.index],
@@ -353,7 +348,13 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               setState(() {
                 _step++;
               });
-              controller.jumpToPage(_step);
+              if (progress.subscriptions.length == 1) {
+                // jump to create client page
+                controller.jumpToPage(_step);
+              } else {
+                _step++; // jump to contract picker for personal use
+                controller.jumpToPage(_step);
+              }
               return;
             } else {
               _showUploadFailedDialog(context);
@@ -366,20 +367,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           onboardingRepository.postNewClientData(values).then((newClientId) {
             if (newClientId != null) {
               clientId = newClientId;
-              setState(() {
-                _step++;
-              });
-              controller.jumpToPage(_step);
-            } else {
-              _showUploadFailedDialog(context);
-            }
-          });
-        }
-      }
-      if (_step == OnboardingSteps.pickContract.index) {
-        if (values != null) {
-          onboardingRepository.postNewContractData(values).then((success) {
-            if (success) {
               setState(() {
                 _step++;
               });

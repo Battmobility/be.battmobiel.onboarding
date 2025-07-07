@@ -298,7 +298,15 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get addSubscriptionFormMessagePersonalUse =>
-      'Your billing data for personal use:';
+      'Geef hieronder je facturatiegegevens voor privégebruik in:';
+
+  @override
+  String get addSubscriptionFormNoBusinessButton =>
+      'Ik gebruik BattMobility niet voor zakelijke doeleinden';
+
+  @override
+  String get addSubscriptionFormMessageBusinessUse =>
+      'Geef hieronder je facturatiegegevens in als je een zaak hebt:';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';

@@ -450,6 +450,16 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"addSubscriptionFormNoBusinessButton" : "I will not be using BattMobility for business purposes.",
+	"@addSubscriptionFormNoBusinessButton": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormMessageBusinessUse" : "Your billing data for business use:",
+	"@addSubscriptionFormMessageBusinessUse": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"addSubscriptionFormLaterLabel" : "Ik doe dit later.",
 	"@addSubscriptionFormLaterLabel": {
 		"type": "text",

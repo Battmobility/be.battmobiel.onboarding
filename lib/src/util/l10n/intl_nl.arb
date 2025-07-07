@@ -467,6 +467,21 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"addSubscriptionFormMessagePersonalUse" : "Geef hieronder je facturatiegegevens voor privégebruik in:",
+	"@addSubscriptionFormMessagePersonalUse": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormMessageBusinessUse" : "Geef hieronder je facturatiegegevens in als je een zaak hebt:",
+	"@addSubscriptionFormMessageBusinessUse": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormNoBusinessButton" : "Ik gebruik BattMobility niet voor zakelijke doeleinden",
+	"@addSubscriptionFormNoBusinessButton": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"addSubscriptionFormLaterLabel" : "Ik doe dit later.",
 	"@addSubscriptionFormLaterLabel": {
 		"type": "text",
