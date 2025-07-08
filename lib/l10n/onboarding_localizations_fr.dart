@@ -297,8 +297,12 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Billing';
 
   @override
-  String get addSubscriptionFormMessagePersonalUse =>
-      'Your billing data for personal use:';
+  String get addSubscriptionFormLabelPersonalUse =>
+      'Pick a contract for personal use:';
+
+  @override
+  String get addSubscriptionFormLabelNoPersonalUseButton =>
+      'I will not be using BattMobility for personal use.';
 
   @override
   String get addSubscriptionFormNoBusinessButton =>
@@ -307,6 +311,10 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   @override
   String get addSubscriptionFormMessageBusinessUse =>
       'Your billing data for business use:';
+
+  @override
+  String get addSubscriptionFormLabelBusinessUse =>
+      'Pick a contract for business use:';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ill do this later';
@@ -340,6 +348,9 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get addSubscriptionFormVAT => 'BTW-nummer (optioneel)';
+
+  @override
+  String get addSubscriptionFormEnterBusinessData => 'Enter business data';
 
   @override
   String get addSubscriptionFormConfirm => 'Kies een contract';

@@ -348,13 +348,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               setState(() {
                 _step++;
               });
-              if (progress.subscriptions.length == 1) {
-                // jump to create client page
-                controller.jumpToPage(_step);
-              } else {
-                _step++; // jump to contract picker for personal use
-                controller.jumpToPage(_step);
-              }
+              controller.jumpToPage(_step);
+
               return;
             } else {
               _showUploadFailedDialog(context);

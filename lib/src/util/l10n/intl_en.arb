@@ -445,8 +445,13 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormMessagePersonalUse" : "Your billing data for personal use:",
-	"@addSubscriptionFormMessagePersonalUse": {
+	"addSubscriptionFormLabelPersonalUse" : "Pick a contract for personal use:",
+	"@addSubscriptionFormLabelPersonalUse": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormLabelNoPersonalUseButton" : "I will not be using BattMobility for personal use.",
+	"@addSubscriptionFormLabelNoPersonalUseButton": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -457,6 +462,11 @@
 	},
 	"addSubscriptionFormMessageBusinessUse" : "Your billing data for business use:",
 	"@addSubscriptionFormMessageBusinessUse": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormLabelBusinessUse" : "Pick a contract for business use:",
+	"@addSubscriptionFormLabelBusinessUse": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -512,6 +522,11 @@
 	},
 	"addSubscriptionFormVAT" : "VAT-number (optional)",
 	"@addSubscriptionFormVAT": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormEnterBusinessData" : "Enter business data",
+	"@addSubscriptionFormEnterBusinessData": {
 		"type": "text",
 		"placeholders": {}
 	},

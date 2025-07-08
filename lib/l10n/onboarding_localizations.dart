@@ -629,11 +629,17 @@ abstract class OnboardingLocalizations {
   /// **'Facturatie'**
   String get addSubscriptionFormTitle;
 
-  /// No description provided for @addSubscriptionFormMessagePersonalUse.
+  /// No description provided for @addSubscriptionFormLabelPersonalUse.
   ///
   /// In en, this message translates to:
-  /// **'Your billing data for personal use:'**
-  String get addSubscriptionFormMessagePersonalUse;
+  /// **'Pick a contract for personal use:'**
+  String get addSubscriptionFormLabelPersonalUse;
+
+  /// No description provided for @addSubscriptionFormLabelNoPersonalUseButton.
+  ///
+  /// In en, this message translates to:
+  /// **'I will not be using BattMobility for personal use.'**
+  String get addSubscriptionFormLabelNoPersonalUseButton;
 
   /// No description provided for @addSubscriptionFormNoBusinessButton.
   ///
@@ -646,6 +652,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Your billing data for business use:'**
   String get addSubscriptionFormMessageBusinessUse;
+
+  /// No description provided for @addSubscriptionFormLabelBusinessUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a contract for business use:'**
+  String get addSubscriptionFormLabelBusinessUse;
 
   /// No description provided for @addSubscriptionFormLaterLabel.
   ///
@@ -712,6 +724,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'VAT-number (optional)'**
   String get addSubscriptionFormVAT;
+
+  /// No description provided for @addSubscriptionFormEnterBusinessData.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter business data'**
+  String get addSubscriptionFormEnterBusinessData;
 
   /// No description provided for @addSubscriptionFormConfirm.
   ///

@@ -462,6 +462,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"addSubscriptionFormLabelNoPersonalUseButton" : "I will not be using BattMobility for personal use.",
+	"@addSubscriptionFormLabelNoPersonalUseButton": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"addSubscriptionFormNoBusinessButton" : "I will not be using BattMobility for business purposes.",
 	"@addSubscriptionFormNoBusinessButton": {
 		"type": "text",
@@ -519,6 +524,11 @@
 	},
 	"addSubscriptionFormVAT" : "BTW-nummer (optioneel)",
 	"@addSubscriptionFormVAT": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addSubscriptionFormEnterBusinessData" : "Enter business data",
+	"@addSubscriptionFormEnterBusinessData": {
 		"type": "text",
 		"placeholders": {}
 	},

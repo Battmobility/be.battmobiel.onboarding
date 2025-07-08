@@ -297,8 +297,12 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Facturatie';
 
   @override
-  String get addSubscriptionFormMessagePersonalUse =>
-      'Geef hieronder je facturatiegegevens voor privégebruik in:';
+  String get addSubscriptionFormLabelPersonalUse =>
+      'Pick a contract for personal use:';
+
+  @override
+  String get addSubscriptionFormLabelNoPersonalUseButton =>
+      'Ik ga geen persoonlijk gebruik maken van BattMobility.';
 
   @override
   String get addSubscriptionFormNoBusinessButton =>
@@ -307,6 +311,10 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   @override
   String get addSubscriptionFormMessageBusinessUse =>
       'Geef hieronder je facturatiegegevens in als je een zaak hebt:';
+
+  @override
+  String get addSubscriptionFormLabelBusinessUse =>
+      'Pick a contract for business use:';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';
@@ -340,6 +348,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get addSubscriptionFormVAT => 'BTW-nummer (optioneel)';
+
+  @override
+  String get addSubscriptionFormEnterBusinessData => 'Geef bedrijfsgegevens in';
 
   @override
   String get addSubscriptionFormConfirm => 'Kies een contract';

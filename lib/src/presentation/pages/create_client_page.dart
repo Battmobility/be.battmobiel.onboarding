@@ -7,6 +7,7 @@ import 'package:batt_onboarding/src/presentation/pages/formula_picker_page.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sealed_countries/sealed_countries.dart';
 
 import '../../util/analytics/analytics_events.dart';
@@ -26,7 +27,13 @@ final class CreateClientPage extends OnboardingPage {
 }
 
 class CreateClientPageState extends State<CreateClientPage> {
-  bool _isBusinessUse = true;
+  bool _wantsBusinessUse = true;
+  bool _wantsPersonalUse = true;
+
+  bool _isCreatingBusinessClient = false;
+  bool _hasPickedBusinessContract = false;
+  int? _businessClientId;
+  bool _hasPickedPersonalContract = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,24 +60,44 @@ class CreateClientPageState extends State<CreateClientPage> {
     final l10n = OnboardingLocalizations.of(context);
 
     if (subscriptions.length == 1) {
-      // Offer VAT
-      if (subscriptions.first.clientId == null) {
-        _isBusinessUse = true;
-        return [_businessClientForm(subscriptions.first)];
-      } else {
-        return [SizedBox.shrink()];
-      }
-    } else if (!_isBusinessUse) {
-      // Create client and show formula picker
-      return [_standardClientForm(subscriptions.first)];
+      return [
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            _businessClientCta(),
+          ],
+        )
+      ];
+    } else if (subscriptions.length > 1 && _businessClientId != null) {
+      return [
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            _businessClientCta(),
+            _standardClientCta(subscriptions
+                .firstWhere((sub) => sub.subscriptionContract == null)),
+          ],
+        )
+      ];
     } else {
       // Show created client(s)?
       return [
-        SolidCtaButton(
-          label: l10n.doneButtonText,
-          onPressed: () async {
-            widget.onAction({});
-          },
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            _businessClientCta(),
+            _standardClientCta(subscriptions
+                .firstWhere((sub) => sub.subscriptionContract == null)),
+            SolidCtaButton(
+              label: l10n.doneButtonText,
+              onPressed: () async {
+                widget.onAction({});
+              },
+            )
+          ],
         )
       ];
     }
@@ -92,14 +119,6 @@ class CreateClientPageState extends State<CreateClientPage> {
               padding: AppPaddings.medium.vertical,
               child: Text(l10n.addSubscriptionFormMessageBusinessUse,
                   style: Theme.of(context).textTheme.titleMedium),
-            ),
-            DefaultSimpleTextButton(
-              label: l10n.addSubscriptionFormNoBusinessButton,
-              onPressed: () {
-                setState(() {
-                  _isBusinessUse = false;
-                });
-              },
             ),
             FormBuilderTextField(
                 decoration:
@@ -182,9 +201,12 @@ class CreateClientPageState extends State<CreateClientPage> {
                     final clientId =
                         await onboardingRepository.postNewClientData(values);
                     if (clientId != null) {
+                      setState(() {
+                        _businessClientId = clientId!;
+                      });
                       _showContractPicker(context, clientId, subscription);
                       setState(() {
-                        _isBusinessUse = false;
+                        _wantsBusinessUse = false;
                       });
                     } else {
                       _showCreateClientFailedDialog(context);
@@ -202,117 +224,108 @@ class CreateClientPageState extends State<CreateClientPage> {
     );
   }
 
-  Widget _standardClientForm(Subscription subscription) {
+  Widget _businessClientCta() {
     final l10n = OnboardingLocalizations.of(context);
 
-    return FormBuilder(
-      key: widget.formKey,
-      child: Padding(
-        padding: AppPaddings.medium.vertical,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(l10n.addSubscriptionFormTitle,
-                style: Theme.of(context).textTheme.headlineLarge),
-            Padding(
-              padding: AppPaddings.medium.vertical,
-              child: Text(l10n.addSubscriptionFormMessagePersonalUse,
-                  style: Theme.of(context).textTheme.titleMedium),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(l10n.addSubscriptionFormMessageBusinessUse),
+        if (_wantsBusinessUse) ...[
+          if (_businessClientId == null) ...[
+            SolidCtaButton(
+              label: l10n.addSubscriptionFormEnterBusinessData,
+              onPressed: () async {
+                // Show form
+                setState(() {
+                  _isCreatingBusinessClient = true;
+                });
+              },
             ),
-            DefaultSimpleTextButton(
-              label: l10n.addSubscriptionFormLaterLabel,
-              onPressed: () => widget.onAction({}),
-            ),
-            FormBuilderTextField(
-                decoration:
-                    InputDecoration(labelText: l10n.addSubscriptionFormName),
-                name: "name",
-                initialValue:
-                    "${widget.initialData?["firstName"] ?? ""} ${widget.initialData?["lastName"] ?? ""}",
-                validator: FormBuilderValidators.required()),
-            FormBuilderTextField(
-                decoration:
-                    InputDecoration(labelText: l10n.addSubscriptionFormEmail),
-                name: "email",
-                initialValue: widget.initialData?["email"] ?? "",
-                validator: FormBuilderValidators.email()),
-            FormBuilderTextField(
-                decoration:
-                    InputDecoration(labelText: l10n.addSubscriptionFormStreet),
-                name: "street",
-                initialValue: widget.initialData?["street"] ?? "",
-                validator: FormBuilderValidators.required()),
-            FormBuilderTextField(
-                decoration: InputDecoration(
-                    labelText: l10n.addSubscriptionFormHouseNumber),
-                name: "houseNumber",
-                initialValue:
-                    "${widget.initialData?["houseNumber"] ?? ""} ${widget.initialData?["box"] ?? ""}",
-                validator: FormBuilderValidators.required()),
-            FormBuilderTextField(
-                decoration:
-                    InputDecoration(labelText: l10n.addSubscriptionFormCity),
-                name: "city",
-                initialValue: widget.initialData?["city"] ?? "",
-                validator: FormBuilderValidators.required()),
-            FormBuilderDropdown(
-              validator: FormBuilderValidators.required(),
-              name: "country",
-              initialValue: widget.initialData?["country"] ??
-                  WorldCountry.fromCode("Bel").iso3166oneAlpha2,
-              items: WorldCountry.list
-                  .map((country) => DropdownMenuItem(
-                        child: Text(
-                          "${country.emoji} ${country.name.common}",
-                          style: Theme.of(context).textTheme.bodyLarge!,
-                        ),
-                        value: country.iso3166oneAlpha2,
-                      ))
-                  .toList(),
-            ),
-            FormBuilderTextField(
-                decoration: InputDecoration(
-                    labelText: l10n.addSubscriptionFormPostalCode),
-                name: "postalCode",
-                initialValue: widget.initialData?["postalCode"] ?? "",
-                validator: FormBuilderValidators.required()),
+            OutlinedCtaButton(
+                label: l10n.addSubscriptionFormNoBusinessButton,
+                onPressed: () {
+                  setState(() {
+                    _wantsBusinessUse = false;
+                  });
+                }),
+          ],
+          if (_businessClientId != null && !_hasPickedBusinessContract) ...[
             SolidCtaButton(
               label: l10n.addSubscriptionFormConfirm,
               onPressed: () async {
-                if (widget.formKey.currentState!.saveAndValidate()) {
-                  final values = widget.formKey.currentState?.value;
-                  if (values != null) {
-                    final clientId =
-                        await onboardingRepository.postNewClientData(values);
-                    if (clientId != null) {
-                      _showContractPicker(context, clientId, subscription);
-                    } else {
-                      _showCreateClientFailedDialog(context);
-                    }
-                  }
-                }
+                _showContractPicker(context, _businessClientId!, null);
               },
-            )
+            ),
+          ],
+          if (_hasPickedBusinessContract) ...[
+            Icon(
+              PhosphorIcons.checkFat(),
+              color: AppColors.b2cKeyColor,
+            ),
           ]
-              .map((field) =>
-                  Padding(padding: AppPaddings.medium.vertical, child: field))
-              .toList(),
-        ),
-      ),
+        ],
+        if (!_wantsBusinessUse) ...[SizedBox.shrink()]
+      ],
+    );
+  }
+
+  Widget _standardClientCta(Subscription subscription) {
+    final l10n = OnboardingLocalizations.of(context);
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(l10n.addSubscriptionFormLabelPersonalUse),
+        if (_wantsPersonalUse) ...[
+          if (_hasPickedPersonalContract) ...[
+            Icon(
+              PhosphorIcons.checkFat(),
+              color: AppColors.b2cKeyColor,
+            ),
+          ],
+          if (!_hasPickedPersonalContract) ...[
+            SolidCtaButton(
+              label: l10n.createContractPickFormulaLabel,
+              onPressed: () async {
+                // Show picker
+                _showContractPicker(context, subscription.clientId!, null);
+              },
+            ),
+            OutlinedCtaButton(
+                label: l10n.addSubscriptionFormLabelNoPersonalUseButton,
+                onPressed: () {
+                  setState(() {
+                    _wantsPersonalUse = false;
+                  });
+                }),
+          ]
+        ],
+        if (!_wantsPersonalUse) ...[
+          Text(l10n.addSubscriptionFormLabelNoPersonalUseButton)
+        ]
+      ],
     );
   }
 
   Future<void> _showContractPicker(
-      BuildContext context, int clientId, Subscription subscription) async {
+      BuildContext context, int clientId, Subscription? subscription) async {
     showModalBottomSheet(
         context: context,
         builder: (_) {
           return FormulaPickerPage(
             clientId: clientId,
-            delegatedTrustClientId: subscription.delegatedTrustClientId,
+            delegatedTrustClientId: subscription?.delegatedTrustClientId,
             onContractCreated: () {
               Navigator.of(context).pop();
               setState(() {
+                if (_businessClientId != null) {
+                  setState(() {
+                    _hasPickedBusinessContract = true;
+                  });
+                } else {
+                  _hasPickedBusinessContract = true;
+                }
                 // refresh, should show next contract
               });
             },
