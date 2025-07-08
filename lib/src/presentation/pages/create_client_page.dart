@@ -137,20 +137,90 @@ class CreateClientPageState extends State<CreateClientPage> {
       });
     }
 
+    // Check if all subscriptions have contracts (onboarding completed)
+    final allSubscriptionsComplete = subscriptions.isNotEmpty && subsWithoutContract.isEmpty;
+
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          // Show completion message if all subscriptions have contracts
+          if (allSubscriptionsComplete) 
+            _onboardingCompletedWidget(),
           // Show business form or collapse button when less than 2 subscriptions
-          if (subscriptions.length < 2) ...[
+          if (!allSubscriptionsComplete && subscriptions.length < 2) ...[
             if (_showBusinessForm)
               _businessClientForm()
             else
               _showBusinessFormButton(),
           ],
           // Show CTAs for each subscription without contract
-          ...subsWithoutContract.map((sub) => _simplifiedClientCta(sub))
+          if (!allSubscriptionsComplete)
+            ...subsWithoutContract.map((sub) => _simplifiedClientCta(sub))
         ]);
+  }
+
+  Widget _onboardingCompletedWidget() {
+    final l10n = OnboardingLocalizations.of(context);
+    
+    return Padding(
+      padding: AppPaddings.large.all,
+      child: Card(
+        elevation: 4,
+        child: Padding(
+          padding: AppPaddings.large.all,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.check_circle,
+                size: 64,
+                color: AppColors.ctaBrightGreen,
+              ),
+              SizedBox(height: AppSpacings.lg),
+              Text(
+                l10n.onboardingCompletedTitle,
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  color: AppColors.ctaBrightGreen,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: AppSpacings.md),
+              Text(
+                l10n.onboardingCompletedMessage,
+                style: Theme.of(context).textTheme.bodyLarge,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: AppSpacings.lg),
+              GestureDetector(
+                onTap: () => _launchAppStore(),
+                child: Text(
+                  l10n.onboardingCompletedAppStoreMessage,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.b2cKeyColor,
+                    decoration: TextDecoration.underline,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _launchAppStore() {
+    // For now, show a message that the app store link would open here
+    // The actual URL launching would need url_launcher package or platform-specific implementation
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('App Store link clicked - would redirect to Batt mobile app'),
+        duration: Duration(seconds: 3),
+      ),
+    );
   }
 
   Widget _showBusinessFormButton() {

@@ -407,4 +407,15 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   @override
   String get createContractFailureMessage =>
       'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
+
+  @override
+  String get onboardingCompletedTitle => 'Onboarding Voltooid!';
+
+  @override
+  String get onboardingCompletedMessage =>
+      'Gefeliciteerd! Je hebt het onboardingproces succesvol afgerond. Al je contracten zijn nu actief en je kunt de Batt-applicatie gebruiken.';
+
+  @override
+  String get onboardingCompletedAppStoreMessage =>
+      'Download de Batt mobiele app uit de App Store om te beginnen met het opladen van je voertuig.';
 }

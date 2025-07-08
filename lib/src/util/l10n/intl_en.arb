@@ -606,5 +606,20 @@
 	"@createContractFailureMessage": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"onboardingCompletedTitle": "Onboarding Complete!",
+	"@onboardingCompletedTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedMessage": "Congratulations! You have successfully completed the onboarding process.",
+	"@onboardingCompletedMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedAppStoreMessage": "Download the Batt mobile app from the App Store to get started.",
+	"@onboardingCompletedAppStoreMessage": {
+		"type": "text",
+		"placeholders": {}
 	}
 }

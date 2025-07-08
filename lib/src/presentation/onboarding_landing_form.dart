@@ -180,7 +180,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               children: [
                 OnboardingFormHeader(
                   title: OnboardingSteps.values[_step].name,
-                  progress: (_step.toDouble() /
+                  progress: ((_step + 1).toDouble() /
                       OnboardingSteps.values.length.toDouble()),
                   backButtonEnabled: _step != OnboardingSteps.intro.index,
                   onbackPressed: () {

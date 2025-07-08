@@ -623,5 +623,20 @@
 	"@createContractFailureMessage": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"onboardingCompletedTitle": "Onboarding Voltooid!",
+	"@onboardingCompletedTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedMessage": "Gefeliciteerd! Je hebt het onboardingproces succesvol afgerond. Al je contracten zijn nu actief en je kunt de Batt-applicatie gebruiken.",
+	"@onboardingCompletedMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedAppStoreMessage": "Download de Batt mobiele app uit de App Store.",
+	"@onboardingCompletedAppStoreMessage": {
+		"type": "text",
+		"placeholders": {}
 	}
 }

@@ -820,6 +820,24 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Failed to create contract! Try again or contact customer service if the problem persists.'**
   String get createContractFailureMessage;
+
+  /// No description provided for @onboardingCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Onboarding Complete!'**
+  String get onboardingCompletedTitle;
+
+  /// No description provided for @onboardingCompletedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! You have successfully completed the onboarding process. All your contracts are now active and you can start using the Batt application.'**
+  String get onboardingCompletedMessage;
+
+  /// No description provided for @onboardingCompletedAppStoreMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Download the Batt mobile app from the App Store to get started with charging your vehicle.'**
+  String get onboardingCompletedAppStoreMessage;
 }
 
 class _OnboardingLocalizationsDelegate

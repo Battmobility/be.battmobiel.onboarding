@@ -604,8 +604,23 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"createContractFailureMessage" : "Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.",
+	"createContractFailureMessage" : "Échec de la création du contrat ! Réessayez ou contactez le service client si le problème persiste.",
 	"@createContractFailureMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedTitle": "Intégration Terminée !",
+	"@onboardingCompletedTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedMessage": "Félicitations ! Vous avez terminé avec succès le processus d'intégration. Tous vos contrats sont maintenant actifs et vous pouvez commencer à utiliser l'application Batt.",
+	"@onboardingCompletedMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedAppStoreMessage": "Téléchargez votre application Batt.",
+	"@onboardingCompletedAppStoreMessage": {
 		"type": "text",
 		"placeholders": {}
 	}

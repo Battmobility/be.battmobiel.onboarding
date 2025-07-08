@@ -304,13 +304,16 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
       'Pick a contract for personal use:';
 
   @override
-  String get addSubscriptionFormLabelNoPersonalUseButton => 'Skip';
+  String get addSubscriptionFormLabelNoPersonalUseButton =>
+      'I will not be using BattMobility for personal use.';
 
   @override
-  String get addSubscriptionFormNoBusinessButton => 'Skip';
+  String get addSubscriptionFormNoBusinessButton =>
+      'I will not be using BattMobility for business purposes.';
 
   @override
-  String get addSubscriptionFormMessageBusinessUse => 'Add bussiness address';
+  String get addSubscriptionFormMessageBusinessUse =>
+      'Your billing data for business use:';
 
   @override
   String get addSubscriptionFormLabelBusinessUse =>
@@ -350,7 +353,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get addSubscriptionFormVAT => 'VAT-number (optional)';
 
   @override
-  String get addSubscriptionFormEnterBusinessData => 'Add';
+  String get addSubscriptionFormEnterBusinessData => 'Enter business data';
 
   @override
   String get addSubscriptionFormConfirm => 'Pick a contract';
@@ -403,4 +406,15 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   @override
   String get createContractFailureMessage =>
       'Failed to create contract! Try again or contact customer service if the problem persists.';
+
+  @override
+  String get onboardingCompletedTitle => 'Onboarding Complete!';
+
+  @override
+  String get onboardingCompletedMessage =>
+      'Congratulations! You have successfully completed the onboarding process. All your contracts are now active and you can start using the Batt application.';
+
+  @override
+  String get onboardingCompletedAppStoreMessage =>
+      'Download the Batt mobile app from the App Store to get started with charging your vehicle.';
 }

@@ -5,6 +5,7 @@ extension ContractDataMapper on Map<String, dynamic> {
   CreateNewUsageContractRequest toContract() {
     return CreateNewUsageContractRequest(
         formula: (this["formula"].toString()).toApi(),
+        memo: "Created by onboarding v2",
         commitmentAmountInclVat: double.tryParse(this['commitment'].toString()),
         startDate: DateTime.now().toUtc());
   }

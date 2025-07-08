@@ -405,5 +405,16 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get createContractFailureMessage =>
-      'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
+      'Échec de la création du contrat ! Réessayez ou contactez le service client si le problème persiste.';
+
+  @override
+  String get onboardingCompletedTitle => 'Intégration Terminée !';
+
+  @override
+  String get onboardingCompletedMessage =>
+      'Félicitations ! Vous avez terminé avec succès le processus dintégration. Tous vos contrats sont maintenant actifs et vous pouvez commencer à utiliser lapplication Batt.';
+
+  @override
+  String get onboardingCompletedAppStoreMessage =>
+      'Téléchargez lapplication mobile Batt depuis lApp Store pour commencer à recharger votre véhicule.';
 }
