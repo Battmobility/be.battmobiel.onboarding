@@ -38,7 +38,7 @@ dependencies:
   batt_kit:
     git:
       url: https://github.com/Battmobility/batt_api.git
-      ref: 'main'
+      ref: 'aa3dfe0'
 
 dependency_overrides:
   intl: 0.20.2

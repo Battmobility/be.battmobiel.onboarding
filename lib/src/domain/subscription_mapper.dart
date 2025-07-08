@@ -59,6 +59,8 @@ extension ApiBattFormulaTypeToDomain on api.BattFormulaType? {
         return BattFormulaType.battFan;
       case api.BattFormulaType.battfanplus:
         return BattFormulaType.battFanPlus;
+      case api.BattFormulaType.battfunplusdl:
+        return BattFormulaType.battFunPlusDL;
       case api.BattFormulaType.battfun:
         return BattFormulaType.battFun;
       case api.BattFormulaType.battfunplus:

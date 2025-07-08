@@ -412,9 +412,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get onboardingCompletedMessage =>
-      'Congratulations! You have successfully completed the onboarding process. All your contracts are now active and you can start using the Batt application.';
+      'Congratulations! You have successfully completed the onboarding process.';
 
   @override
   String get onboardingCompletedAppStoreMessage =>
-      'Download the Batt mobile app from the App Store to get started with charging your vehicle.';
+      'Download the Batt mobile app from the App Store to get started.';
 }

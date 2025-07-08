@@ -417,5 +417,5 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get onboardingCompletedAppStoreMessage =>
-      'Download de Batt mobiele app uit de App Store om te beginnen met het opladen van je voertuig.';
+      'Download de Batt mobiele app uit de App Store.';
 }

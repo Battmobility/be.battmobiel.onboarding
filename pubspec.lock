@@ -59,8 +59,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: c5b566794b30467d2e36181e0eeb7a283910a0b5
+      ref: aa3dfe0
+      resolved-ref: aa3dfe03afd91f5cad66390f45919c3f268dfb9f
       url: "https://github.com/Battmobility/batt_api.git"
     source: git
     version: "0.0.3"

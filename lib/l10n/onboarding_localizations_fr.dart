@@ -416,5 +416,5 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get onboardingCompletedAppStoreMessage =>
-      'Téléchargez lapplication mobile Batt depuis lApp Store pour commencer à recharger votre véhicule.';
+      'Téléchargez votre application Batt.';
 }

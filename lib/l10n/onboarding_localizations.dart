@@ -830,13 +830,13 @@ abstract class OnboardingLocalizations {
   /// No description provided for @onboardingCompletedMessage.
   ///
   /// In en, this message translates to:
-  /// **'Congratulations! You have successfully completed the onboarding process. All your contracts are now active and you can start using the Batt application.'**
+  /// **'Congratulations! You have successfully completed the onboarding process.'**
   String get onboardingCompletedMessage;
 
   /// No description provided for @onboardingCompletedAppStoreMessage.
   ///
   /// In en, this message translates to:
-  /// **'Download the Batt mobile app from the App Store to get started with charging your vehicle.'**
+  /// **'Download the Batt mobile app from the App Store to get started.'**
   String get onboardingCompletedAppStoreMessage;
 }
 
