@@ -14,6 +14,7 @@ import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
 
 final class CreateClientPage extends OnboardingPage {
+  final businessClientFormKey = GlobalKey<FormBuilderState>();
   CreateClientPage({
     super.key,
     required super.formKey,
@@ -37,6 +38,8 @@ class CreateClientPageState extends State<CreateClientPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = OnboardingLocalizations.of(context);
+
     return FutureBuilder(
         future: onboardingRepository.getOnboardingProgress(),
         builder: (context, snapshot) {
@@ -49,10 +52,39 @@ class CreateClientPageState extends State<CreateClientPage> {
             child: SingleChildScrollView(
               child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(l10n.addSubscriptionFormTitle,
+                        style: Theme.of(context).textTheme.headlineLarge),
                     _finishedContracts(progress.subscriptions),
-                    _formChildren(progress.subscriptions)
+                    _formChildren(progress.subscriptions),
+                    FormBuilder(
+                        key: widget.formKey,
+                        child: Column(
+                          children: [
+                            FormField(
+                              builder: (_) {
+                                return SizedBox.shrink();
+                              },
+                              validator: (_) {
+                                // TODO: ony validate when clients have been created or refused
+                                if (!_wantsBusinessUse && !_wantsPersonalUse) {
+                                  return null; // can continue
+                                }
+                                if (_wantsBusinessUse) {
+                                  return _hasPickedBusinessContract
+                                      ? null
+                                      : "Business contract not picked yet";
+                                }
+                                if (_wantsPersonalUse) {
+                                  return _hasPickedPersonalContract
+                                      ? null
+                                      : "Personal contract not picked yet";
+                                }
+                              },
+                            ),
+                          ],
+                        ))
                   ]),
             ),
           );
@@ -108,19 +140,19 @@ class CreateClientPageState extends State<CreateClientPage> {
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: applicableSubs.length == 1
+        children: applicableSubs.isEmpty
             ? [
                 _isCreatingBusinessClient
                     ? _businessClientForm()
                     : _businessClientCta(),
               ]
-            : (applicableSubs.length > 1 && _businessClientId != null)
+            : (applicableSubs.isNotEmpty)
                 ? [
                     _isCreatingBusinessClient
                         ? _businessClientForm()
                         : _businessClientCta(),
                     _standardClientCta(applicableSubs
-                        .firstWhere((sub) => sub.subscriptionContract == null))
+                        .firstWhere((sub) => sub.clientId == _businessClientId))
                   ]
                 : []);
   }
@@ -129,7 +161,7 @@ class CreateClientPageState extends State<CreateClientPage> {
     final l10n = OnboardingLocalizations.of(context);
 
     return FormBuilder(
-      key: widget.formKey,
+      key: widget.businessClientFormKey,
       child: Padding(
         padding: AppPaddings.medium.vertical,
         child: Column(
