@@ -27,12 +27,16 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
 
   // Formula descriptions map
   static const Map<BattFormulaType, String> formulaDescriptions = {
-    BattFormulaType.battFun: "Perfect for occasional charging needs",
-    BattFormulaType.battFan: "Great for regular charging with flexible commitment",
-    BattFormulaType.battFunPlus: "Enhanced version with additional benefits",
-    BattFormulaType.battFanPlus: "Premium charging plan with extra features",
-    BattFormulaType.battMax: "Unlimited charging for heavy users",
-    BattFormulaType.battForBusiness: "Tailored solution for business needs",
+    BattFormulaType.battFun: "Comfort vloot zonder abonnementskosten",
+    BattFormulaType.battFunPlusDL:
+        "Luxevloot, geen vaste kost, waarborg geregeld door je werkgever.",
+    BattFormulaType.battFan:
+        "Comfort vloot + maandelijks een vaste prepaid, 25% korting.",
+    BattFormulaType.battFunPlus: "Luxevloot zonder abonnementskosten",
+    BattFormulaType.battFanPlus:
+        "Luxevloot + maandelijks een vaste prepaid, 25% korting.",
+    BattFormulaType.battForBusiness:
+        "Voor bedrijven: luxevloot aan 25% korting",
   };
 
   @override
@@ -56,7 +60,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
     final possibleFormulas = widget.subscription.possibleFormulas ?? [];
-    
+
     if (possibleFormulas.isEmpty) {
       return Padding(
         padding: AppPaddings.large.all,
@@ -68,13 +72,11 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
         ),
       );
     }
-    
+
     return Padding(
-      padding: AppPaddings.large.trailing,
+      padding: AppPaddings.large.all,
       child: SingleChildScrollView(
-        child: Padding(
-          padding: AppPaddings.medium.vertical,
-          child: Column(
+        child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -84,10 +86,12 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
               ),
               SizedBox(height: AppSpacings.lg),
               // Radio buttons for each possible formula
-              ...possibleFormulas.map((formula) => _buildFormulaOption(formula)),
+              ...possibleFormulas
+                  .map((formula) => _buildFormulaOption(formula)),
               SizedBox(height: AppSpacings.lg),
               // Minimum commitment field (only if needed)
-              if (selectedFormula?.minCommitment != null && selectedFormula!.minCommitment! > 0)
+              if (selectedFormula?.minCommitment != null &&
+                  selectedFormula!.minCommitment! > 0)
                 _buildCommitmentField(),
               SizedBox(height: AppSpacings.xl),
               SizedBox(
@@ -98,16 +102,14 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
                 ),
               ),
             ],
-          ),
         ),
       ),
     );
   }
 
   Widget _buildFormulaOption(BattFormula formula) {
-    final isSelected = selectedFormula == formula;
     final formulaType = formula.type;
-    
+
     return Card(
       margin: EdgeInsets.only(bottom: AppSpacings.md),
       child: RadioListTile<BattFormula>(
@@ -129,8 +131,8 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
         title: Text(
           formulaType?.name.toUpperCase() ?? "Unknown Formula",
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+                fontWeight: FontWeight.bold,
+              ),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,9 +147,9 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
               Text(
                 "Warranty: €${formula.warrantyAmount}",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.b2cKeyColor,
-                  fontWeight: FontWeight.w600,
-                ),
+                      color: AppColors.b2cKeyColor,
+                      fontWeight: FontWeight.w600,
+                    ),
               ),
             if (formula.minCommitment != null && formula.minCommitment! > 0)
               Text(
@@ -199,14 +201,15 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
                 ),
               ],
             ),
-            if (selectedFormula?.minCommitment != null && selectedFormula!.minCommitment! > 0)
+            if (selectedFormula?.minCommitment != null &&
+                selectedFormula!.minCommitment! > 0)
               Padding(
                 padding: EdgeInsets.only(top: AppSpacings.xs),
                 child: Text(
                   "Minimum: €${selectedFormula!.minCommitment}",
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.grey[600],
-                  ),
+                        color: Colors.grey[600],
+                      ),
                 ),
               ),
           ],
@@ -217,12 +220,13 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
 
   Future<void> _createContract() async {
     // Validate minimum commitment
-    if (selectedFormula?.minCommitment != null && 
-        selectedFormula!.minCommitment! > 0 && 
+    if (selectedFormula?.minCommitment != null &&
+        selectedFormula!.minCommitment! > 0 &&
         commitment < selectedFormula!.minCommitment!) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Commitment must be at least €${selectedFormula!.minCommitment}"),
+          content: Text(
+              "Commitment must be at least €${selectedFormula!.minCommitment}"),
         ),
       );
       return;
@@ -234,7 +238,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
       "formula": selectedFormula?.type?.name,
       "commitment": commitment,
     };
-    
+
     final success = await onboardingRepository.postNewContractData(values);
     if (success) {
       widget.onContractCreated();
@@ -242,7 +246,6 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
       _showCreateContractFailedDialog(context);
     }
   }
-
 
   void _showCreateContractFailedDialog(BuildContext context) {
     showDialog(

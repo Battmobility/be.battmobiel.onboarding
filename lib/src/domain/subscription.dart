@@ -60,6 +60,7 @@ enum BattFormulaType {
   battFun,
   battFan,
   battFunPlus,
+  battFunPlusDL,
   battFanPlus,
   battMax,
   battForBusiness,

@@ -281,8 +281,6 @@ class CreateClientPageState extends State<CreateClientPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(l10n.addSubscriptionFormTitle,
-                          style: Theme.of(context).textTheme.headlineLarge),
                       Padding(
                         padding: AppPaddings.medium.vertical,
                         child: Text(l10n.addSubscriptionFormMessageBusinessUse,

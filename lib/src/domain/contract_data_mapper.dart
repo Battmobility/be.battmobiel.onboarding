@@ -18,6 +18,14 @@ extension SubscriptionTypeMapper on String {
         return ClientContractFormula.battfan;
       case "battFun":
         return ClientContractFormula.battfun;
+      case "battFunPlus":
+        return ClientContractFormula.battfunplus;
+      case "battFanPlus":
+        return ClientContractFormula.battfanplus;
+      case "battForBusiness":
+        return ClientContractFormula.battforbusiness;
+      case "battFunPlusDL":
+        return ClientContractFormula.battfunplusdl;
       case "battMax":
         return ClientContractFormula.battmax;
       default:
