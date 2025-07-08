@@ -10,8 +10,6 @@ enum OnboardingSteps {
   idDocuments,
   legal,
   createClient,
-  deposit,
-  confirmation
 }
 
 extension OnboardingStepName on OnboardingSteps {
@@ -23,7 +21,7 @@ extension Skip on OnboardingSteps {
     switch (this) {
       case OnboardingSteps.phoneVerification:
       case OnboardingSteps.phone:
-      case OnboardingSteps.confirmation:
+      case OnboardingSteps.createClient:
         return false;
       default:
         return true;
@@ -35,12 +33,10 @@ extension Skip on OnboardingSteps {
       case OnboardingSteps.intro:
       case OnboardingSteps.personal:
       case OnboardingSteps.address:
-      case OnboardingSteps.confirmation:
         return false;
       case OnboardingSteps.phone:
       case OnboardingSteps.phoneVerification:
       case OnboardingSteps.legal:
-      case OnboardingSteps.deposit:
       case OnboardingSteps.documentsExplainer:
       case OnboardingSteps.idDocuments:
       case OnboardingSteps.createClient:

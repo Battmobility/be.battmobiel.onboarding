@@ -4,8 +4,8 @@ import 'package:batt_kit/api/generated/batt_kit.models.swagger.dart';
 extension ContractDataMapper on Map<String, dynamic> {
   CreateNewUsageContractRequest toContract() {
     return CreateNewUsageContractRequest(
-        formula: (this["formula"] as String).toApi(),
-        commitmentAmountInclVat: double.tryParse(this['commitment']),
+        formula: (this["formula"].toString()).toApi(),
+        commitmentAmountInclVat: double.tryParse(this['commitment'].toString()),
         startDate: DateTime.now().toUtc());
   }
 }

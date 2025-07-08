@@ -304,16 +304,13 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
       'Pick a contract for personal use:';
 
   @override
-  String get addSubscriptionFormLabelNoPersonalUseButton =>
-      'I will not be using BattMobility for personal use.';
+  String get addSubscriptionFormLabelNoPersonalUseButton => 'Skip';
 
   @override
-  String get addSubscriptionFormNoBusinessButton =>
-      'I will not be using BattMobility for business purposes.';
+  String get addSubscriptionFormNoBusinessButton => 'Skip';
 
   @override
-  String get addSubscriptionFormMessageBusinessUse =>
-      'Your billing data for business use:';
+  String get addSubscriptionFormMessageBusinessUse => 'Add bussiness address';
 
   @override
   String get addSubscriptionFormLabelBusinessUse =>
@@ -353,7 +350,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get addSubscriptionFormVAT => 'VAT-number (optional)';
 
   @override
-  String get addSubscriptionFormEnterBusinessData => 'Enter business data';
+  String get addSubscriptionFormEnterBusinessData => 'Add';
 
   @override
   String get addSubscriptionFormConfirm => 'Pick a contract';

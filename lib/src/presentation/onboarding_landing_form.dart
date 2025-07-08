@@ -7,7 +7,6 @@ import 'package:batt_onboarding/src/presentation/pages/address_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/create_client_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/id_documents_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/legal_details_page.dart';
-import 'package:batt_onboarding/src/presentation/pages/done_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/onboarding_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/phone_verification_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/personal_page.dart';
@@ -20,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../../l10n/onboarding_localizations.dart';
 import 'onboarding_steps.dart';
-import 'pages/deposit_page.dart';
 import 'pages/documents_explainer.dart';
 import 'pages/phone_entry_page.dart';
 import 'widgets/onboarding_form_header.dart';
@@ -78,6 +76,11 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           return Center(child: CircularProgressIndicator());
         }
         OnboardingProgress progress = snapshot.data!;
+
+        // If onboarding is completed, go directly to CreateClientPage
+        if (progress.progress == 5 && _step == 0) {
+          _step = OnboardingSteps.createClient.index;
+        }
 
         final pages = [
           IntroPage(
@@ -152,22 +155,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               controller.jumpToPage(_step);
             },
           ),
-          DepositPage(
-            formKey: _formKeys[OnboardingSteps.deposit.index],
-            onAction: (_) {},
-            initialData: progress.legal,
-          ),
-          OnboardingDonePage(
-            formKey: _formKeys[OnboardingSteps.confirmation.index],
-            onAction: (_) {
-              widget.onSubmitted(true);
-            },
-            onReset: () {
-              setState(() {
-                _step = 0;
-              });
-            },
-          )
         ];
 
         controller = PageController(
@@ -195,8 +182,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                   title: OnboardingSteps.values[_step].name,
                   progress: (_step.toDouble() /
                       OnboardingSteps.values.length.toDouble()),
-                  backButtonEnabled: _step != OnboardingSteps.intro.index &&
-                      _step != OnboardingSteps.confirmation.index,
+                  backButtonEnabled: _step != OnboardingSteps.intro.index,
                   onbackPressed: () {
                     setState(() {
                       _step--;
