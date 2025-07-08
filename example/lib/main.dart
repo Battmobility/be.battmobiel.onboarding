@@ -7,6 +7,7 @@ import 'package:batt_auth/authentication/authentication.dart';
 import 'package:batt_auth/authentication/domain/domain.dart';
 import 'package:batt_auth/batt_auth.dart';
 import 'package:batt_auth/l10n/auth_localizations.dart';
+import 'package:example/api_parameters.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -14,6 +15,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  BattAuth.init(keyCloakUri, apiUri);
   final app = await ThemeScopeWidget.initialize(const MyApp());
   runApp(app);
 }
@@ -117,6 +119,7 @@ class _MyAppState extends State<MyApp> {
 
   Widget _formBody(BuildContext context, String accessToken) =>
       OnboardingLandingForm(
+        apiUri: apiUri,
         token: accessToken,
         onAuthenticationError: (_) => {},
         onSubmitted: (_) {

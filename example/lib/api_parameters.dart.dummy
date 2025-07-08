@@ -1,0 +1,2 @@
+const apiUri = '@API_BASE_URL';
+const keyCloakUri ='@AUTH_BASE_URL';

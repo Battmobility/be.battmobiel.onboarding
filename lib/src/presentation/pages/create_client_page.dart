@@ -138,15 +138,15 @@ class CreateClientPageState extends State<CreateClientPage> {
     }
 
     // Check if all subscriptions have contracts (onboarding completed)
-    final allSubscriptionsComplete = subscriptions.isNotEmpty && subsWithoutContract.isEmpty;
+    final allSubscriptionsComplete =
+        subscriptions.isNotEmpty && subsWithoutContract.isEmpty;
 
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           // Show completion message if all subscriptions have contracts
-          if (allSubscriptionsComplete) 
-            _onboardingCompletedWidget(),
+          if (allSubscriptionsComplete) _onboardingCompletedWidget(),
           // Show business form or collapse button when less than 2 subscriptions
           if (!allSubscriptionsComplete && subscriptions.length < 2) ...[
             if (_showBusinessForm)
@@ -162,7 +162,7 @@ class CreateClientPageState extends State<CreateClientPage> {
 
   Widget _onboardingCompletedWidget() {
     final l10n = OnboardingLocalizations.of(context);
-    
+
     return Padding(
       padding: AppPaddings.large.all,
       child: Card(
@@ -182,9 +182,9 @@ class CreateClientPageState extends State<CreateClientPage> {
               Text(
                 l10n.onboardingCompletedTitle,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  color: AppColors.ctaBrightGreen,
-                  fontWeight: FontWeight.bold,
-                ),
+                      color: AppColors.ctaBrightGreen,
+                      fontWeight: FontWeight.bold,
+                    ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: AppSpacings.md),
@@ -199,9 +199,9 @@ class CreateClientPageState extends State<CreateClientPage> {
                 child: Text(
                   l10n.onboardingCompletedAppStoreMessage,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.b2cKeyColor,
-                    decoration: TextDecoration.underline,
-                  ),
+                        color: AppColors.b2cKeyColor,
+                        decoration: TextDecoration.underline,
+                      ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -217,7 +217,8 @@ class CreateClientPageState extends State<CreateClientPage> {
     // The actual URL launching would need url_launcher package or platform-specific implementation
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('App Store link clicked - would redirect to Batt mobile app'),
+        content:
+            Text('App Store link clicked - would redirect to Batt mobile app'),
         duration: Duration(seconds: 3),
       ),
     );
@@ -254,8 +255,7 @@ class CreateClientPageState extends State<CreateClientPage> {
           SolidCtaButton(
             label: l10n.createContractPickFormulaLabel,
             onPressed: () {
-              _showContractPicker(
-                  context, subscription.clientId!, subscription);
+              _showContractPicker(context, subscription);
             },
           ),
         ],
@@ -398,13 +398,12 @@ class CreateClientPageState extends State<CreateClientPage> {
   }
 
   Future<void> _showContractPicker(
-      BuildContext context, int clientId, Subscription? subscription) async {
+      BuildContext context, Subscription subscription) async {
     showModalBottomSheet(
         context: context,
         builder: (_) {
           return FormulaPickerPage(
-            clientId: clientId,
-            delegatedTrustClientId: subscription?.delegatedTrustClientId,
+            subscription: subscription,
             onContractCreated: () {
               Navigator.of(context).pop();
               // Refresh the page to show updated state
