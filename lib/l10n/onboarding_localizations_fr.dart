@@ -297,6 +297,9 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Billing';
 
   @override
+  String get addSubscriptionFormLabelExistingContracts => 'Existing contracts:';
+
+  @override
   String get addSubscriptionFormLabelPersonalUse =>
       'Pick a contract for personal use:';
 

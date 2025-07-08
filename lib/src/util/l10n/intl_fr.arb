@@ -452,6 +452,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"addSubscriptionFormLabelExistingContracts" : "Existing contracts:",
+	"@addSubscriptionFormLabelExistingContracts": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"addSubscriptionFormMessagePersonalUse" : "Your billing data for personal use:",
 	"@addSubscriptionFormMessagePersonalUse": {
 		"type": "text",

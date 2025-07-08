@@ -50,60 +50,82 @@ class CreateClientPageState extends State<CreateClientPage> {
               child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: _formChildren(progress.subscriptions)),
+                  children: [
+                    _finishedContracts(progress.subscriptions),
+                    _formChildren(progress.subscriptions)
+                  ]),
             ),
           );
         });
   }
 
-  List<Widget> _formChildren(List<Subscription> subscriptions) {
+  Widget _finishedContracts(List<Subscription> subscriptions) {
     final l10n = OnboardingLocalizations.of(context);
 
-    if (subscriptions.length == 1) {
-      return [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _businessClientCta(),
-          ],
-        )
-      ];
-    } else if (subscriptions.length > 1 && _businessClientId != null) {
-      return [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _businessClientCta(),
-            _standardClientCta(subscriptions
-                .firstWhere((sub) => sub.subscriptionContract == null)),
-          ],
-        )
-      ];
-    } else {
-      // Show created client(s)?
-      return [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _businessClientCta(),
-            _standardClientCta(subscriptions
-                .firstWhere((sub) => sub.subscriptionContract == null)),
-            SolidCtaButton(
-              label: l10n.doneButtonText,
-              onPressed: () async {
-                widget.onAction({});
-              },
-            )
-          ],
-        )
-      ];
+    final finishedSubscriptions =
+        subscriptions.where((sub) => sub.subscriptionContract != null);
+    if (finishedSubscriptions.isNotEmpty) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        spacing: AppSpacings.md,
+        children: [
+          Text(l10n.addSubscriptionFormLabelExistingContracts,
+              style: Theme.of(context).textTheme.titleMedium),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            spacing: AppSpacings.md,
+            children: finishedSubscriptions.map((sub) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                spacing: AppSpacings.sm,
+                children: [
+                  Text(
+                    sub.clientName!,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text(sub.subscriptionContract!.subscriptionType!,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(fontWeight: FontWeight.bold))
+                ],
+              );
+            }).toList(),
+          )
+        ],
+      );
     }
+
+    return SizedBox.shrink();
   }
 
-  Widget _businessClientForm(Subscription subscription) {
+  Widget _formChildren(List<Subscription> subscriptions) {
+    final applicableSubs =
+        subscriptions.where((sub) => sub.subscriptionContract == null);
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: applicableSubs.length == 1
+            ? [
+                _isCreatingBusinessClient
+                    ? _businessClientForm()
+                    : _businessClientCta(),
+              ]
+            : (applicableSubs.length > 1 && _businessClientId != null)
+                ? [
+                    _isCreatingBusinessClient
+                        ? _businessClientForm()
+                        : _businessClientCta(),
+                    _standardClientCta(applicableSubs
+                        .firstWhere((sub) => sub.subscriptionContract == null))
+                  ]
+                : []);
+  }
+
+  Widget _businessClientForm() {
     final l10n = OnboardingLocalizations.of(context);
 
     return FormBuilder(
@@ -202,11 +224,7 @@ class CreateClientPageState extends State<CreateClientPage> {
                         await onboardingRepository.postNewClientData(values);
                     if (clientId != null) {
                       setState(() {
-                        _businessClientId = clientId!;
-                      });
-                      _showContractPicker(context, clientId, subscription);
-                      setState(() {
-                        _wantsBusinessUse = false;
+                        _businessClientId = clientId;
                       });
                     } else {
                       _showCreateClientFailedDialog(context);
@@ -233,37 +251,40 @@ class CreateClientPageState extends State<CreateClientPage> {
         Text(l10n.addSubscriptionFormMessageBusinessUse),
         if (_wantsBusinessUse) ...[
           if (_businessClientId == null) ...[
-            SolidCtaButton(
-              label: l10n.addSubscriptionFormEnterBusinessData,
-              onPressed: () async {
-                // Show form
-                setState(() {
-                  _isCreatingBusinessClient = true;
-                });
-              },
-            ),
-            OutlinedCtaButton(
-                label: l10n.addSubscriptionFormNoBusinessButton,
-                onPressed: () {
+            Flexible(
+              flex: 1,
+              child: SolidCtaButton(
+                label: l10n.addSubscriptionFormEnterBusinessData,
+                onPressed: () async {
+                  // Show form
                   setState(() {
-                    _wantsBusinessUse = false;
+                    _isCreatingBusinessClient = true;
                   });
-                }),
+                },
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: OutlinedCtaButton(
+                  label: l10n.addSubscriptionFormNoBusinessButton,
+                  onPressed: () {
+                    setState(() {
+                      _wantsBusinessUse = false;
+                    });
+                  }),
+            ),
           ],
           if (_businessClientId != null && !_hasPickedBusinessContract) ...[
-            SolidCtaButton(
-              label: l10n.addSubscriptionFormConfirm,
-              onPressed: () async {
-                _showContractPicker(context, _businessClientId!, null);
-              },
+            Flexible(
+              flex: 1,
+              child: SolidCtaButton(
+                label: l10n.addSubscriptionFormConfirm,
+                onPressed: () async {
+                  _showContractPicker(context, _businessClientId!, null);
+                },
+              ),
             ),
           ],
-          if (_hasPickedBusinessContract) ...[
-            Icon(
-              PhosphorIcons.checkFat(),
-              color: AppColors.b2cKeyColor,
-            ),
-          ]
         ],
         if (!_wantsBusinessUse) ...[SizedBox.shrink()]
       ],
@@ -285,20 +306,26 @@ class CreateClientPageState extends State<CreateClientPage> {
             ),
           ],
           if (!_hasPickedPersonalContract) ...[
-            SolidCtaButton(
-              label: l10n.createContractPickFormulaLabel,
-              onPressed: () async {
-                // Show picker
-                _showContractPicker(context, subscription.clientId!, null);
-              },
+            Flexible(
+              flex: 1,
+              child: SolidCtaButton(
+                label: l10n.createContractPickFormulaLabel,
+                onPressed: () async {
+                  // Show picker
+                  _showContractPicker(context, subscription.clientId!, null);
+                },
+              ),
             ),
-            OutlinedCtaButton(
-                label: l10n.addSubscriptionFormLabelNoPersonalUseButton,
-                onPressed: () {
-                  setState(() {
-                    _wantsPersonalUse = false;
-                  });
-                }),
+            Flexible(
+              flex: 1,
+              child: OutlinedCtaButton(
+                  label: l10n.addSubscriptionFormLabelNoPersonalUseButton,
+                  onPressed: () {
+                    setState(() {
+                      _wantsPersonalUse = false;
+                    });
+                  }),
+            ),
           ]
         ],
         if (!_wantsPersonalUse) ...[
@@ -324,7 +351,9 @@ class CreateClientPageState extends State<CreateClientPage> {
                     _hasPickedBusinessContract = true;
                   });
                 } else {
-                  _hasPickedBusinessContract = true;
+                  setState(() {
+                    _hasPickedPersonalContract = true;
+                  });
                 }
                 // refresh, should show next contract
               });

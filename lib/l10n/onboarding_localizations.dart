@@ -629,6 +629,12 @@ abstract class OnboardingLocalizations {
   /// **'Facturatie'**
   String get addSubscriptionFormTitle;
 
+  /// No description provided for @addSubscriptionFormLabelExistingContracts.
+  ///
+  /// In en, this message translates to:
+  /// **'Existing contracts:'**
+  String get addSubscriptionFormLabelExistingContracts;
+
   /// No description provided for @addSubscriptionFormLabelPersonalUse.
   ///
   /// In en, this message translates to:

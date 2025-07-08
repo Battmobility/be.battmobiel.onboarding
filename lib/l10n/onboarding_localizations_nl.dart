@@ -297,6 +297,10 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Facturatie';
 
   @override
+  String get addSubscriptionFormLabelExistingContracts =>
+      'Bestaande contracten:';
+
+  @override
   String get addSubscriptionFormLabelPersonalUse =>
       'Pick a contract for personal use:';
 

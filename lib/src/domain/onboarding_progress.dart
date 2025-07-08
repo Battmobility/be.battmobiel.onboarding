@@ -15,42 +15,42 @@ final class OnboardingProgress {
     required this.subscriptions,
   });
 
-  factory OnboardingProgress.fromContract(api.Onboarding? contract) {
-    if (contract != null) {
+  factory OnboardingProgress.fromContract(api.Onboarding? onboarding) {
+    if (onboarding != null) {
       return OnboardingProgress(
         legal: {
           "convictionBloodTestRefusal":
-              contract.legal?.convictions.convictionBloodTestRefusal,
-          "convictionDrunk": contract.legal?.convictions.convictionDrunk,
+              onboarding.legal?.convictions.convictionBloodTestRefusal,
+          "convictionDrunk": onboarding.legal?.convictions.convictionDrunk,
           "convictionHitAndRun":
-              contract.legal?.convictions.convictionHitAndRun,
+              onboarding.legal?.convictions.convictionHitAndRun,
           "convictionIntoxicated":
-              contract.legal?.convictions.convictionIntoxicated,
+              onboarding.legal?.convictions.convictionIntoxicated,
           "convictionLicenseRevocation":
-              contract.legal?.convictions.convictionLicenseRevocation,
-          "nrOfAccidents": contract.legal?.nrOfAccidents,
-          "answeredTruthfully": contract.progress > 0,
+              onboarding.legal?.convictions.convictionLicenseRevocation,
+          "nrOfAccidents": onboarding.legal?.nrOfAccidents,
+          "answeredTruthfully": onboarding.progress > 0,
         },
         personal: {
-          "box": contract.personal?.box,
-          "city": contract.personal?.city,
-          "dateCurrentLicense": contract.personal?.dateCurrentLicense,
-          "dateLicenseUntil": contract.personal?.dateLicenseUntil,
-          "dateOfBirth": contract.personal?.dateOfBirth,
-          "firstName": contract.personal?.firstName,
-          "houseNumber": contract.personal?.houseNumber,
-          "lastName": contract.personal?.lastName,
-          "licenseNumber": contract.personal?.licenseNumber,
-          "licenseType": contract.personal?.licenseType.value,
-          "nationality": contract.personal?.nationality,
-          "postalCode": contract.personal?.postalCode,
-          "socialSecurityNumber": contract.personal?.socialSecurityNumber,
-          "street": contract.personal?.street,
+          "box": onboarding.personal?.box,
+          "city": onboarding.personal?.city,
+          "dateCurrentLicense": onboarding.personal?.dateCurrentLicense,
+          "dateLicenseUntil": onboarding.personal?.dateLicenseUntil,
+          "dateOfBirth": onboarding.personal?.dateOfBirth,
+          "firstName": onboarding.personal?.firstName,
+          "houseNumber": onboarding.personal?.houseNumber,
+          "lastName": onboarding.personal?.lastName,
+          "licenseNumber": onboarding.personal?.licenseNumber,
+          "licenseType": onboarding.personal?.licenseType.value,
+          "nationality": onboarding.personal?.nationality,
+          "postalCode": onboarding.personal?.postalCode,
+          "socialSecurityNumber": onboarding.personal?.socialSecurityNumber,
+          "street": onboarding.personal?.street,
         },
-        subscriptions:
-            (contract.$client?.subscriptions ?? List<api.Subscription>.empty())
-                .toDomain(),
-        progress: contract.progress,
+        subscriptions: (onboarding.$client?.subscriptions ??
+                List<api.Subscription>.empty())
+            .toDomain(),
+        progress: onboarding.progress,
       );
     } else {
       return OnboardingProgress(
