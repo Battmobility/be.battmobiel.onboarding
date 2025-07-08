@@ -372,24 +372,27 @@ class CreateClientPageState extends State<CreateClientPage> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return FormulaPickerPage(
-            clientId: clientId,
-            delegatedTrustClientId: subscription?.delegatedTrustClientId,
-            onContractCreated: () {
-              Navigator.of(context).pop();
-              setState(() {
-                if (_businessClientId != null) {
-                  setState(() {
-                    _hasPickedBusinessContract = true;
-                  });
-                } else {
-                  setState(() {
-                    _hasPickedPersonalContract = true;
-                  });
-                }
-                // refresh, should show next contract
-              });
-            },
+          return Padding(
+            padding: AppPaddings.medium.all,
+            child: FormulaPickerPage(
+              clientId: clientId,
+              delegatedTrustClientId: subscription?.delegatedTrustClientId,
+              onContractCreated: () {
+                Navigator.of(context).pop();
+                setState(() {
+                  if (_businessClientId != null) {
+                    setState(() {
+                      _hasPickedBusinessContract = true;
+                    });
+                  } else {
+                    setState(() {
+                      _hasPickedPersonalContract = true;
+                    });
+                  }
+                  // refresh, should show next contract
+                });
+              },
+            ),
           );
         });
   }
