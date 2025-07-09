@@ -102,8 +102,7 @@ class LegalDetailsPageState extends State<LegalDetailsPage> {
                 SizedBox(height: AppSpacings.xxl),
                 FormBuilderCheckbox(
                     name: "answeredTruthfully",
-                    initialValue:
-                        widget.initialData?["answeredTruthfully"] ?? false,
+                    initialValue: false,
                     validator: FormBuilderValidators.isTrue(),
                     title: Text(l10n.convictionsPageFooter,
                         style: Theme.of(context)
