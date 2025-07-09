@@ -604,8 +604,151 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"createContractFailureMessage" : "Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.",
+	"createContractFailureMessage" : "Échec de la création du contrat ! Réessayez ou contactez le service client si le problème persiste.",
 	"@createContractFailureMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedTitle": "Intégration Terminée !",
+	"@onboardingCompletedTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedMessage": "Félicitations ! Vous avez terminé avec succès le processus d'intégration. Tous vos contrats sont maintenant actifs et vous pouvez commencer à utiliser l'application Batt.",
+	"@onboardingCompletedMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedAppStoreMessage": "Téléchargez votre application Batt.",
+	"@onboardingCompletedAppStoreMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedAppStoreLink": "Télécharger depuis l''App Store",
+	"@onboardingCompletedAppStoreLink": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedPlayStoreLink": "Télécharger depuis le Play Store",
+	"@onboardingCompletedPlayStoreLink": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunDescription": "Flotte de confort sans frais d''abonnement",
+	"@formulaBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunPlusDLDescription": "Flotte de luxe, pas de coût fixe, garantie organisée par votre employeur.",
+	"@formulaBattFunPlusDLDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFanDescription": "Flotte de confort + prépayé fixe mensuel, 25% de réduction.",
+	"@formulaBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunPlusDescription": "Flotte de luxe sans frais d''abonnement",
+	"@formulaBattFunPlusDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFanPlusDescription": "Flotte de luxe + prépayé fixe mensuel, 25% de réduction.",
+	"@formulaBattFanPlusDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattForBusinessDescription": "Pour les entreprises : flotte de luxe à 25% de réduction",
+	"@formulaBattForBusinessDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"noFormulasAvailable": "Aucune formule disponible pour cet abonnement",
+	"@noFormulasAvailable": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"warrantyAmount": "Garantie : €{amount}",
+	"@warrantyAmount": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"minimumCommitment": "Engagement minimum : €{amount}",
+	"@minimumCommitment": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"commitmentAmount": "Montant d''engagement",
+	"@commitmentAmount": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"enterAmount": "Saisir le montant",
+	"@enterAmount": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"commitmentMinimumError": "L''engagement doit être d''au moins €{amount}",
+	"@commitmentMinimumError": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"minimumPrefix": "Minimum : €{amount}",
+	"@minimumPrefix": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"onboardingStepIntro": "Bienvenue",
+	"@onboardingStepIntro": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPersonal": "Informations personnelles",
+	"@onboardingStepPersonal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepAddress": "Adresse",
+	"@onboardingStepAddress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPhone": "Numéro de téléphone",
+	"@onboardingStepPhone": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPhoneVerification": "Vérification du téléphone",
+	"@onboardingStepPhoneVerification": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepDocumentsExplainer": "Documents",
+	"@onboardingStepDocumentsExplainer": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepIdDocuments": "Télécharger les documents",
+	"@onboardingStepIdDocuments": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepLegal": "Informations légales",
+	"@onboardingStepLegal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepCreateClient": "Informations de facturation",
+	"@onboardingStepCreateClient": {
 		"type": "text",
 		"placeholders": {}
 	}

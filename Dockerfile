@@ -33,6 +33,9 @@ COPY . $APP
 # stup new folder as the working directory
 WORKDIR $APP/example
 
+# copy the api parameters file from a dummy file
+RUN cp lib/api_parameters.dart.dummy lib/api_parameters.dart
+
 # Run build: 1 - clean, 2 - pub get, 3 - build web
 RUN flutter clean
 RUN flutter pub get

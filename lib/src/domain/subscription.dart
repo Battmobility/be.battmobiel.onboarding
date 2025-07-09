@@ -1,6 +1,7 @@
 final class Subscription {
   final int? id;
   final int? clientId;
+  final bool? clientSuspended;
   final String? clientName;
   final String? clientRoles;
   final int? commitment;
@@ -16,6 +17,7 @@ final class Subscription {
   const Subscription({
     this.id,
     this.clientId,
+    this.clientSuspended,
     this.clientName,
     this.clientRoles,
     this.commitment,
@@ -60,6 +62,7 @@ enum BattFormulaType {
   battFun,
   battFan,
   battFunPlus,
+  battFunPlusDL,
   battFanPlus,
   battMax,
   battForBusiness,

@@ -301,6 +301,14 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
       'Bestaande contracten:';
 
   @override
+  String get contractVerificationInProgress =>
+      'Contractverificatie is bezig. U ontvangt een e-mail met instructies voor de garantiebetaling.';
+
+  @override
+  String get createClientEmployeeFamilyMessage =>
+      'Als je een werkgeversabonnement hebt, neem dan contact op met je werkgever om toegang te krijgen tot de app.';
+
+  @override
   String get addSubscriptionFormLabelPersonalUse =>
       'Pick a contract for personal use:';
 
@@ -407,4 +415,102 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   @override
   String get createContractFailureMessage =>
       'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
+
+  @override
+  String get onboardingCompletedTitle => 'Onboarding Voltooid!';
+
+  @override
+  String get onboardingCompletedMessage =>
+      'Gefeliciteerd! Je hebt het onboardingproces succesvol afgerond. Al je contracten zijn nu actief en je kunt de Batt-applicatie gebruiken.';
+
+  @override
+  String get onboardingCompletedAppStoreMessage =>
+      'Download de Batt mobiele app uit de App Store.';
+
+  @override
+  String get onboardingCompletedAppStoreLink => 'Download van App Store';
+
+  @override
+  String get onboardingCompletedPlayStoreLink => 'Download van Play Store';
+
+  @override
+  String get formulaBattFunDescription =>
+      'Comfort vloot zonder abonnementskosten';
+
+  @override
+  String get formulaBattFunPlusDLDescription =>
+      'Luxevloot, geen vaste kost, waarborg geregeld door je werkgever.';
+
+  @override
+  String get formulaBattFanDescription =>
+      'Comfort vloot + maandelijks een vaste prepaid, 25% korting.';
+
+  @override
+  String get formulaBattFunPlusDescription =>
+      'Luxevloot zonder abonnementskosten';
+
+  @override
+  String get formulaBattFanPlusDescription =>
+      'Luxevloot + maandelijks een vaste prepaid, 25% korting.';
+
+  @override
+  String get formulaBattForBusinessDescription =>
+      'Voor bedrijven: luxevloot aan 25% korting';
+
+  @override
+  String get noFormulasAvailable =>
+      'Geen formules beschikbaar voor dit abonnement';
+
+  @override
+  String warrantyAmount(Object amount) {
+    return 'Waarborg: €$amount';
+  }
+
+  @override
+  String minimumCommitment(Object amount) {
+    return 'Minimum commitment: €$amount';
+  }
+
+  @override
+  String get commitmentAmount => 'Commitment bedrag';
+
+  @override
+  String get enterAmount => 'Voer bedrag in';
+
+  @override
+  String commitmentMinimumError(Object amount) {
+    return 'Commitment moet minstens €$amount zijn';
+  }
+
+  @override
+  String minimumPrefix(Object amount) {
+    return 'Minimum: €$amount';
+  }
+
+  @override
+  String get onboardingStepIntro => 'Welkom';
+
+  @override
+  String get onboardingStepPersonal => 'Persoonlijke gegevens';
+
+  @override
+  String get onboardingStepAddress => 'Adres';
+
+  @override
+  String get onboardingStepPhone => 'Telefoonnummer';
+
+  @override
+  String get onboardingStepPhoneVerification => 'Telefoonnummer verificatie';
+
+  @override
+  String get onboardingStepDocumentsExplainer => 'Documenten';
+
+  @override
+  String get onboardingStepIdDocuments => 'Documenten uploaden';
+
+  @override
+  String get onboardingStepLegal => 'Juridische informatie';
+
+  @override
+  String get onboardingStepCreateClient => 'Facturatiegegevens';
 }
