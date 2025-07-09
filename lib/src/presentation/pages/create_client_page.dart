@@ -13,8 +13,10 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
 
-const String _appStoreUrl = 'https://apps.apple.com/us/app/battmobility/id1499493665';
-const String _playStoreUrl = 'https://play.google.com/store/apps/details?id=be.battmobiel.android_app';
+const String _appStoreUrl =
+    'https://apps.apple.com/us/app/battmobility/id1499493665';
+const String _playStoreUrl =
+    'https://play.google.com/store/apps/details?id=be.battmobiel.android_app';
 
 final class CreateClientPage extends OnboardingPage {
   final businessClientFormKey = GlobalKey<FormBuilderState>();
@@ -52,8 +54,6 @@ class CreateClientPageState extends State<CreateClientPage> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(l10n.addSubscriptionFormTitle,
-                        style: Theme.of(context).textTheme.headlineLarge),
                     _employeeFamilyMessage(),
                     _finishedContracts(progress.subscriptions),
                     _formChildren(progress.subscriptions),
@@ -85,11 +85,11 @@ class CreateClientPageState extends State<CreateClientPage> {
 
   Widget _employeeFamilyMessage() {
     final l10n = OnboardingLocalizations.of(context);
-    
+
     if (!_showEmployeeFamilyMessage) {
       return SizedBox.shrink();
     }
-    
+
     return Padding(
       padding: AppPaddings.medium.vertical,
       child: Card(
@@ -109,8 +109,8 @@ class CreateClientPageState extends State<CreateClientPage> {
                 child: Text(
                   l10n.createClientEmployeeFamilyMessage,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  ),
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
                 ),
               ),
               GestureDetector(
@@ -151,54 +151,71 @@ class CreateClientPageState extends State<CreateClientPage> {
             spacing: AppSpacings.md,
             children: finishedSubscriptions.map((sub) {
               if (sub.clientSuspended == true) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: AppSpacings.xs,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      spacing: AppSpacings.sm,
-                      children: [
-                        Text(
-                          sub.clientName!,
-                          style: Theme.of(context).textTheme.bodyLarge,
+                return Padding(
+                  padding: EdgeInsets.only(left: AppSpacings.lg),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppSpacings.xs,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        spacing: AppSpacings.sm,
+                        children: [
+                          Text(
+                            "• ",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          Text(
+                            sub.clientName!,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          Text(sub.subscriptionContract!.subscriptionType!,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(fontWeight: FontWeight.bold)),
+                          Icon(Icons.pending, color: AppColors.b2cKeyColor),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: AppSpacings.md),
+                        child: Text(
+                          l10n.contractVerificationInProgress,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(color: AppColors.b2cKeyColor),
                         ),
-                        Text(sub.subscriptionContract!.subscriptionType!,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontWeight: FontWeight.bold)),
-                        Icon(Icons.pending, color: AppColors.b2cKeyColor),
-                      ],
-                    ),
-                    Text(
-                      l10n.contractVerificationInProgress,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: AppColors.b2cKeyColor),
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 );
               } else {
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  spacing: AppSpacings.sm,
-                  children: [
-                    Text(
-                      sub.clientName!,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Text(sub.subscriptionContract!.subscriptionType!,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(fontWeight: FontWeight.bold)),
-                    Icon(Icons.check_circle, color: AppColors.ctaBrightGreen),
-                  ],
+                return Padding(
+                  padding: EdgeInsets.only(left: AppSpacings.lg),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    spacing: AppSpacings.sm,
+                    children: [
+                      Text(
+                        "• ",
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        sub.clientName!,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(sub.subscriptionContract!.subscriptionType!,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(fontWeight: FontWeight.bold)),
+                      Icon(Icons.check_circle, color: AppColors.b2cKeyColor),
+                    ],
+                  ),
                 );
               }
             }).toList(),
@@ -269,13 +286,13 @@ class CreateClientPageState extends State<CreateClientPage> {
               Icon(
                 Icons.check_circle,
                 size: 64,
-                color: AppColors.ctaBrightGreen,
+                color: AppColors.b2cKeyColor,
               ),
               SizedBox(height: AppSpacings.lg),
               Text(
                 l10n.onboardingCompletedTitle,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      color: AppColors.ctaBrightGreen,
+                      color: AppColors.b2cKeyColor,
                       fontWeight: FontWeight.bold,
                     ),
                 textAlign: TextAlign.center,

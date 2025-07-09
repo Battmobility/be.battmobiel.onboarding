@@ -79,8 +79,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         OnboardingProgress progress = snapshot.data!;
 
         // If onboarding is completed, go directly to CreateClientPage
-        if (progress.progress == OnboardingStatus.completed.index &&
-            _step == 0) {
+        if (progress.progress == 5 && _step == 0) {
           _step = OnboardingSteps.createClient.index;
         }
 
@@ -131,10 +130,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               controller.jumpToPage(_step);
             },
           ),
-          DocumentsExplainerPage(
-            formKey: _formKeys[OnboardingSteps.documentsExplainer.index],
-            onAction: (_) {},
-          ),
           IdDocumentsPage(
             formKey: _formKeys[OnboardingSteps.idDocuments.index],
             onAction: (_) {},
@@ -181,10 +176,12 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 OnboardingFormHeader(
-                  title: _getLocalizedStepTitle(context, OnboardingSteps.values[_step]),
+                  title: _getLocalizedStepTitle(
+                      context, OnboardingSteps.values[_step]),
                   progress: ((_step + 1).toDouble() /
                       OnboardingSteps.values.length.toDouble()),
-                  backButtonEnabled: _step != OnboardingSteps.intro.index && _step != OnboardingSteps.createClient.index,
+                  backButtonEnabled: _step != OnboardingSteps.intro.index &&
+                      _step != OnboardingSteps.createClient.index,
                   onbackPressed: () {
                     setState(() {
                       _step--;
@@ -277,8 +274,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
       name: OnboardingSteps.values[_step].name,
     );
     // Skippable steps
-    if (_step == OnboardingSteps.intro.index ||
-        _step == OnboardingSteps.documentsExplainer.index) {
+    if (_step == OnboardingSteps.intro.index) {
       setState(() {
         _step++;
       });
@@ -400,7 +396,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
 
   String _getLocalizedStepTitle(BuildContext context, OnboardingSteps step) {
     final l10n = OnboardingLocalizations.of(context);
-    
+
     switch (step) {
       case OnboardingSteps.intro:
         return l10n.onboardingStepIntro;
@@ -412,8 +408,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         return l10n.onboardingStepPhone;
       case OnboardingSteps.phoneVerification:
         return l10n.onboardingStepPhoneVerification;
-      case OnboardingSteps.documentsExplainer:
-        return l10n.onboardingStepDocumentsExplainer;
       case OnboardingSteps.idDocuments:
         return l10n.onboardingStepIdDocuments;
       case OnboardingSteps.legal:

@@ -1,6 +1,6 @@
 {
 	"@@locale": "en",
-	"formTitle": "Become Batt",
+	"formTitle": "Become a Battmobility member",
 	"@formTitle": {
 		"type": "text",
 		"placeholders": {}
@@ -10,7 +10,7 @@
 		"type": "text",
 		"placeholders": {}
 	},	
-	"introPageNeededDocuments": "Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license",
+	"introPageNeededDocuments": "Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license",
 	"@introPageNeededDocuments": {
 		"type": "text",
 		"placeholders": {}
@@ -93,7 +93,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionsPageTitle": "Previous convictions",
+	"convictionsPageTitle": "Legal information",
 	"@convictionsPageTitle": {
 		"type": "text",
 		"placeholders": {}
@@ -133,7 +133,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionTypeNoOfAccidents": "Amount of accidents where you were at fault",
+	"convictionTypeNoOfAccidents": "How many accidents where you were at fault have you had?",
 	"@convictionTypeNoOfAccidents": {
 		"type": "text",
 		"placeholders": {}
@@ -183,7 +183,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"identityPageMessage": "We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/",
+	"identityPageMessage": "We need to collect some identifying data. These will only be shared with our insurer if necessary.",
 	"@identityPageMessage": {
 		"type": "text",
 		"placeholders": {}
@@ -445,7 +445,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormLabelExistingContracts" : "Existing contracts:",
+	"addSubscriptionFormLabelExistingContracts" : "Your contracts",
 	"@addSubscriptionFormLabelExistingContracts": {
 		"type": "text",
 		"placeholders": {}
@@ -465,7 +465,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormMessageBusinessUse" : "Your billing data for business use:",
+	"addSubscriptionFormMessageBusinessUse" : "Provide your bussiness details if you want to use BattMobility for your company, or skip this step.",
 	"@addSubscriptionFormMessageBusinessUse": {
 		"type": "text",
 		"placeholders": {}
@@ -480,17 +480,17 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormName" : "Name",
+	"addSubscriptionFormName" : "Company legal name",
 	"@addSubscriptionFormName": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormEmail" : "Email",
+	"addSubscriptionFormEmail" : "Company email (billing)",
 	"@addSubscriptionFormEmail": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormAddress" : "Adress",
+	"addSubscriptionFormAddress" : "Company address",
 	"@addSubscriptionFormAddress": {
 		"type": "text",
 		"placeholders": {}
@@ -612,7 +612,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"onboardingCompletedMessage": "Congratulations! You have successfully completed the onboarding process.",
+	"onboardingCompletedMessage": "You can download the app, but we will need to verify your documents before you can start using it. You will receive an email with instructions for the warranty payment if applicable.",
 	"@onboardingCompletedMessage": {
 		"type": "text",
 		"placeholders": {}
@@ -622,12 +622,12 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"onboardingCompletedAppStoreLink": "Download from App Store",
+	"onboardingCompletedAppStoreLink": "Download for iPhone",
 	"@onboardingCompletedAppStoreLink": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"onboardingCompletedPlayStoreLink": "Download from Play Store",
+	"onboardingCompletedPlayStoreLink": "Download for Android",
 	"@onboardingCompletedPlayStoreLink": {
 		"type": "text",
 		"placeholders": {}
@@ -747,6 +747,21 @@
 	},
 	"onboardingStepCreateClient": "Billing Information",
 	"@onboardingStepCreateClient": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"contractVerificationInProgress": "Contract verification is in progress. You will receive an email with instructions for the warranty payment.",
+	"@contractVerificationInProgress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createClientEmployeeFamilyMessage": "If your employer or family already has a Battmobility plan, you can stop here. Let us know and we will add you to the right account.",
+	"@createClientEmployeeFamilyMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageSubtitle": "Have you ever been convicted for the following:",
+	"@convictionsPageSubtitle": {
 		"type": "text",
 		"placeholders": {}
 	}
