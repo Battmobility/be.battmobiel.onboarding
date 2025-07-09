@@ -506,4 +506,8 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get onboardingStepCreateClient => 'Informations de facturation';
+
+  @override
+  String get createClientEmployeeFamilyMessage =>
+      'Employé ou membre de la famille de quelqu\'un qui a déjà un compte Battmobility et cela n\'apparaît pas sur cette page? Aucune action nécessaire sur cette page. Demandez-leur de nous envoyer un message avec votre adresse e-mail et nous vous ajouterons à leur compte.';
 }

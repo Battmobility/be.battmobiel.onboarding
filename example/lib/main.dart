@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Batt Onboarding",
+      title: "Battmobility onboarding",
       themeMode: ThemeMode.light,
       theme: lightTheme(context),
       darkTheme: darkTheme(context),

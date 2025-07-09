@@ -32,6 +32,7 @@ final class CreateClientPage extends OnboardingPage {
 
 class CreateClientPageState extends State<CreateClientPage> {
   bool _showBusinessForm = true;
+  bool _showEmployeeFamilyMessage = true;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +54,7 @@ class CreateClientPageState extends State<CreateClientPage> {
                   children: [
                     Text(l10n.addSubscriptionFormTitle,
                         style: Theme.of(context).textTheme.headlineLarge),
+                    _employeeFamilyMessage(),
                     _finishedContracts(progress.subscriptions),
                     _formChildren(progress.subscriptions),
                     FormBuilder(
@@ -79,6 +81,55 @@ class CreateClientPageState extends State<CreateClientPage> {
             ),
           );
         });
+  }
+
+  Widget _employeeFamilyMessage() {
+    final l10n = OnboardingLocalizations.of(context);
+    
+    if (!_showEmployeeFamilyMessage) {
+      return SizedBox.shrink();
+    }
+    
+    return Padding(
+      padding: AppPaddings.medium.vertical,
+      child: Card(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        child: Padding(
+          padding: AppPaddings.medium.all,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.info_outline,
+                color: Theme.of(context).colorScheme.primary,
+                size: 20,
+              ),
+              SizedBox(width: AppSpacings.sm),
+              Expanded(
+                child: Text(
+                  l10n.createClientEmployeeFamilyMessage,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _showEmployeeFamilyMessage = false;
+                  });
+                },
+                child: Icon(
+                  Icons.close,
+                  color: Theme.of(context).colorScheme.primary,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _finishedContracts(List<Subscription> subscriptions) {

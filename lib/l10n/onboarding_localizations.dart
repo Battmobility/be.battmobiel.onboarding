@@ -982,6 +982,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Billing Information'**
   String get onboardingStepCreateClient;
+
+  /// No description provided for @createClientEmployeeFamilyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee or family member of someone who already has a Battmobility account and it's not showing on this page? No need to do anything on this page. Ask them to shoot us a message with your e-mail address and we'll add you to their account.'**
+  String get createClientEmployeeFamilyMessage;
 }
 
 class _OnboardingLocalizationsDelegate
