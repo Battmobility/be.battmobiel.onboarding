@@ -419,6 +419,12 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
       'Download the Batt mobile app from the App Store to get started.';
 
   @override
+  String get onboardingCompletedAppStoreLink => 'Download from App Store';
+
+  @override
+  String get onboardingCompletedPlayStoreLink => 'Download from Play Store';
+
+  @override
   String get formulaBattFunDescription =>
       'Comfort fleet without subscription costs';
 
@@ -471,4 +477,31 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String minimumPrefix(Object amount) {
     return 'Minimum: €$amount';
   }
+
+  @override
+  String get onboardingStepIntro => 'Welcome';
+
+  @override
+  String get onboardingStepPersonal => 'Personal Information';
+
+  @override
+  String get onboardingStepAddress => 'Address';
+
+  @override
+  String get onboardingStepPhone => 'Phone Number';
+
+  @override
+  String get onboardingStepPhoneVerification => 'Phone Verification';
+
+  @override
+  String get onboardingStepDocumentsExplainer => 'Documents';
+
+  @override
+  String get onboardingStepIdDocuments => 'Upload Documents';
+
+  @override
+  String get onboardingStepLegal => 'Legal Information';
+
+  @override
+  String get onboardingStepCreateClient => 'Billing Information';
 }

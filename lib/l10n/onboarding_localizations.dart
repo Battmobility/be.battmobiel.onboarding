@@ -839,6 +839,18 @@ abstract class OnboardingLocalizations {
   /// **'Download the Batt mobile app from the App Store to get started.'**
   String get onboardingCompletedAppStoreMessage;
 
+  /// No description provided for @onboardingCompletedAppStoreLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Download from App Store'**
+  String get onboardingCompletedAppStoreLink;
+
+  /// No description provided for @onboardingCompletedPlayStoreLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Download from Play Store'**
+  String get onboardingCompletedPlayStoreLink;
+
   /// No description provided for @formulaBattFunDescription.
   ///
   /// In en, this message translates to:
@@ -916,6 +928,60 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Minimum: €{amount}'**
   String minimumPrefix(Object amount);
+
+  /// No description provided for @onboardingStepIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get onboardingStepIntro;
+
+  /// No description provided for @onboardingStepPersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get onboardingStepPersonal;
+
+  /// No description provided for @onboardingStepAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get onboardingStepAddress;
+
+  /// No description provided for @onboardingStepPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get onboardingStepPhone;
+
+  /// No description provided for @onboardingStepPhoneVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Verification'**
+  String get onboardingStepPhoneVerification;
+
+  /// No description provided for @onboardingStepDocumentsExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get onboardingStepDocumentsExplainer;
+
+  /// No description provided for @onboardingStepIdDocuments.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Documents'**
+  String get onboardingStepIdDocuments;
+
+  /// No description provided for @onboardingStepLegal.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal Information'**
+  String get onboardingStepLegal;
+
+  /// No description provided for @onboardingStepCreateClient.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing Information'**
+  String get onboardingStepCreateClient;
 }
 
 class _OnboardingLocalizationsDelegate

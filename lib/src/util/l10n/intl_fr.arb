@@ -624,6 +624,16 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"onboardingCompletedAppStoreLink": "Télécharger depuis l''App Store",
+	"@onboardingCompletedAppStoreLink": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedPlayStoreLink": "Télécharger depuis le Play Store",
+	"@onboardingCompletedPlayStoreLink": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"formulaBattFunDescription": "Flotte de confort sans frais d''abonnement",
 	"@formulaBattFunDescription": {
 		"type": "text",
@@ -696,6 +706,51 @@
 		"placeholders": {
 			"amount": {}
 		}
+	},
+	"onboardingStepIntro": "Bienvenue",
+	"@onboardingStepIntro": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPersonal": "Informations personnelles",
+	"@onboardingStepPersonal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepAddress": "Adresse",
+	"@onboardingStepAddress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPhone": "Numéro de téléphone",
+	"@onboardingStepPhone": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPhoneVerification": "Vérification du téléphone",
+	"@onboardingStepPhoneVerification": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepDocumentsExplainer": "Documents",
+	"@onboardingStepDocumentsExplainer": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepIdDocuments": "Télécharger les documents",
+	"@onboardingStepIdDocuments": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepLegal": "Informations légales",
+	"@onboardingStepLegal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepCreateClient": "Informations de facturation",
+	"@onboardingStepCreateClient": {
+		"type": "text",
+		"placeholders": {}
 	}
 }
 

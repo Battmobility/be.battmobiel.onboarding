@@ -8,9 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sealed_countries/sealed_countries.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
+
+const String _appStoreUrl = 'https://apps.apple.com/us/app/battmobility/id1499493665';
+const String _playStoreUrl = 'https://play.google.com/store/apps/details?id=be.battmobiel.android_app';
 
 final class CreateClientPage extends OnboardingPage {
   final businessClientFormKey = GlobalKey<FormBuilderState>();
@@ -198,16 +202,32 @@ class CreateClientPageState extends State<CreateClientPage> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: AppSpacings.lg),
-              GestureDetector(
-                onTap: () => _launchAppStore(),
-                child: Text(
-                  l10n.onboardingCompletedAppStoreMessage,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppColors.b2cKeyColor,
-                        decoration: TextDecoration.underline,
-                      ),
-                  textAlign: TextAlign.center,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () => _launchAppStore(),
+                    child: Text(
+                      l10n.onboardingCompletedAppStoreLink,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppColors.b2cKeyColor,
+                            decoration: TextDecoration.underline,
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => _launchPlayStore(),
+                    child: Text(
+                      l10n.onboardingCompletedPlayStoreLink,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppColors.b2cKeyColor,
+                            decoration: TextDecoration.underline,
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -216,16 +236,36 @@ class CreateClientPageState extends State<CreateClientPage> {
     );
   }
 
-  void _launchAppStore() {
-    // For now, show a message that the app store link would open here
-    // The actual URL launching would need url_launcher package or platform-specific implementation
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content:
-            Text('App Store link clicked - would redirect to Batt mobile app'),
-        duration: Duration(seconds: 3),
-      ),
-    );
+  Future<void> _launchAppStore() async {
+    final Uri uri = Uri.parse(_appStoreUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Could not launch App Store'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _launchPlayStore() async {
+    final Uri uri = Uri.parse(_playStoreUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Could not launch Play Store'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    }
   }
 
   Widget _showBusinessFormButton() {
@@ -242,7 +282,8 @@ class CreateClientPageState extends State<CreateClientPage> {
     );
   }
 
-  Widget _simplifiedClientCta(Subscription subscription, {required bool isEnabled}) {
+  Widget _simplifiedClientCta(Subscription subscription,
+      {required bool isEnabled}) {
     final l10n = OnboardingLocalizations.of(context);
 
     return Padding(
@@ -260,9 +301,11 @@ class CreateClientPageState extends State<CreateClientPage> {
             opacity: isEnabled ? 1.0 : 0.5,
             child: SolidCtaButton(
               label: l10n.createContractPickFormulaLabel,
-              onPressed: isEnabled ? () {
-                _showContractPicker(context, subscription);
-              } : null,
+              onPressed: isEnabled
+                  ? () {
+                      _showContractPicker(context, subscription);
+                    }
+                  : null,
             ),
           ),
         ],

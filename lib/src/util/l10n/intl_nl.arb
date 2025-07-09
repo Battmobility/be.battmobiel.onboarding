@@ -639,6 +639,16 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"onboardingCompletedAppStoreLink": "Download van App Store",
+	"@onboardingCompletedAppStoreLink": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedPlayStoreLink": "Download van Play Store",
+	"@onboardingCompletedPlayStoreLink": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"formulaBattFunDescription": "Comfort vloot zonder abonnementskosten",
 	"@formulaBattFunDescription": {
 		"type": "text",
@@ -711,5 +721,50 @@
 		"placeholders": {
 			"amount": {}
 		}
+	},
+	"onboardingStepIntro": "Welkom",
+	"@onboardingStepIntro": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPersonal": "Persoonlijke gegevens",
+	"@onboardingStepPersonal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepAddress": "Adres",
+	"@onboardingStepAddress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPhone": "Telefoonnummer",
+	"@onboardingStepPhone": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPhoneVerification": "Telefoonnummer verificatie",
+	"@onboardingStepPhoneVerification": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepDocumentsExplainer": "Documenten",
+	"@onboardingStepDocumentsExplainer": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepIdDocuments": "Documenten uploaden",
+	"@onboardingStepIdDocuments": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepLegal": "Juridische informatie",
+	"@onboardingStepLegal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepCreateClient": "Facturatiegegevens",
+	"@onboardingStepCreateClient": {
+		"type": "text",
+		"placeholders": {}
 	}
 }

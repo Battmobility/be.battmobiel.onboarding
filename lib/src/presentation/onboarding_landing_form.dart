@@ -1,5 +1,6 @@
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_kit/batt_kit.dart';
+import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:batt_onboarding/src/data/api_factory.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
@@ -18,7 +19,6 @@ import 'package:batt_onboarding/src/util/analytics/analytics_util.dart';
 import 'package:batt_onboarding/src/util/nonnull_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import '../../l10n/onboarding_localizations.dart';
 import 'onboarding_steps.dart';
 import 'pages/documents_explainer.dart';
 import 'pages/phone_entry_page.dart';
@@ -181,10 +181,10 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 OnboardingFormHeader(
-                  title: OnboardingSteps.values[_step].name,
+                  title: _getLocalizedStepTitle(context, OnboardingSteps.values[_step]),
                   progress: ((_step + 1).toDouble() /
                       OnboardingSteps.values.length.toDouble()),
-                  backButtonEnabled: _step != OnboardingSteps.intro.index,
+                  backButtonEnabled: _step != OnboardingSteps.intro.index && _step != OnboardingSteps.createClient.index,
                   onbackPressed: () {
                     setState(() {
                       _step--;
@@ -396,6 +396,31 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         ],
       ),
     );
+  }
+
+  String _getLocalizedStepTitle(BuildContext context, OnboardingSteps step) {
+    final l10n = OnboardingLocalizations.of(context);
+    
+    switch (step) {
+      case OnboardingSteps.intro:
+        return l10n.onboardingStepIntro;
+      case OnboardingSteps.personal:
+        return l10n.onboardingStepPersonal;
+      case OnboardingSteps.address:
+        return l10n.onboardingStepAddress;
+      case OnboardingSteps.phone:
+        return l10n.onboardingStepPhone;
+      case OnboardingSteps.phoneVerification:
+        return l10n.onboardingStepPhoneVerification;
+      case OnboardingSteps.documentsExplainer:
+        return l10n.onboardingStepDocumentsExplainer;
+      case OnboardingSteps.idDocuments:
+        return l10n.onboardingStepIdDocuments;
+      case OnboardingSteps.legal:
+        return l10n.onboardingStepLegal;
+      case OnboardingSteps.createClient:
+        return l10n.onboardingStepCreateClient;
+    }
   }
 
   void _showUploadFailedDialog(BuildContext context) {

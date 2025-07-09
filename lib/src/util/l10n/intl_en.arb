@@ -622,6 +622,16 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"onboardingCompletedAppStoreLink": "Download from App Store",
+	"@onboardingCompletedAppStoreLink": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingCompletedPlayStoreLink": "Download from Play Store",
+	"@onboardingCompletedPlayStoreLink": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"formulaBattFunDescription": "Comfort fleet without subscription costs",
 	"@formulaBattFunDescription": {
 		"type": "text",
@@ -694,5 +704,50 @@
 		"placeholders": {
 			"amount": {}
 		}
+	},
+	"onboardingStepIntro": "Welcome",
+	"@onboardingStepIntro": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPersonal": "Personal Information",
+	"@onboardingStepPersonal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepAddress": "Address",
+	"@onboardingStepAddress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPhone": "Phone Number",
+	"@onboardingStepPhone": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepPhoneVerification": "Phone Verification",
+	"@onboardingStepPhoneVerification": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepDocumentsExplainer": "Documents",
+	"@onboardingStepDocumentsExplainer": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepIdDocuments": "Upload Documents",
+	"@onboardingStepIdDocuments": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepLegal": "Legal Information",
+	"@onboardingStepLegal": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"onboardingStepCreateClient": "Billing Information",
+	"@onboardingStepCreateClient": {
+		"type": "text",
+		"placeholders": {}
 	}
 }

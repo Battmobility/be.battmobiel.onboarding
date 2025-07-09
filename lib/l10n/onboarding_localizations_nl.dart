@@ -420,6 +420,12 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
       'Download de Batt mobiele app uit de App Store.';
 
   @override
+  String get onboardingCompletedAppStoreLink => 'Download van App Store';
+
+  @override
+  String get onboardingCompletedPlayStoreLink => 'Download van Play Store';
+
+  @override
   String get formulaBattFunDescription =>
       'Comfort vloot zonder abonnementskosten';
 
@@ -472,4 +478,31 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String minimumPrefix(Object amount) {
     return 'Minimum: €$amount';
   }
+
+  @override
+  String get onboardingStepIntro => 'Welkom';
+
+  @override
+  String get onboardingStepPersonal => 'Persoonlijke gegevens';
+
+  @override
+  String get onboardingStepAddress => 'Adres';
+
+  @override
+  String get onboardingStepPhone => 'Telefoonnummer';
+
+  @override
+  String get onboardingStepPhoneVerification => 'Telefoonnummer verificatie';
+
+  @override
+  String get onboardingStepDocumentsExplainer => 'Documenten';
+
+  @override
+  String get onboardingStepIdDocuments => 'Documenten uploaden';
+
+  @override
+  String get onboardingStepLegal => 'Juridische informatie';
+
+  @override
+  String get onboardingStepCreateClient => 'Facturatiegegevens';
 }
