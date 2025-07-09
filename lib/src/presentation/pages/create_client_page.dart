@@ -156,7 +156,11 @@ class CreateClientPageState extends State<CreateClientPage> {
           ],
           // Show CTAs for each subscription without contract
           if (!allSubscriptionsComplete)
-            ...subsWithoutContract.map((sub) => _simplifiedClientCta(sub))
+            ...subsWithoutContract.asMap().entries.map((entry) {
+              final index = entry.key;
+              final sub = entry.value;
+              return _simplifiedClientCta(sub, isEnabled: index == 0);
+            })
         ]);
   }
 
@@ -238,7 +242,7 @@ class CreateClientPageState extends State<CreateClientPage> {
     );
   }
 
-  Widget _simplifiedClientCta(Subscription subscription) {
+  Widget _simplifiedClientCta(Subscription subscription, {required bool isEnabled}) {
     final l10n = OnboardingLocalizations.of(context);
 
     return Padding(
@@ -252,11 +256,14 @@ class CreateClientPageState extends State<CreateClientPage> {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(height: AppSpacings.sm),
-          SolidCtaButton(
-            label: l10n.createContractPickFormulaLabel,
-            onPressed: () {
-              _showContractPicker(context, subscription);
-            },
+          Opacity(
+            opacity: isEnabled ? 1.0 : 0.5,
+            child: SolidCtaButton(
+              label: l10n.createContractPickFormulaLabel,
+              onPressed: isEnabled ? () {
+                _showContractPicker(context, subscription);
+              } : null,
+            ),
           ),
         ],
       ),
@@ -310,7 +317,7 @@ class CreateClientPageState extends State<CreateClientPage> {
             FormBuilderTextField(
               decoration:
                   InputDecoration(labelText: l10n.addSubscriptionFormVAT),
-              name: "vatNumber",
+              name: "vat",
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.skipWhen((value) {
                   return value == null || value.isEmpty;
