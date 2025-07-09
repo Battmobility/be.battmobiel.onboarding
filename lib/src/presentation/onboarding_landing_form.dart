@@ -108,6 +108,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           ),
           PhoneEntryPage(
             formKey: _formKeys[OnboardingSteps.phone.index],
+            initialData: progress.phone,
             onAction: (data) {
               _phoneNumber = data["phoneNumber"]!;
               setState(() {

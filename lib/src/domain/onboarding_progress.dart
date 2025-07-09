@@ -5,6 +5,8 @@ import 'package:batt_onboarding/src/domain/subscription_mapper.dart';
 final class OnboardingProgress {
   final Map<String, dynamic> legal;
   final Map<String, dynamic> personal;
+  final Map<String, dynamic> phone;
+
   int progress;
   final List<Subscription> subscriptions;
 
@@ -12,6 +14,7 @@ final class OnboardingProgress {
     required this.legal,
     required this.personal,
     required this.progress,
+    required this.phone,
     required this.subscriptions,
   });
 
@@ -47,6 +50,9 @@ final class OnboardingProgress {
           "socialSecurityNumber": onboarding.personal?.socialSecurityNumber,
           "street": onboarding.personal?.street,
         },
+        phone: {
+          "phoneNumber": onboarding.phone?.phoneNumber,
+        },
         subscriptions: (onboarding.$client?.subscriptions ??
                 List<api.Subscription>.empty())
             .toDomain(),
@@ -56,6 +62,7 @@ final class OnboardingProgress {
       return OnboardingProgress(
         legal: {},
         personal: {},
+        phone: {},
         subscriptions: [],
         progress: 0,
       );
@@ -66,6 +73,7 @@ final class OnboardingProgress {
     return OnboardingProgress(
       legal: {},
       personal: {},
+      phone: {},
       subscriptions: [],
       progress: 0,
     );

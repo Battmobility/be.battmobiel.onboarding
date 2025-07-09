@@ -57,8 +57,8 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
     );
 
     final errorPinTheme = PinTheme(
-      width: 40,
-      height: 40,
+      width: 50,
+      height: 70,
       textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
           fontWeight: FontWeight.w600,
           color: Theme.of(context).colorScheme.error),

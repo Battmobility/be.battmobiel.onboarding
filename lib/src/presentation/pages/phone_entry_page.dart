@@ -102,6 +102,8 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                     padding: AppPaddings.medium.leading,
                                     child: FormBuilderTextField(
                                       name: "phone",
+                                      initialValue:
+                                          widget.initialData?["phoneNumber"],
                                       onSubmitted: (value) {
                                         setState(() {
                                           isSendingPhone = true;
@@ -144,21 +146,26 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                             padding: AppPaddings.medium.all,
                             child: SolidCtaButton(
                                 label: l10n.verificationPageVerifyButtonTitle,
-                                onPressed: () {
+                                onPressed: () async {
                                   if (widget.formKey.currentState!
                                       .saveAndValidate()) {
-                                    phoneNumber = (widget
+                                    final phoneFieldText = (widget
                                             .formKey
                                             .currentState!
-                                            .fields["countryCode"]!
-                                            .value as String) +
-                                        (widget
-                                                .formKey
-                                                .currentState!
-                                                .fields["phone"]!
-                                                .value as String)
-                                            .replaceFirst("0", "");
-                                    _sendPhone(context, phoneNumber!);
+                                            .fields["phone"]!
+                                            .value as String)
+                                        .replaceFirst("0", "");
+                                    if ((phoneFieldText).startsWith("+")) {
+                                      await _sendPhone(context, phoneFieldText);
+                                    } else {
+                                      phoneNumber = (widget
+                                              .formKey
+                                              .currentState!
+                                              .fields["countryCode"]!
+                                              .value as String) +
+                                          phoneFieldText;
+                                      await _sendPhone(context, phoneNumber!);
+                                    }
                                   }
                                 }),
                           ),
@@ -233,7 +240,7 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
     );
   }
 
-  void _sendPhone(BuildContext context, String phoneNumber) async {
+  Future<void> _sendPhone(BuildContext context, String phoneNumber) async {
     final requested = await onboardingRepository.postPhoneNumber(phoneNumber);
 
     setState(() {
