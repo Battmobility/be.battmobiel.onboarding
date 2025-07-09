@@ -549,16 +549,24 @@ class CreateClientPageState extends State<CreateClientPage> {
 
   Future<void> _showContractPicker(
       BuildContext context, Subscription subscription) async {
-    showModalBottomSheet(
+    showDialog(
         context: context,
         builder: (_) {
-          return FormulaPickerPage(
-            subscription: subscription,
-            onContractCreated: () {
-              Navigator.of(context).pop();
-              // Refresh the page to show updated state
-              setState(() {});
-            },
+          return Dialog(
+            child: Container(
+              constraints: BoxConstraints(
+                maxWidth: 600,
+                maxHeight: MediaQuery.of(context).size.height * 0.8,
+              ),
+              child: FormulaPickerPage(
+                subscription: subscription,
+                onContractCreated: () {
+                  Navigator.of(context).pop();
+                  // Refresh the page to show updated state
+                  setState(() {});
+                },
+              ),
+            ),
           );
         });
   }

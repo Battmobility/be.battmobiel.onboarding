@@ -552,7 +552,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormConfirm" : "Kies een contract",
+	"addSubscriptionFormConfirm" : "Kies een formule",
 	"@addSubscriptionFormConfirm": {
 		"type": "text",
 		"placeholders": {}
@@ -779,6 +779,31 @@
 	},
 	"convictionsPageSubtitle": "Have you ever been convicted for the following:",
 	"@convictionsPageSubtitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunTitle": "BattFun",
+	"@formulaPickerBattFunTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunDescription": "Geen abonnementskosten",
+	"@formulaPickerBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanTitle": "BattFan",
+	"@formulaPickerBattFanTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanDescription": "Maandelijks vaste vooruitbetaling, 25% korting",
+	"@formulaPickerBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerUseLuxuryFleet": "Gebruik luxevloot",
+	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
 	}

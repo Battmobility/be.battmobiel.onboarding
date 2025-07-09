@@ -516,4 +516,20 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   @override
   String get convictionsPageSubtitle =>
       'Have you ever been convicted for the following:';
+
+  @override
+  String get formulaPickerBattFunTitle => 'BattFun';
+
+  @override
+  String get formulaPickerBattFunDescription => 'No subscription costs';
+
+  @override
+  String get formulaPickerBattFanTitle => 'BattFan';
+
+  @override
+  String get formulaPickerBattFanDescription =>
+      'Monthly fixed prepaid, 25% discount';
+
+  @override
+  String get formulaPickerUseLuxuryFleet => 'Use luxury fleet';
 }

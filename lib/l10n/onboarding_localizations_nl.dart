@@ -356,7 +356,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get addSubscriptionFormEnterBusinessData => 'Geef bedrijfsgegevens in';
 
   @override
-  String get addSubscriptionFormConfirm => 'Kies een contract';
+  String get addSubscriptionFormConfirm => 'Kies een formule';
 
   @override
   String addSubscriptionFormSuccess(String subscription) {
@@ -516,4 +516,20 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   @override
   String get convictionsPageSubtitle =>
       'Have you ever been convicted for the following:';
+
+  @override
+  String get formulaPickerBattFunTitle => 'BattFun';
+
+  @override
+  String get formulaPickerBattFunDescription => 'Geen abonnementskosten';
+
+  @override
+  String get formulaPickerBattFanTitle => 'BattFan';
+
+  @override
+  String get formulaPickerBattFanDescription =>
+      'Maandelijks vaste vooruitbetaling, 25% korting';
+
+  @override
+  String get formulaPickerUseLuxuryFleet => 'Gebruik luxevloot';
 }

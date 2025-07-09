@@ -452,12 +452,12 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormLabelExistingContracts" : "Vos contrats:",
+	"addSubscriptionFormLabelExistingContracts" : "Votre contracts",
 	"@addSubscriptionFormLabelExistingContracts": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormMessagePersonalUse" : "Vos données de facturation pour un usage personnel:",
+	"addSubscriptionFormMessagePersonalUse" : "Your billing data for personal use:",
 	"@addSubscriptionFormMessagePersonalUse": {
 		"type": "text",
 		"placeholders": {}
@@ -537,7 +537,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormConfirm" : "Kies een contract",
+	"addSubscriptionFormConfirm" : "Choisir formule et confirmer",
 	"@addSubscriptionFormConfirm": {
 		"type": "text",
 		"placeholders": {}
@@ -764,6 +764,31 @@
 	},
 	"convictionsPageSubtitle": "Have you ever been convicted for the following:",
 	"@convictionsPageSubtitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunTitle": "BattFun",
+	"@formulaPickerBattFunTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunDescription": "Pas de coûts d''abonnement",
+	"@formulaPickerBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanTitle": "BattFan",
+	"@formulaPickerBattFanTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanDescription": "Prépayé fixe mensuel, 25% de réduction",
+	"@formulaPickerBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerUseLuxuryFleet": "Utiliser la flotte de luxe",
+	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
 	}
