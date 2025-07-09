@@ -150,23 +150,57 @@ class CreateClientPageState extends State<CreateClientPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             spacing: AppSpacings.md,
             children: finishedSubscriptions.map((sub) {
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                spacing: AppSpacings.sm,
-                children: [
-                  Text(
-                    sub.clientName!,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  Text(sub.subscriptionContract!.subscriptionType!,
+              if (sub.clientSuspended == true) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: AppSpacings.xs,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      spacing: AppSpacings.sm,
+                      children: [
+                        Text(
+                          sub.clientName!,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(sub.subscriptionContract!.subscriptionType!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(fontWeight: FontWeight.bold)),
+                        Icon(Icons.pending, color: AppColors.b2cKeyColor),
+                      ],
+                    ),
+                    Text(
+                      l10n.contractVerificationInProgress,
                       style: Theme.of(context)
                           .textTheme
-                          .bodyLarge!
-                          .copyWith(fontWeight: FontWeight.bold)),
-                  Icon(Icons.check_circle, color: AppColors.ctaBrightGreen),
-                ],
-              );
+                          .bodySmall!
+                          .copyWith(color: AppColors.b2cKeyColor),
+                    ),
+                  ],
+                );
+              } else {
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  spacing: AppSpacings.sm,
+                  children: [
+                    Text(
+                      sub.clientName!,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    Text(sub.subscriptionContract!.subscriptionType!,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(fontWeight: FontWeight.bold)),
+                    Icon(Icons.check_circle, color: AppColors.ctaBrightGreen),
+                  ],
+                );
+              }
             }).toList(),
           )
         ],

@@ -300,6 +300,12 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get addSubscriptionFormLabelExistingContracts => 'Existing contracts:';
 
   @override
+  String get contractVerificationInProgress => 'Contract verification is in progress. You will receive an email with instructions for the warranty payment.';
+
+  @override
+  String get createClientEmployeeFamilyMessage => 'If you have an employer subscription, please contact your employer to get access to the app.';
+
+  @override
   String get addSubscriptionFormLabelPersonalUse =>
       'Pick a contract for personal use:';
 
@@ -504,8 +510,4 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get onboardingStepCreateClient => 'Billing Information';
-
-  @override
-  String get createClientEmployeeFamilyMessage =>
-      'Employee or family member of someone who already has a Battmobility account and it\'s not showing on this page? No need to do anything on this page. Ask them to shoot us a message with your e-mail address and we\'ll add you to their account.';
 }

@@ -16,6 +16,7 @@ extension ApiToDomain on api.Subscription {
       id: id,
       clientId: clientId,
       clientName: clientName,
+      clientSuspended: clientSuspended,
       clientRoles: clientRoles?.name,
       commitment: commitment,
       subscriptionType: subscriptionType,

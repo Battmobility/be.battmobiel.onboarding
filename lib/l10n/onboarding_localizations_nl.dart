@@ -301,6 +301,14 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
       'Bestaande contracten:';
 
   @override
+  String get contractVerificationInProgress =>
+      'Contractverificatie is bezig. U ontvangt een e-mail met instructies voor de garantiebetaling.';
+
+  @override
+  String get createClientEmployeeFamilyMessage =>
+      'Als je een werkgeversabonnement hebt, neem dan contact op met je werkgever om toegang te krijgen tot de app.';
+
+  @override
   String get addSubscriptionFormLabelPersonalUse =>
       'Pick a contract for personal use:';
 
@@ -505,8 +513,4 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get onboardingStepCreateClient => 'Facturatiegegevens';
-
-  @override
-  String get createClientEmployeeFamilyMessage =>
-      'Medewerker of familielid van iemand die al een Battmobility-account heeft en het niet op deze pagina wordt weergegeven? Geen actie nodig op deze pagina. Vraag hen om ons een bericht te sturen met uw e-mailadres en we voegen u toe aan hun account.';
 }
