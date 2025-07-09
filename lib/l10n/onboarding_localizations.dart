@@ -838,6 +838,84 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Download the Batt mobile app from the App Store to get started.'**
   String get onboardingCompletedAppStoreMessage;
+
+  /// No description provided for @formulaBattFunDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfort fleet without subscription costs'**
+  String get formulaBattFunDescription;
+
+  /// No description provided for @formulaBattFunPlusDLDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Luxury fleet, no fixed cost, warranty arranged by your employer.'**
+  String get formulaBattFunPlusDLDescription;
+
+  /// No description provided for @formulaBattFanDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfort fleet + monthly fixed prepaid, 25% discount.'**
+  String get formulaBattFanDescription;
+
+  /// No description provided for @formulaBattFunPlusDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Luxury fleet without subscription costs'**
+  String get formulaBattFunPlusDescription;
+
+  /// No description provided for @formulaBattFanPlusDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Luxury fleet + monthly fixed prepaid, 25% discount.'**
+  String get formulaBattFanPlusDescription;
+
+  /// No description provided for @formulaBattForBusinessDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'For businesses: luxury fleet at 25% discount'**
+  String get formulaBattForBusinessDescription;
+
+  /// No description provided for @noFormulasAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No formulas available for this subscription'**
+  String get noFormulasAvailable;
+
+  /// No description provided for @warrantyAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Warranty: €{amount}'**
+  String warrantyAmount(Object amount);
+
+  /// No description provided for @minimumCommitment.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum commitment: €{amount}'**
+  String minimumCommitment(Object amount);
+
+  /// No description provided for @commitmentAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Commitment Amount'**
+  String get commitmentAmount;
+
+  /// No description provided for @enterAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter amount'**
+  String get enterAmount;
+
+  /// No description provided for @commitmentMinimumError.
+  ///
+  /// In en, this message translates to:
+  /// **'Commitment must be at least €{amount}'**
+  String commitmentMinimumError(Object amount);
+
+  /// No description provided for @minimumPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum: €{amount}'**
+  String minimumPrefix(Object amount);
 }
 
 class _OnboardingLocalizationsDelegate

@@ -638,5 +638,78 @@
 	"@onboardingCompletedAppStoreMessage": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"formulaBattFunDescription": "Comfort vloot zonder abonnementskosten",
+	"@formulaBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunPlusDLDescription": "Luxevloot, geen vaste kost, waarborg geregeld door je werkgever.",
+	"@formulaBattFunPlusDLDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFanDescription": "Comfort vloot + maandelijks een vaste prepaid, 25% korting.",
+	"@formulaBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunPlusDescription": "Luxevloot zonder abonnementskosten",
+	"@formulaBattFunPlusDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFanPlusDescription": "Luxevloot + maandelijks een vaste prepaid, 25% korting.",
+	"@formulaBattFanPlusDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattForBusinessDescription": "Voor bedrijven: luxevloot aan 25% korting",
+	"@formulaBattForBusinessDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"noFormulasAvailable": "Geen formules beschikbaar voor dit abonnement",
+	"@noFormulasAvailable": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"warrantyAmount": "Waarborg: €{amount}",
+	"@warrantyAmount": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"minimumCommitment": "Minimum commitment: €{amount}",
+	"@minimumCommitment": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"commitmentAmount": "Commitment bedrag",
+	"@commitmentAmount": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"enterAmount": "Voer bedrag in",
+	"@enterAmount": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"commitmentMinimumError": "Commitment moet minstens €{amount} zijn",
+	"@commitmentMinimumError": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"minimumPrefix": "Minimum: €{amount}",
+	"@minimumPrefix": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
 	}
 }

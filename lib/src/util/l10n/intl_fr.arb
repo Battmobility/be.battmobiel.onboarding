@@ -623,6 +623,79 @@
 	"@onboardingCompletedAppStoreMessage": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"formulaBattFunDescription": "Flotte de confort sans frais d''abonnement",
+	"@formulaBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunPlusDLDescription": "Flotte de luxe, pas de coût fixe, garantie organisée par votre employeur.",
+	"@formulaBattFunPlusDLDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFanDescription": "Flotte de confort + prépayé fixe mensuel, 25% de réduction.",
+	"@formulaBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunPlusDescription": "Flotte de luxe sans frais d''abonnement",
+	"@formulaBattFunPlusDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFanPlusDescription": "Flotte de luxe + prépayé fixe mensuel, 25% de réduction.",
+	"@formulaBattFanPlusDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattForBusinessDescription": "Pour les entreprises : flotte de luxe à 25% de réduction",
+	"@formulaBattForBusinessDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"noFormulasAvailable": "Aucune formule disponible pour cet abonnement",
+	"@noFormulasAvailable": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"warrantyAmount": "Garantie : €{amount}",
+	"@warrantyAmount": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"minimumCommitment": "Engagement minimum : €{amount}",
+	"@minimumCommitment": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"commitmentAmount": "Montant d''engagement",
+	"@commitmentAmount": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"enterAmount": "Saisir le montant",
+	"@enterAmount": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"commitmentMinimumError": "L''engagement doit être d''au moins €{amount}",
+	"@commitmentMinimumError": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"minimumPrefix": "Minimum : €{amount}",
+	"@minimumPrefix": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
 	}
 }
 

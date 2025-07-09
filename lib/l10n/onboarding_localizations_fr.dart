@@ -417,4 +417,58 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   @override
   String get onboardingCompletedAppStoreMessage =>
       'Téléchargez votre application Batt.';
+
+  @override
+  String get formulaBattFunDescription =>
+      'Flotte de confort sans frais d\'abonnement';
+
+  @override
+  String get formulaBattFunPlusDLDescription =>
+      'Flotte de luxe, pas de coût fixe, garantie organisée par votre employeur.';
+
+  @override
+  String get formulaBattFanDescription =>
+      'Flotte de confort + prépayé fixe mensuel, 25% de réduction.';
+
+  @override
+  String get formulaBattFunPlusDescription =>
+      'Flotte de luxe sans frais d\'abonnement';
+
+  @override
+  String get formulaBattFanPlusDescription =>
+      'Flotte de luxe + prépayé fixe mensuel, 25% de réduction.';
+
+  @override
+  String get formulaBattForBusinessDescription =>
+      'Pour les entreprises : flotte de luxe à 25% de réduction';
+
+  @override
+  String get noFormulasAvailable =>
+      'Aucune formule disponible pour cet abonnement';
+
+  @override
+  String warrantyAmount(Object amount) {
+    return 'Garantie : €$amount';
+  }
+
+  @override
+  String minimumCommitment(Object amount) {
+    return 'Engagement minimum : €$amount';
+  }
+
+  @override
+  String get commitmentAmount => 'Montant d\'engagement';
+
+  @override
+  String get enterAmount => 'Saisir le montant';
+
+  @override
+  String commitmentMinimumError(Object amount) {
+    return 'L\'engagement doit être d\'au moins €$amount';
+  }
+
+  @override
+  String minimumPrefix(Object amount) {
+    return 'Minimum : €$amount';
+  }
 }

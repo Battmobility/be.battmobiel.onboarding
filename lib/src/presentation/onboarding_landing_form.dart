@@ -1,4 +1,5 @@
 import 'package:batt_ds/batt_ds.dart';
+import 'package:batt_kit/batt_kit.dart';
 import 'package:batt_onboarding/src/data/api_factory.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
@@ -78,7 +79,8 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         OnboardingProgress progress = snapshot.data!;
 
         // If onboarding is completed, go directly to CreateClientPage
-        if (progress.progress == 5 && _step == 0) {
+        if (progress.progress == OnboardingStatus.completed.index &&
+            _step == 0) {
           _step = OnboardingSteps.createClient.index;
         }
 

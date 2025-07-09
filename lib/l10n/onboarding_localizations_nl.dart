@@ -418,4 +418,58 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   @override
   String get onboardingCompletedAppStoreMessage =>
       'Download de Batt mobiele app uit de App Store.';
+
+  @override
+  String get formulaBattFunDescription =>
+      'Comfort vloot zonder abonnementskosten';
+
+  @override
+  String get formulaBattFunPlusDLDescription =>
+      'Luxevloot, geen vaste kost, waarborg geregeld door je werkgever.';
+
+  @override
+  String get formulaBattFanDescription =>
+      'Comfort vloot + maandelijks een vaste prepaid, 25% korting.';
+
+  @override
+  String get formulaBattFunPlusDescription =>
+      'Luxevloot zonder abonnementskosten';
+
+  @override
+  String get formulaBattFanPlusDescription =>
+      'Luxevloot + maandelijks een vaste prepaid, 25% korting.';
+
+  @override
+  String get formulaBattForBusinessDescription =>
+      'Voor bedrijven: luxevloot aan 25% korting';
+
+  @override
+  String get noFormulasAvailable =>
+      'Geen formules beschikbaar voor dit abonnement';
+
+  @override
+  String warrantyAmount(Object amount) {
+    return 'Waarborg: €$amount';
+  }
+
+  @override
+  String minimumCommitment(Object amount) {
+    return 'Minimum commitment: €$amount';
+  }
+
+  @override
+  String get commitmentAmount => 'Commitment bedrag';
+
+  @override
+  String get enterAmount => 'Voer bedrag in';
+
+  @override
+  String commitmentMinimumError(Object amount) {
+    return 'Commitment moet minstens €$amount zijn';
+  }
+
+  @override
+  String minimumPrefix(Object amount) {
+    return 'Minimum: €$amount';
+  }
 }

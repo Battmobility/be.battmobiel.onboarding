@@ -621,5 +621,78 @@
 	"@onboardingCompletedAppStoreMessage": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"formulaBattFunDescription": "Comfort fleet without subscription costs",
+	"@formulaBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunPlusDLDescription": "Luxury fleet, no fixed cost, warranty arranged by your employer.",
+	"@formulaBattFunPlusDLDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFanDescription": "Comfort fleet + monthly fixed prepaid, 25% discount.",
+	"@formulaBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFunPlusDescription": "Luxury fleet without subscription costs",
+	"@formulaBattFunPlusDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattFanPlusDescription": "Luxury fleet + monthly fixed prepaid, 25% discount.",
+	"@formulaBattFanPlusDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaBattForBusinessDescription": "For businesses: luxury fleet at 25% discount",
+	"@formulaBattForBusinessDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"noFormulasAvailable": "No formulas available for this subscription",
+	"@noFormulasAvailable": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"warrantyAmount": "Warranty: €{amount}",
+	"@warrantyAmount": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"minimumCommitment": "Minimum commitment: €{amount}",
+	"@minimumCommitment": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"commitmentAmount": "Commitment Amount",
+	"@commitmentAmount": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"enterAmount": "Enter amount",
+	"@enterAmount": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"commitmentMinimumError": "Commitment must be at least €{amount}",
+	"@commitmentMinimumError": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
+	},
+	"minimumPrefix": "Minimum: €{amount}",
+	"@minimumPrefix": {
+		"type": "text",
+		"placeholders": {
+			"amount": {}
+		}
 	}
 }

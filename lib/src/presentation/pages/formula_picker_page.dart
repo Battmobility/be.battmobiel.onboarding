@@ -25,20 +25,6 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
   BattFormula? selectedFormula;
   int commitment = 0;
 
-  // Formula descriptions map
-  static const Map<BattFormulaType, String> formulaDescriptions = {
-    BattFormulaType.battFun: "Comfort vloot zonder abonnementskosten",
-    BattFormulaType.battFunPlusDL:
-        "Luxevloot, geen vaste kost, waarborg geregeld door je werkgever.",
-    BattFormulaType.battFan:
-        "Comfort vloot + maandelijks een vaste prepaid, 25% korting.",
-    BattFormulaType.battFunPlus: "Luxevloot zonder abonnementskosten",
-    BattFormulaType.battFanPlus:
-        "Luxevloot + maandelijks een vaste prepaid, 25% korting.",
-    BattFormulaType.battForBusiness:
-        "Voor bedrijven: luxevloot aan 25% korting",
-  };
-
   @override
   void initState() {
     super.initState();
@@ -66,7 +52,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
         padding: AppPaddings.large.all,
         child: Center(
           child: Text(
-            "No formulas available for this subscription",
+            l10n.noFormulasAvailable,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
@@ -77,38 +63,63 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
       padding: AppPaddings.large.all,
       child: SingleChildScrollView(
         child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.createContractPickFormulaLabel,
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-              SizedBox(height: AppSpacings.lg),
-              // Radio buttons for each possible formula
-              ...possibleFormulas
-                  .map((formula) => _buildFormulaOption(formula)),
-              SizedBox(height: AppSpacings.lg),
-              // Minimum commitment field (only if needed)
-              if (selectedFormula?.minCommitment != null &&
-                  selectedFormula!.minCommitment! > 0)
-                _buildCommitmentField(),
-              SizedBox(height: AppSpacings.xl),
-              SizedBox(
-                width: double.infinity,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.createContractPickFormulaLabel,
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+            SizedBox(height: AppSpacings.lg),
+            // Radio buttons for each possible formula
+            ...possibleFormulas.map((formula) => _buildFormulaOption(formula)),
+            SizedBox(height: AppSpacings.lg),
+            // Minimum commitment field (only if needed)
+            if (selectedFormula?.minCommitment != null &&
+                selectedFormula!.minCommitment! > 0)
+              _buildCommitmentField(),
+            SizedBox(height: AppSpacings.xl),
+            SizedBox(
+              width: double.infinity,
+              child: Opacity(
+                opacity: selectedFormula != null ? 1.0 : 0.5,
                 child: SolidCtaButton(
                   label: l10n.createContractConfirmButtonTitle,
                   onPressed: selectedFormula != null ? _createContract : null,
                 ),
               ),
-            ],
+            ),
+          ],
         ),
       ),
     );
   }
 
+  String _getFormulaDescription(
+      BuildContext context, BattFormulaType? formulaType) {
+    final l10n = OnboardingLocalizations.of(context);
+
+    switch (formulaType) {
+      case BattFormulaType.battFun:
+        return l10n.formulaBattFunDescription;
+      case BattFormulaType.battFunPlusDL:
+        return l10n.formulaBattFunPlusDLDescription;
+      case BattFormulaType.battFan:
+        return l10n.formulaBattFanDescription;
+      case BattFormulaType.battFunPlus:
+        return l10n.formulaBattFunPlusDescription;
+      case BattFormulaType.battFanPlus:
+        return l10n.formulaBattFanPlusDescription;
+      case BattFormulaType.battForBusiness:
+        return l10n.formulaBattForBusinessDescription;
+      default:
+        return "No description available";
+    }
+  }
+
   Widget _buildFormulaOption(BattFormula formula) {
     final formulaType = formula.type;
+    final l10n = OnboardingLocalizations.of(context);
 
     return Card(
       margin: EdgeInsets.only(bottom: AppSpacings.md),
@@ -139,13 +150,13 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
           children: [
             if (formulaType != null)
               Text(
-                formulaDescriptions[formulaType] ?? "No description available",
+                _getFormulaDescription(context, formulaType),
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             SizedBox(height: AppSpacings.xs),
             if (formula.warrantyAmount != null)
               Text(
-                "Warranty: €${formula.warrantyAmount}",
+                l10n.warrantyAmount(formula.warrantyAmount.toString()),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: AppColors.b2cKeyColor,
                       fontWeight: FontWeight.w600,
@@ -153,7 +164,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
               ),
             if (formula.minCommitment != null && formula.minCommitment! > 0)
               Text(
-                "Minimum commitment: €${formula.minCommitment}",
+                l10n.minimumCommitment(formula.minCommitment.toString()),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
           ],
@@ -163,6 +174,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
   }
 
   Widget _buildCommitmentField() {
+    final l10n = OnboardingLocalizations.of(context);
     return Card(
       child: Padding(
         padding: AppPaddings.medium.all,
@@ -170,7 +182,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Commitment Amount",
+              l10n.commitmentAmount,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(height: AppSpacings.sm),
@@ -188,8 +200,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: "Enter amount",
-                      suffix: Text("€"),
+                      hintText: l10n.enterAmount,
                     ),
                     onChanged: (value) {
                       final newCommitment = int.tryParse(value);
@@ -206,10 +217,11 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
               Padding(
                 padding: EdgeInsets.only(top: AppSpacings.xs),
                 child: Text(
-                  "Minimum: €${selectedFormula!.minCommitment}",
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.grey[600],
-                      ),
+                  l10n.minimumPrefix(selectedFormula!.minCommitment.toString()),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: AppColors.neutralColors[600]),
                 ),
               ),
           ],
@@ -223,10 +235,11 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
     if (selectedFormula?.minCommitment != null &&
         selectedFormula!.minCommitment! > 0 &&
         commitment < selectedFormula!.minCommitment!) {
+      final l10n = OnboardingLocalizations.of(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-              "Commitment must be at least €${selectedFormula!.minCommitment}"),
+              l10n.commitmentMinimumError(selectedFormula!.minCommitment.toString())),
         ),
       );
       return;
