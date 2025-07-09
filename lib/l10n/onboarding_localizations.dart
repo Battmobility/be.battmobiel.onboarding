@@ -635,6 +635,18 @@ abstract class OnboardingLocalizations {
   /// **'Existing contracts:'**
   String get addSubscriptionFormLabelExistingContracts;
 
+  /// No description provided for @contractVerificationInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract verification is in progress. You will receive an email with instructions for the warranty payment.'**
+  String get contractVerificationInProgress;
+
+  /// No description provided for @createClientEmployeeFamilyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'If you have an employer subscription, please contact your employer to get access to the app.'**
+  String get createClientEmployeeFamilyMessage;
+
   /// No description provided for @addSubscriptionFormLabelPersonalUse.
   ///
   /// In en, this message translates to:
@@ -820,6 +832,168 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Failed to create contract! Try again or contact customer service if the problem persists.'**
   String get createContractFailureMessage;
+
+  /// No description provided for @onboardingCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Onboarding Complete!'**
+  String get onboardingCompletedTitle;
+
+  /// No description provided for @onboardingCompletedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! You have successfully completed the onboarding process.'**
+  String get onboardingCompletedMessage;
+
+  /// No description provided for @onboardingCompletedAppStoreMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Download the Batt mobile app from the App Store to get started.'**
+  String get onboardingCompletedAppStoreMessage;
+
+  /// No description provided for @onboardingCompletedAppStoreLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Download from App Store'**
+  String get onboardingCompletedAppStoreLink;
+
+  /// No description provided for @onboardingCompletedPlayStoreLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Download from Play Store'**
+  String get onboardingCompletedPlayStoreLink;
+
+  /// No description provided for @formulaBattFunDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfort fleet without subscription costs'**
+  String get formulaBattFunDescription;
+
+  /// No description provided for @formulaBattFunPlusDLDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Luxury fleet, no fixed cost, warranty arranged by your employer.'**
+  String get formulaBattFunPlusDLDescription;
+
+  /// No description provided for @formulaBattFanDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfort fleet + monthly fixed prepaid, 25% discount.'**
+  String get formulaBattFanDescription;
+
+  /// No description provided for @formulaBattFunPlusDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Luxury fleet without subscription costs'**
+  String get formulaBattFunPlusDescription;
+
+  /// No description provided for @formulaBattFanPlusDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Luxury fleet + monthly fixed prepaid, 25% discount.'**
+  String get formulaBattFanPlusDescription;
+
+  /// No description provided for @formulaBattForBusinessDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'For businesses: luxury fleet at 25% discount'**
+  String get formulaBattForBusinessDescription;
+
+  /// No description provided for @noFormulasAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No formulas available for this subscription'**
+  String get noFormulasAvailable;
+
+  /// No description provided for @warrantyAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Warranty: €{amount}'**
+  String warrantyAmount(Object amount);
+
+  /// No description provided for @minimumCommitment.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum commitment: €{amount}'**
+  String minimumCommitment(Object amount);
+
+  /// No description provided for @commitmentAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Commitment Amount'**
+  String get commitmentAmount;
+
+  /// No description provided for @enterAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter amount'**
+  String get enterAmount;
+
+  /// No description provided for @commitmentMinimumError.
+  ///
+  /// In en, this message translates to:
+  /// **'Commitment must be at least €{amount}'**
+  String commitmentMinimumError(Object amount);
+
+  /// No description provided for @minimumPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum: €{amount}'**
+  String minimumPrefix(Object amount);
+
+  /// No description provided for @onboardingStepIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get onboardingStepIntro;
+
+  /// No description provided for @onboardingStepPersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get onboardingStepPersonal;
+
+  /// No description provided for @onboardingStepAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get onboardingStepAddress;
+
+  /// No description provided for @onboardingStepPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get onboardingStepPhone;
+
+  /// No description provided for @onboardingStepPhoneVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Verification'**
+  String get onboardingStepPhoneVerification;
+
+  /// No description provided for @onboardingStepDocumentsExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get onboardingStepDocumentsExplainer;
+
+  /// No description provided for @onboardingStepIdDocuments.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Documents'**
+  String get onboardingStepIdDocuments;
+
+  /// No description provided for @onboardingStepLegal.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal Information'**
+  String get onboardingStepLegal;
+
+  /// No description provided for @onboardingStepCreateClient.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing Information'**
+  String get onboardingStepCreateClient;
 }
 
 class _OnboardingLocalizationsDelegate

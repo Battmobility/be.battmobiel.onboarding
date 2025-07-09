@@ -7,11 +7,14 @@ import 'package:batt_onboarding/src/presentation/pages/formula_picker_page.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sealed_countries/sealed_countries.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
+
+const String _appStoreUrl = 'https://apps.apple.com/us/app/battmobility/id1499493665';
+const String _playStoreUrl = 'https://play.google.com/store/apps/details?id=be.battmobiel.android_app';
 
 final class CreateClientPage extends OnboardingPage {
   final businessClientFormKey = GlobalKey<FormBuilderState>();
@@ -28,19 +31,14 @@ final class CreateClientPage extends OnboardingPage {
 }
 
 class CreateClientPageState extends State<CreateClientPage> {
-  bool _wantsBusinessUse = true;
-  bool _wantsPersonalUse = true;
-
-  bool _isCreatingBusinessClient = false;
-  bool _hasPickedBusinessContract = false;
-  int? _businessClientId;
-  bool _hasPickedPersonalContract = false;
+  bool _showBusinessForm = true;
+  bool _showEmployeeFamilyMessage = true;
 
   @override
   Widget build(BuildContext context) {
     final l10n = OnboardingLocalizations.of(context);
 
-    return FutureBuilder(
+    return FutureBuilder<OnboardingProgress?>(
         future: onboardingRepository.getOnboardingProgress(),
         builder: (context, snapshot) {
           if (!snapshot.hasData || snapshot.data == null) {
@@ -56,6 +54,7 @@ class CreateClientPageState extends State<CreateClientPage> {
                   children: [
                     Text(l10n.addSubscriptionFormTitle,
                         style: Theme.of(context).textTheme.headlineLarge),
+                    _employeeFamilyMessage(),
                     _finishedContracts(progress.subscriptions),
                     _formChildren(progress.subscriptions),
                     FormBuilder(
@@ -67,20 +66,13 @@ class CreateClientPageState extends State<CreateClientPage> {
                                 return SizedBox.shrink();
                               },
                               validator: (_) {
-                                // TODO: ony validate when clients have been created or refused
-                                if (!_wantsBusinessUse && !_wantsPersonalUse) {
-                                  return null; // can continue
-                                }
-                                if (_wantsBusinessUse) {
-                                  return _hasPickedBusinessContract
-                                      ? null
-                                      : "Business contract not picked yet";
-                                }
-                                if (_wantsPersonalUse) {
-                                  return _hasPickedPersonalContract
-                                      ? null
-                                      : "Personal contract not picked yet";
-                                }
+                                // Simplified validation - just check if there are any incomplete contracts
+                                final subsWithoutContract =
+                                    progress.subscriptions.where((sub) =>
+                                        sub.subscriptionContract == null);
+                                return subsWithoutContract.isEmpty
+                                    ? null
+                                    : "Please complete all contracts before continuing";
                               },
                             ),
                           ],
@@ -89,6 +81,55 @@ class CreateClientPageState extends State<CreateClientPage> {
             ),
           );
         });
+  }
+
+  Widget _employeeFamilyMessage() {
+    final l10n = OnboardingLocalizations.of(context);
+    
+    if (!_showEmployeeFamilyMessage) {
+      return SizedBox.shrink();
+    }
+    
+    return Padding(
+      padding: AppPaddings.medium.vertical,
+      child: Card(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        child: Padding(
+          padding: AppPaddings.medium.all,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.info_outline,
+                color: Theme.of(context).colorScheme.primary,
+                size: 20,
+              ),
+              SizedBox(width: AppSpacings.sm),
+              Expanded(
+                child: Text(
+                  l10n.createClientEmployeeFamilyMessage,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _showEmployeeFamilyMessage = false;
+                  });
+                },
+                child: Icon(
+                  Icons.close,
+                  color: Theme.of(context).colorScheme.primary,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _finishedContracts(List<Subscription> subscriptions) {
@@ -109,22 +150,57 @@ class CreateClientPageState extends State<CreateClientPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             spacing: AppSpacings.md,
             children: finishedSubscriptions.map((sub) {
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                spacing: AppSpacings.sm,
-                children: [
-                  Text(
-                    sub.clientName!,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  Text(sub.subscriptionContract!.subscriptionType!,
+              if (sub.clientSuspended == true) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: AppSpacings.xs,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      spacing: AppSpacings.sm,
+                      children: [
+                        Text(
+                          sub.clientName!,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(sub.subscriptionContract!.subscriptionType!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(fontWeight: FontWeight.bold)),
+                        Icon(Icons.pending, color: AppColors.b2cKeyColor),
+                      ],
+                    ),
+                    Text(
+                      l10n.contractVerificationInProgress,
                       style: Theme.of(context)
                           .textTheme
-                          .bodyLarge!
-                          .copyWith(fontWeight: FontWeight.bold))
-                ],
-              );
+                          .bodySmall!
+                          .copyWith(color: AppColors.b2cKeyColor),
+                    ),
+                  ],
+                );
+              } else {
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  spacing: AppSpacings.sm,
+                  children: [
+                    Text(
+                      sub.clientName!,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    Text(sub.subscriptionContract!.subscriptionType!,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(fontWeight: FontWeight.bold)),
+                    Icon(Icons.check_circle, color: AppColors.ctaBrightGreen),
+                  ],
+                );
+              }
             }).toList(),
           )
         ],
@@ -135,26 +211,191 @@ class CreateClientPageState extends State<CreateClientPage> {
   }
 
   Widget _formChildren(List<Subscription> subscriptions) {
-    final applicableSubs =
-        subscriptions.where((sub) => sub.subscriptionContract == null);
+    final subsWithoutContract = subscriptions
+        .where((sub) => sub.subscriptionContract == null)
+        .toList()
+      ..sort((a, b) => (b.clientId ?? 0)
+          .compareTo(a.clientId ?? 0)); // Sort by clientId descending
+
+    // Auto-hide business form if there are 2+ subscriptions (only on first build)
+    if (subscriptions.length >= 2 && _showBusinessForm) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        setState(() {
+          _showBusinessForm = false;
+        });
+      });
+    }
+
+    // Check if all subscriptions have contracts (onboarding completed)
+    final allSubscriptionsComplete =
+        subscriptions.isNotEmpty && subsWithoutContract.isEmpty;
+
     return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: applicableSubs.isEmpty
-            ? [
-                _isCreatingBusinessClient
-                    ? _businessClientForm()
-                    : _businessClientCta(),
-              ]
-            : (applicableSubs.isNotEmpty)
-                ? [
-                    _isCreatingBusinessClient
-                        ? _businessClientForm()
-                        : _businessClientCta(),
-                    _standardClientCta(applicableSubs
-                        .firstWhere((sub) => sub.clientId == _businessClientId))
-                  ]
-                : []);
+        children: [
+          // Show completion message if all subscriptions have contracts
+          if (allSubscriptionsComplete) _onboardingCompletedWidget(),
+          // Show business form or collapse button when less than 2 subscriptions
+          if (!allSubscriptionsComplete && subscriptions.length < 2) ...[
+            if (_showBusinessForm)
+              _businessClientForm()
+            else
+              _showBusinessFormButton(),
+          ],
+          // Show CTAs for each subscription without contract
+          if (!allSubscriptionsComplete)
+            ...subsWithoutContract.asMap().entries.map((entry) {
+              final index = entry.key;
+              final sub = entry.value;
+              return _simplifiedClientCta(sub, isEnabled: index == 0);
+            })
+        ]);
+  }
+
+  Widget _onboardingCompletedWidget() {
+    final l10n = OnboardingLocalizations.of(context);
+
+    return Padding(
+      padding: AppPaddings.large.all,
+      child: Card(
+        elevation: 4,
+        child: Padding(
+          padding: AppPaddings.large.all,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.check_circle,
+                size: 64,
+                color: AppColors.ctaBrightGreen,
+              ),
+              SizedBox(height: AppSpacings.lg),
+              Text(
+                l10n.onboardingCompletedTitle,
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: AppColors.ctaBrightGreen,
+                      fontWeight: FontWeight.bold,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: AppSpacings.md),
+              Text(
+                l10n.onboardingCompletedMessage,
+                style: Theme.of(context).textTheme.bodyLarge,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: AppSpacings.lg),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () => _launchAppStore(),
+                    child: Text(
+                      l10n.onboardingCompletedAppStoreLink,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppColors.b2cKeyColor,
+                            decoration: TextDecoration.underline,
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => _launchPlayStore(),
+                    child: Text(
+                      l10n.onboardingCompletedPlayStoreLink,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppColors.b2cKeyColor,
+                            decoration: TextDecoration.underline,
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _launchAppStore() async {
+    final Uri uri = Uri.parse(_appStoreUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Could not launch App Store'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _launchPlayStore() async {
+    final Uri uri = Uri.parse(_playStoreUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Could not launch Play Store'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    }
+  }
+
+  Widget _showBusinessFormButton() {
+    return Padding(
+      padding: AppPaddings.medium.vertical,
+      child: OutlinedCtaButton(
+        label: "Add business info",
+        onPressed: () {
+          setState(() {
+            _showBusinessForm = true;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _simplifiedClientCta(Subscription subscription,
+      {required bool isEnabled}) {
+    final l10n = OnboardingLocalizations.of(context);
+
+    return Padding(
+      padding: AppPaddings.medium.vertical,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            subscription.clientName ?? "Unknown Client",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          SizedBox(height: AppSpacings.sm),
+          Opacity(
+            opacity: isEnabled ? 1.0 : 0.5,
+            child: SolidCtaButton(
+              label: l10n.createContractPickFormulaLabel,
+              onPressed: isEnabled
+                  ? () {
+                      _showContractPicker(context, subscription);
+                    }
+                  : null,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _businessClientForm() {
@@ -167,20 +408,53 @@ class CreateClientPageState extends State<CreateClientPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(l10n.addSubscriptionFormTitle,
-                style: Theme.of(context).textTheme.headlineLarge),
-            Padding(
-              padding: AppPaddings.medium.vertical,
-              child: Text(l10n.addSubscriptionFormMessageBusinessUse,
-                  style: Theme.of(context).textTheme.titleMedium),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: AppPaddings.medium.vertical,
+                        child: Text(l10n.addSubscriptionFormMessageBusinessUse,
+                            style: Theme.of(context).textTheme.titleMedium),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 80,
+                  child: OutlinedCtaButton(
+                    label: "Skip",
+                    onPressed: () {
+                      setState(() {
+                        _showBusinessForm = false;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
             FormBuilderTextField(
                 decoration:
                     InputDecoration(labelText: l10n.addSubscriptionFormName),
                 name: "name",
-                initialValue:
-                    "${widget.initialData?["firstName"] ?? ""} ${widget.initialData?["lastName"] ?? ""}",
                 validator: FormBuilderValidators.required()),
+            FormBuilderTextField(
+              decoration:
+                  InputDecoration(labelText: l10n.addSubscriptionFormVAT),
+              name: "vat",
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.skipWhen((value) {
+                  return value == null || value.isEmpty;
+                }, FormBuilderValidators.minLength(9)),
+                FormBuilderValidators.skipWhen((value) {
+                  return value == null || value.isEmpty;
+                }, FormBuilderValidators.maxLength(15)),
+              ]),
+            ),
             FormBuilderTextField(
                 decoration:
                     InputDecoration(labelText: l10n.addSubscriptionFormEmail),
@@ -227,37 +501,19 @@ class CreateClientPageState extends State<CreateClientPage> {
                 name: "postalCode",
                 initialValue: widget.initialData?["postalCode"] ?? "",
                 validator: FormBuilderValidators.required()),
-            Divider(),
-            Padding(
-              padding: AppPaddings.medium.vertical,
-              child: Text(l10n.addSubscriptionFormBusiness,
-                  style: Theme.of(context).textTheme.titleMedium),
-            ),
-            FormBuilderTextField(
-              decoration:
-                  InputDecoration(labelText: l10n.addSubscriptionFormVAT),
-              name: "vatNumber",
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.skipWhen((value) {
-                  return value == null || value.isEmpty;
-                }, FormBuilderValidators.minLength(9)),
-                FormBuilderValidators.skipWhen((value) {
-                  return value == null || value.isEmpty;
-                }, FormBuilderValidators.maxLength(15)),
-              ]),
-            ),
             SolidCtaButton(
-              label: l10n.addSubscriptionFormConfirm,
+              label: "Add business info",
               onPressed: () async {
-                if (widget.formKey.currentState!.saveAndValidate()) {
-                  final values = widget.formKey.currentState?.value;
+                if (widget.businessClientFormKey.currentState!
+                    .saveAndValidate()) {
+                  final values =
+                      widget.businessClientFormKey.currentState?.value;
                   if (values != null) {
                     final clientId =
                         await onboardingRepository.postNewClientData(values);
                     if (clientId != null) {
-                      setState(() {
-                        _businessClientId = clientId;
-                      });
+                      // Client created successfully, refresh the page
+                      setState(() {});
                     } else {
                       _showCreateClientFailedDialog(context);
                     }
@@ -274,125 +530,18 @@ class CreateClientPageState extends State<CreateClientPage> {
     );
   }
 
-  Widget _businessClientCta() {
-    final l10n = OnboardingLocalizations.of(context);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text(l10n.addSubscriptionFormMessageBusinessUse),
-        if (_wantsBusinessUse) ...[
-          if (_businessClientId == null) ...[
-            Flexible(
-              flex: 1,
-              child: SolidCtaButton(
-                label: l10n.addSubscriptionFormEnterBusinessData,
-                onPressed: () async {
-                  // Show form
-                  setState(() {
-                    _isCreatingBusinessClient = true;
-                  });
-                },
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: OutlinedCtaButton(
-                  label: l10n.addSubscriptionFormNoBusinessButton,
-                  onPressed: () {
-                    setState(() {
-                      _wantsBusinessUse = false;
-                    });
-                  }),
-            ),
-          ],
-          if (_businessClientId != null && !_hasPickedBusinessContract) ...[
-            Flexible(
-              flex: 1,
-              child: SolidCtaButton(
-                label: l10n.addSubscriptionFormConfirm,
-                onPressed: () async {
-                  _showContractPicker(context, _businessClientId!, null);
-                },
-              ),
-            ),
-          ],
-        ],
-        if (!_wantsBusinessUse) ...[SizedBox.shrink()]
-      ],
-    );
-  }
-
-  Widget _standardClientCta(Subscription subscription) {
-    final l10n = OnboardingLocalizations.of(context);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text(l10n.addSubscriptionFormLabelPersonalUse),
-        if (_wantsPersonalUse) ...[
-          if (_hasPickedPersonalContract) ...[
-            Icon(
-              PhosphorIcons.checkFat(),
-              color: AppColors.b2cKeyColor,
-            ),
-          ],
-          if (!_hasPickedPersonalContract) ...[
-            Flexible(
-              flex: 1,
-              child: SolidCtaButton(
-                label: l10n.createContractPickFormulaLabel,
-                onPressed: () async {
-                  // Show picker
-                  _showContractPicker(context, subscription.clientId!, null);
-                },
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: OutlinedCtaButton(
-                  label: l10n.addSubscriptionFormLabelNoPersonalUseButton,
-                  onPressed: () {
-                    setState(() {
-                      _wantsPersonalUse = false;
-                    });
-                  }),
-            ),
-          ]
-        ],
-        if (!_wantsPersonalUse) ...[
-          Text(l10n.addSubscriptionFormLabelNoPersonalUseButton)
-        ]
-      ],
-    );
-  }
-
   Future<void> _showContractPicker(
-      BuildContext context, int clientId, Subscription? subscription) async {
+      BuildContext context, Subscription subscription) async {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return Padding(
-            padding: AppPaddings.medium.all,
-            child: FormulaPickerPage(
-              clientId: clientId,
-              delegatedTrustClientId: subscription?.delegatedTrustClientId,
-              onContractCreated: () {
-                Navigator.of(context).pop();
-                setState(() {
-                  if (_businessClientId != null) {
-                    setState(() {
-                      _hasPickedBusinessContract = true;
-                    });
-                  } else {
-                    setState(() {
-                      _hasPickedPersonalContract = true;
-                    });
-                  }
-                  // refresh, should show next contract
-                });
-              },
-            ),
+          return FormulaPickerPage(
+            subscription: subscription,
+            onContractCreated: () {
+              Navigator.of(context).pop();
+              // Refresh the page to show updated state
+              setState(() {});
+            },
           );
         });
   }

@@ -16,6 +16,7 @@ extension ApiToDomain on api.Subscription {
       id: id,
       clientId: clientId,
       clientName: clientName,
+      clientSuspended: clientSuspended,
       clientRoles: clientRoles?.name,
       commitment: commitment,
       subscriptionType: subscriptionType,
@@ -58,11 +59,15 @@ extension ApiBattFormulaTypeToDomain on api.BattFormulaType? {
       case api.BattFormulaType.battfan:
         return BattFormulaType.battFan;
       case api.BattFormulaType.battfanplus:
-        return BattFormulaType.battFan;
+        return BattFormulaType.battFanPlus;
+      case api.BattFormulaType.battfunplusdl:
+        return BattFormulaType.battFunPlusDL;
       case api.BattFormulaType.battfun:
         return BattFormulaType.battFun;
       case api.BattFormulaType.battfunplus:
-        return BattFormulaType.battFun;
+        return BattFormulaType.battFunPlus;
+      case api.BattFormulaType.batt4bussiness:
+        return BattFormulaType.battForBusiness;
       default:
         return BattFormulaType.battFun;
     }

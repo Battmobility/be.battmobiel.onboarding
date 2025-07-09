@@ -300,6 +300,12 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get addSubscriptionFormLabelExistingContracts => 'Existing contracts:';
 
   @override
+  String get contractVerificationInProgress => 'Contract verification is in progress. You will receive an email with instructions for the warranty payment.';
+
+  @override
+  String get createClientEmployeeFamilyMessage => 'If you have an employer subscription, please contact your employer to get access to the app.';
+
+  @override
   String get addSubscriptionFormLabelPersonalUse =>
       'Pick a contract for personal use:';
 
@@ -406,4 +412,102 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   @override
   String get createContractFailureMessage =>
       'Failed to create contract! Try again or contact customer service if the problem persists.';
+
+  @override
+  String get onboardingCompletedTitle => 'Onboarding Complete!';
+
+  @override
+  String get onboardingCompletedMessage =>
+      'Congratulations! You have successfully completed the onboarding process.';
+
+  @override
+  String get onboardingCompletedAppStoreMessage =>
+      'Download the Batt mobile app from the App Store to get started.';
+
+  @override
+  String get onboardingCompletedAppStoreLink => 'Download from App Store';
+
+  @override
+  String get onboardingCompletedPlayStoreLink => 'Download from Play Store';
+
+  @override
+  String get formulaBattFunDescription =>
+      'Comfort fleet without subscription costs';
+
+  @override
+  String get formulaBattFunPlusDLDescription =>
+      'Luxury fleet, no fixed cost, warranty arranged by your employer.';
+
+  @override
+  String get formulaBattFanDescription =>
+      'Comfort fleet + monthly fixed prepaid, 25% discount.';
+
+  @override
+  String get formulaBattFunPlusDescription =>
+      'Luxury fleet without subscription costs';
+
+  @override
+  String get formulaBattFanPlusDescription =>
+      'Luxury fleet + monthly fixed prepaid, 25% discount.';
+
+  @override
+  String get formulaBattForBusinessDescription =>
+      'For businesses: luxury fleet at 25% discount';
+
+  @override
+  String get noFormulasAvailable =>
+      'No formulas available for this subscription';
+
+  @override
+  String warrantyAmount(Object amount) {
+    return 'Warranty: €$amount';
+  }
+
+  @override
+  String minimumCommitment(Object amount) {
+    return 'Minimum commitment: €$amount';
+  }
+
+  @override
+  String get commitmentAmount => 'Commitment Amount';
+
+  @override
+  String get enterAmount => 'Enter amount';
+
+  @override
+  String commitmentMinimumError(Object amount) {
+    return 'Commitment must be at least €$amount';
+  }
+
+  @override
+  String minimumPrefix(Object amount) {
+    return 'Minimum: €$amount';
+  }
+
+  @override
+  String get onboardingStepIntro => 'Welcome';
+
+  @override
+  String get onboardingStepPersonal => 'Personal Information';
+
+  @override
+  String get onboardingStepAddress => 'Address';
+
+  @override
+  String get onboardingStepPhone => 'Phone Number';
+
+  @override
+  String get onboardingStepPhoneVerification => 'Phone Verification';
+
+  @override
+  String get onboardingStepDocumentsExplainer => 'Documents';
+
+  @override
+  String get onboardingStepIdDocuments => 'Upload Documents';
+
+  @override
+  String get onboardingStepLegal => 'Legal Information';
+
+  @override
+  String get onboardingStepCreateClient => 'Billing Information';
 }

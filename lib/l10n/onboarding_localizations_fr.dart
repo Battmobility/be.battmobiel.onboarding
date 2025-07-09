@@ -300,6 +300,14 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get addSubscriptionFormLabelExistingContracts => 'Existing contracts:';
 
   @override
+  String get contractVerificationInProgress =>
+      'La vérification du contrat est en cours. Vous recevrez un email avec les instructions pour le paiement de la garantie.';
+
+  @override
+  String get createClientEmployeeFamilyMessage =>
+      'Si vous avez un abonnement employeur, veuillez contacter votre employeur pour obtenir l\'accès à l\'application.';
+
+  @override
   String get addSubscriptionFormLabelPersonalUse =>
       'Pick a contract for personal use:';
 
@@ -405,5 +413,105 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get createContractFailureMessage =>
-      'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
+      'Échec de la création du contrat ! Réessayez ou contactez le service client si le problème persiste.';
+
+  @override
+  String get onboardingCompletedTitle => 'Intégration Terminée !';
+
+  @override
+  String get onboardingCompletedMessage =>
+      'Félicitations ! Vous avez terminé avec succès le processus dintégration. Tous vos contrats sont maintenant actifs et vous pouvez commencer à utiliser lapplication Batt.';
+
+  @override
+  String get onboardingCompletedAppStoreMessage =>
+      'Téléchargez votre application Batt.';
+
+  @override
+  String get onboardingCompletedAppStoreLink =>
+      'Télécharger depuis l\'App Store';
+
+  @override
+  String get onboardingCompletedPlayStoreLink =>
+      'Télécharger depuis le Play Store';
+
+  @override
+  String get formulaBattFunDescription =>
+      'Flotte de confort sans frais d\'abonnement';
+
+  @override
+  String get formulaBattFunPlusDLDescription =>
+      'Flotte de luxe, pas de coût fixe, garantie organisée par votre employeur.';
+
+  @override
+  String get formulaBattFanDescription =>
+      'Flotte de confort + prépayé fixe mensuel, 25% de réduction.';
+
+  @override
+  String get formulaBattFunPlusDescription =>
+      'Flotte de luxe sans frais d\'abonnement';
+
+  @override
+  String get formulaBattFanPlusDescription =>
+      'Flotte de luxe + prépayé fixe mensuel, 25% de réduction.';
+
+  @override
+  String get formulaBattForBusinessDescription =>
+      'Pour les entreprises : flotte de luxe à 25% de réduction';
+
+  @override
+  String get noFormulasAvailable =>
+      'Aucune formule disponible pour cet abonnement';
+
+  @override
+  String warrantyAmount(Object amount) {
+    return 'Garantie : €$amount';
+  }
+
+  @override
+  String minimumCommitment(Object amount) {
+    return 'Engagement minimum : €$amount';
+  }
+
+  @override
+  String get commitmentAmount => 'Montant d\'engagement';
+
+  @override
+  String get enterAmount => 'Saisir le montant';
+
+  @override
+  String commitmentMinimumError(Object amount) {
+    return 'L\'engagement doit être d\'au moins €$amount';
+  }
+
+  @override
+  String minimumPrefix(Object amount) {
+    return 'Minimum : €$amount';
+  }
+
+  @override
+  String get onboardingStepIntro => 'Bienvenue';
+
+  @override
+  String get onboardingStepPersonal => 'Informations personnelles';
+
+  @override
+  String get onboardingStepAddress => 'Adresse';
+
+  @override
+  String get onboardingStepPhone => 'Numéro de téléphone';
+
+  @override
+  String get onboardingStepPhoneVerification => 'Vérification du téléphone';
+
+  @override
+  String get onboardingStepDocumentsExplainer => 'Documents';
+
+  @override
+  String get onboardingStepIdDocuments => 'Télécharger les documents';
+
+  @override
+  String get onboardingStepLegal => 'Informations légales';
+
+  @override
+  String get onboardingStepCreateClient => 'Informations de facturation';
 }
