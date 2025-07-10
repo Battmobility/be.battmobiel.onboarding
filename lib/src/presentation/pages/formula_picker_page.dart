@@ -131,6 +131,17 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
     }
   }
 
+  String? _getDisplayName(BattFormulaType? type) {
+    if (type == null) return null;
+    
+    switch (type) {
+      case BattFormulaType.battFunPlusDL:
+        return "BATTFUN";
+      default:
+        return type.name.toUpperCase();
+    }
+  }
+
   Widget _buildFormulaOption(BattFormula formula) {
     final formulaType = formula.type;
     final l10n = OnboardingLocalizations.of(context);
@@ -154,7 +165,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
           });
         },
         title: Text(
-          formulaType?.name.toUpperCase() ?? "Unknown Formula",
+          _getDisplayName(formulaType) ?? "Unknown Formula",
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),

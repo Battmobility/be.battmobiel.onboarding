@@ -772,7 +772,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"createClientEmployeeFamilyMessage": "Als je werkgever of familie al Battmobility gebruikt kan je hier stoppen. Laat het ons weten en we voegen je toe aan het juiste account.",
+	"createClientEmployeeFamilyMessage": "Als je werkgever of familie al Battmobility gebruikt kan je hier stoppen. Laat het ons weten op info@battmobility.be en we voegen je toe aan het juiste account.",
 	"@createClientEmployeeFamilyMessage": {
 		"type": "text",
 		"placeholders": {}
