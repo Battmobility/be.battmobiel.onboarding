@@ -992,7 +992,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @createClientEmployeeFamilyMessage.
   ///
   /// In en, this message translates to:
-  /// **'If your employer or family already has a Battmobility plan, you can stop here. Let us know and we will add you to the right account.'**
+  /// **'If your employer or family already has a Battmobility plan, you can stop here. Let us know at info@battmobility.be and we will add you to the right account.'**
   String get createClientEmployeeFamilyMessage;
 
   /// No description provided for @convictionsPageSubtitle.

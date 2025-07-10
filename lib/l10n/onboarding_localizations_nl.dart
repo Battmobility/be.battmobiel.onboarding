@@ -511,7 +511,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get createClientEmployeeFamilyMessage =>
-      'Als je werkgever of familie al Battmobility gebruikt kan je hier stoppen. Laat het ons weten en we voegen je toe aan het juiste account.';
+      'Als je werkgever of familie al Battmobility gebruikt kan je hier stoppen. Laat het ons weten op info@battmobility.be en we voegen je toe aan het juiste account.';
 
   @override
   String get convictionsPageSubtitle =>

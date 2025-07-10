@@ -514,7 +514,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get createClientEmployeeFamilyMessage =>
-      'Si votre employeur ou votre famille a déjà un plan Battmobility, vous pouvez vous arrêter ici. Faites-le nous savoir et nous vous ajouterons au bon compte.';
+      'Si votre employeur ou votre famille a déjà un plan Battmobility, vous pouvez vous arrêter ici. Faites-le nous savoir à info@battmobility.be et nous vous ajouterons au bon compte.';
 
   @override
   String get convictionsPageSubtitle =>
