@@ -18,15 +18,15 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   BattAuth.init(keyCloakUri, apiUri);
-  
+
   // Initialize Matomo tracking (web only)
   if (kIsWeb) {
     await MatomoTracking.init(
-      matomoUrl: 'https://your-matomo-url.com/matomo.php',
-      siteId: '1', // Replace with your actual site ID
+      matomoUrl: 'https://battmobility.matomo.cloud/matomo.php',
+      siteId: '2',
     );
   }
-  
+
   final app = await ThemeScopeWidget.initialize(const MyApp());
   runApp(app);
 }
@@ -99,14 +99,19 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget _login(BuildContext context, FlutterSecureStorage storage) {
-    return LoginPage(onLogin: (token) {
-      storage.write(key: "refreshToken", value: token.refreshToken!).then((_) {
-        print("Token written to storage successfully");
-        setState(() {});
-      });
-    }, onException: (error) {
-      print("$error");
-    });
+    return LoginPage(
+        initialScreen: AuthScreens.register,
+        onLogin: (token) {
+          storage
+              .write(key: "refreshToken", value: token.refreshToken!)
+              .then((_) {
+            print("Token written to storage successfully");
+            setState(() {});
+          });
+        },
+        onException: (error) {
+          print("$error");
+        });
   }
 
   Future<Accesstoken?> refreshedToken() async {
