@@ -8,6 +8,8 @@ import 'package:batt_auth/authentication/domain/domain.dart';
 import 'package:batt_auth/batt_auth.dart';
 import 'package:batt_auth/l10n/auth_localizations.dart';
 import 'package:example/api_parameters.dart';
+import 'package:example/analytics/matomo_tracking.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -16,6 +18,15 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   BattAuth.init(keyCloakUri, apiUri);
+  
+  // Initialize Matomo tracking (web only)
+  if (kIsWeb) {
+    await MatomoTracking.init(
+      matomoUrl: 'https://your-matomo-url.com/matomo.php',
+      siteId: '1', // Replace with your actual site ID
+    );
+  }
+  
   final app = await ThemeScopeWidget.initialize(const MyApp());
   runApp(app);
 }
@@ -127,10 +138,18 @@ class _MyAppState extends State<MyApp> {
             setState(() {});
           });
         },
-        onTrackEvent: (name, action, timeStamp, data) =>
-            print("Tracking event: $name, $action, $timeStamp seconds, $data"),
-        onTrackPageView: (name) => print(
-          "Tracking page view: $name",
-        ),
+        onTrackEvent: (name, action, timeStamp, data) {
+          print("Tracking event: $name, $action, $timeStamp seconds, $data");
+          MatomoTracking.trackEvent(
+            name: name,
+            action: action,
+            timeStamp: timeStamp,
+            data: data,
+          );
+        },
+        onTrackPageView: (name) {
+          print("Tracking page view: $name");
+          MatomoTracking.trackPageView(name);
+        },
       );
 }
