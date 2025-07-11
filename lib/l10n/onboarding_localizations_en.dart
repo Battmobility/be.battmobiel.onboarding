@@ -511,9 +511,25 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get createClientEmployeeFamilyMessage =>
-      'If your employer or family already has a Battmobility plan, you can stop here. Let us know and we will add you to the right account.';
+      'If your employer or family already has a Battmobility plan, you can stop here. Let us know at info@battmobility.be and we will add you to the right account.';
 
   @override
   String get convictionsPageSubtitle =>
       'Have you ever been convicted for the following:';
+
+  @override
+  String get formulaPickerBattFunTitle => 'BattFun';
+
+  @override
+  String get formulaPickerBattFunDescription => 'No subscription costs';
+
+  @override
+  String get formulaPickerBattFanTitle => 'BattFan';
+
+  @override
+  String get formulaPickerBattFanDescription =>
+      'Monthly fixed prepaid, 25% discount';
+
+  @override
+  String get formulaPickerUseLuxuryFleet => 'Use luxury fleet';
 }
