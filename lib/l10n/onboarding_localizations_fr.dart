@@ -9,14 +9,14 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   OnboardingLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get formTitle => 'Deviens Batt';
+  String get formTitle => 'Deviens membre de Battmobility';
 
   @override
-  String get moreInfoButtonLabel => 'Why do we ask you this?';
+  String get moreInfoButtonLabel => 'Pourquoi demandons-nous cela ?';
 
   @override
   String get introPageNeededDocuments =>
-      'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license';
+      'Avant de continuer, assurez-vous davoir les documents suivants à portée de main : \n\n• Document didentité (eID belge, preuve de résidence, ...)\n\n• Permis de conduire';
 
   @override
   String get introPageCancelButtonText => 'Continue later';
@@ -68,36 +68,37 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
       'Please fill out all fields before continuing';
 
   @override
-  String get convictionsPageTitle => 'Convictions page title';
+  String get convictionsPageTitle => 'Information légale';
 
   @override
   String get convictionsPageMessage =>
-      'For insurance reasons, we need to ask you to provide information about any previous convictions.';
+      'Pour des raisons dassurance, nous devons vous demander de fournir des informations sur déventuelles condamnations antérieures.';
 
   @override
   String get convictionsPageFooter =>
-      'By checking this box, I declare the information entered on this page to be truthful and to accept any liability in the case it is not.';
+      'En cochant cette case, je déclare que les informations saisies sur cette page sont véridiques et j\'accepte toute responsabilité en cas de fausse déclaration.';
 
   @override
-  String get convictionTypeDrunk => 'Driving under the influence of alcohol';
+  String get convictionTypeDrunk => 'Conduite sous linfluence de lalcool';
 
   @override
   String get convictionTypeIntoxication =>
-      'Driving under the influence of narcotics';
+      'Conduite sous l\'influence de stupéfiants';
 
   @override
-  String get convictionTypeTestRefusal => 'Refusal to take a drug test';
+  String get convictionTypeTestRefusal =>
+      'Refus de se soumettre à un test de dépistage';
 
   @override
   String get convictionTypeHitAndRun =>
-      'Fleeing the scene of an accident (\"hit and run\")';
+      'Fuite de la scène d\'un accident (\"hit and run\")';
 
   @override
-  String get convictionTypeLicenseRevocation => 'Revocation of license';
+  String get convictionTypeLicenseRevocation => 'évocation de permis';
 
   @override
   String get convictionTypeNoOfAccidents =>
-      'Amount of accidents where you were at fault';
+      'Combien d\'accidents où vous étiez en faute avez-vous eus?';
 
   @override
   String get documentsExplainerPageTitle => 'Documents';
@@ -132,7 +133,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get identityPageMessage =>
-      'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/';
+      'Il faut que nous recueillons certaines données d\'identification. Celles-ci ne seront partagées avec notre assureur que si nécessaire.';
 
   @override
   String get identityPageFileRequired => 'Please upload a file.';
@@ -297,15 +298,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Billing';
 
   @override
-  String get addSubscriptionFormLabelExistingContracts => 'Existing contracts:';
-
-  @override
-  String get contractVerificationInProgress =>
-      'La vérification du contrat est en cours. Vous recevrez un email avec les instructions pour le paiement de la garantie.';
-
-  @override
-  String get createClientEmployeeFamilyMessage =>
-      'Si vous avez un abonnement employeur, veuillez contacter votre employeur pour obtenir l\'accès à l\'application.';
+  String get addSubscriptionFormLabelExistingContracts => 'Vos contrats:';
 
   @override
   String get addSubscriptionFormLabelPersonalUse =>
@@ -321,7 +314,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get addSubscriptionFormMessageBusinessUse =>
-      'Your billing data for business use:';
+      'Si vous voulez utiliser BattMobility pour votre entreprise, veuillez fournir les informations suivantes ou sauter cette étape.';
 
   @override
   String get addSubscriptionFormLabelBusinessUse =>
@@ -331,13 +324,13 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get addSubscriptionFormLaterLabel => 'Ill do this later';
 
   @override
-  String get addSubscriptionFormName => 'Naam';
+  String get addSubscriptionFormName => 'Nom de l\'entreprise';
 
   @override
-  String get addSubscriptionFormEmail => 'Email';
+  String get addSubscriptionFormEmail => 'Email de l\'entreprise (facturation)';
 
   @override
-  String get addSubscriptionFormAddress => 'Adres';
+  String get addSubscriptionFormAddress => 'Adresse de l\'entreprise';
 
   @override
   String get addSubscriptionFormStreet => 'Straat';
@@ -420,7 +413,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get onboardingCompletedMessage =>
-      'Félicitations ! Vous avez terminé avec succès le processus dintégration. Tous vos contrats sont maintenant actifs et vous pouvez commencer à utiliser lapplication Batt.';
+      'Vous pouvez télécharger l\'application BattMobility mais nous devrons vérifier vos documents avant que vous puissiez commencer à l\'utiliser.Vous recevrez un e-mail avec des instructions pour le paiement de la garantie si nécessaire.';
 
   @override
   String get onboardingCompletedAppStoreMessage =>
@@ -514,4 +507,16 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get onboardingStepCreateClient => 'Informations de facturation';
+
+  @override
+  String get contractVerificationInProgress =>
+      'Contract verification is in progress. You will receive an email with instructions for the warranty payment.';
+
+  @override
+  String get createClientEmployeeFamilyMessage =>
+      'Si votre employeur ou votre famille a déjà un plan Battmobility, vous pouvez vous arrêter ici. Faites-le nous savoir et nous vous ajouterons au bon compte.';
+
+  @override
+  String get convictionsPageSubtitle =>
+      'Have you ever been convicted for the following:';
 }

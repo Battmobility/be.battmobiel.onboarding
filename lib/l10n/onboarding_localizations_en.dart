@@ -9,14 +9,14 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   OnboardingLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get formTitle => 'Become Batt';
+  String get formTitle => 'Become a Battmobility member';
 
   @override
   String get moreInfoButtonLabel => 'Why do we ask you this?';
 
   @override
   String get introPageNeededDocuments =>
-      'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license';
+      'Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license';
 
   @override
   String get introPageCancelButtonText => 'Continue later';
@@ -68,7 +68,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
       'Please fill out all fields before continuing';
 
   @override
-  String get convictionsPageTitle => 'Previous convictions';
+  String get convictionsPageTitle => 'Legal information';
 
   @override
   String get convictionsPageMessage =>
@@ -97,7 +97,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get convictionTypeNoOfAccidents =>
-      'Amount of accidents where you were at fault';
+      'How many accidents where you were at fault have you had?';
 
   @override
   String get documentsExplainerPageTitle => 'Documents';
@@ -132,7 +132,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get identityPageMessage =>
-      'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/';
+      'We need to collect some identifying data. These will only be shared with our insurer if necessary.';
 
   @override
   String get identityPageFileRequired => 'Please upload a file.';
@@ -297,13 +297,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Facturatie';
 
   @override
-  String get addSubscriptionFormLabelExistingContracts => 'Existing contracts:';
-
-  @override
-  String get contractVerificationInProgress => 'Contract verification is in progress. You will receive an email with instructions for the warranty payment.';
-
-  @override
-  String get createClientEmployeeFamilyMessage => 'If you have an employer subscription, please contact your employer to get access to the app.';
+  String get addSubscriptionFormLabelExistingContracts => 'Your contracts';
 
   @override
   String get addSubscriptionFormLabelPersonalUse =>
@@ -319,7 +313,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get addSubscriptionFormMessageBusinessUse =>
-      'Your billing data for business use:';
+      'Provide your bussiness details if you want to use BattMobility for your company, or skip this step.';
 
   @override
   String get addSubscriptionFormLabelBusinessUse =>
@@ -329,13 +323,13 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';
 
   @override
-  String get addSubscriptionFormName => 'Name';
+  String get addSubscriptionFormName => 'Company legal name';
 
   @override
-  String get addSubscriptionFormEmail => 'Email';
+  String get addSubscriptionFormEmail => 'Company email (billing)';
 
   @override
-  String get addSubscriptionFormAddress => 'Adress';
+  String get addSubscriptionFormAddress => 'Company address';
 
   @override
   String get addSubscriptionFormStreet => 'Street';
@@ -418,17 +412,17 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get onboardingCompletedMessage =>
-      'Congratulations! You have successfully completed the onboarding process.';
+      'You can download the app, but we will need to verify your documents before you can start using it. You will receive an email with instructions for the warranty payment if applicable.';
 
   @override
   String get onboardingCompletedAppStoreMessage =>
       'Download the Batt mobile app from the App Store to get started.';
 
   @override
-  String get onboardingCompletedAppStoreLink => 'Download from App Store';
+  String get onboardingCompletedAppStoreLink => 'Download for iPhone';
 
   @override
-  String get onboardingCompletedPlayStoreLink => 'Download from Play Store';
+  String get onboardingCompletedPlayStoreLink => 'Download for Android';
 
   @override
   String get formulaBattFunDescription =>
@@ -510,4 +504,16 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get onboardingStepCreateClient => 'Billing Information';
+
+  @override
+  String get contractVerificationInProgress =>
+      'Contract verification is in progress. You will receive an email with instructions for the warranty payment.';
+
+  @override
+  String get createClientEmployeeFamilyMessage =>
+      'If your employer or family already has a Battmobility plan, you can stop here. Let us know and we will add you to the right account.';
+
+  @override
+  String get convictionsPageSubtitle =>
+      'Have you ever been convicted for the following:';
 }

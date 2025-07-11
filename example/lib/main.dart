@@ -88,14 +88,19 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget _login(BuildContext context, FlutterSecureStorage storage) {
-    return LoginPage(onLogin: (token) {
-      storage.write(key: "refreshToken", value: token.refreshToken!).then((_) {
-        print("Token written to storage successfully");
-        setState(() {});
-      });
-    }, onException: (error) {
-      print("$error");
-    });
+    return LoginPage(
+        initialScreen: AuthScreens.register,
+        onLogin: (token) {
+          storage
+              .write(key: "refreshToken", value: token.refreshToken!)
+              .then((_) {
+            print("Token written to storage successfully");
+            setState(() {});
+          });
+        },
+        onException: (error) {
+          print("$error");
+        });
   }
 
   Future<Accesstoken?> refreshedToken() async {
