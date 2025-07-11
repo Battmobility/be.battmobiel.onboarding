@@ -25,45 +25,45 @@ extension Named on AnalyticsAction {
   String get name {
     switch (this) {
       case AnalyticsAction.startOnboarding:
-        return 'start_onboarding';
+        return 'start-onboarding';
       case AnalyticsAction.createCredentials:
-        return 'create_credentials';
+        return 'create-credentials';
       case AnalyticsAction.viewIntro:
-        return 'view_intro';
+        return 'view-intro';
       case AnalyticsAction.editPersonalData:
-        return 'edit_personal_data';
+        return 'edit-personal-data';
       case AnalyticsAction.editAddress:
-        return 'edit_address';
+        return 'edit-address';
       case AnalyticsAction.enterPhone:
-        return 'enter_phone';
+        return 'enter-phone';
       case AnalyticsAction.confirmPhone:
-        return 'confirm_phone';
+        return 'confirm-phone';
       case AnalyticsAction.uploadId:
-        return 'upload_id';
+        return 'upload-id';
       case AnalyticsAction.uploadLicense:
-        return 'upload_license';
+        return 'upload-license';
       case AnalyticsAction.enterAccidents:
-        return 'enter_accidents';
+        return 'enter-accidents';
       case AnalyticsAction.enterConvictions:
-        return 'enter_convictions';
+        return 'enter-convictions';
       case AnalyticsAction.pickFormula:
-        return 'pick_formula';
+        return 'pick-formula';
       case AnalyticsAction.createClient:
-        return 'create_client';
+        return 'create-client';
       case AnalyticsAction.pickFleet:
-        return 'pick_fleet';
+        return 'pick-fleet';
       case AnalyticsAction.payDeposit:
-        return 'pay_deposit';
+        return 'pay-deposit';
       case AnalyticsAction.allowNotifications:
-        return 'allow_notifications';
+        return 'allow-notifications';
       case AnalyticsAction.finishOnboarding:
-        return 'finish_onboarding';
+        return 'finish-onboarding';
       case AnalyticsAction.exitOnboarding:
-        return 'exit_onboarding';
+        return 'exit-onboarding';
       case AnalyticsAction.viewExplainer:
-        return 'view_explainer';
+        return 'view-explainer';
       case AnalyticsAction.goBack:
-        return 'go_back';
+        return 'go-back';
     }
   }
 }
