@@ -755,13 +755,38 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"createClientEmployeeFamilyMessage": "If your employer or family already has a Battmobility plan, you can stop here. Let us know and we will add you to the right account.",
+	"createClientEmployeeFamilyMessage": "If your employer or family already has a Battmobility plan, you can stop here. Let us know at info@battmobility.be and we will add you to the right account.",
 	"@createClientEmployeeFamilyMessage": {
 		"type": "text",
 		"placeholders": {}
 	},
 	"convictionsPageSubtitle": "Have you ever been convicted for the following:",
 	"@convictionsPageSubtitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunTitle": "BattFun",
+	"@formulaPickerBattFunTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunDescription": "No subscription costs",
+	"@formulaPickerBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanTitle": "BattFan",
+	"@formulaPickerBattFanTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanDescription": "Monthly fixed prepaid, 25% discount",
+	"@formulaPickerBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerUseLuxuryFleet": "Use luxury fleet",
+	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
 	}

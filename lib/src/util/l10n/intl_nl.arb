@@ -552,7 +552,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormConfirm" : "Kies een contract",
+	"addSubscriptionFormConfirm" : "Kies een formule",
 	"@addSubscriptionFormConfirm": {
 		"type": "text",
 		"placeholders": {}
@@ -772,13 +772,38 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"createClientEmployeeFamilyMessage": "Als je werkgever of familie al Battmobility gebruikt kan je hier stoppen. Laat het ons weten en we voegen je toe aan het juiste account.",
+	"createClientEmployeeFamilyMessage": "Als je werkgever of familie al Battmobility gebruikt kan je hier stoppen. Laat het ons weten op info@battmobility.be en we voegen je toe aan het juiste account.",
 	"@createClientEmployeeFamilyMessage": {
 		"type": "text",
 		"placeholders": {}
 	},
 	"convictionsPageSubtitle": "Have you ever been convicted for the following:",
 	"@convictionsPageSubtitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunTitle": "BattFun",
+	"@formulaPickerBattFunTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunDescription": "Geen abonnementskosten",
+	"@formulaPickerBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanTitle": "BattFan",
+	"@formulaPickerBattFanTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanDescription": "Maandelijks vaste vooruitbetaling, 25% korting",
+	"@formulaPickerBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerUseLuxuryFleet": "Gebruik luxevloot",
+	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
 	}

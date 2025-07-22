@@ -4,6 +4,7 @@ import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
 import 'package:batt_onboarding/src/domain/subscription.dart';
 import 'package:batt_onboarding/src/presentation/pages/formula_picker_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -90,7 +91,21 @@ class CreateClientPageState extends State<CreateClientPage> {
       return SizedBox.shrink();
     }
 
-    return Padding(
+    return FutureBuilder<OnboardingProgress?>(
+      future: onboardingRepository.getOnboardingProgress(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData || snapshot.data == null) {
+          return SizedBox.shrink();
+        }
+        
+        final progress = snapshot.data!;
+        final hasFinishedContract = progress.subscriptions.any((sub) => sub.subscriptionContract != null);
+        
+        if (hasFinishedContract) {
+          return SizedBox.shrink();
+        }
+
+        return Padding(
       padding: AppPaddings.medium.vertical,
       child: Card(
         color: Theme.of(context).colorScheme.primaryContainer,
@@ -106,11 +121,10 @@ class CreateClientPageState extends State<CreateClientPage> {
               ),
               SizedBox(width: AppSpacings.sm),
               Expanded(
-                child: Text(
-                  l10n.createClientEmployeeFamilyMessage,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
+                child: RichText(
+                  text: TextSpan(
+                    children: _parseEmailInText(l10n.createClientEmployeeFamilyMessage, context),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -130,6 +144,53 @@ class CreateClientPageState extends State<CreateClientPage> {
         ),
       ),
     );
+      },
+    );
+  }
+
+  List<TextSpan> _parseEmailInText(String text, BuildContext context) {
+    final List<TextSpan> spans = [];
+    final RegExp emailRegex = RegExp(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b');
+    int lastIndex = 0;
+    
+    for (final Match match in emailRegex.allMatches(text)) {
+      // Add text before the email
+      if (match.start > lastIndex) {
+        spans.add(TextSpan(
+          text: text.substring(lastIndex, match.start),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+          ),
+        ));
+      }
+      
+      // Add the email as clickable link
+      spans.add(TextSpan(
+        text: match.group(0),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: Theme.of(context).colorScheme.primary,
+          decoration: TextDecoration.underline,
+        ),
+        recognizer: TapGestureRecognizer()
+          ..onTap = () {
+            launchUrl(Uri.parse('mailto:${match.group(0)}'));
+          },
+      ));
+      
+      lastIndex = match.end;
+    }
+    
+    // Add remaining text after the last email
+    if (lastIndex < text.length) {
+      spans.add(TextSpan(
+        text: text.substring(lastIndex),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
+      ));
+    }
+    
+    return spans;
   }
 
   Widget _finishedContracts(List<Subscription> subscriptions) {
@@ -549,16 +610,24 @@ class CreateClientPageState extends State<CreateClientPage> {
 
   Future<void> _showContractPicker(
       BuildContext context, Subscription subscription) async {
-    showModalBottomSheet(
+    showDialog(
         context: context,
         builder: (_) {
-          return FormulaPickerPage(
-            subscription: subscription,
-            onContractCreated: () {
-              Navigator.of(context).pop();
-              // Refresh the page to show updated state
-              setState(() {});
-            },
+          return Dialog(
+            child: Container(
+              constraints: BoxConstraints(
+                maxWidth: 600,
+                maxHeight: MediaQuery.of(context).size.height * 0.8,
+              ),
+              child: FormulaPickerPage(
+                subscription: subscription,
+                onContractCreated: () {
+                  Navigator.of(context).pop();
+                  // Refresh the page to show updated state
+                  setState(() {});
+                },
+              ),
+            ),
           );
         });
   }

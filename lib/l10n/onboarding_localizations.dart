@@ -992,7 +992,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @createClientEmployeeFamilyMessage.
   ///
   /// In en, this message translates to:
-  /// **'If your employer or family already has a Battmobility plan, you can stop here. Let us know and we will add you to the right account.'**
+  /// **'If your employer or family already has a Battmobility plan, you can stop here. Let us know at info@battmobility.be and we will add you to the right account.'**
   String get createClientEmployeeFamilyMessage;
 
   /// No description provided for @convictionsPageSubtitle.
@@ -1000,6 +1000,36 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Have you ever been convicted for the following:'**
   String get convictionsPageSubtitle;
+
+  /// No description provided for @formulaPickerBattFunTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BattFun'**
+  String get formulaPickerBattFunTitle;
+
+  /// No description provided for @formulaPickerBattFunDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'No subscription costs'**
+  String get formulaPickerBattFunDescription;
+
+  /// No description provided for @formulaPickerBattFanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BattFan'**
+  String get formulaPickerBattFanTitle;
+
+  /// No description provided for @formulaPickerBattFanDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly fixed prepaid, 25% discount'**
+  String get formulaPickerBattFanDescription;
+
+  /// No description provided for @formulaPickerUseLuxuryFleet.
+  ///
+  /// In en, this message translates to:
+  /// **'Use luxury fleet'**
+  String get formulaPickerUseLuxuryFleet;
 }
 
 class _OnboardingLocalizationsDelegate

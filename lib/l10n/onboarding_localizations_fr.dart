@@ -298,7 +298,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get addSubscriptionFormTitle => 'Billing';
 
   @override
-  String get addSubscriptionFormLabelExistingContracts => 'Vos contrats:';
+  String get addSubscriptionFormLabelExistingContracts => 'Votre contracts';
 
   @override
   String get addSubscriptionFormLabelPersonalUse =>
@@ -357,7 +357,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   String get addSubscriptionFormEnterBusinessData => 'Enter business data';
 
   @override
-  String get addSubscriptionFormConfirm => 'Kies een contract';
+  String get addSubscriptionFormConfirm => 'Choisir formule et confirmer';
 
   @override
   String addSubscriptionFormSuccess(String subscription) {
@@ -514,9 +514,25 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get createClientEmployeeFamilyMessage =>
-      'Si votre employeur ou votre famille a déjà un plan Battmobility, vous pouvez vous arrêter ici. Faites-le nous savoir et nous vous ajouterons au bon compte.';
+      'Si votre employeur ou votre famille a déjà un plan Battmobility, vous pouvez vous arrêter ici. Faites-le nous savoir à info@battmobility.be et nous vous ajouterons au bon compte.';
 
   @override
   String get convictionsPageSubtitle =>
       'Have you ever been convicted for the following:';
+
+  @override
+  String get formulaPickerBattFunTitle => 'BattFun';
+
+  @override
+  String get formulaPickerBattFunDescription => 'Pas de coûts d\'abonnement';
+
+  @override
+  String get formulaPickerBattFanTitle => 'BattFan';
+
+  @override
+  String get formulaPickerBattFanDescription =>
+      'Prépayé fixe mensuel, 25% de réduction';
+
+  @override
+  String get formulaPickerUseLuxuryFleet => 'Utiliser la flotte de luxe';
 }
