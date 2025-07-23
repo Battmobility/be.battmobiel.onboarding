@@ -141,6 +141,7 @@ class CreateClientPageState extends State<CreateClientPage> {
       return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         spacing: AppSpacings.md,
         children: [
           Text(l10n.addSubscriptionFormLabelExistingContracts,
