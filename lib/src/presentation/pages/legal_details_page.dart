@@ -39,9 +39,6 @@ class LegalDetailsPageState extends State<LegalDetailsPage> {
                 Text(l10n.convictionsPageTitle,
                     style: Theme.of(context).textTheme.headlineLarge),
                 SizedBox(width: AppSpacings.lg),
-                Text(l10n.convictionsPageMessage,
-                    style: Theme.of(context).textTheme.headlineMedium),
-                SizedBox(width: AppSpacings.md),
                 Row(
                   children: [
                     Flexible(
@@ -67,6 +64,12 @@ class LegalDetailsPageState extends State<LegalDetailsPage> {
                   ],
                 ),
                 Divider(),
+                Text(l10n.convictionsPageSubtitle,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge
+                        ?.copyWith(fontWeight: FontWeight.bold)),
+                SizedBox(height: AppSpacings.sm),
                 FormBuilderCheckbox(
                     name: "convictionDrunk",
                     initialValue:

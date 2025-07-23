@@ -6,7 +6,6 @@ enum OnboardingSteps {
   address,
   phone,
   phoneVerification,
-  documentsExplainer,
   idDocuments,
   legal,
   createClient,
@@ -37,7 +36,6 @@ extension Skip on OnboardingSteps {
       case OnboardingSteps.phone:
       case OnboardingSteps.phoneVerification:
       case OnboardingSteps.legal:
-      case OnboardingSteps.documentsExplainer:
       case OnboardingSteps.idDocuments:
       case OnboardingSteps.createClient:
         return false; // TODO: re-enable when deploying for app

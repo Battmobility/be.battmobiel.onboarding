@@ -104,7 +104,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @formTitle.
   ///
   /// In en, this message translates to:
-  /// **'Become Batt'**
+  /// **'Become a Battmobility member'**
   String get formTitle;
 
   /// No description provided for @moreInfoButtonLabel.
@@ -116,7 +116,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @introPageNeededDocuments.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license'**
+  /// **'Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license'**
   String get introPageNeededDocuments;
 
   /// No description provided for @introPageCancelButtonText.
@@ -212,7 +212,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @convictionsPageTitle.
   ///
   /// In en, this message translates to:
-  /// **'Previous convictions'**
+  /// **'Legal information'**
   String get convictionsPageTitle;
 
   /// No description provided for @convictionsPageMessage.
@@ -260,7 +260,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @convictionTypeNoOfAccidents.
   ///
   /// In en, this message translates to:
-  /// **'Amount of accidents where you were at fault'**
+  /// **'How many accidents where you were at fault have you had?'**
   String get convictionTypeNoOfAccidents;
 
   /// No description provided for @documentsExplainerPageTitle.
@@ -320,7 +320,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @identityPageMessage.
   ///
   /// In en, this message translates to:
-  /// **'We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/'**
+  /// **'We need to collect some identifying data. These will only be shared with our insurer if necessary.'**
   String get identityPageMessage;
 
   /// No description provided for @identityPageFileRequired.
@@ -632,20 +632,8 @@ abstract class OnboardingLocalizations {
   /// No description provided for @addSubscriptionFormLabelExistingContracts.
   ///
   /// In en, this message translates to:
-  /// **'Existing contracts:'**
+  /// **'Your contracts'**
   String get addSubscriptionFormLabelExistingContracts;
-
-  /// No description provided for @contractVerificationInProgress.
-  ///
-  /// In en, this message translates to:
-  /// **'Contract verification is in progress. You will receive an email with instructions for the warranty payment.'**
-  String get contractVerificationInProgress;
-
-  /// No description provided for @createClientEmployeeFamilyMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'If you have an employer subscription, please contact your employer to get access to the app.'**
-  String get createClientEmployeeFamilyMessage;
 
   /// No description provided for @addSubscriptionFormLabelPersonalUse.
   ///
@@ -668,7 +656,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @addSubscriptionFormMessageBusinessUse.
   ///
   /// In en, this message translates to:
-  /// **'Your billing data for business use:'**
+  /// **'Provide your bussiness details if you want to use BattMobility for your company, or skip this step.'**
   String get addSubscriptionFormMessageBusinessUse;
 
   /// No description provided for @addSubscriptionFormLabelBusinessUse.
@@ -686,19 +674,19 @@ abstract class OnboardingLocalizations {
   /// No description provided for @addSubscriptionFormName.
   ///
   /// In en, this message translates to:
-  /// **'Name'**
+  /// **'Company legal name'**
   String get addSubscriptionFormName;
 
   /// No description provided for @addSubscriptionFormEmail.
   ///
   /// In en, this message translates to:
-  /// **'Email'**
+  /// **'Company email (billing)'**
   String get addSubscriptionFormEmail;
 
   /// No description provided for @addSubscriptionFormAddress.
   ///
   /// In en, this message translates to:
-  /// **'Adress'**
+  /// **'Company address'**
   String get addSubscriptionFormAddress;
 
   /// No description provided for @addSubscriptionFormStreet.
@@ -842,7 +830,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @onboardingCompletedMessage.
   ///
   /// In en, this message translates to:
-  /// **'Congratulations! You have successfully completed the onboarding process.'**
+  /// **'You can download the app, but we will need to verify your documents before you can start using it. You will receive an email with instructions for the warranty payment if applicable.'**
   String get onboardingCompletedMessage;
 
   /// No description provided for @onboardingCompletedAppStoreMessage.
@@ -854,13 +842,13 @@ abstract class OnboardingLocalizations {
   /// No description provided for @onboardingCompletedAppStoreLink.
   ///
   /// In en, this message translates to:
-  /// **'Download from App Store'**
+  /// **'Download for iPhone'**
   String get onboardingCompletedAppStoreLink;
 
   /// No description provided for @onboardingCompletedPlayStoreLink.
   ///
   /// In en, this message translates to:
-  /// **'Download from Play Store'**
+  /// **'Download for Android'**
   String get onboardingCompletedPlayStoreLink;
 
   /// No description provided for @formulaBattFunDescription.
@@ -994,6 +982,54 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Billing Information'**
   String get onboardingStepCreateClient;
+
+  /// No description provided for @contractVerificationInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract verification is in progress. You will receive an email with instructions for the warranty payment.'**
+  String get contractVerificationInProgress;
+
+  /// No description provided for @createClientEmployeeFamilyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'If your employer or family already has a Battmobility plan, you can stop here. Let us know at info@battmobility.be and we will add you to the right account.'**
+  String get createClientEmployeeFamilyMessage;
+
+  /// No description provided for @convictionsPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Have you ever been convicted for the following:'**
+  String get convictionsPageSubtitle;
+
+  /// No description provided for @formulaPickerBattFunTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BattFun'**
+  String get formulaPickerBattFunTitle;
+
+  /// No description provided for @formulaPickerBattFunDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'No subscription costs'**
+  String get formulaPickerBattFunDescription;
+
+  /// No description provided for @formulaPickerBattFanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BattFan'**
+  String get formulaPickerBattFanTitle;
+
+  /// No description provided for @formulaPickerBattFanDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly fixed prepaid, 25% discount'**
+  String get formulaPickerBattFanDescription;
+
+  /// No description provided for @formulaPickerUseLuxuryFleet.
+  ///
+  /// In en, this message translates to:
+  /// **'Use luxury fleet'**
+  String get formulaPickerUseLuxuryFleet;
 }
 
 class _OnboardingLocalizationsDelegate

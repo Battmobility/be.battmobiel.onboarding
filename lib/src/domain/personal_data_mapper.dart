@@ -6,7 +6,9 @@ extension FromMap on Map<String, dynamic> {
       box: this["box"] ?? "",
       city: this["city"],
       dateCurrentLicense: (this["dateCurrentLicense"] as DateTime).toUtc(),
-      dateLicenseUntil: (this["dateLicenseUntil"] as DateTime).toUtc(),
+      dateLicenseUntil: this["licenseUntil"] != null
+          ? (this["dateLicenseUntil"] as DateTime).toUtc()
+          : DateTime(2035, 1, 1).toUtc(),
       dateOfBirth: (this["dateOfBirth"] as DateTime).toUtc(),
       firstName: this["firstName"],
       houseNumber: this["houseNumber"],

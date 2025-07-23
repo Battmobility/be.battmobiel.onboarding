@@ -97,7 +97,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionsPageTitle": "Misdrijven of veroordelingen",
+	"convictionsPageTitle": "Juridische informatie",
 	"@convictionsPageTitle": {
 		"type": "text",
 		"placeholders": {}
@@ -137,7 +137,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionTypeNoOfAccidents": "Aantal ongevallen waar u in fout was",
+	"convictionTypeNoOfAccidents": "Hoeveel ongevallen waarbij u in fout was heeft u gehad?",
 	"@convictionTypeNoOfAccidents": {
 		"type": "text",
 		"placeholders": {}
@@ -197,7 +197,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"identityPageMessage": "We hebben enkele van je persoonsgegevens nodig. Deze worden enkel met onze verzekeraar gedeeld indien nodig. Lees meer over ons privacybeleid en hoe we met je gegevens omgaan op https://www.battmobility.be/privacy-voorwaarden/",
+	"identityPageMessage": "We hebben enkele van je persoonsgegevens nodig. Deze worden enkel met onze verzekeraar gedeeld indien nodig.",
 	"@identityPageMessage": {
 		"type": "text",
 		"placeholders": {}
@@ -462,7 +462,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormLabelExistingContracts" : "Bestaande contracten:",
+	"addSubscriptionFormLabelExistingContracts" : "Jouw contracten",
 	"@addSubscriptionFormLabelExistingContracts": {
 		"type": "text",
 		"placeholders": {}
@@ -477,7 +477,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormMessageBusinessUse" : "Geef hieronder je facturatiegegevens in als je een zaak hebt:",
+	"addSubscriptionFormMessageBusinessUse" : "Geef hieronder je facturatiegegevens in als je BattMobility voor je bedrijf wil gebruiken, of sla deze stap over.",
 	"@addSubscriptionFormMessageBusinessUse": {
 		"type": "text",
 		"placeholders": {}
@@ -497,17 +497,17 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormName" : "Naam",
+	"addSubscriptionFormName" : "Bedrijfsnaam",
 	"@addSubscriptionFormName": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormEmail" : "Email",
+	"addSubscriptionFormEmail" : "Bedrijfsemail (facturatie)",
 	"@addSubscriptionFormEmail": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormAddress" : "Adres",
+	"addSubscriptionFormAddress" : "Bedrijfsadres",
 	"@addSubscriptionFormAddress": {
 		"type": "text",
 		"placeholders": {}
@@ -552,7 +552,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormConfirm" : "Kies een contract",
+	"addSubscriptionFormConfirm" : "Kies een formule",
 	"@addSubscriptionFormConfirm": {
 		"type": "text",
 		"placeholders": {}
@@ -629,7 +629,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"onboardingCompletedMessage": "Gefeliciteerd! Je hebt het onboardingproces succesvol afgerond. Al je contracten zijn nu actief en je kunt de Batt-applicatie gebruiken.",
+	"onboardingCompletedMessage": "Je kan de applicatie downloaden maar we moeten je documenten verifiëren voordat je deze kan gebruiken. Je zal een e-mail ontvangen met instructies voor de betaling van de waarborg indien nodig.",
 	"@onboardingCompletedMessage": {
 		"type": "text",
 		"placeholders": {}
@@ -764,6 +764,46 @@
 	},
 	"onboardingStepCreateClient": "Facturatiegegevens",
 	"@onboardingStepCreateClient": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"contractVerificationInProgress": "Contract verification is in progress. You will receive an email with instructions for the warranty payment.",
+	"@contractVerificationInProgress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createClientEmployeeFamilyMessage": "Als je werkgever of familie al Battmobility gebruikt kan je hier stoppen. Laat het ons weten op info@battmobility.be en we voegen je toe aan het juiste account.",
+	"@createClientEmployeeFamilyMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageSubtitle": "Have you ever been convicted for the following:",
+	"@convictionsPageSubtitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunTitle": "BattFun",
+	"@formulaPickerBattFunTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunDescription": "Geen abonnementskosten",
+	"@formulaPickerBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanTitle": "BattFan",
+	"@formulaPickerBattFanTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanDescription": "Maandelijks vaste vooruitbetaling, 25% korting",
+	"@formulaPickerBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerUseLuxuryFleet": "Gebruik luxevloot",
+	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
 	}

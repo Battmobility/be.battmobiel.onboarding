@@ -1,16 +1,16 @@
 {
 	"@@locale": "fr",
-	"formTitle": "Deviens Batt",
+	"formTitle": "Deviens membre de Battmobility",
 	"@formTitle": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"moreInfoButtonLabel": "Why do we ask you this?",
+	"moreInfoButtonLabel": "Pourquoi demandons-nous cela ?",
 	"@moreInfoButtonLabel": {
 		"type": "text",
 		"placeholders": {}
 	},	
-	"introPageNeededDocuments": "Welcome to Batt! Before continuing, make sure that you have the following documents nearby: \n\n• Identity document (Belgian eId, Proof of residence, ...)\n\n• Drivers license",
+	"introPageNeededDocuments": "Avant de continuer, assurez-vous d'avoir les documents suivants à portée de main : \n\n• Document d'identité (eID belge, preuve de résidence, ...)\n\n• Permis de conduire",
 	"@introPageNeededDocuments": {
 		"type": "text",
 		"placeholders": {}
@@ -97,47 +97,47 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionsPageTitle": "Convictions page title",
+	"convictionsPageTitle": "Information légale",
 	"@convictionsPageTitle": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionsPageMessage": "For insurance reasons, we need to ask you to provide information about any previous convictions.",
+	"convictionsPageMessage": "Pour des raisons d'assurance, nous devons vous demander de fournir des informations sur d'éventuelles condamnations antérieures.",
 	"@convictionsPageMessage": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionsPageFooter": "By checking this box, I declare the information entered on this page to be truthful and to accept any liability in the case it is not.",
+	"convictionsPageFooter": "En cochant cette case, je déclare que les informations saisies sur cette page sont véridiques et j''accepte toute responsabilité en cas de fausse déclaration.",
 	"@convictionsPageFooter": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionTypeDrunk": "Driving under the influence of alcohol",
+	"convictionTypeDrunk": "Conduite sous l'influence de l'alcool",
 	"@convictionTypeDrunk": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionTypeIntoxication": "Driving under the influence of narcotics",
+	"convictionTypeIntoxication": "Conduite sous l''influence de stupéfiants",
 	"@convictionTypeIntoxication": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionTypeTestRefusal": "Refusal to take a drug test",
+	"convictionTypeTestRefusal": "Refus de se soumettre à un test de dépistage",
 	"@convictionTypeTestRefusal": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionTypeHitAndRun": "Fleeing the scene of an accident (\"hit and run\")",
+	"convictionTypeHitAndRun": "Fuite de la scène d''un accident (\"hit and run\")",
 	"@convictionTypeHitAndRun": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionTypeLicenseRevocation": "Revocation of license",
+	"convictionTypeLicenseRevocation": "évocation de permis",
 	"@convictionTypeLicenseRevocation": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"convictionTypeNoOfAccidents": "Amount of accidents where you were at fault",
+	"convictionTypeNoOfAccidents": "Combien d''accidents où vous étiez en faute avez-vous eus?",
 	"@convictionTypeNoOfAccidents": {
 		"type": "text",
 		"placeholders": {}
@@ -187,7 +187,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"identityPageMessage": "We need to collect some identifying data. These will only be shared with our insurer if necessary. Please read our privacy policy to learn more about how we use your information: https://www.battmobility.be/privacy-voorwaarden/",
+	"identityPageMessage": "Il faut que nous recueillons certaines données d''identification. Celles-ci ne seront partagées avec notre assureur que si nécessaire.",
 	"@identityPageMessage": {
 		"type": "text",
 		"placeholders": {}
@@ -452,7 +452,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormLabelExistingContracts" : "Existing contracts:",
+	"addSubscriptionFormLabelExistingContracts" : "Votre contracts",
 	"@addSubscriptionFormLabelExistingContracts": {
 		"type": "text",
 		"placeholders": {}
@@ -462,7 +462,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormMessageBusinessUse" : "Your billing data for business use:",
+	"addSubscriptionFormMessageBusinessUse" : "Si vous voulez utiliser BattMobility pour votre entreprise, veuillez fournir les informations suivantes ou sauter cette étape.",
 	"@addSubscriptionFormMessageBusinessUse": {
 		"type": "text",
 		"placeholders": {}
@@ -482,17 +482,17 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormName" : "Naam",
+	"addSubscriptionFormName" : "Nom de l''entreprise",
 	"@addSubscriptionFormName": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormEmail" : "Email",
+	"addSubscriptionFormEmail" : "Email de l''entreprise (facturation)",
 	"@addSubscriptionFormEmail": {
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormAddress" : "Adres",
+	"addSubscriptionFormAddress" : "Adresse de l''entreprise",
 	"@addSubscriptionFormAddress": {
 		"type": "text",
 		"placeholders": {}
@@ -537,7 +537,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormConfirm" : "Kies een contract",
+	"addSubscriptionFormConfirm" : "Choisir formule et confirmer",
 	"@addSubscriptionFormConfirm": {
 		"type": "text",
 		"placeholders": {}
@@ -614,7 +614,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"onboardingCompletedMessage": "Félicitations ! Vous avez terminé avec succès le processus d'intégration. Tous vos contrats sont maintenant actifs et vous pouvez commencer à utiliser l'application Batt.",
+	"onboardingCompletedMessage": "Vous pouvez télécharger l''application BattMobility mais nous devrons vérifier vos documents avant que vous puissiez commencer à l''utiliser.Vous recevrez un e-mail avec des instructions pour le paiement de la garantie si nécessaire.",
 	"@onboardingCompletedMessage": {
 		"type": "text",
 		"placeholders": {}
@@ -749,6 +749,46 @@
 	},
 	"onboardingStepCreateClient": "Informations de facturation",
 	"@onboardingStepCreateClient": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"contractVerificationInProgress": "Contract verification is in progress. You will receive an email with instructions for the warranty payment.",
+	"@contractVerificationInProgress": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"createClientEmployeeFamilyMessage": "Si votre employeur ou votre famille a déjà un plan Battmobility, vous pouvez vous arrêter ici. Faites-le nous savoir à info@battmobility.be et nous vous ajouterons au bon compte.",
+	"@createClientEmployeeFamilyMessage": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"convictionsPageSubtitle": "Have you ever been convicted for the following:",
+	"@convictionsPageSubtitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunTitle": "BattFun",
+	"@formulaPickerBattFunTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFunDescription": "Pas de coûts d''abonnement",
+	"@formulaPickerBattFunDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanTitle": "BattFan",
+	"@formulaPickerBattFanTitle": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerBattFanDescription": "Prépayé fixe mensuel, 25% de réduction",
+	"@formulaPickerBattFanDescription": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"formulaPickerUseLuxuryFleet": "Utiliser la flotte de luxe",
+	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
 	}

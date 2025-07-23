@@ -39,8 +39,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: main
-      resolved-ref: c5b566794b30467d2e36181e0eeb7a283910a0b5
+      ref: "1c2ee54"
+      resolved-ref: "1c2ee5407297aa68eecbdcaf10d0a819d57f541e"
       url: "https://github.com/Battmobility/batt_api.git"
     source: git
     version: "0.0.3"
