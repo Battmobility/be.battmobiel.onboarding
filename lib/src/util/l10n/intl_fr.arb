@@ -396,7 +396,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"verificationPageSendCodeFailed": "Failed to send verification code. Please try again later.",
+	"verificationPageSendCodeFailed": "Échec de l''envoi du code de vérification. Votre numéro de téléphone est-il correct ? Veuillez réessayer plus tard.",
 	"@verificationPageSendCodeFailed": {
 		"type": "text",
 		"placeholders": {}

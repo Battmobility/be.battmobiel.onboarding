@@ -259,7 +259,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get verificationPageSendCodeFailed =>
-      'Failed to send verification code. Please try again later.';
+      'Failed to send verification code. Is your phone number correct? Please try again later.';
 
   @override
   String get verificationPageCheckPhoneFailed =>

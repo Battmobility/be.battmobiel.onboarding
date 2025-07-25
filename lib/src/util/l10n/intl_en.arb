@@ -390,7 +390,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"verificationPageSendCodeFailed": "Failed to send verification code. Please try again later.",
+	"verificationPageSendCodeFailed": "Failed to send verification code. Is your phone number correct? Please try again later.",
 	"@verificationPageSendCodeFailed": {
 		"type": "text",
 		"placeholders": {}

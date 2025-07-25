@@ -26,11 +26,6 @@ final class PhoneEntryPage extends OnboardingPage {
 class PhoneEntryPageState extends State<PhoneEntryPage> {
   String? phoneNumber;
   bool isSendingPhone = false;
-  bool isChecking = false;
-  bool verified = false;
-
-  int sendPhoneRetries = 0;
-  int checkPhoneRetries = 0;
 
   @override
   void initState() {
@@ -52,17 +47,14 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
               Padding(
                 padding: AppPaddings.xxlarge.vertical,
                 child: Text(
-                    phoneNumber == null
-                        ? l10n.verificationPageMessage
-                        : l10n.verificationPageEnterCodeMessage(
-                            phoneNumber ?? ""),
+                    l10n.verificationPageMessage,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge),
               ),
               Stack(
                 children: [
                   Visibility(
-                    visible: (phoneNumber == null),
+                    visible: !isSendingPhone,
                     child: Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -124,8 +116,13 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                           _sendPhone(context, phoneNumber!);
                                         }
                                       },
-                                      validator:
-                                          FormBuilderValidators.phoneNumber(),
+                                      validator: FormBuilderValidators.compose([
+                                        FormBuilderValidators.required(),
+                                        FormBuilderValidators.phoneNumber(),
+                                        FormBuilderValidators.equalLength(10,
+                                            errorText:
+                                                "Phone number must be exactly 10 digits (04...)"),
+                                      ]),
                                       style:
                                           context.typographyTheme.titleMedium,
                                       decoration: InputDecoration(
@@ -149,6 +146,9 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                 onPressed: () async {
                                   if (widget.formKey.currentState!
                                       .saveAndValidate()) {
+                                    setState(() {
+                                      isSendingPhone = true;
+                                    });
                                     final phoneFieldText = (widget
                                             .formKey
                                             .currentState!
@@ -201,35 +201,6 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                         ),
                       ),
                     ),
-                  ),
-                  Visibility(
-                    visible: isChecking,
-                    child: Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Padding(
-                            padding: AppPaddings.large.all,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: AppPaddings.large.all,
-                                  child: Text(l10n.verificationPageBusyCode,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium),
-                                ),
-                                Padding(
-                                    padding: AppPaddings.medium.all,
-                                    child: CircularProgressIndicator()),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                   )
                 ],
               ),
@@ -241,25 +212,19 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
   }
 
   Future<void> _sendPhone(BuildContext context, String phoneNumber) async {
-    final requested = await onboardingRepository.postPhoneNumber(phoneNumber);
-
-    setState(() {
-      isSendingPhone = false;
-    });
-
-    if (!requested) {
-      if (sendPhoneRetries < 3) {
-        sendPhoneRetries++;
-        _sendPhone(context, phoneNumber);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          BattSnackbar.error(
-                  title: OnboardingLocalizations.of(context)
-                      .verificationPageSendCodeFailed)
-              .build(context),
-        );
-      }
-    } else {
+    try {
+      await onboardingRepository.postPhoneNumber(phoneNumber);
+      setState(() {
+        isSendingPhone = false;
+      });
+      
+      widget.formKey.currentState!.fields["phoneNumber"]!
+          .didChange(phoneNumber);
+      widget.onAction({"phoneNumber": phoneNumber});
+    } catch (e) {
+      setState(() {
+        isSendingPhone = false;
+      });
       widget.formKey.currentState!.fields["phoneNumber"]!
           .didChange(phoneNumber);
       widget.onAction({"phoneNumber": phoneNumber});

@@ -566,7 +566,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @verificationPageSendCodeFailed.
   ///
   /// In en, this message translates to:
-  /// **'Failed to send verification code. Please try again later.'**
+  /// **'Failed to send verification code. Is your phone number correct? Please try again later.'**
   String get verificationPageSendCodeFailed;
 
   /// No description provided for @verificationPageCheckPhoneFailed.

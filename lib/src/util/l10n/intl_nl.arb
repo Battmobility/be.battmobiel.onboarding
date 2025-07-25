@@ -407,7 +407,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"verificationPageSendCodeFailed": "Code versturen mislukt. Probeer het later opnieuw.",
+	"verificationPageSendCodeFailed": "Code versturen mislukt. Is je telefoonnummer correct? Probeer het later opnieuw.",
 	"@verificationPageSendCodeFailed": {
 		"type": "text",
 		"placeholders": {}

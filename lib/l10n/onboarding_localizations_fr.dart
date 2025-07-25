@@ -260,7 +260,7 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get verificationPageSendCodeFailed =>
-      'Failed to send verification code. Please try again later.';
+      'Échec de l\'envoi du code de vérification. Votre numéro de téléphone est-il correct ? Veuillez réessayer plus tard.';
 
   @override
   String get verificationPageCheckPhoneFailed =>

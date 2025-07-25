@@ -78,6 +78,11 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         }
         OnboardingProgress progress = snapshot.data!;
 
+        // Initialize phone number from progress if available
+        if (_phoneNumber.isEmpty && progress.phone["phoneNumber"] != null) {
+          _phoneNumber = progress.phone["phoneNumber"]!;
+        }
+
         // If onboarding is completed, go directly to CreateClientPage
         if (progress.progress == 5 && _step == 0) {
           _step = OnboardingSteps.createClient.index;
@@ -122,7 +127,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
             },
           ),
           PhoneVerificationPage(
-            phoneNumber: _phoneNumber,
+            phoneNumber: _phoneNumber.isNotEmpty ? _phoneNumber : "PLACEHOLDER",
             formKey: _formKeys[OnboardingSteps.phoneVerification.index],
             onAction: (_) {
               setState(() {
