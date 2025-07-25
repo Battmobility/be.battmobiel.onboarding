@@ -100,21 +100,10 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                         setState(() {
                                           isSendingPhone = true;
                                         });
-                                        if (widget.formKey.currentState!
-                                            .saveAndValidate()) {
-                                          phoneNumber = (widget
-                                                  .formKey
-                                                  .currentState!
-                                                  .fields["countryCode"]!
-                                                  .value as String) +
-                                              (widget
-                                                      .formKey
-                                                      .currentState!
-                                                      .fields["phone"]!
-                                                      .value as String)
-                                                  .replaceFirst("0", "");
-                                          _sendPhone(context, phoneNumber!);
-                                        }
+                                        final countryCode = widget.formKey.currentState?.fields["countryCode"]?.value as String? ?? "+32";
+                                        final phone = widget.formKey.currentState?.fields["phone"]?.value as String? ?? "";
+                                        phoneNumber = countryCode + phone.replaceFirst("0", "");
+                                        _sendPhone(context, phoneNumber ?? "");
                                       },
                                       validator: FormBuilderValidators.compose([
                                         FormBuilderValidators.required(),
@@ -144,28 +133,16 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                             child: SolidCtaButton(
                                 label: l10n.verificationPageVerifyButtonTitle,
                                 onPressed: () async {
-                                  if (widget.formKey.currentState!
-                                      .saveAndValidate()) {
-                                    setState(() {
-                                      isSendingPhone = true;
-                                    });
-                                    final phoneFieldText = (widget
-                                            .formKey
-                                            .currentState!
-                                            .fields["phone"]!
-                                            .value as String)
-                                        .replaceFirst("0", "");
-                                    if ((phoneFieldText).startsWith("+")) {
-                                      await _sendPhone(context, phoneFieldText);
-                                    } else {
-                                      phoneNumber = (widget
-                                              .formKey
-                                              .currentState!
-                                              .fields["countryCode"]!
-                                              .value as String) +
-                                          phoneFieldText;
-                                      await _sendPhone(context, phoneNumber!);
-                                    }
+                                  setState(() {
+                                    isSendingPhone = true;
+                                  });
+                                  final phoneFieldText = (widget.formKey.currentState?.fields["phone"]?.value as String? ?? "").replaceFirst("0", "");
+                                  if (phoneFieldText.startsWith("+")) {
+                                    await _sendPhone(context, phoneFieldText);
+                                  } else {
+                                    final countryCode = widget.formKey.currentState?.fields["countryCode"]?.value as String? ?? "+32";
+                                    phoneNumber = countryCode + phoneFieldText;
+                                    await _sendPhone(context, phoneNumber ?? "");
                                   }
                                 }),
                           ),
@@ -218,15 +195,13 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
         isSendingPhone = false;
       });
       
-      widget.formKey.currentState!.fields["phoneNumber"]!
-          .didChange(phoneNumber);
+      widget.formKey.currentState?.fields["phoneNumber"]?.didChange(phoneNumber);
       widget.onAction({"phoneNumber": phoneNumber});
     } catch (e) {
       setState(() {
         isSendingPhone = false;
       });
-      widget.formKey.currentState!.fields["phoneNumber"]!
-          .didChange(phoneNumber);
+      widget.formKey.currentState?.fields["phoneNumber"]?.didChange(phoneNumber);
       widget.onAction({"phoneNumber": phoneNumber});
     }
   }
