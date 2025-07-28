@@ -46,8 +46,7 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                   style: Theme.of(context).textTheme.headlineLarge),
               Padding(
                 padding: AppPaddings.xxlarge.vertical,
-                child: Text(
-                    l10n.verificationPageMessage,
+                child: Text(l10n.verificationPageMessage,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge),
               ),
@@ -100,9 +99,20 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                         setState(() {
                                           isSendingPhone = true;
                                         });
-                                        final countryCode = widget.formKey.currentState?.fields["countryCode"]?.value as String? ?? "+32";
-                                        final phone = widget.formKey.currentState?.fields["phone"]?.value as String? ?? "";
-                                        phoneNumber = countryCode + phone.replaceFirst("0", "");
+                                        final countryCode = widget
+                                                .formKey
+                                                .currentState
+                                                ?.fields["countryCode"]
+                                                ?.value as String? ??
+                                            "+32";
+                                        final phone = widget
+                                                .formKey
+                                                .currentState
+                                                ?.fields["phone"]
+                                                ?.value as String? ??
+                                            "";
+                                        phoneNumber = countryCode +
+                                            phone.replaceFirst("0", "");
                                         _sendPhone(context, phoneNumber ?? "");
                                       },
                                       validator: FormBuilderValidators.compose([
@@ -136,13 +146,25 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                   setState(() {
                                     isSendingPhone = true;
                                   });
-                                  final phoneFieldText = (widget.formKey.currentState?.fields["phone"]?.value as String? ?? "").replaceFirst("0", "");
+                                  final phoneFieldText = (widget
+                                              .formKey
+                                              .currentState
+                                              ?.fields["phone"]
+                                              ?.value as String? ??
+                                          "")
+                                      .replaceFirst("0", "");
                                   if (phoneFieldText.startsWith("+")) {
                                     await _sendPhone(context, phoneFieldText);
                                   } else {
-                                    final countryCode = widget.formKey.currentState?.fields["countryCode"]?.value as String? ?? "+32";
+                                    final countryCode = widget
+                                            .formKey
+                                            .currentState
+                                            ?.fields["countryCode"]
+                                            ?.value as String? ??
+                                        "+32";
                                     phoneNumber = countryCode + phoneFieldText;
-                                    await _sendPhone(context, phoneNumber ?? "");
+                                    await _sendPhone(
+                                        context, phoneNumber ?? "");
                                   }
                                 }),
                           ),
@@ -190,19 +212,40 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
 
   Future<void> _sendPhone(BuildContext context, String phoneNumber) async {
     try {
-      await onboardingRepository.postPhoneNumber(phoneNumber);
+      final success = await onboardingRepository.postPhoneNumber(phoneNumber);
       setState(() {
         isSendingPhone = false;
       });
-      
-      widget.formKey.currentState?.fields["phoneNumber"]?.didChange(phoneNumber);
-      widget.onAction({"phoneNumber": phoneNumber});
+
+      if (success) {
+        widget.formKey.currentState?.fields["phoneNumber"]
+            ?.didChange(phoneNumber);
+        widget.onAction({"phoneNumber": phoneNumber});
+      } else {
+        // Show error message for failed API call
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            BattSnackbar.error(
+              message: OnboardingLocalizations.of(context)
+                  .verificationPageSendCodeFailed,
+            ).build(context),
+          );
+        }
+      }
     } catch (e) {
       setState(() {
         isSendingPhone = false;
       });
-      widget.formKey.currentState?.fields["phoneNumber"]?.didChange(phoneNumber);
-      widget.onAction({"phoneNumber": phoneNumber});
+      // Show error message for exception
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(OnboardingLocalizations.of(context)
+                .verificationPageSendCodeFailed),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
     }
   }
 }
