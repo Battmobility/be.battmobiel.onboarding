@@ -789,5 +789,10 @@
 	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"documentsFileTooLargeError": "The uploaded files are too large. Please reduce file size and try again.",
+	"@documentsFileTooLargeError": {
+		"type": "text",
+		"placeholders": {}
 	}
 }
