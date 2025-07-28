@@ -53,7 +53,7 @@ dependencies:
    # path: ../../dart_auth
     git:
       url: https://github.com/Battmobility/dart_auth.git
-      ref: '3886cfe'
+      ref: 'dc236af'
 
 
 dev_dependencies:

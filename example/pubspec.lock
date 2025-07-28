@@ -21,8 +21,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "3886cfe"
-      resolved-ref: "3886cfee829040c53738e65a88f2e17e7e31d9ed"
+      ref: dc236af
+      resolved-ref: dc236af19e6578c26db04b43ded4f090a2ea75e6
       url: "https://github.com/Battmobility/dart_auth.git"
     source: git
     version: "1.1.4"
