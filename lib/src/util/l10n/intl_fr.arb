@@ -791,6 +791,11 @@
 	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"documentsFileTooLargeError": "Les fichiers téléchargés sont trop volumineux. Veuillez réduire la taille des fichiers et réessayer.",
+	"@documentsFileTooLargeError": {
+		"type": "text",
+		"placeholders": {}
 	}
 }
 

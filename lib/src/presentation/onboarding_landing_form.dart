@@ -5,6 +5,7 @@ import 'package:batt_onboarding/src/data/api_factory.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
 import 'package:batt_onboarding/src/domain/onboarding_repository_provider.dart';
+import 'package:batt_onboarding/src/util/file_too_large_exception.dart';
 import 'package:batt_onboarding/src/presentation/pages/address_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/create_client_page.dart';
 import 'package:batt_onboarding/src/presentation/pages/id_documents_page.dart';
@@ -370,17 +371,26 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
   Future<bool> _validateIdDocuments(
       Map<String, dynamic>? values, int progress) async {
     if (values != null && values.isNotEmpty) {
-      final success = await onboardingRepository.postIdFiles(values);
-      if (success || progress > 1) {
-        setState(() {
-          _step++;
-        });
-        Analyticsutil.trackEvent(
-            name: "upload_id", action: AnalyticsAction.uploadId);
-      } else {
-        _showUploadFailedDialog(context);
+      try {
+        final success = await onboardingRepository.postIdFiles(values);
+        if (success || progress > 1) {
+          setState(() {
+            _step++;
+          });
+          Analyticsutil.trackEvent(
+              name: "upload_id", action: AnalyticsAction.uploadId);
+        } else {
+          _showUploadFailedDialog(context);
+        }
+        return success || progress > 1;
+      } catch (e) {
+        if (e is FileTooLargeException) {
+          _showFileTooLargeError(context);
+        } else {
+          _showUploadFailedDialog(context);
+        }
+        return false;
       }
-      return success || progress > 1;
     }
     return false;
   }
@@ -433,6 +443,14 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           SolidCtaButton(label: "Ok", onPressed: () => Navigator.of(ctx).pop())
         ],
       ),
+    );
+  }
+
+  void _showFileTooLargeError(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      BattSnackbar.error(
+        message: OnboardingLocalizations.of(context).documentsFileTooLargeError,
+      ).build(context),
     );
   }
 }

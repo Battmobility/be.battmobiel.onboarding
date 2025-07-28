@@ -535,4 +535,8 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
 
   @override
   String get formulaPickerUseLuxuryFleet => 'Utiliser la flotte de luxe';
+
+  @override
+  String get documentsFileTooLargeError =>
+      'Les fichiers téléchargés sont trop volumineux. Veuillez réduire la taille des fichiers et réessayer.';
 }

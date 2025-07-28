@@ -532,4 +532,8 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get formulaPickerUseLuxuryFleet => 'Gebruik luxevloot';
+
+  @override
+  String get documentsFileTooLargeError =>
+      'De geüploade bestanden zijn te groot. Verklein de bestandsgrootte en probeer opnieuw.';
 }

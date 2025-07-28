@@ -1030,6 +1030,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Use luxury fleet'**
   String get formulaPickerUseLuxuryFleet;
+
+  /// No description provided for @documentsFileTooLargeError.
+  ///
+  /// In en, this message translates to:
+  /// **'The uploaded files are too large. Please reduce file size and try again.'**
+  String get documentsFileTooLargeError;
 }
 
 class _OnboardingLocalizationsDelegate

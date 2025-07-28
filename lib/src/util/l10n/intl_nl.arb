@@ -806,5 +806,10 @@
 	"@formulaPickerUseLuxuryFleet": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"documentsFileTooLargeError": "De geüploade bestanden zijn te groot. Verklein de bestandsgrootte en probeer opnieuw.",
+	"@documentsFileTooLargeError": {
+		"type": "text",
+		"placeholders": {}
 	}
 }
