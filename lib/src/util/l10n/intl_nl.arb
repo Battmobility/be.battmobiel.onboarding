@@ -811,5 +811,22 @@
 	"@documentsFileTooLargeError": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"validationMessageMinlength": "Min. {minLength} tekens",
+	"@validationMessageMinlength": {
+		"type": "text",
+		"placeholders": {
+			"minLength": {}
+		}
+	},
+	"skip": "Sla over",
+	"@skip": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addBusinessInfo": "Bedrijfsgegevens",
+	"@addBusinessInfo": {
+		"type": "text",
+		"placeholders": {}
 	}
 }

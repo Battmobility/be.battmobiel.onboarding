@@ -536,4 +536,15 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   @override
   String get documentsFileTooLargeError =>
       'De geüploade bestanden zijn te groot. Verklein de bestandsgrootte en probeer opnieuw.';
+
+  @override
+  String validationMessageMinlength(Object minLength) {
+    return 'Min. $minLength tekens';
+  }
+
+  @override
+  String get skip => 'Sla over';
+
+  @override
+  String get addBusinessInfo => 'Bedrijfsgegevens';
 }

@@ -536,4 +536,15 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   @override
   String get documentsFileTooLargeError =>
       'The uploaded files are too large. Please reduce file size and try again.';
+
+  @override
+  String validationMessageMinlength(Object minLength) {
+    return 'Min. $minLength characters';
+  }
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get addBusinessInfo => 'Add business info';
 }

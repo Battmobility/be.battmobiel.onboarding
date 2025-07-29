@@ -174,6 +174,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         });
 
         return Scaffold(
+          resizeToAvoidBottomInset: true,
           body: SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -262,7 +263,6 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
               ],
             ),
           ),
-          resizeToAvoidBottomInset: false,
         );
       },
     );

@@ -48,39 +48,34 @@ class CreateClientPageState extends State<CreateClientPage> {
             return Center(child: CircularProgressIndicator());
           }
           OnboardingProgress progress = snapshot.data!;
-          return Padding(
-            padding: AppPaddings.large.trailing,
-            child: SingleChildScrollView(
-              child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _employeeFamilyMessage(),
-                    _finishedContracts(progress.subscriptions),
-                    _formChildren(progress.subscriptions),
-                    FormBuilder(
-                        key: widget.formKey,
-                        child: Column(
-                          children: [
-                            FormField(
-                              builder: (_) {
-                                return SizedBox.shrink();
-                              },
-                              validator: (_) {
-                                // Simplified validation - just check if there are any incomplete contracts
-                                final subsWithoutContract =
-                                    progress.subscriptions.where((sub) =>
-                                        sub.subscriptionContract == null);
-                                return subsWithoutContract.isEmpty
-                                    ? null
-                                    : "Please complete all contracts before continuing";
-                              },
-                            ),
-                          ],
-                        ))
-                  ]),
-            ),
-          );
+          return Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _employeeFamilyMessage(),
+                _finishedContracts(progress.subscriptions),
+                _formChildren(progress.subscriptions),
+                FormBuilder(
+                    key: widget.formKey,
+                    child: Column(
+                      children: [
+                        FormField(
+                          builder: (_) {
+                            return SizedBox.shrink();
+                          },
+                          validator: (_) {
+                            // Simplified validation - just check if there are any incomplete contracts
+                            final subsWithoutContract = progress.subscriptions
+                                .where(
+                                    (sub) => sub.subscriptionContract == null);
+                            return subsWithoutContract.isEmpty
+                                ? null
+                                : "Please complete all contracts before continuing";
+                          },
+                        ),
+                      ],
+                    ))
+              ]);
         });
   }
 
@@ -97,99 +92,103 @@ class CreateClientPageState extends State<CreateClientPage> {
         if (!snapshot.hasData || snapshot.data == null) {
           return SizedBox.shrink();
         }
-        
+
         final progress = snapshot.data!;
-        final hasFinishedContract = progress.subscriptions.any((sub) => sub.subscriptionContract != null);
-        
+        final hasFinishedContract = progress.subscriptions
+            .any((sub) => sub.subscriptionContract != null);
+
         if (hasFinishedContract) {
           return SizedBox.shrink();
         }
 
         return Padding(
-      padding: AppPaddings.medium.vertical,
-      child: Card(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        child: Padding(
-          padding: AppPaddings.medium.all,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.info_outline,
-                color: Theme.of(context).colorScheme.primary,
-                size: 20,
-              ),
-              SizedBox(width: AppSpacings.sm),
-              Expanded(
-                child: RichText(
-                  text: TextSpan(
-                    children: _parseEmailInText(l10n.createClientEmployeeFamilyMessage, context),
+          padding: AppPaddings.medium.vertical,
+          child: Card(
+            color: Theme.of(context).colorScheme.primaryContainer,
+            child: Padding(
+              padding: AppPaddings.medium.all,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.info_outline,
+                    color: Theme.of(context).colorScheme.surface,
+                    size: 20,
                   ),
-                ),
+                  SizedBox(width: AppSpacings.sm),
+                  Expanded(
+                    child: RichText(
+                      text: TextSpan(
+                        children: _parseEmailInText(
+                            l10n.createClientEmployeeFamilyMessage, context),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _showEmployeeFamilyMessage = false;
+                      });
+                    },
+                    child: Icon(
+                      Icons.close,
+                      color: Theme.of(context).colorScheme.surface,
+                      size: 20,
+                    ),
+                  ),
+                ],
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _showEmployeeFamilyMessage = false;
-                  });
-                },
-                child: Icon(
-                  Icons.close,
-                  color: Theme.of(context).colorScheme.primary,
-                  size: 20,
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        );
       },
     );
   }
 
   List<TextSpan> _parseEmailInText(String text, BuildContext context) {
     final List<TextSpan> spans = [];
-    final RegExp emailRegex = RegExp(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b');
+    final RegExp emailRegex =
+        RegExp(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b');
     int lastIndex = 0;
-    
+
     for (final Match match in emailRegex.allMatches(text)) {
       // Add text before the email
       if (match.start > lastIndex) {
         spans.add(TextSpan(
           text: text.substring(lastIndex, match.start),
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-          ),
+                color: Theme.of(context).colorScheme.surface,
+              ),
         ));
       }
-      
+
       // Add the email as clickable link
       spans.add(TextSpan(
         text: match.group(0),
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: Theme.of(context).colorScheme.primary,
-          decoration: TextDecoration.underline,
-        ),
+              color: Theme.of(context).colorScheme.surface,
+              decoration: TextDecoration.underline,
+              decorationColor: Theme.of(context).colorScheme.surface,
+            ),
         recognizer: TapGestureRecognizer()
           ..onTap = () {
             launchUrl(Uri.parse('mailto:${match.group(0)}'));
           },
       ));
-      
+
       lastIndex = match.end;
     }
-    
+
     // Add remaining text after the last email
     if (lastIndex < text.length) {
       spans.add(TextSpan(
         text: text.substring(lastIndex),
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-        ),
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
       ));
     }
-    
+
     return spans;
   }
 
@@ -202,85 +201,88 @@ class CreateClientPageState extends State<CreateClientPage> {
       return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         spacing: AppSpacings.md,
         children: [
+          const SizedBox(height: AppSpacings.xs),
           Text(l10n.addSubscriptionFormLabelExistingContracts,
               style: Theme.of(context).textTheme.titleMedium),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            spacing: AppSpacings.md,
-            children: finishedSubscriptions.map((sub) {
-              if (sub.clientSuspended == true) {
-                return Padding(
-                  padding: EdgeInsets.only(left: AppSpacings.lg),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: AppSpacings.xs,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        spacing: AppSpacings.sm,
-                        children: [
-                          Text(
-                            "• ",
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          Text(
-                            sub.clientName!,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          Text(sub.subscriptionContract!.subscriptionType!,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(fontWeight: FontWeight.bold)),
-                          Icon(Icons.pending, color: AppColors.b2cKeyColor),
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: AppSpacings.md),
-                        child: Text(
-                          l10n.contractVerificationInProgress,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(color: AppColors.b2cKeyColor),
+          SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              spacing: AppSpacings.md,
+              children: finishedSubscriptions.map((sub) {
+                if (sub.clientSuspended == true) {
+                  return Padding(
+                    padding: EdgeInsets.only(left: AppSpacings.lg),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: AppSpacings.xs,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          spacing: AppSpacings.sm,
+                          children: [
+                            Text(
+                              "• ",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            Text(
+                              sub.clientName!,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            Text(sub.subscriptionContract!.subscriptionType!,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(fontWeight: FontWeight.bold)),
+                            Icon(Icons.pending, color: AppColors.b2cKeyColor),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              } else {
-                return Padding(
-                  padding: EdgeInsets.only(left: AppSpacings.lg),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    spacing: AppSpacings.sm,
-                    children: [
-                      Text(
-                        "• ",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        sub.clientName!,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(sub.subscriptionContract!.subscriptionType!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(fontWeight: FontWeight.bold)),
-                      Icon(Icons.check_circle, color: AppColors.b2cKeyColor),
-                    ],
-                  ),
-                );
-              }
-            }).toList(),
+                        Padding(
+                          padding: EdgeInsets.only(left: AppSpacings.md),
+                          child: Text(
+                            l10n.contractVerificationInProgress,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(color: AppColors.b2cKeyColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Padding(
+                    padding: EdgeInsets.only(left: AppSpacings.lg),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      spacing: AppSpacings.sm,
+                      children: [
+                        Text(
+                          "• ",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          sub.clientName!,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(sub.subscriptionContract!.subscriptionType!,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(fontWeight: FontWeight.bold)),
+                        Icon(Icons.check_circle, color: AppColors.b2cKeyColor),
+                      ],
+                    ),
+                  );
+                }
+              }).toList(),
+            ),
           )
         ],
       );
@@ -336,9 +338,9 @@ class CreateClientPageState extends State<CreateClientPage> {
     final l10n = OnboardingLocalizations.of(context);
 
     return Padding(
-      padding: AppPaddings.large.all,
+      padding: AppPaddings.medium.top,
       child: Card(
-        elevation: 4,
+        elevation: 8,
         child: Padding(
           padding: AppPaddings.large.all,
           child: Column(
@@ -366,8 +368,9 @@ class CreateClientPageState extends State<CreateClientPage> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: AppSpacings.lg),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Wrap(
+                spacing: AppSpacings.md,
+                runSpacing: AppSpacings.md,
                 children: [
                   GestureDetector(
                     onTap: () => _launchAppStore(),
@@ -436,7 +439,7 @@ class CreateClientPageState extends State<CreateClientPage> {
     return Padding(
       padding: AppPaddings.medium.vertical,
       child: OutlinedCtaButton(
-        label: "Add business info",
+        label: OnboardingLocalizations.of(context).addBusinessInfo,
         onPressed: () {
           setState(() {
             _showBusinessForm = true;
@@ -506,7 +509,7 @@ class CreateClientPageState extends State<CreateClientPage> {
                 SizedBox(
                   width: 80,
                   child: OutlinedCtaButton(
-                    label: "Skip",
+                    label: l10n.skip,
                     onPressed: () {
                       setState(() {
                         _showBusinessForm = false;
@@ -517,10 +520,12 @@ class CreateClientPageState extends State<CreateClientPage> {
               ],
             ),
             FormBuilderTextField(
-                decoration:
-                    InputDecoration(labelText: l10n.addSubscriptionFormName),
-                name: "name",
-                validator: FormBuilderValidators.required()),
+              decoration:
+                  InputDecoration(labelText: l10n.addSubscriptionFormName),
+              name: "name",
+              validator: FormBuilderValidators.required(),
+              textInputAction: TextInputAction.next,
+            ),
             FormBuilderTextField(
               decoration:
                   InputDecoration(labelText: l10n.addSubscriptionFormVAT),
@@ -533,32 +538,41 @@ class CreateClientPageState extends State<CreateClientPage> {
                   return value == null || value.isEmpty;
                 }, FormBuilderValidators.maxLength(15)),
               ]),
+              textInputAction: TextInputAction.next,
             ),
             FormBuilderTextField(
-                decoration:
-                    InputDecoration(labelText: l10n.addSubscriptionFormEmail),
-                name: "email",
-                initialValue: widget.initialData?["email"] ?? "",
-                validator: FormBuilderValidators.email()),
+              decoration:
+                  InputDecoration(labelText: l10n.addSubscriptionFormEmail),
+              name: "email",
+              initialValue: widget.initialData?["email"] ?? "",
+              validator: FormBuilderValidators.email(),
+              textInputAction: TextInputAction.next,
+            ),
             FormBuilderTextField(
-                decoration:
-                    InputDecoration(labelText: l10n.addSubscriptionFormStreet),
-                name: "street",
-                initialValue: widget.initialData?["street"] ?? "",
-                validator: FormBuilderValidators.required()),
+              decoration:
+                  InputDecoration(labelText: l10n.addSubscriptionFormStreet),
+              name: "street",
+              initialValue: widget.initialData?["street"] ?? "",
+              validator: FormBuilderValidators.required(),
+              textInputAction: TextInputAction.next,
+            ),
             FormBuilderTextField(
-                decoration: InputDecoration(
-                    labelText: l10n.addSubscriptionFormHouseNumber),
-                name: "houseNumber",
-                initialValue:
-                    "${widget.initialData?["houseNumber"] ?? ""} ${widget.initialData?["box"] ?? ""}",
-                validator: FormBuilderValidators.required()),
+              decoration: InputDecoration(
+                  labelText: l10n.addSubscriptionFormHouseNumber),
+              name: "houseNumber",
+              initialValue:
+                  "${widget.initialData?["houseNumber"] ?? ""} ${widget.initialData?["box"] ?? ""}",
+              validator: FormBuilderValidators.required(),
+              textInputAction: TextInputAction.next,
+            ),
             FormBuilderTextField(
-                decoration:
-                    InputDecoration(labelText: l10n.addSubscriptionFormCity),
-                name: "city",
-                initialValue: widget.initialData?["city"] ?? "",
-                validator: FormBuilderValidators.required()),
+              decoration:
+                  InputDecoration(labelText: l10n.addSubscriptionFormCity),
+              name: "city",
+              initialValue: widget.initialData?["city"] ?? "",
+              validator: FormBuilderValidators.required(),
+              textInputAction: TextInputAction.next,
+            ),
             FormBuilderDropdown(
               validator: FormBuilderValidators.required(),
               name: "country",
@@ -575,13 +589,15 @@ class CreateClientPageState extends State<CreateClientPage> {
                   .toList(),
             ),
             FormBuilderTextField(
-                decoration: InputDecoration(
-                    labelText: l10n.addSubscriptionFormPostalCode),
-                name: "postalCode",
-                initialValue: widget.initialData?["postalCode"] ?? "",
-                validator: FormBuilderValidators.required()),
+              decoration: InputDecoration(
+                  labelText: l10n.addSubscriptionFormPostalCode),
+              name: "postalCode",
+              initialValue: widget.initialData?["postalCode"] ?? "",
+              validator: FormBuilderValidators.required(),
+              textInputAction: TextInputAction.next,
+            ),
             SolidCtaButton(
-              label: "Add business info",
+              label: l10n.addBusinessInfo,
               onPressed: () async {
                 if (widget.businessClientFormKey.currentState!
                     .saveAndValidate()) {

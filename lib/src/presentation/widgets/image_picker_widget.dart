@@ -83,7 +83,7 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                     }
                   },
                   label: l10n.imagePickerLabelTakePhoto,
-                  icon: Icons.camera_alt,
+                  icon: Icons.camera,
                 ),
               ),
               Flexible(

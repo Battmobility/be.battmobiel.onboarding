@@ -133,7 +133,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
 
   String? _getDisplayName(BattFormulaType? type) {
     if (type == null) return null;
-    
+
     switch (type) {
       case BattFormulaType.battFunPlusDL:
         return "BATTFUN";
@@ -328,18 +328,37 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
             ),
             SizedBox(height: AppSpacings.lg),
 
-            // Two-column layout for BattFun and BattFan
-            Row(
+            // Responsive layout for BattFun and BattFan using Wrap
+            Wrap(
+              spacing: AppSpacings.md,
+              runSpacing: AppSpacings.md,
               children: [
-                Expanded(
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: 280,
+                    maxWidth: MediaQuery.of(context).size.width > 600
+                        ? (MediaQuery.of(context).size.width -
+                                AppSpacings.lg -
+                                AppSpacings.md) /
+                            2
+                        : double.infinity,
+                  ),
                   child: _buildCustomFormulaOption(
                     'battFun',
                     l10n.formulaPickerBattFunTitle,
                     l10n.formulaPickerBattFunDescription,
                   ),
                 ),
-                SizedBox(width: AppSpacings.md),
-                Expanded(
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: 280,
+                    maxWidth: MediaQuery.of(context).size.width > 600
+                        ? (MediaQuery.of(context).size.width -
+                                AppSpacings.lg -
+                                AppSpacings.md) /
+                            2
+                        : double.infinity,
+                  ),
                   child: _buildCustomFormulaOption(
                     'battFan',
                     l10n.formulaPickerBattFanTitle,
@@ -461,6 +480,13 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
                 }
                 return Colors.grey[400]!; // Use grey when unselected
               }),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: VisualDensity.compact,
+            ),
+            listTileTheme: ListTileThemeData(
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              dense: true,
             ),
           ),
           child: RadioListTile<String>(

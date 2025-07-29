@@ -60,8 +60,11 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                         children: [
                           Padding(
                             padding: AppPaddings.xxlarge.all,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Wrap(
+                              alignment: WrapAlignment.start,
+                              spacing: AppSpacings.sm,
+                              runSpacing: AppSpacings.sm,
+                              crossAxisAlignment: WrapCrossAlignment.center,
                               children: [
                                 Flexible(
                                   flex: 5,
@@ -89,46 +92,42 @@ class PhoneEntryPageState extends State<PhoneEntryPage> {
                                 ),
                                 Flexible(
                                   flex: 8,
-                                  child: Padding(
-                                    padding: AppPaddings.medium.leading,
-                                    child: FormBuilderTextField(
-                                      name: "phone",
-                                      initialValue:
-                                          widget.initialData?["phoneNumber"],
-                                      onSubmitted: (value) {
-                                        setState(() {
-                                          isSendingPhone = true;
-                                        });
-                                        final countryCode = widget
-                                                .formKey
-                                                .currentState
-                                                ?.fields["countryCode"]
-                                                ?.value as String? ??
-                                            "+32";
-                                        final phone = widget
-                                                .formKey
-                                                .currentState
-                                                ?.fields["phone"]
-                                                ?.value as String? ??
-                                            "";
-                                        phoneNumber = countryCode +
-                                            phone.replaceFirst("0", "");
-                                        _sendPhone(context, phoneNumber ?? "");
-                                      },
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(),
-                                        FormBuilderValidators.phoneNumber(),
-                                        FormBuilderValidators.equalLength(10,
-                                            errorText:
-                                                "Phone number must be exactly 10 digits (04...)"),
-                                      ]),
-                                      style:
-                                          context.typographyTheme.titleMedium,
-                                      decoration: InputDecoration(
-                                          labelText: l10n.phoneFieldTitle,
-                                          labelStyle: context
-                                              .typographyTheme.titleMedium),
-                                    ),
+                                  child: FormBuilderTextField(
+                                    name: "phone",
+                                    initialValue:
+                                        widget.initialData?["phoneNumber"],
+                                    onSubmitted: (value) {
+                                      setState(() {
+                                        isSendingPhone = true;
+                                      });
+                                      final countryCode = widget
+                                              .formKey
+                                              .currentState
+                                              ?.fields["countryCode"]
+                                              ?.value as String? ??
+                                          "+32";
+                                      final phone = widget
+                                              .formKey
+                                              .currentState
+                                              ?.fields["phone"]
+                                              ?.value as String? ??
+                                          "";
+                                      phoneNumber = countryCode +
+                                          phone.replaceFirst("0", "");
+                                      _sendPhone(context, phoneNumber ?? "");
+                                    },
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.required(),
+                                      FormBuilderValidators.phoneNumber(),
+                                      FormBuilderValidators.equalLength(10,
+                                          errorText:
+                                              "Phone number must be exactly 10 digits (04...)"),
+                                    ]),
+                                    style: context.typographyTheme.titleMedium,
+                                    decoration: InputDecoration(
+                                        labelText: l10n.phoneFieldTitle,
+                                        labelStyle: context
+                                            .typographyTheme.titleMedium),
                                   ),
                                 ),
                                 FormBuilderField(

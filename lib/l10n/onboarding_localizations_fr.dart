@@ -539,4 +539,15 @@ class OnboardingLocalizationsFr extends OnboardingLocalizations {
   @override
   String get documentsFileTooLargeError =>
       'Les fichiers téléchargés sont trop volumineux. Veuillez réduire la taille des fichiers et réessayer.';
+
+  @override
+  String validationMessageMinlength(Object minLength) {
+    return 'Min. $minLength caractères';
+  }
+
+  @override
+  String get skip => 'Passer';
+
+  @override
+  String get addBusinessInfo => 'Données entreprise';
 }

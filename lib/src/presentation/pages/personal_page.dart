@@ -33,6 +33,7 @@ class PersonalPageState extends State<PersonalPage> {
 
     final l10n = OnboardingLocalizations.of(context);
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Padding(
         padding: AppPaddings.large.trailing,
         child: FormBuilder(
@@ -113,6 +114,7 @@ class PersonalPageState extends State<PersonalPage> {
                 validator: FormBuilderValidators.required(),
                 decoration:
                     InputDecoration(labelText: l10n.firstNameFieldTitle),
+                textInputAction: TextInputAction.next,
               ),
               FormBuilderTextField(
                 name: 'lastName',
@@ -120,18 +122,22 @@ class PersonalPageState extends State<PersonalPage> {
                 initialValue: widget.initialData?["lastName"] ?? '',
                 validator: FormBuilderValidators.required(),
                 decoration: InputDecoration(labelText: l10n.lastNameFieldTitle),
+                textInputAction: TextInputAction.next,
               ),
               FormBuilderTextField(
                 name: 'socialSecurityNumber',
                 initialValue: widget.initialData?["socialSecurityNumber"] ?? '',
+                keyboardType: TextInputType.numberWithOptions(),
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.numeric(),
-                  FormBuilderValidators.minLength(11)
+                  FormBuilderValidators.minLength(11,
+                      errorText: l10n.validationMessageMinlength(11))
                 ]),
                 decoration: InputDecoration(
                     labelText: l10n.rrnFieldTitle,
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     hintText: l10n.numberHint),
+                textInputAction: TextInputAction.next,
               ),
               FormBuilderDateTimePicker(
                 name: 'dateOfBirth',
@@ -152,8 +158,8 @@ class PersonalPageState extends State<PersonalPage> {
                     child: FormBuilderTextField(
                       name: 'licenseNumber',
                       initialValue: widget.initialData?["licenseNumber"] ?? '',
-                      validator: FormBuilderValidators.compose(
-                          [FormBuilderValidators.minLength(8)]),
+                      validator: FormBuilderValidators.minLength(8,
+                          errorText: l10n.validationMessageMinlength(8)),
                       decoration:
                           InputDecoration(labelText: l10n.driversLicenseNumber),
                     ),
@@ -192,11 +198,14 @@ class PersonalPageState extends State<PersonalPage> {
                 firstDate: DateTime.now().subtract(Duration(days: 365 * 90)),
                 lastDate: DateTime.now(),
                 inputType: InputType.date,
-                decoration:
-                    InputDecoration(labelText: l10n.driversLicenseIssuedDate),
+                decoration: InputDecoration(
+                  labelText: l10n.driversLicenseIssuedDate,
+                  suffixIcon: Icon(Icons.calendar_today),
+                ),
               ),
               FormBuilderDateTimePicker(
                 name: 'dateLicenseUntil',
+                format: DateFormat("dd/MM/yyyy"),
                 initialValue: widget.initialData?["dateLicenseUntil"],
                 firstDate: DateTime.now(),
                 inputType: InputType.date,
@@ -205,6 +214,7 @@ class PersonalPageState extends State<PersonalPage> {
                   suffixIcon: Icon(Icons.calendar_today),
                 ),
               ),
+              SizedBox(height: MediaQuery.of(context).size.height / 2)
             ]
                 .map((field) =>
                     Padding(padding: AppPaddings.medium.vertical, child: field))

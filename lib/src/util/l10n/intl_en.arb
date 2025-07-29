@@ -794,5 +794,22 @@
 	"@documentsFileTooLargeError": {
 		"type": "text",
 		"placeholders": {}
+	},
+	"validationMessageMinlength": "Min. {minLength} characters",
+	"@validationMessageMinlength": {
+		"type": "text",
+		"placeholders": {
+			"minLength": {}
+		}
+	},
+	"skip": "Skip",
+	"@skip": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addBusinessInfo": "Add business info",
+	"@addBusinessInfo": {
+		"type": "text",
+		"placeholders": {}
 	}
 }

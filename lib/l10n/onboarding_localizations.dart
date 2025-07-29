@@ -1036,6 +1036,24 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'The uploaded files are too large. Please reduce file size and try again.'**
   String get documentsFileTooLargeError;
+
+  /// No description provided for @validationMessageMinlength.
+  ///
+  /// In en, this message translates to:
+  /// **'Min. {minLength} characters'**
+  String validationMessageMinlength(Object minLength);
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @addBusinessInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add business info'**
+  String get addBusinessInfo;
 }
 
 class _OnboardingLocalizationsDelegate
