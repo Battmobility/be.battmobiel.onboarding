@@ -624,7 +624,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"onboardingCompletedTitle": "Onboarding Voltooid!",
+	"onboardingCompletedTitle": "You''re Batt!",
 	"@onboardingCompletedTitle": {
 		"type": "text",
 		"placeholders": {}

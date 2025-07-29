@@ -15,6 +15,7 @@ dependencies:
   dio: ^5.7.0
   flutter_form_builder: ^10.0.1
   form_builder_validators: ^11.1.1
+  flutter_svg: ^2.0.9
   google_mlkit_text_recognition: ^0.14.0 
   http: any
   url_launcher: ^6.3.1
@@ -53,3 +54,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - packages/batt_onboarding/assets/app_store.svg
+    - packages/batt_onboarding/assets/play_store_badge.svg

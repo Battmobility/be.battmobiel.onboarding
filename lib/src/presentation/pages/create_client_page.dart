@@ -10,6 +10,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sealed_countries/sealed_countries.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../util/analytics/analytics_events.dart';
 import 'onboarding_page.dart';
@@ -39,8 +40,6 @@ class CreateClientPageState extends State<CreateClientPage> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = OnboardingLocalizations.of(context);
-
     return FutureBuilder<OnboardingProgress?>(
         future: onboardingRepository.getOnboardingProgress(),
         builder: (context, snapshot) {
@@ -48,34 +47,36 @@ class CreateClientPageState extends State<CreateClientPage> {
             return Center(child: CircularProgressIndicator());
           }
           OnboardingProgress progress = snapshot.data!;
-          return Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _employeeFamilyMessage(),
-                _finishedContracts(progress.subscriptions),
-                _formChildren(progress.subscriptions),
-                FormBuilder(
-                    key: widget.formKey,
-                    child: Column(
-                      children: [
-                        FormField(
-                          builder: (_) {
-                            return SizedBox.shrink();
-                          },
-                          validator: (_) {
-                            // Simplified validation - just check if there are any incomplete contracts
-                            final subsWithoutContract = progress.subscriptions
-                                .where(
-                                    (sub) => sub.subscriptionContract == null);
-                            return subsWithoutContract.isEmpty
-                                ? null
-                                : "Please complete all contracts before continuing";
-                          },
-                        ),
-                      ],
-                    ))
-              ]);
+          return SingleChildScrollView(
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _employeeFamilyMessage(),
+                  _finishedContracts(progress.subscriptions),
+                  _formChildren(progress.subscriptions),
+                  FormBuilder(
+                      key: widget.formKey,
+                      child: Column(
+                        children: [
+                          FormField(
+                            builder: (_) {
+                              return SizedBox.shrink();
+                            },
+                            validator: (_) {
+                              // Simplified validation - just check if there are any incomplete contracts
+                              final subsWithoutContract = progress.subscriptions
+                                  .where((sub) =>
+                                      sub.subscriptionContract == null);
+                              return subsWithoutContract.isEmpty
+                                  ? null
+                                  : "Please complete all contracts before continuing";
+                            },
+                          ),
+                        ],
+                      ))
+                ]),
+          );
         });
   }
 
@@ -374,24 +375,40 @@ class CreateClientPageState extends State<CreateClientPage> {
                 children: [
                   GestureDetector(
                     onTap: () => _launchAppStore(),
-                    child: Text(
-                      l10n.onboardingCompletedAppStoreLink,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.b2cKeyColor,
-                            decoration: TextDecoration.underline,
-                          ),
-                      textAlign: TextAlign.center,
+                    child: SvgPicture.asset(
+                      "packages/batt_onboarding/assets/app_store.svg",
+                      height: 48,
+                      width: 75,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Text(l10n.onboardingCompletedAppStoreLink,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: AppColors.b2cKeyColor,
+                                  decoration: TextDecoration.underline,
+                                ),
+                            textAlign: TextAlign.center);
+                      },
                     ),
                   ),
                   GestureDetector(
                     onTap: () => _launchPlayStore(),
-                    child: Text(
-                      l10n.onboardingCompletedPlayStoreLink,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.b2cKeyColor,
-                            decoration: TextDecoration.underline,
-                          ),
-                      textAlign: TextAlign.center,
+                    child: SvgPicture.asset(
+                      "packages/batt_onboarding/assets/play_store_badge.svg",
+                      height: 48,
+                      width: 75,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Text(l10n.onboardingCompletedPlayStoreLink,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: AppColors.b2cKeyColor,
+                                  decoration: TextDecoration.underline,
+                                ),
+                            textAlign: TextAlign.center);
+                      },
                     ),
                   ),
                 ],

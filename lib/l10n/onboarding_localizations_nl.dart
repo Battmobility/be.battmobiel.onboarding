@@ -408,7 +408,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
       'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
 
   @override
-  String get onboardingCompletedTitle => 'Onboarding Voltooid!';
+  String get onboardingCompletedTitle => 'You\'re Batt!';
 
   @override
   String get onboardingCompletedMessage =>
