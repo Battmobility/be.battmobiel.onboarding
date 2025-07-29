@@ -7,11 +7,11 @@ import 'package:batt_auth/authentication/authentication.dart';
 import 'package:batt_auth/authentication/domain/domain.dart';
 import 'package:batt_auth/batt_auth.dart';
 import 'package:batt_auth/l10n/auth_localizations.dart';
-import 'package:example/api_parameters.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:onboarding/api_parameters.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
