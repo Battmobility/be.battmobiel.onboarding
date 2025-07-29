@@ -259,7 +259,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get verificationPageSendCodeFailed =>
-      'Failed to send verification code. Please try again later.';
+      'Failed to send verification code. Is your phone number correct? Please try again later.';
 
   @override
   String get verificationPageCheckPhoneFailed =>
@@ -532,4 +532,8 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
 
   @override
   String get formulaPickerUseLuxuryFleet => 'Use luxury fleet';
+
+  @override
+  String get documentsFileTooLargeError =>
+      'The uploaded files are too large. Please reduce file size and try again.';
 }

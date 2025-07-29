@@ -407,7 +407,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"verificationPageSendCodeFailed": "Code versturen mislukt. Probeer het later opnieuw.",
+	"verificationPageSendCodeFailed": "Code versturen mislukt. Is je telefoonnummer correct? Probeer het later opnieuw.",
 	"@verificationPageSendCodeFailed": {
 		"type": "text",
 		"placeholders": {}
@@ -804,6 +804,11 @@
 	},
 	"formulaPickerUseLuxuryFleet": "Gebruik luxevloot",
 	"@formulaPickerUseLuxuryFleet": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"documentsFileTooLargeError": "De geüploade bestanden zijn te groot. Verklein de bestandsgrootte en probeer opnieuw.",
+	"@documentsFileTooLargeError": {
 		"type": "text",
 		"placeholders": {}
 	}

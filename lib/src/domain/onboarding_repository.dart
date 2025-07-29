@@ -1,5 +1,6 @@
 import 'package:batt_onboarding/src/data/onboarding_datasource.dart';
 import 'package:batt_onboarding/src/domain/onboarding_progress.dart';
+import 'package:batt_onboarding/src/util/file_too_large_exception.dart';
 import 'package:image_picker/image_picker.dart';
 
 final class OnboardingRepository {
@@ -25,6 +26,9 @@ final class OnboardingRepository {
     } catch (e, _) {
       if (e is TypeError) {
         return false;
+      }
+      if (e is FileTooLargeException) {
+        rethrow;
       }
       rethrow;
     }

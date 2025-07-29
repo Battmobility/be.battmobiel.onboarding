@@ -1,5 +1,6 @@
 import 'package:batt_kit/api/generated/batt_kit.swagger.dart';
 import 'package:batt_onboarding/src/data/api_factory.dart';
+import 'package:batt_onboarding/src/util/file_too_large_exception.dart';
 import 'package:http/http.dart' hide Client;
 import 'package:image_picker/image_picker.dart';
 
@@ -37,8 +38,15 @@ final class OnboardingService {
             filename: 'frontDriverLicense.jpg'),
       );
 
+      if (response.statusCode == 413) {
+        throw const FileTooLargeException("Files are too large");
+      }
+
       return response.isSuccessful;
     } catch (e, _) {
+      if (e is FileTooLargeException) {
+        rethrow;
+      }
       return false;
     }
   }

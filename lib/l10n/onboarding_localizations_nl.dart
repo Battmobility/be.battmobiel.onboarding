@@ -259,7 +259,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get verificationPageSendCodeFailed =>
-      'Code versturen mislukt. Probeer het later opnieuw.';
+      'Code versturen mislukt. Is je telefoonnummer correct? Probeer het later opnieuw.';
 
   @override
   String get verificationPageCheckPhoneFailed =>
@@ -532,4 +532,8 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get formulaPickerUseLuxuryFleet => 'Gebruik luxevloot';
+
+  @override
+  String get documentsFileTooLargeError =>
+      'De geüploade bestanden zijn te groot. Verklein de bestandsgrootte en probeer opnieuw.';
 }

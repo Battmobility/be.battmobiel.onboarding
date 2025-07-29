@@ -566,7 +566,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @verificationPageSendCodeFailed.
   ///
   /// In en, this message translates to:
-  /// **'Failed to send verification code. Please try again later.'**
+  /// **'Failed to send verification code. Is your phone number correct? Please try again later.'**
   String get verificationPageSendCodeFailed;
 
   /// No description provided for @verificationPageCheckPhoneFailed.
@@ -1030,6 +1030,12 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Use luxury fleet'**
   String get formulaPickerUseLuxuryFleet;
+
+  /// No description provided for @documentsFileTooLargeError.
+  ///
+  /// In en, this message translates to:
+  /// **'The uploaded files are too large. Please reduce file size and try again.'**
+  String get documentsFileTooLargeError;
 }
 
 class _OnboardingLocalizationsDelegate
