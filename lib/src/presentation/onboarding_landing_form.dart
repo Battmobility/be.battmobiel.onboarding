@@ -1,5 +1,4 @@
 import 'package:batt_ds/batt_ds.dart';
-import 'package:batt_kit/batt_kit.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
 import 'package:batt_onboarding/src/data/api_factory.dart';
 import 'package:batt_onboarding/src/data/token_service.dart';
@@ -20,7 +19,6 @@ import 'package:batt_onboarding/src/util/nonnull_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'onboarding_steps.dart';
-import 'pages/documents_explainer.dart';
 import 'pages/phone_entry_page.dart';
 import 'widgets/onboarding_form_header.dart';
 
