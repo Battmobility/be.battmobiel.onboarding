@@ -374,7 +374,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
 
   @override
   String get createPersonalUseContractPickFormulaLabel =>
-      'Voeg een contract toe voor persoonlijk gebruik';
+      'Persoonlijk gebruik: kies formule';
 
   @override
   String get createContractFormulaBattFunExplanation =>

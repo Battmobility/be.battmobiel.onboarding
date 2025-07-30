@@ -589,7 +589,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"createPersonalUseContractPickFormulaLabel" : "Voeg een contract toe voor persoonlijk gebruik",
+	"createPersonalUseContractPickFormulaLabel" : "Persoonlijk gebruik: kies formule",
 	"@createPersonalUseContractPickFormulaLabel": {
 		"type": "text",
 		"placeholders": {}
