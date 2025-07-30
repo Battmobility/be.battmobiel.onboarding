@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_print
-
+import 'api_parameters.dart';
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_onboarding/batt_onboarding.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:onboarding/api_parameters.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

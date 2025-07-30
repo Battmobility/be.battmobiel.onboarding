@@ -149,13 +149,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           CreateClientPage(
             formKey: _formKeys[6],
             initialData: progress.personal,
-            onAction: (_) {
-              // Skip to finish
-              setState(() {
-                _step += 2;
-              });
-              controller.jumpToPage(_step);
-            },
+            onAction: (_) {},
           ),
         ];
 
@@ -174,6 +168,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
         });
 
         return Scaffold(
+          resizeToAvoidBottomInset: true,
           body: SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -185,8 +180,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                       context, OnboardingSteps.values[_step]),
                   progress: ((_step + 1).toDouble() /
                       OnboardingSteps.values.length.toDouble()),
-                  backButtonEnabled: _step != OnboardingSteps.intro.index &&
-                      _step != OnboardingSteps.createClient.index,
+                  backButtonEnabled: OnboardingSteps.values[_step].canGoBack,
                   onbackPressed: () {
                     setState(() {
                       _step--;
@@ -214,55 +208,57 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                   ),
                 ),
                 Divider(thickness: 0.5),
-                Expanded(
-                    flex: OnboardingSteps.values[_step].canSkip ? 3 : 2,
-                    child: OnboardingFormFooter(
-                      showLaterButton: OnboardingSteps.values[_step].canSkip,
-                      showNextButton: OnboardingSteps.values[_step].hasNext,
-                      onNextPressed: () {
-                        _nextStep(controller, pages, progress);
-                      },
-                      onLaterPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (ctx) {
-                              final l10n = OnboardingLocalizations.of(ctx);
+                if ((OnboardingSteps.values[_step].canSkip ||
+                    OnboardingSteps.values[_step].hasNext)) ...[
+                  Expanded(
+                      flex: 3,
+                      child: OnboardingFormFooter(
+                        showLaterButton: OnboardingSteps.values[_step].canSkip,
+                        showNextButton: OnboardingSteps.values[_step].hasNext,
+                        onNextPressed: () {
+                          _nextStep(controller, pages, progress);
+                        },
+                        onLaterPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (ctx) {
+                                final l10n = OnboardingLocalizations.of(ctx);
 
-                              return BattDialog(
-                                  title: l10n.continueLaterDialogTitle,
-                                  message: l10n.continueLaterDialogMessage,
-                                  actions: [
-                                    OutlinedCtaButton(
-                                        label: l10n
-                                            .continueLaterDialogOptionContinueNow,
-                                        onPressed: () {
-                                          Navigator.of(ctx).pop();
-                                        }),
-                                    SizedBox(height: AppSpacings.sm),
-                                    SolidCtaButton(
-                                        label: l10n
-                                            .continueLaterDialogOptionContinueLater,
-                                        onPressed: () {
-                                          Navigator.of(ctx).pop();
+                                return BattDialog(
+                                    title: l10n.continueLaterDialogTitle,
+                                    message: l10n.continueLaterDialogMessage,
+                                    actions: [
+                                      OutlinedCtaButton(
+                                          label: l10n
+                                              .continueLaterDialogOptionContinueNow,
+                                          onPressed: () {
+                                            Navigator.of(ctx).pop();
+                                          }),
+                                      SizedBox(height: AppSpacings.sm),
+                                      SolidCtaButton(
+                                          label: l10n
+                                              .continueLaterDialogOptionContinueLater,
+                                          onPressed: () {
+                                            Navigator.of(ctx).pop();
 
-                                          Analyticsutil.trackEvent(
-                                            action:
-                                                AnalyticsAction.exitOnboarding,
-                                            name: OnboardingSteps
-                                                .values[_step].name,
-                                          );
-                                          widget.onSubmitted(false);
-                                        }),
-                                  ]).build(ctx);
-                            });
+                                            Analyticsutil.trackEvent(
+                                              action: AnalyticsAction
+                                                  .exitOnboarding,
+                                              name: OnboardingSteps
+                                                  .values[_step].name,
+                                            );
+                                            widget.onSubmitted(false);
+                                          }),
+                                    ]).build(ctx);
+                              });
 
-                        widget.onSubmitted(false);
-                      },
-                    )),
+                          widget.onSubmitted(false);
+                        },
+                      )),
+                ]
               ],
             ),
           ),
-          resizeToAvoidBottomInset: false,
         );
       },
     );

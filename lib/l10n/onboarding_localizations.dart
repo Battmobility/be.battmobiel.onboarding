@@ -371,6 +371,12 @@ abstract class OnboardingLocalizations {
   /// **'Choose from library'**
   String get imagePickerLabelPickPhoto;
 
+  /// No description provided for @imagePickerLabelPickorTakePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick or take a photo'**
+  String get imagePickerLabelPickorTakePhoto;
+
   /// No description provided for @imagePickerLabelOr.
   ///
   /// In en, this message translates to:
@@ -635,12 +641,6 @@ abstract class OnboardingLocalizations {
   /// **'Your contracts'**
   String get addSubscriptionFormLabelExistingContracts;
 
-  /// No description provided for @addSubscriptionFormLabelPersonalUse.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick a contract for personal use:'**
-  String get addSubscriptionFormLabelPersonalUse;
-
   /// No description provided for @addSubscriptionFormLabelNoPersonalUseButton.
   ///
   /// In en, this message translates to:
@@ -658,12 +658,6 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Provide your bussiness details if you want to use BattMobility for your company, or skip this step.'**
   String get addSubscriptionFormMessageBusinessUse;
-
-  /// No description provided for @addSubscriptionFormLabelBusinessUse.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick a contract for business use:'**
-  String get addSubscriptionFormLabelBusinessUse;
 
   /// No description provided for @addSubscriptionFormLaterLabel.
   ///
@@ -1036,6 +1030,24 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'The uploaded files are too large. Please reduce file size and try again.'**
   String get documentsFileTooLargeError;
+
+  /// No description provided for @validationMessageMinlength.
+  ///
+  /// In en, this message translates to:
+  /// **'Min. {minLength} characters'**
+  String validationMessageMinlength(Object minLength);
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @addBusinessInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add business info'**
+  String get addBusinessInfo;
 }
 
 class _OnboardingLocalizationsDelegate

@@ -159,6 +159,9 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get imagePickerLabelPickPhoto => 'Kies uit bibliotheek';
 
   @override
+  String get imagePickerLabelPickorTakePhoto => 'Maak of kies een foto';
+
+  @override
   String get imagePickerLabelOr => 'of';
 
   @override
@@ -300,10 +303,6 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get addSubscriptionFormLabelExistingContracts => 'Jouw contracten';
 
   @override
-  String get addSubscriptionFormLabelPersonalUse =>
-      'Pick a contract for personal use:';
-
-  @override
   String get addSubscriptionFormLabelNoPersonalUseButton =>
       'Ik ga geen persoonlijk gebruik maken van BattMobility.';
 
@@ -314,10 +313,6 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   @override
   String get addSubscriptionFormMessageBusinessUse =>
       'Geef hieronder je facturatiegegevens in als je BattMobility voor je bedrijf wil gebruiken, of sla deze stap over.';
-
-  @override
-  String get addSubscriptionFormLabelBusinessUse =>
-      'Pick a contract for business use:';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';
@@ -408,7 +403,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
       'Contract maken mislukt! Probeer het opnieuw of neem contact op met de klantendienst.';
 
   @override
-  String get onboardingCompletedTitle => 'Onboarding Voltooid!';
+  String get onboardingCompletedTitle => 'You\'re Batt!';
 
   @override
   String get onboardingCompletedMessage =>
@@ -536,4 +531,15 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   @override
   String get documentsFileTooLargeError =>
       'De geüploade bestanden zijn te groot. Verklein de bestandsgrootte en probeer opnieuw.';
+
+  @override
+  String validationMessageMinlength(Object minLength) {
+    return 'Min. $minLength tekens';
+  }
+
+  @override
+  String get skip => 'Sla over';
+
+  @override
+  String get addBusinessInfo => 'Bedrijfsgegevens';
 }

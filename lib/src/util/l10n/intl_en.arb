@@ -228,6 +228,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"imagePickerLabelPickorTakePhoto": "Pick or take a photo",
+	"@imagePickerLabelPickorTakePhoto": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"imagePickerLabelOr": "or",
 	"@imagePickerLabelOr": {
 		"type": "text",
@@ -450,11 +455,6 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"addSubscriptionFormLabelPersonalUse" : "Pick a contract for personal use:",
-	"@addSubscriptionFormLabelPersonalUse": {
-		"type": "text",
-		"placeholders": {}
-	},
 	"addSubscriptionFormLabelNoPersonalUseButton" : "I will not be using BattMobility for personal use.",
 	"@addSubscriptionFormLabelNoPersonalUseButton": {
 		"type": "text",
@@ -467,11 +467,6 @@
 	},
 	"addSubscriptionFormMessageBusinessUse" : "Provide your bussiness details if you want to use BattMobility for your company, or skip this step.",
 	"@addSubscriptionFormMessageBusinessUse": {
-		"type": "text",
-		"placeholders": {}
-	},
-	"addSubscriptionFormLabelBusinessUse" : "Pick a contract for business use:",
-	"@addSubscriptionFormLabelBusinessUse": {
 		"type": "text",
 		"placeholders": {}
 	},
@@ -792,6 +787,23 @@
 	},
 	"documentsFileTooLargeError": "The uploaded files are too large. Please reduce file size and try again.",
 	"@documentsFileTooLargeError": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"validationMessageMinlength": "Min. {minLength} characters",
+	"@validationMessageMinlength": {
+		"type": "text",
+		"placeholders": {
+			"minLength": {}
+		}
+	},
+	"skip": "Skip",
+	"@skip": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addBusinessInfo": "Add business info",
+	"@addBusinessInfo": {
 		"type": "text",
 		"placeholders": {}
 	}

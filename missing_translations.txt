@@ -1,11 +1,1 @@
-{
-  "fr": [
-    "addSubscriptionFormLabelPersonalUse",
-    "addSubscriptionFormLabelBusinessUse"
-  ],
-
-  "nl": [
-    "addSubscriptionFormLabelPersonalUse",
-    "addSubscriptionFormLabelBusinessUse"
-  ]
-}
+{}

@@ -27,6 +27,16 @@ extension Skip on OnboardingSteps {
     }
   }
 
+  bool get canGoBack {
+    switch (this) {
+      case OnboardingSteps.intro:
+      case OnboardingSteps.createClient:
+        return false;
+      default:
+        return true;
+    }
+  }
+
   bool get canSkip {
     switch (this) {
       case OnboardingSteps.intro:

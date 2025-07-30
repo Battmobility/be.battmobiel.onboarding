@@ -15,26 +15,32 @@ final class OnboardingFormFooter extends StatelessWidget {
     this.onLaterPressed,
     super.key,
   });
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPaddings.medium.all.add(AppPaddings.xlarge.horizontal),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        spacing: AppSpacings.sm,
-        children: [
-          if (showNextButton)
-            DefaultSolidTextButton(
-              onPressed: onNextPressed,
-              label: OnboardingLocalizations.of(context).nextButtonText,
-            ),
-          if (showLaterButton)
-            DefaultOutlinedTextButton(
-              onPressed: onLaterPressed ?? () {},
-              label: OnboardingLocalizations.of(context).laterButtonText,
-            ),
-        ],
+    return SizedBox(
+      height: (showNextButton || showLaterButton)
+          ? double.infinity
+          : MediaQuery.of(context).padding.bottom,
+      child: Padding(
+        padding: AppPaddings.medium.all.add(AppPaddings.xlarge.horizontal),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          spacing: AppSpacings.sm,
+          children: [
+            if (showNextButton)
+              DefaultSolidTextButton(
+                onPressed: onNextPressed,
+                label: OnboardingLocalizations.of(context).nextButtonText,
+              ),
+            if (showLaterButton)
+              DefaultOutlinedTextButton(
+                onPressed: onLaterPressed ?? () {},
+                label: OnboardingLocalizations.of(context).laterButtonText,
+              ),
+          ],
+        ),
       ),
     );
   }

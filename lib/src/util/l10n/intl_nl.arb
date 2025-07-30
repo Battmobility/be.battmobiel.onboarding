@@ -242,6 +242,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"imagePickerLabelPickorTakePhoto": "Maak of kies een foto",
+	"@imagePickerLabelPickorTakePhoto": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"imagePickerLabelOr": "of",
 	"@imagePickerLabelOr": {
 		"type": "text",
@@ -624,7 +629,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"onboardingCompletedTitle": "Onboarding Voltooid!",
+	"onboardingCompletedTitle": "You''re Batt!",
 	"@onboardingCompletedTitle": {
 		"type": "text",
 		"placeholders": {}
@@ -809,6 +814,23 @@
 	},
 	"documentsFileTooLargeError": "De geüploade bestanden zijn te groot. Verklein de bestandsgrootte en probeer opnieuw.",
 	"@documentsFileTooLargeError": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"validationMessageMinlength": "Min. {minLength} tekens",
+	"@validationMessageMinlength": {
+		"type": "text",
+		"placeholders": {
+			"minLength": {}
+		}
+	},
+	"skip": "Sla over",
+	"@skip": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"addBusinessInfo": "Bedrijfsgegevens",
+	"@addBusinessInfo": {
 		"type": "text",
 		"placeholders": {}
 	}

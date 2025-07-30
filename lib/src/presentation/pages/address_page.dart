@@ -78,6 +78,7 @@ class AddressPageState extends State<AddressPage> {
                       ],
                     ),
                     decoration: InputDecoration(labelText: l10n.addressStreet),
+                    textInputAction: TextInputAction.next,
                   ),
                   FormBuilderTextField(
                     name: 'houseNumber',
@@ -88,12 +89,14 @@ class AddressPageState extends State<AddressPage> {
                       ],
                     ),
                     decoration: InputDecoration(labelText: l10n.addressNumber),
+                    textInputAction: TextInputAction.next,
                   ),
                   FormBuilderTextField(
                     name: 'box',
                     initialValue: widget.initialData?["box"] ?? '',
                     decoration:
                         InputDecoration(labelText: l10n.addressAddition),
+                    textInputAction: TextInputAction.next,
                   ),
                 ]
                     .map((field) => Padding(
@@ -113,6 +116,7 @@ class AddressPageState extends State<AddressPage> {
                       ],
                     ),
                     decoration: InputDecoration(labelText: l10n.addressZip),
+                    textInputAction: TextInputAction.next,
                   ),
                 ),
                 Flexible(
@@ -129,6 +133,7 @@ class AddressPageState extends State<AddressPage> {
                         ],
                       ),
                       decoration: InputDecoration(labelText: l10n.addressCity),
+                      textInputAction: TextInputAction.next,
                     ),
                   ),
                 ),

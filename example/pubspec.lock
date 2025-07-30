@@ -31,10 +31,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: b542b97c0ba686431eae247e76fb1e621bdf96c7
+      resolved-ref: "8e0ce7361769e1b78aaef8b728399cd0b21a632b"
       url: "https://github.com/Battmobility/be.battmobility.batt_ds.git"
     source: git
-    version: "0.0.75"
+    version: "0.0.88"
   batt_kit:
     dependency: transitive
     description:

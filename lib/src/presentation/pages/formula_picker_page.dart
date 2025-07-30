@@ -133,7 +133,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
 
   String? _getDisplayName(BattFormulaType? type) {
     if (type == null) return null;
-    
+
     switch (type) {
       case BattFormulaType.battFunPlusDL:
         return "BATTFUN";
@@ -170,7 +170,7 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
                 fontWeight: FontWeight.bold,
               ),
         ),
-        subtitle: Column(
+        subtitle: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (formulaType != null)
@@ -202,12 +202,12 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
     final l10n = OnboardingLocalizations.of(context);
     final isEnabled = selectedFormulaType == 'battFan';
 
-    return Card(
-      child: Padding(
-        padding: AppPaddings.medium.all,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+    return Padding(
+      padding: AppPaddings.medium.all,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if ((selectedFormula?.minCommitment ?? 0) > 0) ...[
             Text(
               l10n.commitmentAmount,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -217,52 +217,38 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
                   ),
             ),
             SizedBox(height: AppSpacings.sm),
-            Row(
-              children: [
-                Text(
-                  "€",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: isEnabled
-                            ? Theme.of(context).textTheme.bodyLarge?.color
-                            : Theme.of(context).disabledColor,
-                      ),
-                ),
-                SizedBox(width: AppSpacings.sm),
-                Expanded(
-                  child: TextField(
-                    controller: _commitmentController,
-                    enabled: isEnabled,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: l10n.enterAmount,
-                    ),
-                    onChanged: (value) {
-                      final newCommitment = int.tryParse(value);
-                      if (newCommitment != null) {
-                        commitment = newCommitment;
-                      }
-                    },
-                  ),
-                ),
-              ],
-            ),
-            // Always show minimum text area to prevent layout shifts
-            Padding(
-              padding: EdgeInsets.only(top: AppSpacings.xs),
-              child: Text(
-                isEnabled
-                    ? l10n.minimumPrefix("75")
-                    : " ", // Space to maintain height
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall
-                    ?.copyWith(color: AppColors.neutralColors[600]),
-              ),
+            TextField(
+              controller: _commitmentController,
+              enabled: isEnabled,
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: l10n.enterAmount,
+                  prefixIcon: Icon(Icons.euro)),
+              onChanged: (value) {
+                final newCommitment = int.tryParse(value);
+                if (newCommitment != null) {
+                  commitment = newCommitment;
+                }
+              },
             ),
           ],
-        ),
+
+          // Always show minimum text area to prevent layout shifts
+          Padding(
+            padding: EdgeInsets.only(top: AppSpacings.xs),
+            child: Text(
+              isEnabled
+                  ? l10n.minimumPrefix("75")
+                  : " ", // Space to maintain height
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: AppColors.neutralColors[600]),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -314,6 +300,8 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
   Widget _buildCustomLayout(
       BuildContext context, List<BattFormula> possibleFormulas) {
     final l10n = OnboardingLocalizations.of(context);
+    final isPortrait =
+        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
 
     return Padding(
       padding: AppPaddings.large.all,
@@ -328,26 +316,42 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
             ),
             SizedBox(height: AppSpacings.lg),
 
-            // Two-column layout for BattFun and BattFan
-            Row(
-              children: [
-                Expanded(
-                  child: _buildCustomFormulaOption(
-                    'battFun',
-                    l10n.formulaPickerBattFunTitle,
-                    l10n.formulaPickerBattFunDescription,
+            isPortrait
+                ? Column(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: AppSpacings.md,
+                    children: [
+                      _buildCustomFormulaOption(
+                        'battFun',
+                        l10n.formulaPickerBattFunTitle,
+                        l10n.formulaPickerBattFunDescription,
+                      ),
+                      _buildCustomFormulaOption(
+                        'battFan',
+                        l10n.formulaPickerBattFanTitle,
+                        l10n.formulaPickerBattFanDescription,
+                      ),
+                    ],
+                  )
+                : Row(
+                    spacing: AppSpacings.md,
+                    children: [
+                      Flexible(
+                        child: _buildCustomFormulaOption(
+                          'battFun',
+                          l10n.formulaPickerBattFunTitle,
+                          l10n.formulaPickerBattFunDescription,
+                        ),
+                      ),
+                      Flexible(
+                        child: _buildCustomFormulaOption(
+                          'battFan',
+                          l10n.formulaPickerBattFanTitle,
+                          l10n.formulaPickerBattFanDescription,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                SizedBox(width: AppSpacings.md),
-                Expanded(
-                  child: _buildCustomFormulaOption(
-                    'battFan',
-                    l10n.formulaPickerBattFanTitle,
-                    l10n.formulaPickerBattFanDescription,
-                  ),
-                ),
-              ],
-            ),
 
             SizedBox(height: AppSpacings.lg),
 
@@ -461,6 +465,13 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
                 }
                 return Colors.grey[400]!; // Use grey when unselected
               }),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: VisualDensity.compact,
+            ),
+            listTileTheme: ListTileThemeData(
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              dense: true,
             ),
           ),
           child: RadioListTile<String>(

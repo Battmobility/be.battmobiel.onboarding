@@ -53,7 +53,9 @@ class OnboardingFormHeaderState extends State<OnboardingFormHeader> {
                       weight: 0.75,
                       color: AppColors.graphiteDrive,
                     ),
-                    onPressed: () => widget.onbackPressed(),
+                    onPressed: () => widget.backButtonEnabled
+                        ? widget.onbackPressed()
+                        : null,
                   ),
                 ),
                 Text(

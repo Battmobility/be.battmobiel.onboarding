@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:batt_ds/batt_ds.dart';
 import 'package:batt_ds/theme/gradient_theme.dart';
 import 'package:batt_onboarding/l10n/onboarding_localizations.dart';
@@ -36,8 +38,13 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
   @override
   void initState() {
     super.initState();
-
     pinFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    pinFocusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -120,12 +127,6 @@ class PhoneVerificationPageState extends State<PhoneVerificationPage> {
         ),
       ),
     ));
-  }
-
-  @override
-  void dispose() {
-    pinFocusNode.dispose();
-    super.dispose();
   }
 
   void _sendPhone(BuildContext context, String phoneNumber) async {
