@@ -149,13 +149,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
           CreateClientPage(
             formKey: _formKeys[6],
             initialData: progress.personal,
-            onAction: (_) {
-              // Skip to finish
-              setState(() {
-                _step += 2;
-              });
-              controller.jumpToPage(_step);
-            },
+            onAction: (_) {},
           ),
         ];
 
@@ -186,8 +180,7 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
                       context, OnboardingSteps.values[_step]),
                   progress: ((_step + 1).toDouble() /
                       OnboardingSteps.values.length.toDouble()),
-                  backButtonEnabled: _step != OnboardingSteps.intro.index &&
-                      _step != OnboardingSteps.createClient.index,
+                  backButtonEnabled: OnboardingSteps.values[_step].canGoBack,
                   onbackPressed: () {
                     setState(() {
                       _step--;

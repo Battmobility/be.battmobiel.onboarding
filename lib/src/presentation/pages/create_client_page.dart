@@ -277,7 +277,7 @@ class CreateClientPageState extends State<CreateClientPage> {
                                 .textTheme
                                 .bodyLarge!
                                 .copyWith(fontWeight: FontWeight.bold)),
-                        Icon(Icons.check_circle, color: AppColors.b2cKeyColor),
+                        Icon(Icons.check, color: AppColors.b2cKeyColor),
                       ],
                     ),
                   );
