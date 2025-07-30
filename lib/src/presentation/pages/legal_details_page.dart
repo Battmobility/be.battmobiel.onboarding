@@ -56,7 +56,7 @@ class LegalDetailsPageState extends State<LegalDetailsPage> {
                               widget.initialData?["nrOfAccidents"] ?? 0,
                           items: [0, 1, 2, 3, 4, 5]
                               .map((value) => DropdownMenuItem(
-                                    child: Text("$value"),
+                                    child: Text(value == 5 ? "5+" : "$value"),
                                     value: value,
                                   ))
                               .toList()),

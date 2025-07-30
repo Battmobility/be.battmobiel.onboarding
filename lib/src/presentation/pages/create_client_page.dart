@@ -484,7 +484,9 @@ class CreateClientPageState extends State<CreateClientPage> {
           Opacity(
             opacity: isEnabled ? 1.0 : 0.5,
             child: SolidCtaButton(
-              label: l10n.createContractPickFormulaLabel,
+              label: subscription.delegatedTrustClientId != null 
+                  ? l10n.createPersonalUseContractPickFormulaLabel
+                  : l10n.createContractPickFormulaLabel,
               onPressed: isEnabled
                   ? () {
                       _showContractPicker(context, subscription);
@@ -550,10 +552,10 @@ class CreateClientPageState extends State<CreateClientPage> {
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.skipWhen((value) {
                   return value == null || value.isEmpty;
-                }, FormBuilderValidators.minLength(9)),
-                FormBuilderValidators.skipWhen((value) {
-                  return value == null || value.isEmpty;
-                }, FormBuilderValidators.maxLength(15)),
+                }, FormBuilderValidators.match(
+                  RegExp(r'^BE\d{10}$'),
+                  errorText: 'VAT number must start with BE and be 12 characters long',
+                )),
               ]),
               textInputAction: TextInputAction.next,
             ),

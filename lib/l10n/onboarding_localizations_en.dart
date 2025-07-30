@@ -373,6 +373,10 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get createContractPickFormulaLabel => 'Pick a contract';
 
   @override
+  String get createPersonalUseContractPickFormulaLabel =>
+      'Add a contract for personal use';
+
+  @override
   String get createContractFormulaBattFunExplanation =>
       'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.';
 

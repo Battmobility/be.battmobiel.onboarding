@@ -174,9 +174,11 @@ class FormulaPickerPageState extends State<FormulaPickerPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (formulaType != null)
-              Text(
-                _getFormulaDescription(context, formulaType),
-                style: Theme.of(context).textTheme.bodyMedium,
+              Flexible(
+                child: Text(
+                  _getFormulaDescription(context, formulaType),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               ),
             SizedBox(height: AppSpacings.xs),
             if (formula.warrantyAmount != null)

@@ -767,6 +767,12 @@ abstract class OnboardingLocalizations {
   /// **'Pick a contract'**
   String get createContractPickFormulaLabel;
 
+  /// No description provided for @createPersonalUseContractPickFormulaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a contract for personal use'**
+  String get createPersonalUseContractPickFormulaLabel;
+
   /// No description provided for @createContractFormulaBattFunExplanation.
   ///
   /// In en, this message translates to:

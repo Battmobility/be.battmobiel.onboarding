@@ -373,6 +373,10 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get createContractPickFormulaLabel => 'Kies een formule';
 
   @override
+  String get createPersonalUseContractPickFormulaLabel =>
+      'Voeg een contract toe voor persoonlijk gebruik';
+
+  @override
   String get createContractFormulaBattFunExplanation =>
       'Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.';
 
@@ -541,5 +545,5 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get skip => 'Sla over';
 
   @override
-  String get addBusinessInfo => 'Bedrijfsgegevens';
+  String get addBusinessInfo => 'Bedrijfsgegevens toevoegen';
 }

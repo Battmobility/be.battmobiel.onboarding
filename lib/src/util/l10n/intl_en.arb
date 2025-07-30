@@ -562,6 +562,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"createPersonalUseContractPickFormulaLabel" : "Add a contract for personal use",
+	"@createPersonalUseContractPickFormulaLabel": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"createContractFormulaBattFunExplanation" : "Een wagen gebruiken waar en wanneer jij wil, zonder instapkosten.",
 	"@createContractFormulaBattFunExplanation": {
 		"type": "text",

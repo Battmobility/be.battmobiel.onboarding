@@ -198,6 +198,7 @@ class PersonalPageState extends State<PersonalPage> {
                 firstDate: DateTime.now().subtract(Duration(days: 365 * 90)),
                 lastDate: DateTime.now(),
                 inputType: InputType.date,
+                validator: FormBuilderValidators.required(),
                 decoration: InputDecoration(
                   labelText: l10n.driversLicenseIssuedDate,
                   suffixIcon: Icon(Icons.calendar_today),
