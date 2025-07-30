@@ -64,15 +64,13 @@ import 'onboarding_localizations_nl.dart';
 /// property.
 abstract class OnboardingLocalizations {
   OnboardingLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static OnboardingLocalizations of(BuildContext context) {
     return Localizations.of<OnboardingLocalizations>(
-      context,
-      OnboardingLocalizations,
-    )!;
+        context, OnboardingLocalizations)!;
   }
 
   static const LocalizationsDelegate<OnboardingLocalizations> delegate =
@@ -90,17 +88,17 @@ abstract class OnboardingLocalizations {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('fr'),
-    Locale('nl'),
+    Locale('nl')
   ];
 
   /// No description provided for @formTitle.
@@ -373,6 +371,12 @@ abstract class OnboardingLocalizations {
   /// **'Choose from library'**
   String get imagePickerLabelPickPhoto;
 
+  /// No description provided for @imagePickerLabelPickorTakePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick or take a photo'**
+  String get imagePickerLabelPickorTakePhoto;
+
   /// No description provided for @imagePickerLabelOr.
   ///
   /// In en, this message translates to:
@@ -637,12 +641,6 @@ abstract class OnboardingLocalizations {
   /// **'Your contracts'**
   String get addSubscriptionFormLabelExistingContracts;
 
-  /// No description provided for @addSubscriptionFormLabelPersonalUse.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick a contract for personal use:'**
-  String get addSubscriptionFormLabelPersonalUse;
-
   /// No description provided for @addSubscriptionFormLabelNoPersonalUseButton.
   ///
   /// In en, this message translates to:
@@ -660,12 +658,6 @@ abstract class OnboardingLocalizations {
   /// In en, this message translates to:
   /// **'Provide your bussiness details if you want to use BattMobility for your company, or skip this step.'**
   String get addSubscriptionFormMessageBusinessUse;
-
-  /// No description provided for @addSubscriptionFormLabelBusinessUse.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick a contract for business use:'**
-  String get addSubscriptionFormLabelBusinessUse;
 
   /// No description provided for @addSubscriptionFormLaterLabel.
   ///
@@ -1065,8 +1057,7 @@ class _OnboardingLocalizationsDelegate
   @override
   Future<OnboardingLocalizations> load(Locale locale) {
     return SynchronousFuture<OnboardingLocalizations>(
-      lookupOnboardingLocalizations(locale),
-    );
+        lookupOnboardingLocalizations(locale));
   }
 
   @override
@@ -1089,9 +1080,8 @@ OnboardingLocalizations lookupOnboardingLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-    'OnboardingLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
-  );
+      'OnboardingLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

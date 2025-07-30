@@ -242,6 +242,11 @@
 		"type": "text",
 		"placeholders": {}
 	},
+	"imagePickerLabelPickorTakePhoto": "Maak of kies een foto",
+	"@imagePickerLabelPickorTakePhoto": {
+		"type": "text",
+		"placeholders": {}
+	},
 	"imagePickerLabelOr": "of",
 	"@imagePickerLabelOr": {
 		"type": "text",

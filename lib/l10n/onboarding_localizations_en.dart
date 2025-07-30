@@ -159,6 +159,9 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get imagePickerLabelPickPhoto => 'Choose from library';
 
   @override
+  String get imagePickerLabelPickorTakePhoto => 'Pick or take a photo';
+
+  @override
   String get imagePickerLabelOr => 'or';
 
   @override
@@ -300,10 +303,6 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get addSubscriptionFormLabelExistingContracts => 'Your contracts';
 
   @override
-  String get addSubscriptionFormLabelPersonalUse =>
-      'Pick a contract for personal use:';
-
-  @override
   String get addSubscriptionFormLabelNoPersonalUseButton =>
       'I will not be using BattMobility for personal use.';
 
@@ -314,10 +313,6 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   @override
   String get addSubscriptionFormMessageBusinessUse =>
       'Provide your bussiness details if you want to use BattMobility for your company, or skip this step.';
-
-  @override
-  String get addSubscriptionFormLabelBusinessUse =>
-      'Pick a contract for business use:';
 
   @override
   String get addSubscriptionFormLaterLabel => 'Ik doe dit later.';

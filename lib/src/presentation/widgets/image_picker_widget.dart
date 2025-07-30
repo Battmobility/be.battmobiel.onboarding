@@ -23,8 +23,8 @@ final class ImagePickerWidget extends StatefulWidget {
 }
 
 class ImagePickerWidgetState extends State<ImagePickerWidget> {
-  double maxImageWidth = 2000;
-  double maxImageHeight = 1261;
+  double maxImageWidth = 1600;
+  double maxImageHeight = 1200;
   XFile? _originalImage;
   CroppedFile? _croppedFile;
 
@@ -59,7 +59,9 @@ class ImagePickerWidgetState extends State<ImagePickerWidget> {
                     });
                   }
                 },
-                label: l10n.imagePickerLabelPickPhoto,
+                label: kIsWeb
+                    ? l10n.imagePickerLabelPickorTakePhoto
+                    : l10n.imagePickerLabelPickPhoto,
                 icon: Icons.image,
               ),
             ]
