@@ -158,8 +158,6 @@ class PersonalPageState extends State<PersonalPage> {
                     child: FormBuilderTextField(
                       name: 'licenseNumber',
                       initialValue: widget.initialData?["licenseNumber"] ?? '',
-                      validator: FormBuilderValidators.minLength(8,
-                          errorText: l10n.validationMessageMinlength(8)),
                       decoration:
                           InputDecoration(labelText: l10n.driversLicenseNumber),
                     ),

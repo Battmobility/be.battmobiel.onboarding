@@ -464,7 +464,7 @@ abstract class OnboardingLocalizations {
   /// No description provided for @driversLicenseExpiresDate.
   ///
   /// In en, this message translates to:
-  /// **'Drivers license expires'**
+  /// **'Drivers license expires (optional)'**
   String get driversLicenseExpiresDate;
 
   /// No description provided for @addressPageTitle.

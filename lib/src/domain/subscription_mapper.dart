@@ -66,7 +66,7 @@ extension ApiBattFormulaTypeToDomain on api.BattFormulaType? {
         return BattFormulaType.battFun;
       case api.BattFormulaType.battfunplus:
         return BattFormulaType.battFunPlus;
-      case api.BattFormulaType.batt4bussiness:
+      case api.BattFormulaType.battforbusiness:
         return BattFormulaType.battForBusiness;
       default:
         return BattFormulaType.battFun;

@@ -204,7 +204,7 @@ class OnboardingLocalizationsEn extends OnboardingLocalizations {
   String get driversLicenseIssuedDate => 'Drivers license issued';
 
   @override
-  String get driversLicenseExpiresDate => 'Drivers license expires';
+  String get driversLicenseExpiresDate => 'Drivers license expires (optional)';
 
   @override
   String get addressPageTitle => 'What is your home address?';

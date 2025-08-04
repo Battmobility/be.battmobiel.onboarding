@@ -307,7 +307,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"driversLicenseExpiresDate": "Drivers license expires",
+	"driversLicenseExpiresDate": "Drivers license expires (optional)",
 	"@driversLicenseExpiresDate": {
 		"type": "text",
 		"placeholders": {}

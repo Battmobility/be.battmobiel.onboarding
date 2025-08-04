@@ -317,7 +317,7 @@
 		"type": "text",
 		"placeholders": {}
 	},
-	"driversLicenseExpiresDate": "Vervaldatum",
+	"driversLicenseExpiresDate": "Vervaldatum (optioneel)",
 	"@driversLicenseExpiresDate": {
 		"type": "text",
 		"placeholders": {}

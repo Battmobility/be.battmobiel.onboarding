@@ -204,7 +204,7 @@ class OnboardingLocalizationsNl extends OnboardingLocalizations {
   String get driversLicenseIssuedDate => 'Datum afgifte';
 
   @override
-  String get driversLicenseExpiresDate => 'Vervaldatum';
+  String get driversLicenseExpiresDate => 'Vervaldatum (optioneel)';
 
   @override
   String get addressPageTitle => 'Wat is je thuisadres?';
