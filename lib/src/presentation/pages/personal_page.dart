@@ -158,6 +158,8 @@ class PersonalPageState extends State<PersonalPage> {
                     child: FormBuilderTextField(
                       name: 'licenseNumber',
                       initialValue: widget.initialData?["licenseNumber"] ?? '',
+                      // validate: required field
+                      validator: FormBuilderValidators.required(),
                       decoration:
                           InputDecoration(labelText: l10n.driversLicenseNumber),
                     ),
