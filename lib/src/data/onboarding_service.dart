@@ -8,8 +8,37 @@ final class OnboardingService {
   BattKit get api => ApiFactory.getMobileApi();
 
   Future<Onboarding?> getOnboardingProgress() async {
-    final response = await api.userV1UsersOnboardingGet();
-    return response.body;
+    try {
+      print('OnboardingService: Calling api.userV1UsersOnboardingGet()...');
+      final response = await api.userV1UsersOnboardingGet();
+      print('OnboardingService: Response status code: ${response.statusCode}');
+      print('OnboardingService: Response isSuccessful: ${response.isSuccessful}');
+      
+      // Try to get the raw response body as string to see what the API is actually returning
+      try {
+        print('OnboardingService: Attempting to get raw response...');
+        // The response object might have a way to access raw data
+        print('OnboardingService: Response object type: ${response.runtimeType}');
+        print('OnboardingService: Response toString: ${response.toString()}');
+      } catch (rawError) {
+        print('OnboardingService: Could not get raw response: $rawError');
+      }
+      
+      print('OnboardingService: Response body is ${response.body != null ? "not null" : "null"}');
+      if (response.body != null) {
+        print('OnboardingService: Response body type: ${response.body.runtimeType}');
+      }
+      return response.body;
+    } catch (e, stackTrace) {
+      print('OnboardingService: Error in getOnboardingProgress: $e');
+      print('OnboardingService: Stack trace: $stackTrace');
+      
+      // The error is happening during JSON parsing, so the API call itself is successful
+      // but the response contains null values where strings are expected
+      print('OnboardingService: This appears to be a JSON parsing error');
+      print('OnboardingService: The API is likely returning null values for required string fields');
+      rethrow;
+    }
   }
 
   Future<bool> postConvictions(OnboardingLegal convictions) async {

@@ -72,6 +72,26 @@ class OnboardingLandingFormState extends State<OnboardingLandingForm> {
     return FutureBuilder(
       future: onboardingRepository.getOnboardingProgress(),
       builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return Center(child: CircularProgressIndicator());
+        }
+        
+        if (snapshot.hasError) {
+          print('Onboarding error: ${snapshot.error}');
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.error_outline, size: 64, color: Colors.red),
+                SizedBox(height: 16),
+                Text('Error loading onboarding data'),
+                SizedBox(height: 8),
+                Text('${snapshot.error}', style: TextStyle(fontSize: 12, color: Colors.grey)),
+              ],
+            ),
+          );
+        }
+        
         if (!snapshot.hasData || snapshot.data == null) {
           return Center(child: CircularProgressIndicator());
         }

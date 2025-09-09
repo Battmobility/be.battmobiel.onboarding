@@ -19,9 +19,12 @@ final class OnboardingProgress {
   });
 
   factory OnboardingProgress.fromContract(api.Onboarding? onboarding) {
+    print('OnboardingProgress.fromContract called with onboarding: ${onboarding != null ? "not null" : "null"}');
+    
     if (onboarding != null) {
-      return OnboardingProgress(
-        legal: {
+      try {
+        print('Processing legal data...');
+        final legal = {
           "convictionBloodTestRefusal":
               onboarding.legal?.convictions.convictionBloodTestRefusal,
           "convictionDrunk": onboarding.legal?.convictions.convictionDrunk,
@@ -33,8 +36,16 @@ final class OnboardingProgress {
               onboarding.legal?.convictions.convictionLicenseRevocation,
           "nrOfAccidents": onboarding.legal?.nrOfAccidents,
           "answeredTruthfully": onboarding.progress > 0,
-        },
-        personal: {
+        };
+        print('Legal data processed successfully');
+
+        print('Processing personal data...');
+        print('onboarding.personal is ${onboarding.personal != null ? "not null" : "null"}');
+        if (onboarding.personal != null) {
+          print('licenseType is ${onboarding.personal!.licenseType != null ? "not null" : "null"}');
+        }
+        
+        final personal = {
           "box": onboarding.personal?.box,
           "city": onboarding.personal?.city,
           "dateCurrentLicense": onboarding.personal?.dateCurrentLicense,
@@ -44,21 +55,44 @@ final class OnboardingProgress {
           "houseNumber": onboarding.personal?.houseNumber,
           "lastName": onboarding.personal?.lastName,
           "licenseNumber": onboarding.personal?.licenseNumber,
-          "licenseType": onboarding.personal?.licenseType.value,
+          "licenseType": onboarding.personal?.licenseType?.value,
           "nationality": onboarding.personal?.nationality,
           "postalCode": onboarding.personal?.postalCode,
           "socialSecurityNumber": onboarding.personal?.socialSecurityNumber,
           "street": onboarding.personal?.street,
-        },
-        phone: {
+        };
+        print('Personal data processed successfully');
+
+        print('Processing phone data...');
+        final phone = {
           "phoneNumber": onboarding.phone?.phoneNumber,
-        },
-        subscriptions: (onboarding.$client?.subscriptions ??
+        };
+        print('Phone data processed successfully');
+
+        print('Processing subscriptions...');
+        final subscriptions = (onboarding.$client?.subscriptions ??
                 List<api.Subscription>.empty())
-            .toDomain(),
-        progress: onboarding.progress,
-      );
+            .toDomain();
+        print('Subscriptions processed successfully');
+
+        print('Processing progress...');
+        final progress = onboarding.progress;
+        print('Progress: $progress');
+
+        return OnboardingProgress(
+          legal: legal,
+          personal: personal,
+          phone: phone,
+          subscriptions: subscriptions,
+          progress: progress,
+        );
+      } catch (e, stackTrace) {
+        print('Error in OnboardingProgress.fromContract: $e');
+        print('Stack trace: $stackTrace');
+        rethrow;
+      }
     } else {
+      print('onboarding is null, returning empty OnboardingProgress');
       return OnboardingProgress(
         legal: {},
         personal: {},

@@ -13,8 +13,14 @@ final class OnboardingDatasource {
   OnboardingDatasource();
 
   Future<OnboardingProgress?> getOnboardingProgress() async {
-    final contract = await service.getOnboardingProgress();
-    return OnboardingProgress.fromContract(contract);
+    try {
+      final onboarding = await service.getOnboardingProgress();
+      return OnboardingProgress.fromContract(onboarding);
+    } catch (e) {
+      print('OnboardingDatasource: JSON parsing error, likely null values in required fields: $e');
+      // Return empty progress when API returns invalid data structure
+      return OnboardingProgress.none();
+    }
   }
 
   Future<bool> postConvictions(Map<String, dynamic> convictions) async {
